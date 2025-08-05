@@ -1,0 +1,18 @@
+{
+  "login": "Log in",
+  "registration": "Registration",
+  "enterFirstName": "Enter your first name",
+  "firstNameLabel": "Name",
+  "enterEmail": "Enter your email",
+  "emailLabel": "E-mail",
+  "enterPassword": "Enter your password",
+  "passwordLabel": "Password",
+  "confirmPassword": "Confirm your password",
+  "confirmPasswordLabel": "Confirm Password",
+  "dontHaveAccount": "Don't have an account?",
+  "alreadyHaveAccount":"Already have an account?",
+  "signUp": "Sign Up",
+  "myDesk": "My desk",
+  "usersDesks": "Users desks",
+  "followed": "Followed"
+}
