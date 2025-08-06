@@ -54,7 +54,7 @@ class LoginRoute extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.MyDockScreen]
+/// [_i3.MyDeskScreen]
 class MyDockRoute extends _i7.PageRouteInfo<void> {
   const MyDockRoute({List<_i7.PageRouteInfo>? children})
     : super(MyDockRoute.name, initialChildren: children);
@@ -64,7 +64,7 @@ class MyDockRoute extends _i7.PageRouteInfo<void> {
   static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i3.MyDockScreen();
+      return const _i3.MyDeskScreen();
     },
   );
 }

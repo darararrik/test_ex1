@@ -9,8 +9,8 @@ import 'package:test_ex1/core/util/build_context_x.dart';
 import 'package:test_ex1/feature/my_desk/presentation/widgets/dock.dart';
 
 @RoutePage()
-class MyDockScreen extends StatelessWidget {
-  const MyDockScreen({super.key});
+class MyDeskScreen extends StatelessWidget {
+  const MyDeskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
