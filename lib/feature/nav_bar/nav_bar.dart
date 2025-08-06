@@ -12,50 +12,47 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoTabsRouter(
-      routes: const [MyDockRoute(), UsersDesksRoute(), FollowedRoute()],
-      builder: (context, child) {
-        final tabsRouter = AutoTabsRouter.of(context);
-        return Scaffold(
-          body: child,
-          bottomNavigationBar: ClipRRect(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(AppRounding.r24),
+    return AutoTabsScaffold(
+      routes: const [
+        MyDeskWrapperRoute(),
+        UsersDesksRoute(),
+        FollowedRoute(),
+      ],
+      bottomNavigationBuilder: (_, tabsRouter) => ClipRRect(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(AppRounding.r24),
+        ),
+        child: NavigationBar(
+          selectedIndex: tabsRouter.activeIndex,
+          onDestinationSelected: tabsRouter.setActiveIndex,
+          destinations: [
+            NavigationDestination(
+              icon: AppIcon(AppIcons.myDesk),
+              selectedIcon: AppIcon(
+                AppIcons.myDesk,
+                color: context.appColors.gray800,
+              ),
+              label: context.l10n.myDesk,
             ),
-            child: NavigationBar(
-              selectedIndex: tabsRouter.activeIndex,
-              onDestinationSelected: tabsRouter.setActiveIndex,
-
-              destinations: [
-                NavigationDestination(
-                  icon: AppIcon(AppIcons.myDesk),
-                  selectedIcon: AppIcon(
-                    AppIcons.myDesk,
-                    color: context.appColors.gray800,
-                  ),
-                  label: context.l10n.myDesk,
-                ),
-                NavigationDestination(
-                  icon: AppIcon(AppIcons.userDesk),
-                  selectedIcon: AppIcon(
-                    AppIcons.userDesk,
-                    color: context.appColors.gray800,
-                  ),
-                  label: context.l10n.usersDesks,
-                ),
-                NavigationDestination(
-                  icon: AppIcon(AppIcons.followed),
-                  selectedIcon: AppIcon(
-                    AppIcons.followed,
-                    color: context.appColors.gray800,
-                  ),
-                  label: context.l10n.followed,
-                ),
-              ],
+            NavigationDestination(
+              icon: AppIcon(AppIcons.userDesk),
+              selectedIcon: AppIcon(
+                AppIcons.userDesk,
+                color: context.appColors.gray800,
+              ),
+              label: context.l10n.usersDesks,
             ),
-          ),
-        );
-      },
+            NavigationDestination(
+              icon: AppIcon(AppIcons.followed),
+              selectedIcon: AppIcon(
+                AppIcons.followed,
+                color: context.appColors.gray800,
+              ),
+              label: context.l10n.followed,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

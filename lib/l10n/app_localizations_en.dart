@@ -55,4 +55,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get followed => 'Followed';
+
+  @override
+  String get members => 'Members';
+
+  @override
+  String get complete => 'Complete';
 }

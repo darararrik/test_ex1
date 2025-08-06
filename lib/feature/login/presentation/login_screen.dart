@@ -46,7 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(context.l10n.login, style: context.appTextStyle.title1),
+              Text(
+                context.l10n.login,
+                style: context.appTextStyle.title1,
+              ),
               SizedBox(height: AppSpacing.s28),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     isEnabled: true,
                     onPressed: () {
                       // TODO: Изменить на логику входа
-                      context.router.push(const MyDockRoute());
+                      context.replaceRoute(
+                        const MyDeskWrapperRoute(),
+                      );
                     },
                     text: context.l10n.login,
                   ),
@@ -79,8 +84,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   UnderButtonText(
                     text: context.l10n.dontHaveAccount,
                     buttonText: context.l10n.signUp,
-                    onPressed: () =>
-                        context.router.popAndPush(const RegistrationRoute()),
+                    onPressed: () => context.replaceRoute(
+                      const RegistrationRoute(),
+                    ),
                   ),
                 ],
               ),

@@ -14,5 +14,8 @@
   "signUp": "Sign Up",
   "myDesk": "My desk",
   "usersDesks": "Users desks",
-  "followed": "Followed"
+  "followed": "Followed",
+  "members": "Members",
+  "complete": "Complete"
+  
 }

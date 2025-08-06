@@ -7,11 +7,11 @@ import 'package:test_ex1/core/constants/app_spacing.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/floating_action_button_widget.dart';
 import 'package:test_ex1/core/util/build_context_x.dart';
-import 'package:test_ex1/feature/my_desk/presentation/widgets/dock.dart';
+import 'package:test_ex1/feature/desk_list/presentation/widgets/dock.dart';
 
 @RoutePage()
-class MyDeskScreen extends StatelessWidget {
-  const MyDeskScreen({super.key});
+class DeskListScreen extends StatelessWidget {
+  const DeskListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

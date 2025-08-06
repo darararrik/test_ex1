@@ -189,6 +189,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Followed'**
   String get followed;
+
+  /// No description provided for @members.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get members;
+
+  /// No description provided for @complete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get complete;
 }
 
 class _AppLocalizationsDelegate
