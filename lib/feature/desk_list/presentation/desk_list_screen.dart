@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/app_rounding.dart';
+import 'package:test_ex1/core/constants/app_size.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
-import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/floating_action_button_widget.dart';
+import 'package:test_ex1/core/presentation/widgets/buttons/my_floating_action_button.dart';
+import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
 import 'package:test_ex1/core/util/build_context_x.dart';
 import 'package:test_ex1/feature/desk_list/presentation/widgets/dock.dart';
 
@@ -16,7 +17,7 @@ class DeskListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButtonWidget(
+      floatingActionButton: MyFloatingActionButton(
         onPressed: () {
           // TODO: Реализовать добавление нового элемента в док
         },
@@ -35,7 +36,17 @@ class DeskListScreen extends StatelessWidget {
                 context.l10n.myDesk,
                 style: context.appTextStyle.title2,
               ),
-              actions: [_ExitIconButton()],
+              actions: [
+                MyIconButton(
+                  onPressed: () {
+                    //TODO: Реализовать выход?
+                  },
+
+                  iconPath: AppIcons.exit,
+                  width: AppSize.s42,
+                  height: AppSize.s42,
+                ),
+              ],
               centerTitle: false,
             ),
           ),
@@ -87,31 +98,6 @@ class DeskListScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _ExitIconButton extends StatelessWidget {
-  const _ExitIconButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 42,
-      height: 42,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          boxShadow: [context.appColors.shadow1],
-          color: context.appColors.gray100,
-          borderRadius: BorderRadius.circular(AppRounding.r30),
-        ),
-        child: IconButton(
-          icon: AppIcon(AppIcons.exit, width: 18, height: 18),
-          onPressed: () {
-            // Handle search action
-          },
-        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/text_button.dart';
+import 'package:test_ex1/core/presentation/widgets/buttons/my_text_button.dart';
 import 'package:test_ex1/core/util/build_context_x.dart';
 
 class UnderButtonText extends StatelessWidget {
@@ -23,7 +23,7 @@ class UnderButtonText extends StatelessWidget {
             color: context.appColors.gray700,
           ),
         ),
-        TextButtonWidget(
+        MyTextButton(
           onPressed: onPressed,
           isEnabled: true,
           text: buttonText,

@@ -19,7 +19,11 @@ class AppTheme {
         borderRadius: BorderRadius.circular(AppRounding.r95),
       ),
     ),
-    appBarTheme: AppBarTheme(backgroundColor: appColors.background),
+
+    appBarTheme: AppBarTheme(
+      backgroundColor: appColors.background,
+      titleTextStyle: appTextStyle.headline1,
+    ),
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: appColors.gray100,
       indicatorColor: Colors.transparent,

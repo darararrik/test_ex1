@@ -10,8 +10,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i11;
-import 'package:test_ex1/core/wrappers/auth_wrapper.dart' as _i1;
-import 'package:test_ex1/core/wrappers/my_desk_wrapper.dart' as _i6;
+import 'package:test_ex1/routing/wrappers/auth_wrapper.dart' as _i1;
+import 'package:test_ex1/routing/wrappers/my_desk_wrapper.dart' as _i6;
 import 'package:test_ex1/feature/column/presentation/column_screen.dart' as _i2;
 import 'package:test_ex1/feature/desk_list/presentation/desk_list_screen.dart'
     as _i3;

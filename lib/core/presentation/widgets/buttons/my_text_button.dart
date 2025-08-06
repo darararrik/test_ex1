@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:test_ex1/core/util/build_context_x.dart';
 
-class TextButtonWidget extends StatelessWidget {
-  const TextButtonWidget({
+class MyTextButton extends StatelessWidget {
+  const MyTextButton({
     super.key,
     required this.onPressed,
     required this.text,
@@ -18,7 +18,9 @@ class TextButtonWidget extends StatelessWidget {
       onPressed: isEnabled ? onPressed : null,
 
       style: ButtonStyle(
-        textStyle: WidgetStateProperty.all(context.appTextStyle.body1),
+        textStyle: WidgetStateProperty.all(
+          context.appTextStyle.body1,
+        ),
         foregroundColor: WidgetStateProperty.resolveWith((
           Set<WidgetState> states,
         ) {

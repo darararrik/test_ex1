@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
-import 'package:test_ex1/core/presentation/widgets/back_ground.dart';
+import 'package:test_ex1/core/presentation/widgets/background.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/under_button_text.dart';
 import 'package:test_ex1/core/presentation/widgets/input_widget.dart';

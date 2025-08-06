@@ -7,4 +7,6 @@ abstract class AppIcons {
   static const String followed = 'assets/icons/subscribers.svg';
   static const String exit = 'assets/icons/exit.svg';
   static const String plus = 'assets/icons/plus.svg';
+  static const String backIcon = 'assets/icons/back.svg';
+  static const String prayArms = 'assets/icons/pray_arms.svg';
 }
