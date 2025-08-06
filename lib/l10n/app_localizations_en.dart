@@ -61,4 +61,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get complete => 'Complete';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get totalPrayers => 'Total prayers';
+
+  @override
+  String get otherPrayers => 'Other prayers';
+
+  @override
+  String get myPrayers => 'My prayers';
+
+  @override
+  String get prayed => 'Prayed';
+
+  @override
+  String get follow => 'Follow';
+
+  @override
+  String get comments => 'Comments';
+
+  @override
+  String get enterYourComment => 'Enter your comment';
 }

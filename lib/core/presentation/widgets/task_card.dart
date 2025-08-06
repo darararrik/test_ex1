@@ -23,7 +23,7 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushRoute(TaskRoute()),
+      onTap: () => context.pushRoute(TaskDetailRoute()),
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppRounding.r24),
@@ -46,10 +46,7 @@ class TaskCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        name,
-                        style: context.appTextStyle.headline2,
-                      ),
+                      Text(name, style: context.appTextStyle.headline2),
                       const SizedBox(width: AppSpacing.s2),
                       Row(
                         children: [
@@ -73,7 +70,7 @@ class TaskCard extends StatelessWidget {
                   //TODO: Сделать молитву
                 },
                 iconPath: AppIcons.prayArms,
-                color: context.appColors.gray300,
+                backgroundColor: context.appColors.gray300,
                 width: AppSize.s46,
                 height: AppSize.s46,
               ),

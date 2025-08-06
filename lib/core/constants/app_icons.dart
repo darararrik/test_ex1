@@ -9,4 +9,5 @@ abstract class AppIcons {
   static const String plus = 'assets/icons/plus.svg';
   static const String backIcon = 'assets/icons/back.svg';
   static const String prayArms = 'assets/icons/pray_arms.svg';
+  static const String paperAirplane = 'assets/icons/paper_airplane.svg';
 }

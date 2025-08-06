@@ -16,6 +16,12 @@ class InputWidget extends StatelessWidget {
     this.usePasswordToggle = false,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
+    this.border,
+    this.enabledBorder,
+    this.focusedBorder,
+    this.filled,
+    this.fillColor,
+    this.contentPadding,
   });
 
   final TextEditingController controller;
@@ -26,7 +32,12 @@ class InputWidget extends StatelessWidget {
   final bool usePasswordToggle;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
-
+  final InputBorder? border;
+  final InputBorder? enabledBorder;
+  final InputBorder? focusedBorder;
+  final bool? filled;
+  final Color? fillColor;
+  final EdgeInsets? contentPadding;
   @override
   Widget build(BuildContext context) {
     final passwordNotifier = PasswordVisibilityProvider.of(context);
@@ -52,14 +63,21 @@ class InputWidget extends StatelessWidget {
           textInputAction: textInputAction,
           onChanged: onChanged,
           style: context.appTextStyle.body2,
+
           decoration: InputDecoration(
+            filled: filled,
+            fillColor: fillColor,
             hintText: hintText,
             hintStyle: context.appTextStyle.body2.copyWith(
               color: context.appColors.gray600,
             ),
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: AppSpacing.s12,
-            ),
+            contentPadding:
+                contentPadding ??
+                const EdgeInsets.symmetric(vertical: AppSpacing.s12),
+            border: border,
+            enabledBorder: enabledBorder,
+            focusedBorder: focusedBorder,
+
             suffixIcon: usePasswordToggle
                 ? IconButton(
                     onPressed: passwordNotifier.toggleVisibility,

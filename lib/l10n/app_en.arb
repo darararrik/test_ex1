@@ -16,6 +16,15 @@
   "usersDesks": "Users desks",
   "followed": "Followed",
   "members": "Members",
-  "complete": "Complete"
+  "complete": "Complete",
+  "date":"Date",
+  "totalPrayers":"Total prayers",
+  "otherPrayers":"Other prayers",
+  "myPrayers":"My prayers",
+  "prayed":"Prayed",
+  "follow":"Follow",
+  "comments":"Comments",
+  "enterYourComment":"Enter your comment"
+
   
 }

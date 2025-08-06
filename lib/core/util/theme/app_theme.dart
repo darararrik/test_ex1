@@ -19,7 +19,7 @@ class AppTheme {
         borderRadius: BorderRadius.circular(AppRounding.r95),
       ),
     ),
-
+    dividerTheme: DividerThemeData(color: appColors.gray500, thickness: 1),
     appBarTheme: AppBarTheme(
       backgroundColor: appColors.background,
       titleTextStyle: appTextStyle.headline1,

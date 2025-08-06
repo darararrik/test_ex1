@@ -6,8 +6,8 @@ abstract class MyDeskRoutes {
     page: MyDeskWrapperRoute.page,
     children: [
       AutoRoute(page: DeskListRoute.page, initial: true),
-      AutoRoute(page: ColumnRoute.page),
-      AutoRoute(page: TaskRoute.page),
+      AutoRoute(page: TasksRoute.page),
+      AutoRoute(page: TaskDetailRoute.page),
     ],
   );
 }

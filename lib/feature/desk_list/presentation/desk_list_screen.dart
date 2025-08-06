@@ -7,8 +7,10 @@ import 'package:test_ex1/core/constants/app_size.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_floating_action_button.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
+import 'package:test_ex1/core/presentation/widgets/my_sliver_app_bar.dart';
 import 'package:test_ex1/core/util/build_context_x.dart';
 import 'package:test_ex1/feature/desk_list/presentation/widgets/dock.dart';
+import 'package:test_ex1/routing/app_routing.gr.dart';
 
 @RoutePage()
 class DeskListScreen extends StatelessWidget {
@@ -24,51 +26,39 @@ class DeskListScreen extends StatelessWidget {
       ),
       body: CustomScrollView(
         slivers: [
-          SliverPadding(
-            padding: const EdgeInsets.only(
-              top: AppSpacing.s12,
-              bottom: AppSpacing.s24,
+          MySliverAppBar(
+            actionsPadding: EdgeInsets.only(right: AppSpacing.s16),
+            backgroundColor: context.appColors.gray200,
+            title: Text(
+              context.l10n.myDesk,
+              style: context.appTextStyle.title2,
             ),
-            sliver: SliverAppBar(
-              actionsPadding: EdgeInsets.only(right: AppSpacing.s16),
-              backgroundColor: context.appColors.gray200,
-              title: Text(
-                context.l10n.myDesk,
-                style: context.appTextStyle.title2,
+            actions: [
+              MyIconButton(
+                onPressed: () => context.replaceRoute(LoginRoute()),
+                iconPath: AppIcons.exit,
+                width: AppSize.s42,
+                height: AppSize.s42,
               ),
-              actions: [
-                MyIconButton(
-                  onPressed: () {
-                    //TODO: Реализовать выход?
-                  },
-
-                  iconPath: AppIcons.exit,
-                  width: AppSize.s42,
-                  height: AppSize.s42,
-                ),
-              ],
-              centerTitle: false,
-            ),
+            ],
+            centerTitle: false,
           ),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.s16,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s16),
             sliver: SliverToBoxAdapter(
               child: Stack(
                 children: [
                   Positioned.fill(
                     child: ShaderMask(
                       shaderCallback: (Rect bounds) {
-                        return context.appColors.gradientOrange!
-                            .createShader(bounds);
+                        return context.appColors.gradientOrange!.createShader(
+                          bounds,
+                        );
                       },
                       blendMode: BlendMode.srcATop,
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            AppRounding.r24,
-                          ),
+                          borderRadius: BorderRadius.circular(AppRounding.r24),
                           image: DecorationImage(
                             image: Svg(AppIcons.background),
                             repeat: ImageRepeat.repeat,

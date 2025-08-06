@@ -10,14 +10,16 @@ class Dock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => context.pushRoute(ColumnRoute()),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.appColors.gray100,
-          borderRadius: BorderRadius.circular(AppRounding.r24),
-          boxShadow: [context.appColors.shadow1],
-        ),
+    return Material(
+      color: context.appColors.gray100, // начальный цвет
+      borderRadius: BorderRadius.circular(AppRounding.r24),
+      elevation: 1,
+      shadowColor: context.appColors.shadow1.color,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppRounding.r24),
+        onTap: () => context.pushRoute(TasksRoute()),
+        splashColor: context.appColors.gray300, // цвет всплеска
+        highlightColor: context.appColors.gray300, // цвет при нажатии
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.s24),
           child: Align(

@@ -201,6 +201,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Complete'**
   String get complete;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @totalPrayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Total prayers'**
+  String get totalPrayers;
+
+  /// No description provided for @otherPrayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Other prayers'**
+  String get otherPrayers;
+
+  /// No description provided for @myPrayers.
+  ///
+  /// In en, this message translates to:
+  /// **'My prayers'**
+  String get myPrayers;
+
+  /// No description provided for @prayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayed'**
+  String get prayed;
+
+  /// No description provided for @follow.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+  String get follow;
+
+  /// No description provided for @comments.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments'**
+  String get comments;
+
+  /// No description provided for @enterYourComment.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your comment'**
+  String get enterYourComment;
 }
 
 class _AppLocalizationsDelegate
