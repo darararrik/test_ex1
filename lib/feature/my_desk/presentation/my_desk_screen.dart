@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/app_rounding.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
@@ -39,51 +40,47 @@ class MyDeskScreen extends StatelessWidget {
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s16),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.s16,
+            ),
             sliver: SliverToBoxAdapter(
               child: Stack(
                 children: [
                   Positioned.fill(
-                    child: LayoutBuilder(
-                      builder: (context, constraints) {
-                        final iconSize = 320.0;
-                        final countX = (constraints.maxWidth / iconSize).ceil();
-                        final countY = (constraints.maxHeight / iconSize)
-                            .ceil();
-                        return Column(
-                          children: List.generate(countY, (y) {
-                            return Row(
-                              children: List.generate(countX, (x) {
-                                return SizedBox(
-                                  width: iconSize,
-                                  height: iconSize,
-                                  child: AppIcon(
-                                    AppIcons.background,
-                                    color: Colors.black,
-                                  ),
-                                );
-                              }),
-                            );
-                          }),
-                        );
+                    child: ShaderMask(
+                      shaderCallback: (Rect bounds) {
+                        return context.appColors.gradientOrange!
+                            .createShader(bounds);
                       },
+                      blendMode: BlendMode.srcATop,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            AppRounding.r24,
+                          ),
+                          image: DecorationImage(
+                            image: Svg(AppIcons.background),
+                            repeat: ImageRepeat.repeat,
+                            fit: BoxFit.none,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
+                  ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.symmetric(
                       horizontal: AppSpacing.s16,
+                      vertical: AppSpacing.s24,
                     ),
-                    child: ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return const Dock();
-                      },
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(height: AppSpacing.s16);
-                      },
-                      itemCount: 20,
-                    ),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return const Dock();
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: AppSpacing.s16);
+                    },
+                    itemCount: 5,
                   ),
                 ],
               ),

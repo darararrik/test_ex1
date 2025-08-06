@@ -13,7 +13,7 @@ import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:test_ex1/feature/followed/presentation/followed_screen.dart'
     as _i1;
 import 'package:test_ex1/feature/login/presentation/login_screen.dart' as _i2;
-import 'package:test_ex1/feature/my_desk/presentation/my_dock_screen.dart'
+import 'package:test_ex1/feature/my_desk/presentation/my_desk_screen.dart'
     as _i3;
 import 'package:test_ex1/feature/nav_bar/nav_bar.dart' as _i4;
 import 'package:test_ex1/feature/registration/presentation/registration_screen.dart'
