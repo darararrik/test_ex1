@@ -24,7 +24,13 @@
   "prayed":"Prayed",
   "follow":"Follow",
   "comments":"Comments",
-  "enterYourComment":"Enter your comment"
+  "enterYourComment":"Enter your comment",
+  "emptyDeskScreen":"You haven't created any column.",
+  "newColumn":"New column",
+  "newPrayer":"New prayer",
+  "enterTitilePrayer":"Enter titile of prayer",
+  "enterTitileColumn":"Enter titile of column",
+  "add":"Add"
 
   
 }

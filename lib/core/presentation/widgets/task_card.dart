@@ -4,26 +4,35 @@ import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/app_rounding.dart';
 import 'package:test_ex1/core/constants/app_size.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
+import 'package:test_ex1/core/domain/models/task_model.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
 import 'package:test_ex1/core/presentation/widgets/capsule_icon.dart';
 import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/int_x.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
-class TaskCard extends StatelessWidget {
-  const TaskCard({
-    super.key,
-    required this.name,
-    required this.countMembers,
-    required this.countComplete,
-  });
-  final String name;
-  final String countMembers;
-  final String countComplete;
+class TaskCard extends StatefulWidget {
+  const TaskCard({super.key, required this.task});
+  final TaskModel task;
+
+  @override
+  State<TaskCard> createState() => _TaskCardState();
+}
+
+class _TaskCardState extends State<TaskCard> {
+  late final String countMembers;
+  late final String countComplete;
+  @override
+  void initState() {
+    super.initState();
+    countMembers = widget.task.members.resolveCountMembers();
+    countComplete = widget.task.complete.resolveCountComplete();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushRoute(TaskDetailRoute()),
+      onTap: () => context.pushRoute(TaskDetailRoute(task: widget.task)),
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppRounding.r24),
@@ -40,13 +49,16 @@ class TaskCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CapsuleIcon(color: context.appColors.blueIndicator),
+                  CapsuleIcon(status: widget.task.status),
                   const SizedBox(width: AppSpacing.s12),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(name, style: context.appTextStyle.headline2),
+                      Text(
+                        widget.task.name,
+                        style: context.appTextStyle.headline2,
+                      ),
                       const SizedBox(width: AppSpacing.s2),
                       Row(
                         children: [

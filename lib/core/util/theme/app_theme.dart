@@ -10,6 +10,24 @@ class AppTheme {
     extensions: <ThemeExtension<dynamic>>[appColors, appTextStyle],
     primaryColor: appColors.gray800,
     scaffoldBackgroundColor: appColors.background,
+    dialogTheme: DialogThemeData(backgroundColor: appColors.gray100),
+    inputDecorationTheme: InputDecorationTheme(
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(color: appColors.gray600),
+      ),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: appColors.gray600),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: appColors.gray800),
+      ),
+      errorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: appColors.error),
+      ),
+      focusedErrorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: appColors.error),
+      ),
+    ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       elevation: 0,
       iconSize: AppSize.s24,

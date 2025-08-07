@@ -249,6 +249,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your comment'**
   String get enterYourComment;
+
+  /// No description provided for @emptyDeskScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t created any column.'**
+  String get emptyDeskScreen;
+
+  /// No description provided for @newColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'New column'**
+  String get newColumn;
+
+  /// No description provided for @newPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'New prayer'**
+  String get newPrayer;
+
+  /// No description provided for @enterTitilePrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter titile of prayer'**
+  String get enterTitilePrayer;
+
+  /// No description provided for @enterTitileColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter titile of column'**
+  String get enterTitileColumn;
+
+  /// No description provided for @add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
 }
 
 class _AppLocalizationsDelegate

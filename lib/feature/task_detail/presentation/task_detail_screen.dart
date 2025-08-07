@@ -4,17 +4,20 @@ import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/app_rounding.dart';
 import 'package:test_ex1/core/constants/app_size.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
+import 'package:test_ex1/core/domain/models/comment_model.dart';
+import 'package:test_ex1/core/domain/models/task_model.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/secondary_button.dart';
 import 'package:test_ex1/core/presentation/widgets/my_sliver_app_bar.dart';
 import 'package:test_ex1/core/util/build_context_x.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:test_ex1/core/util/date_time_x.dart';
 import 'package:test_ex1/feature/task_detail/presentation/widgets/input_comment_widget.dart';
 
 @RoutePage()
 class TaskDetailScreen extends StatefulWidget {
-  const TaskDetailScreen({super.key});
-
+  const TaskDetailScreen({super.key, required this.task});
+  final TaskModel task;
   @override
   State<TaskDetailScreen> createState() => _TaskDetailScreenState();
 }
@@ -38,58 +41,16 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          MySliverAppBar(title: Text("name deck")),
+          MySliverAppBar(title: Text(widget.task.name)),
           SliverToBoxAdapter(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  _TaskData(),
+                  _TaskData(widget.task),
                   const SizedBox(height: AppSize.s20),
-                  Text(
-                    context.l10n.comments,
-                    style: context.appTextStyle.headline2,
-                  ),
-                  const SizedBox(height: AppSize.s12),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: AppSpacing.s16,
-                      horizontal: AppSpacing.s32,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("name", style: context.appTextStyle.body1),
-                            Text(
-                              "date",
-                              style: context.appTextStyle.body4.copyWith(
-                                color: context.appColors.gray700,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: AppSpacing.s12,
-                          ),
-                          child: Text(
-                            "akdsjbkajsbdkajsbaksdbk",
-                            style: context.appTextStyle.body2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.s12),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSize.s16,
-                    ),
-                    child: InputCommentWidget(
-                      commentController: _commentController,
-                    ),
+                  _Comment(
+                    commentController: _commentController,
+                    comments: widget.task.comments,
                   ),
                 ],
               ),
@@ -102,8 +63,8 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
 }
 
 class _TaskData extends StatelessWidget {
-  const _TaskData();
-
+  const _TaskData(this.task);
+  final TaskModel task;
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -138,12 +99,12 @@ class _TaskData extends StatelessWidget {
                       children: [
                         _WhiteBoxText(
                           title: context.l10n.date,
-                          data: '01.01.2004',
+                          data: task.date.toFormattedString(),
                         ),
                         const SizedBox(width: AppSpacing.s12),
                         _WhiteBoxText(
                           title: context.l10n.totalPrayers,
-                          data: '333',
+                          data: task.totalPrayers.toString(),
                         ),
                       ],
                     ),
@@ -153,12 +114,12 @@ class _TaskData extends StatelessWidget {
                       children: [
                         _WhiteBoxText(
                           title: context.l10n.otherPrayers,
-                          data: '456',
+                          data: task.otherPrayers.toString(),
                         ),
                         const SizedBox(width: AppSpacing.s12),
                         _WhiteBoxText(
                           title: context.l10n.myPrayers,
-                          data: '60',
+                          data: task.myPrayers.toString(),
                         ),
                       ],
                     ),
@@ -214,6 +175,64 @@ class _WhiteBoxText extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Comment extends StatelessWidget {
+  const _Comment({
+    required TextEditingController commentController,
+    required this.comments,
+  }) : _commentController = commentController;
+
+  final TextEditingController _commentController;
+  final List<CommentModel> comments;
+  @override
+  Widget build(BuildContext context) {
+    final firstComment = comments.first;
+    return Column(
+      children: [
+        Text(context.l10n.comments, style: context.appTextStyle.headline2),
+        const SizedBox(height: AppSize.s12),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: AppSpacing.s16,
+            horizontal: AppSpacing.s32,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    firstComment.commentatorName,
+                    style: context.appTextStyle.body1,
+                  ),
+                  Text(
+                    firstComment.date.toFormattedString(),
+                    style: context.appTextStyle.body4.copyWith(
+                      color: context.appColors.gray700,
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: AppSpacing.s12),
+                child: Text(
+                  firstComment.comment,
+                  style: context.appTextStyle.body2,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: AppSize.s12),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSize.s16),
+          child: InputCommentWidget(commentController: _commentController),
+        ),
+      ],
     );
   }
 }

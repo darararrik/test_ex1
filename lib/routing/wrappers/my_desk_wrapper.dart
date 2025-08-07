@@ -2,13 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class MyDeskWrapperScreen extends StatelessWidget
-    implements AutoRouteWrapper {
+class MyDeskWrapperScreen extends StatelessWidget implements AutoRouteWrapper {
   const MyDeskWrapperScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const AutoRouter();
+    return Scaffold(body: const AutoRouter());
   }
 
   @override

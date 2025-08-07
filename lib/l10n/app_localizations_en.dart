@@ -85,4 +85,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enterYourComment => 'Enter your comment';
+
+  @override
+  String get emptyDeskScreen => 'You haven\'t created any column.';
+
+  @override
+  String get newColumn => 'New column';
+
+  @override
+  String get newPrayer => 'New prayer';
+
+  @override
+  String get enterTitilePrayer => 'Enter titile of prayer';
+
+  @override
+  String get enterTitileColumn => 'Enter titile of column';
+
+  @override
+  String get add => 'Add';
 }
