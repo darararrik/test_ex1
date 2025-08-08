@@ -14,5 +14,31 @@
   "signUp": "Sign Up",
   "myDesk": "My desk",
   "usersDesks": "Users desks",
-  "followed": "Followed"
+  "followed": "Followed",
+  "members": "Members",
+  "complete": "Complete",
+  "date":"Date",
+  "totalPrayers":"Total prayers",
+  "otherPrayers":"Other prayers",
+  "myPrayers":"My prayers",
+  "prayed":"Prayed",
+  "follow":"Follow",
+  "comments":"Comments",
+  "enterYourComment":"Enter your comment",
+  "emptyDeskScreen":"You haven't created any column.",
+  "newColumn":"New column",
+  "newPrayer":"New prayer",
+  "enterTitlePrayer":"Enter title of prayer",
+  "enterTitleColumn":"Enter title of column",
+  "add":"Add",
+  "emptyTasksScreen":"You haven't created any prayer.",
+  "errorInvalidEmail":"Enter correct e-mail",
+  "errorPasswordTooShort": "Password field must be at leat 5 characters",
+  "errorPasswordsDoNotMatch":"Both passwords must match",
+  "errorEnterName": "Name cannot be empty",
+  "logOutTitle":"Are you sure you want to log out?",
+  "logOut": "Log out",
+  "cancel": "Cancel"
+
+  
 }

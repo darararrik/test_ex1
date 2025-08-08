@@ -1,12 +1,30 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
+import 'package:test_ex1/core/presentation/providers/auth/auth_provider.dart';
+import 'package:test_ex1/routing/app_routing.gr.dart';
 
 @RoutePage()
-class UsersDesksScreen extends StatelessWidget {
+class UsersDesksScreen extends StatefulWidget {
   const UsersDesksScreen({super.key});
 
   @override
+  State<UsersDesksScreen> createState() => _UsersDesksScreenState();
+}
+
+class _UsersDesksScreenState extends State<UsersDesksScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final notifier = AuthProvider.of(context);
+      if (notifier.currentUser == null) {
+        context.replaceRoute(const AuthWrapperRoute());
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(child: Text("data"));
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 
-class TextButtonWidget extends StatelessWidget {
-  const TextButtonWidget({
+class MyTextButton extends StatelessWidget {
+  const MyTextButton({
     super.key,
     required this.onPressed,
     required this.text,

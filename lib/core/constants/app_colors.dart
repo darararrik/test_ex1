@@ -16,9 +16,14 @@ final AppPalette appColors = AppPalette(
   blueIndicator: const Color(0xFF4757B0),
   yellowIndicator: const Color(0xFFBFAF3A),
   gradientOrange: LinearGradient(
-    colors: [const Color(0xFFFF650F), const Color.fromRGBO(255, 245, 0, 0.03)],
+    tileMode: TileMode.clamp,
+    colors: [
+      const Color.fromRGBO(255, 101, 15, 1),
+      const Color.fromRGBO(255, 245, 0, 0.03),
+    ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
+    stops: [0, 100],
   ),
   background: const Color(0xFFFCFCFC),
   shadow1: BoxShadow(

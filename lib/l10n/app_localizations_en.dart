@@ -55,4 +55,77 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get followed => 'Followed';
+
+  @override
+  String get members => 'Members';
+
+  @override
+  String get complete => 'Complete';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get totalPrayers => 'Total prayers';
+
+  @override
+  String get otherPrayers => 'Other prayers';
+
+  @override
+  String get myPrayers => 'My prayers';
+
+  @override
+  String get prayed => 'Prayed';
+
+  @override
+  String get follow => 'Follow';
+
+  @override
+  String get comments => 'Comments';
+
+  @override
+  String get enterYourComment => 'Enter your comment';
+
+  @override
+  String get emptyDeskScreen => 'You haven\'t created any column.';
+
+  @override
+  String get newColumn => 'New column';
+
+  @override
+  String get newPrayer => 'New prayer';
+
+  @override
+  String get enterTitlePrayer => 'Enter title of prayer';
+
+  @override
+  String get enterTitleColumn => 'Enter title of column';
+
+  @override
+  String get add => 'Add';
+
+  @override
+  String get emptyTasksScreen => 'You haven\'t created any prayer.';
+
+  @override
+  String get errorInvalidEmail => 'Enter correct e-mail';
+
+  @override
+  String get errorPasswordTooShort =>
+      'Password field must be at leat 5 characters';
+
+  @override
+  String get errorPasswordsDoNotMatch => 'Both passwords must match';
+
+  @override
+  String get errorEnterName => 'Name cannot be empty';
+
+  @override
+  String get logOutTitle => 'Are you sure you want to log out?';
+
+  @override
+  String get logOut => 'Log out';
+
+  @override
+  String get cancel => 'Cancel';
 }

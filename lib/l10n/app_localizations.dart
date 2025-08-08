@@ -189,6 +189,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Followed'**
   String get followed;
+
+  /// No description provided for @members.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get members;
+
+  /// No description provided for @complete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get complete;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @totalPrayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Total prayers'**
+  String get totalPrayers;
+
+  /// No description provided for @otherPrayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Other prayers'**
+  String get otherPrayers;
+
+  /// No description provided for @myPrayers.
+  ///
+  /// In en, this message translates to:
+  /// **'My prayers'**
+  String get myPrayers;
+
+  /// No description provided for @prayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayed'**
+  String get prayed;
+
+  /// No description provided for @follow.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+  String get follow;
+
+  /// No description provided for @comments.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments'**
+  String get comments;
+
+  /// No description provided for @enterYourComment.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your comment'**
+  String get enterYourComment;
+
+  /// No description provided for @emptyDeskScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t created any column.'**
+  String get emptyDeskScreen;
+
+  /// No description provided for @newColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'New column'**
+  String get newColumn;
+
+  /// No description provided for @newPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'New prayer'**
+  String get newPrayer;
+
+  /// No description provided for @enterTitlePrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter title of prayer'**
+  String get enterTitlePrayer;
+
+  /// No description provided for @enterTitleColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter title of column'**
+  String get enterTitleColumn;
+
+  /// No description provided for @add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
+
+  /// No description provided for @emptyTasksScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t created any prayer.'**
+  String get emptyTasksScreen;
+
+  /// No description provided for @errorInvalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter correct e-mail'**
+  String get errorInvalidEmail;
+
+  /// No description provided for @errorPasswordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password field must be at leat 5 characters'**
+  String get errorPasswordTooShort;
+
+  /// No description provided for @errorPasswordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Both passwords must match'**
+  String get errorPasswordsDoNotMatch;
+
+  /// No description provided for @errorEnterName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name cannot be empty'**
+  String get errorEnterName;
+
+  /// No description provided for @logOutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get logOutTitle;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logOut;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate

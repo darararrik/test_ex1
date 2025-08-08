@@ -1,11 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
-import 'package:test_ex1/core/presentation/widgets/back_ground.dart';
+import 'package:test_ex1/core/presentation/providers/auth/auth_provider.dart';
+import 'package:test_ex1/core/presentation/widgets/background.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/under_button_text.dart';
 import 'package:test_ex1/core/presentation/widgets/input_widget.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
 @RoutePage()
@@ -36,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final router = context.router;
     return Scaffold(
       body: BackGroundWidget(
         child: Padding(
@@ -69,9 +71,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: AppSpacing.s42),
                   PrimaryButton(
                     isEnabled: true,
-                    onPressed: () {
-                      // TODO: Изменить на логику входа
-                      context.router.push(const MyDockRoute());
+                    onPressed: () async {
+                      final notifier = AuthProvider.of(context);
+                      final resp = await notifier.login(
+                        _emailController.text.trim(),
+                        _passwordController.text.trim(),
+                      );
+                      if (resp == true) {
+                        router.replace(NavBarRoute());
+                      }
                     },
                     text: context.l10n.login,
                   ),
@@ -80,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: context.l10n.dontHaveAccount,
                     buttonText: context.l10n.signUp,
                     onPressed: () =>
-                        context.router.popAndPush(const RegistrationRoute()),
+                        context.replaceRoute(const RegistrationRoute()),
                   ),
                 ],
               ),

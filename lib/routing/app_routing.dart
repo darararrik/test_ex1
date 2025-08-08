@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
+import 'package:test_ex1/routing/routes/my_deks_routes.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -8,21 +9,21 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: LoginRoute.page),
-    AutoRoute(page: RegistrationRoute.page),
     AutoRoute(
       page: NavBarRoute.page,
       initial: true,
       children: [
-        AutoRoute(page: MyDockRoute.page),
+        MyDeskRoutes.routes,
         AutoRoute(page: UsersDesksRoute.page),
         AutoRoute(page: FollowedRoute.page),
       ],
     ),
-  ];
-
-  @override
-  List<AutoRouteGuard> get guards => [
-    // optionally add root guards here
+    AutoRoute(
+      page: AuthWrapperRoute.page,
+      children: [
+        AutoRoute(page: LoginRoute.page, initial: true),
+        AutoRoute(page: RegistrationRoute.page),
+      ],
+    ),
   ];
 }

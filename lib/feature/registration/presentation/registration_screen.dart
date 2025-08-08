@@ -1,12 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
-import 'package:test_ex1/core/presentation/widgets/back_ground.dart';
+import 'package:test_ex1/core/presentation/providers/auth/auth_provider.dart';
+import 'package:test_ex1/core/presentation/widgets/background.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/under_button_text.dart';
 import 'package:test_ex1/core/presentation/widgets/input_widget.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
-import 'package:test_ex1/core/util/list_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/list_x.dart';
+import 'package:test_ex1/core/util/validators/email_validator.dart';
+import 'package:test_ex1/core/util/validators/password_validator.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
 @RoutePage()
@@ -22,6 +25,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
   late final TextEditingController _confirmPasswordController;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -43,6 +47,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final router = context.router;
     return Scaffold(
       body: BackGroundWidget(
         child: Padding(
@@ -50,61 +55,87 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             horizontal: AppSpacing.s24,
           ).copyWith(top: AppSpacing.s36, bottom: AppSpacing.s44),
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  context.l10n.registration,
-                  style: context.appTextStyle.title1,
-                ),
-                SizedBox(height: AppSpacing.s28),
-                ...[
-                  InputWidget(
-                    controller: _usernameController,
-                    hintText: context.l10n.enterFirstName,
-                    textInputAction: TextInputAction.next,
-                    labelText: context.l10n.firstNameLabel,
+            child: Form(
+              key: _formKey,
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    context.l10n.registration,
+                    style: context.appTextStyle.title1,
                   ),
-                  InputWidget(
-                    controller: _emailController,
-                    hintText: context.l10n.enterEmail,
-                    keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                    labelText: context.l10n.emailLabel,
+                  SizedBox(height: AppSpacing.s28),
+                  ...[
+                    InputWidget(
+                      controller: _usernameController,
+                      hintText: context.l10n.enterFirstName,
+                      textInputAction: TextInputAction.next,
+                      labelText: context.l10n.firstNameLabel,
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return context.l10n.errorEnterName;
+                        }
+                        return null;
+                      },
+                    ),
+                    InputWidget(
+                      controller: _emailController,
+                      hintText: context.l10n.enterEmail,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      labelText: context.l10n.emailLabel,
+                      validator: (value) => validatorEmail(value, context),
+                    ),
+                    InputWidget(
+                      controller: _passwordController,
+                      hintText: context.l10n.enterPassword,
+                      usePasswordToggle: true,
+                      textInputAction: TextInputAction.next,
+                      labelText: context.l10n.passwordLabel,
+                      validator: (value) =>
+                          shortPasswordValidator(value, context),
+                    ),
+                    InputWidget(
+                      controller: _confirmPasswordController,
+                      hintText: context.l10n.confirmPassword,
+                      usePasswordToggle: true,
+                      textInputAction: TextInputAction.done,
+                      labelText: context.l10n.confirmPasswordLabel,
+                      validator: (value) => matchPasswordcValidator(
+                        value,
+                        context,
+                        _passwordController,
+                      ),
+                    ),
+                  ].separated(SizedBox(height: AppSpacing.s28)),
+                  SizedBox(height: AppSpacing.s42),
+                  PrimaryButton(
+                    onPressed: () async {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        final notifier = AuthProvider.of(context);
+                        final resp = await notifier.register(
+                          _usernameController.text.trim(),
+                          _emailController.text.trim(),
+                          _passwordController.text.trim(),
+                        );
+                        if (resp == true) {
+                          router.replace(NavBarRoute());
+                        }
+                      }
+                    },
+                    text: context.l10n.registration,
+                    isEnabled: true,
                   ),
-                  InputWidget(
-                    controller: _passwordController,
-                    hintText: context.l10n.enterPassword,
-                    usePasswordToggle: true,
-                    textInputAction: TextInputAction.next,
-                    labelText: context.l10n.passwordLabel,
+                  SizedBox(height: AppSpacing.s12),
+                  UnderButtonText(
+                    text: context.l10n.alreadyHaveAccount,
+                    buttonText: context.l10n.login,
+                    onPressed: () => context.replaceRoute(const LoginRoute()),
                   ),
-                  InputWidget(
-                    controller: _confirmPasswordController,
-                    hintText: context.l10n.confirmPassword,
-                    usePasswordToggle: true,
-                    textInputAction: TextInputAction.done,
-                    labelText: context.l10n.confirmPasswordLabel,
-                  ),
-                ].separated(SizedBox(height: AppSpacing.s28)),
-                SizedBox(height: AppSpacing.s42),
-                PrimaryButton(
-                  onPressed: () {
-                    // TODO: Изменить на логику регистрации
-                    context.router.push(const MyDockRoute());
-                  },
-                  text: context.l10n.registration,
-                  isEnabled: true,
-                ),
-                SizedBox(height: AppSpacing.s12),
-                UnderButtonText(
-                  text: context.l10n.alreadyHaveAccount,
-                  buttonText: context.l10n.login,
-                  onPressed: () =>
-                      context.router.popAndPush(const LoginRoute()),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

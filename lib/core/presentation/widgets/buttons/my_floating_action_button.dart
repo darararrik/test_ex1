@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 
-class FloatingActionButtonWidget extends StatelessWidget {
-  const FloatingActionButtonWidget({super.key, required this.onPressed});
+class MyFloatingActionButton extends StatelessWidget {
+  const MyFloatingActionButton({super.key, required this.onPressed});
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {

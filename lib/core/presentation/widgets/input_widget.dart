@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
-import 'package:test_ex1/core/presentation/providers/password_visibility_provider.dart';
+import 'package:test_ex1/core/presentation/providers/password_visibility/password_visibility_provider.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 
 class InputWidget extends StatelessWidget {
   const InputWidget({
@@ -16,8 +16,15 @@ class InputWidget extends StatelessWidget {
     this.usePasswordToggle = false,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
+    this.border,
+    this.enabledBorder,
+    this.focusedBorder,
+    this.filled,
+    this.fillColor,
+    this.contentPadding,
+    this.validator,
   });
-
+  final FormFieldValidator<String>? validator;
   final TextEditingController controller;
   final String? hintText;
   final String? labelText;
@@ -26,7 +33,12 @@ class InputWidget extends StatelessWidget {
   final bool usePasswordToggle;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
-
+  final InputBorder? border;
+  final InputBorder? enabledBorder;
+  final InputBorder? focusedBorder;
+  final bool? filled;
+  final Color? fillColor;
+  final EdgeInsets? contentPadding;
   @override
   Widget build(BuildContext context) {
     final passwordNotifier = PasswordVisibilityProvider.of(context);
@@ -44,7 +56,7 @@ class InputWidget extends StatelessWidget {
               color: context.appColors.gray700,
             ),
           ),
-        TextField(
+        TextFormField(
           controller: controller,
           enabled: enabled,
           obscureText: obscureText,
@@ -52,14 +64,22 @@ class InputWidget extends StatelessWidget {
           textInputAction: textInputAction,
           onChanged: onChanged,
           style: context.appTextStyle.body2,
+          validator: validator,
+
           decoration: InputDecoration(
+            filled: filled,
+            fillColor: fillColor,
             hintText: hintText,
             hintStyle: context.appTextStyle.body2.copyWith(
               color: context.appColors.gray600,
             ),
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: AppSpacing.s12,
-            ),
+            contentPadding:
+                contentPadding ??
+                const EdgeInsets.symmetric(vertical: AppSpacing.s12),
+            border: border,
+            enabledBorder: enabledBorder,
+            focusedBorder: focusedBorder,
+
             suffixIcon: usePasswordToggle
                 ? IconButton(
                     onPressed: passwordNotifier.toggleVisibility,
