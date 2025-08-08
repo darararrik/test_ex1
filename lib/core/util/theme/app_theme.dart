@@ -11,6 +11,7 @@ class AppTheme {
     primaryColor: appColors.gray800,
     scaffoldBackgroundColor: appColors.background,
     dialogTheme: DialogThemeData(backgroundColor: appColors.gray100),
+
     inputDecorationTheme: InputDecorationTheme(
       border: UnderlineInputBorder(
         borderSide: BorderSide(color: appColors.gray600),

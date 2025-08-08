@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_back_button.dart';
@@ -11,12 +10,14 @@ class MySliverAppBar extends StatelessWidget {
     this.backgroundColor,
     this.actions,
     this.centerTitle,
+    this.canPop = true,
   });
   final Widget? title;
   final EdgeInsets? actionsPadding;
   final Color? backgroundColor;
   final List<Widget>? actions;
   final bool? centerTitle;
+  final bool canPop;
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
@@ -29,7 +30,8 @@ class MySliverAppBar extends StatelessWidget {
         centerTitle: centerTitle,
         actionsPadding: actionsPadding,
         backgroundColor: backgroundColor,
-        leading: context.router.canPop() ? MyBackButton() : null,
+        leading: canPop ? MyBackButton() : null,
+
         title: title,
       ),
     );

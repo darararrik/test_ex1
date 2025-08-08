@@ -268,23 +268,71 @@ abstract class AppLocalizations {
   /// **'New prayer'**
   String get newPrayer;
 
-  /// No description provided for @enterTitilePrayer.
+  /// No description provided for @enterTitlePrayer.
   ///
   /// In en, this message translates to:
-  /// **'Enter titile of prayer'**
-  String get enterTitilePrayer;
+  /// **'Enter title of prayer'**
+  String get enterTitlePrayer;
 
-  /// No description provided for @enterTitileColumn.
+  /// No description provided for @enterTitleColumn.
   ///
   /// In en, this message translates to:
-  /// **'Enter titile of column'**
-  String get enterTitileColumn;
+  /// **'Enter title of column'**
+  String get enterTitleColumn;
 
   /// No description provided for @add.
   ///
   /// In en, this message translates to:
   /// **'Add'**
   String get add;
+
+  /// No description provided for @emptyTasksScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t created any prayer.'**
+  String get emptyTasksScreen;
+
+  /// No description provided for @errorInvalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter correct e-mail'**
+  String get errorInvalidEmail;
+
+  /// No description provided for @errorPasswordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password field must be at leat 5 characters'**
+  String get errorPasswordTooShort;
+
+  /// No description provided for @errorPasswordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Both passwords must match'**
+  String get errorPasswordsDoNotMatch;
+
+  /// No description provided for @errorEnterName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name cannot be empty'**
+  String get errorEnterName;
+
+  /// No description provided for @logOutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get logOutTitle;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logOut;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate

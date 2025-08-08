@@ -4,14 +4,14 @@ import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/app_rounding.dart';
 import 'package:test_ex1/core/constants/app_size.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
-import 'package:test_ex1/core/domain/models/comment_model.dart';
-import 'package:test_ex1/core/domain/models/task_model.dart';
+import 'package:test_ex1/core/domain/models/task/task_model.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/secondary_button.dart';
 import 'package:test_ex1/core/presentation/widgets/my_sliver_app_bar.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:test_ex1/core/util/date_time_x.dart';
+import 'package:test_ex1/core/util/extensions/date_time_x.dart';
+import 'package:test_ex1/feature/desk_list/presentation/providers/desk_list_provider.dart';
 import 'package:test_ex1/feature/task_detail/presentation/widgets/input_comment_widget.dart';
 
 @RoutePage()
@@ -38,20 +38,21 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final notifier = DeskListProvider.of(context);
+    final currentTask = notifier.currentDesk.tasks.firstWhere(
+      (element) => element.id == widget.task.id,
+    );
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          MySliverAppBar(title: Text(widget.task.name)),
+          MySliverAppBar(title: Text(currentTask.name)),
           SliverToBoxAdapter(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  _TaskData(widget.task),
+                  _TaskData(currentTask),
                   const SizedBox(height: AppSize.s20),
-                  _Comment(
-                    commentController: _commentController,
-                    comments: widget.task.comments,
-                  ),
+                  _Comment(commentController: _commentController),
                 ],
               ),
             ),
@@ -180,16 +181,12 @@ class _WhiteBoxText extends StatelessWidget {
 }
 
 class _Comment extends StatelessWidget {
-  const _Comment({
-    required TextEditingController commentController,
-    required this.comments,
-  }) : _commentController = commentController;
+  const _Comment({required TextEditingController commentController})
+    : _commentController = commentController;
 
   final TextEditingController _commentController;
-  final List<CommentModel> comments;
   @override
   Widget build(BuildContext context) {
-    final firstComment = comments.first;
     return Column(
       children: [
         Text(context.l10n.comments, style: context.appTextStyle.headline2),
@@ -205,12 +202,9 @@ class _Comment extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Text("name", style: context.appTextStyle.body1),
                   Text(
-                    firstComment.commentatorName,
-                    style: context.appTextStyle.body1,
-                  ),
-                  Text(
-                    firstComment.date.toFormattedString(),
+                    "date",
                     style: context.appTextStyle.body4.copyWith(
                       color: context.appColors.gray700,
                     ),
@@ -219,10 +213,7 @@ class _Comment extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: AppSpacing.s12),
-                child: Text(
-                  firstComment.comment,
-                  style: context.appTextStyle.body2,
-                ),
+                child: Text("comment", style: context.appTextStyle.body2),
               ),
             ],
           ),

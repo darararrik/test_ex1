@@ -10,9 +10,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i11;
-import 'package:collection/collection.dart' as _i14;
 import 'package:flutter/material.dart' as _i12;
-import 'package:test_ex1/core/domain/models/task_model.dart' as _i13;
+import 'package:test_ex1/core/domain/models/task/task_model.dart' as _i13;
 import 'package:test_ex1/feature/desk_list/presentation/desk_list_screen.dart'
     as _i2;
 import 'package:test_ex1/feature/followed/presentation/followed_screen.dart'
@@ -190,63 +189,18 @@ class TaskDetailRouteArgs {
 
 /// generated route for
 /// [_i9.TasksScreen]
-class TasksRoute extends _i11.PageRouteInfo<TasksRouteArgs> {
-  TasksRoute({
-    _i12.Key? key,
-    required List<_i13.TaskModel> tasksList,
-    required String title,
-    List<_i11.PageRouteInfo>? children,
-  }) : super(
-         TasksRoute.name,
-         args: TasksRouteArgs(key: key, tasksList: tasksList, title: title),
-         initialChildren: children,
-       );
+class TasksRoute extends _i11.PageRouteInfo<void> {
+  const TasksRoute({List<_i11.PageRouteInfo>? children})
+    : super(TasksRoute.name, initialChildren: children);
 
   static const String name = 'TasksRoute';
 
   static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<TasksRouteArgs>();
-      return _i9.TasksScreen(
-        key: args.key,
-        tasksList: args.tasksList,
-        title: args.title,
-      );
+      return const _i9.TasksScreen();
     },
   );
-}
-
-class TasksRouteArgs {
-  const TasksRouteArgs({
-    this.key,
-    required this.tasksList,
-    required this.title,
-  });
-
-  final _i12.Key? key;
-
-  final List<_i13.TaskModel> tasksList;
-
-  final String title;
-
-  @override
-  String toString() {
-    return 'TasksRouteArgs{key: $key, tasksList: $tasksList, title: $title}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! TasksRouteArgs) return false;
-    return key == other.key &&
-        const _i14.ListEquality().equals(tasksList, other.tasksList) &&
-        title == other.title;
-  }
-
-  @override
-  int get hashCode =>
-      key.hashCode ^ const _i14.ListEquality().hash(tasksList) ^ title.hashCode;
 }
 
 /// generated route for

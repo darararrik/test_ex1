@@ -7,31 +7,32 @@ import 'package:test_ex1/core/constants/app_spacing.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
 import 'package:test_ex1/core/presentation/widgets/input_widget.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 
 class MyDialog extends StatefulWidget {
   const MyDialog({
     super.key,
     required this.title,
-    required this.onPressed,
-    required this.nameController,
+    required this.onSubmit,
+    required this.hintText,
   });
   final String title;
-  final VoidCallback onPressed;
-  final TextEditingController nameController;
-
+  final ValueChanged<String> onSubmit;
+  final String hintText;
   @override
   State<MyDialog> createState() => _MyDialogState();
 }
 
 class _MyDialogState extends State<MyDialog> {
   final isButtonEnabled = ValueNotifier<bool>(false);
+  late final TextEditingController _nameController;
 
   @override
   void initState() {
     super.initState();
-    widget.nameController.addListener(() {
-      final text = widget.nameController.text.trim();
+    _nameController = TextEditingController();
+    _nameController.addListener(() {
+      final text = _nameController.text.trim();
       isButtonEnabled.value = text.isNotEmpty;
     });
   }
@@ -39,6 +40,7 @@ class _MyDialogState extends State<MyDialog> {
   @override
   void dispose() {
     isButtonEnabled.dispose();
+    _nameController.dispose();
     super.dispose();
   }
 
@@ -69,10 +71,7 @@ class _MyDialogState extends State<MyDialog> {
               ],
             ),
             const SizedBox(height: AppSpacing.s28),
-            InputWidget(
-              controller: widget.nameController,
-              hintText: context.l10n.enterTitileColumn,
-            ),
+            InputWidget(controller: _nameController, hintText: widget.hintText),
             const SizedBox(height: AppSpacing.s20),
             ValueListenableBuilder<bool>(
               valueListenable: isButtonEnabled,
@@ -80,7 +79,7 @@ class _MyDialogState extends State<MyDialog> {
                 return PrimaryButton(
                   isEnabled: enabled,
                   onPressed: () {
-                    widget.onPressed.call();
+                    widget.onSubmit(_nameController.text.trim());
                     context.pop();
                   },
                   text: context.l10n.add,

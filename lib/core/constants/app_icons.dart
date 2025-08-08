@@ -13,4 +13,5 @@ abstract class AppIcons {
   static const String emptyDesk = 'assets/icons/sketch.svg';
   static const String arrow = "assets/icons/arrow.svg";
   static const String close = "assets/icons/close.svg";
+  static const String trash = "assets/icons/trash.svg";
 }

@@ -96,11 +96,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get newPrayer => 'New prayer';
 
   @override
-  String get enterTitilePrayer => 'Enter titile of prayer';
+  String get enterTitlePrayer => 'Enter title of prayer';
 
   @override
-  String get enterTitileColumn => 'Enter titile of column';
+  String get enterTitleColumn => 'Enter title of column';
 
   @override
   String get add => 'Add';
+
+  @override
+  String get emptyTasksScreen => 'You haven\'t created any prayer.';
+
+  @override
+  String get errorInvalidEmail => 'Enter correct e-mail';
+
+  @override
+  String get errorPasswordTooShort =>
+      'Password field must be at leat 5 characters';
+
+  @override
+  String get errorPasswordsDoNotMatch => 'Both passwords must match';
+
+  @override
+  String get errorEnterName => 'Name cannot be empty';
+
+  @override
+  String get logOutTitle => 'Are you sure you want to log out?';
+
+  @override
+  String get logOut => 'Log out';
+
+  @override
+  String get cancel => 'Cancel';
 }

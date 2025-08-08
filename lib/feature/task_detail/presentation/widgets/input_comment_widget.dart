@@ -4,7 +4,7 @@ import 'package:test_ex1/core/constants/app_rounding.dart';
 import 'package:test_ex1/core/constants/app_size.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 
 class InputCommentWidget extends StatefulWidget {
   const InputCommentWidget({
@@ -46,10 +46,9 @@ class _InputCommentWidgetState extends State<InputCommentWidget> {
             filled: true,
             fillColor: context.appColors.gray300,
             hintText: context.l10n.enterYourComment,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(AppRounding.r16),
-            ),
+            border: _outlinedBorder(),
+            enabledBorder: _outlinedBorder(),
+            focusedBorder: _outlinedBorder(),
             contentPadding: const EdgeInsets.symmetric(
               vertical: AppSpacing.s16,
               horizontal: AppSpacing.s24,
@@ -73,6 +72,13 @@ class _InputCommentWidgetState extends State<InputCommentWidget> {
           ),
         );
       },
+    );
+  }
+
+  OutlineInputBorder _outlinedBorder() {
+    return OutlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(AppRounding.r16),
     );
   }
 }

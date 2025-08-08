@@ -10,25 +10,20 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
     AutoRoute(
-      page: AuthWrapperRoute.page,
+      page: NavBarRoute.page,
       initial: true,
+      children: [
+        MyDeskRoutes.routes,
+        AutoRoute(page: UsersDesksRoute.page),
+        AutoRoute(page: FollowedRoute.page),
+      ],
+    ),
+    AutoRoute(
+      page: AuthWrapperRoute.page,
       children: [
         AutoRoute(page: LoginRoute.page, initial: true),
         AutoRoute(page: RegistrationRoute.page),
-        AutoRoute(
-          page: NavBarRoute.page,
-          children: [
-            MyDeskRoutes.routes,
-            AutoRoute(page: UsersDesksRoute.page),
-            AutoRoute(page: FollowedRoute.page),
-          ],
-        ),
       ],
     ),
-  ];
-
-  @override
-  List<AutoRouteGuard> get guards => [
-    // optionally add root guards here
   ];
 }

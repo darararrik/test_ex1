@@ -3,7 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/app_rounding.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
 @RoutePage(name: 'NavBarRoute')
@@ -13,11 +13,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: const [
-        MyDeskWrapperRoute(),
-        UsersDesksRoute(),
-        FollowedRoute(),
-      ],
+      routes: const [MyDeskWrapperRoute(), UsersDesksRoute(), FollowedRoute()],
       bottomNavigationBuilder: (_, tabsRouter) => ClipRRect(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(AppRounding.r24),

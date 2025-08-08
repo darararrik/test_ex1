@@ -1,59 +1,40 @@
-import 'dart:math' as math;
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/app_rounding.dart';
 import 'package:test_ex1/core/constants/app_size.dart';
 import 'package:test_ex1/core/constants/app_spacing.dart';
-import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_floating_action_button.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
+import 'package:test_ex1/core/presentation/widgets/empty_state.dart';
 import 'package:test_ex1/core/presentation/widgets/my_dialog.dart';
 import 'package:test_ex1/core/presentation/widgets/my_sliver_app_bar.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 import 'package:test_ex1/feature/desk_list/presentation/providers/desk_list_provider.dart';
 import 'package:test_ex1/feature/desk_list/presentation/widgets/dock.dart';
-import 'package:test_ex1/routing/app_routing.gr.dart';
+import 'package:test_ex1/feature/desk_list/presentation/widgets/my_cupertino_alert_dialog.dart';
 
 @RoutePage()
-class DeskListScreen extends StatefulWidget {
+class DeskListScreen extends StatelessWidget {
   const DeskListScreen({super.key});
-
-  @override
-  State<DeskListScreen> createState() => _DeskListScreenState();
-}
-
-class _DeskListScreenState extends State<DeskListScreen> {
-  late final TextEditingController nameController;
-  @override
-  void initState() {
-    super.initState();
-    nameController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final data = DeskListProvider.of(context).desks;
     return Scaffold(
       floatingActionButton: MyFloatingActionButton(
-        onPressed: () {
-          showDialog(
+        onPressed: () async {
+          await showDialog(
             context: context,
             builder: (context) => MyDialog(
               title: context.l10n.newColumn,
-              onPressed: () {
+              onSubmit: (name) {
                 final notifier = DeskListProvider.of(context);
-                notifier.addDesk(nameController.text);
+                notifier.addDesk(name);
               },
-              nameController: nameController,
+              hintText: context.l10n.enterTitleColumn,
             ),
           );
         },
@@ -68,9 +49,13 @@ class _DeskListScreenState extends State<DeskListScreen> {
               context.l10n.myDesk,
               style: context.appTextStyle.title2,
             ),
+            canPop: false,
             actions: [
               MyIconButton(
-                onPressed: () => context.replaceRoute(LoginRoute()),
+                onPressed: () => showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) => MyCupertinoAlertDialog(),
+                ),
                 iconPath: AppIcons.exit,
                 width: AppSize.s42,
                 height: AppSize.s42,
@@ -126,34 +111,7 @@ class _DeskListScreenState extends State<DeskListScreen> {
                     ),
                   ),
                 )
-              : SliverFillRemaining(
-                  child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AppIcon(AppIcons.emptyDesk),
-                          const SizedBox(height: AppSpacing.s20),
-                          Text(
-                            context.l10n.emptyDeskScreen,
-                            style: context.appTextStyle.headline3,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).size.height * 0.02,
-                              left: MediaQuery.of(context).size.width * 0.25,
-                            ),
-                            child: Transform.rotate(
-                              angle: (math.pi * 5) / 80,
-                              child: AppIcon(AppIcons.arrow, width: 100),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+              : EmptyState(message: context.l10n.emptyDeskScreen),
         ],
       ),
     );

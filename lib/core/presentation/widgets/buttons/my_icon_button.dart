@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_ex1/core/constants/app_rounding.dart';
 import 'package:test_ex1/core/constants/app_size.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
-import 'package:test_ex1/core/util/build_context_x.dart';
+import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 
 class MyIconButton extends StatelessWidget {
   const MyIconButton({
