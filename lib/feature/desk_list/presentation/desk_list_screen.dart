@@ -8,6 +8,7 @@ import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/presentation/providers/desk_list/providers.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
 import 'package:test_ex1/core/util/util.dart';
+import 'package:test_ex1/resources/resources.dart';
 import 'widgets/widgets.dart';
 
 @RoutePage()
@@ -51,8 +52,8 @@ class DeskListScreen extends StatelessWidget {
                   builder: (context) => const MyCupertinoAlertDialog(),
                 ),
                 iconPath: AppIcons.exit,
-                width: S.s42,
-                height: S.s42,
+                width: 42,
+                height: 42,
               ),
             ],
             centerTitle: false,

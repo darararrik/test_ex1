@@ -9,6 +9,7 @@ import 'package:test_ex1/core/domain/models/task/task_model.dart';
 import 'package:test_ex1/core/presentation/providers/desk_list/desk_list_provider.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
 import 'package:test_ex1/core/util/util.dart';
+import 'package:test_ex1/resources/resources.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
 class TaskCard extends StatefulWidget {

@@ -10,41 +10,9 @@ class P extends EdgeInsets {
     double? bottom,
     double? left,
   }) : super.only(
-         left:
-             all ??
-             vertical ??
-             horizontal ??
-             top ??
-             right ??
-             bottom ??
-             left ??
-             0,
-         right:
-             all ??
-             vertical ??
-             horizontal ??
-             top ??
-             right ??
-             bottom ??
-             left ??
-             0,
-         top:
-             all ??
-             vertical ??
-             horizontal ??
-             top ??
-             right ??
-             bottom ??
-             left ??
-             0,
-         bottom:
-             all ??
-             vertical ??
-             horizontal ??
-             top ??
-             right ??
-             bottom ??
-             left ??
-             0,
+         left: all ?? horizontal ?? left ?? 0,
+         right: all ?? horizontal ?? right ?? 0,
+         top: all ?? vertical ?? top ?? 0,
+         bottom: all ?? vertical ?? bottom ?? 0,
        );
 }

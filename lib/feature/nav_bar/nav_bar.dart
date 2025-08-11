@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
+import 'package:test_ex1/resources/resources.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
 @RoutePage(name: 'NavBarRoute')
@@ -30,17 +31,17 @@ class NavBar extends StatelessWidget {
               label: context.l10n.myDesk,
             ),
             NavigationDestination(
-              icon: const AppIcon(AppIcons.userDesk),
+              icon: const AppIcon(AppIcons.usersDesks),
               selectedIcon: AppIcon(
-                AppIcons.userDesk,
+                AppIcons.usersDesks,
                 color: context.appColors.gray800,
               ),
               label: context.l10n.usersDesks,
             ),
             NavigationDestination(
-              icon: const AppIcon(AppIcons.followed),
+              icon: const AppIcon(AppIcons.subscribers),
               selectedIcon: AppIcon(
-                AppIcons.followed,
+                AppIcons.subscribers,
                 color: context.appColors.gray800,
               ),
               label: context.l10n.followed,

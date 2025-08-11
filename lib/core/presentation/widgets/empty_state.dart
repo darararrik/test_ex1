@@ -2,10 +2,10 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
 import 'package:test_ex1/core/util/util.dart';
+import 'package:test_ex1/resources/resources.dart';
 
 class EmptyState extends StatelessWidget {
   const EmptyState({super.key, required this.message});
@@ -19,7 +19,7 @@ class EmptyState extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const AppIcon(AppIcons.emptyDesk),
+              const AppIcon(AppIcons.sketch),
               const SizedBox(height: S.s20),
               Text(message, style: context.appTextStyle.headline3),
               Padding(

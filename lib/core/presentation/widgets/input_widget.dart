@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/providers/password_visibility/password_visibility_provider.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
 import 'package:test_ex1/core/util/util.dart';
+import 'package:test_ex1/resources/resources.dart';
 
 class InputWidget extends StatelessWidget {
   const InputWidget({
@@ -90,7 +90,7 @@ class InputWidget extends StatelessWidget {
                     color: context.appColors.gray800,
                   ),
                   child: AppIcon(
-                    AppIcons.eyeClose,
+                    AppIcons.eyeClosed,
                     color: context.appColors.gray600,
                   ),
                 ),

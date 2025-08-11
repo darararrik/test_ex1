@@ -7,6 +7,7 @@ import 'package:test_ex1/core/domain/models/task/task_model.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
 import 'package:test_ex1/core/util/util.dart';
 import 'package:test_ex1/feature/task_detail/presentation/widgets/white_box_text.dart';
+import 'package:test_ex1/resources/resources.dart';
 
 class TaskData extends StatelessWidget {
   const TaskData({super.key, required this.task});
