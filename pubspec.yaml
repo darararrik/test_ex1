@@ -46,5 +46,8 @@ flutter:
           weight: 500
         - asset: assets/fonts/Outfit-SemiBold.ttf
           weight: 600
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package
+import_sorter:
+  emojis: true
+  comments: false
+  ignored_files:
+    - lib/l10n/*

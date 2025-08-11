@@ -1,5 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
 import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/providers/auth/auth_provider.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
