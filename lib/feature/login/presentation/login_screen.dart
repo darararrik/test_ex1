@@ -5,7 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/providers/auth/auth_provider.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
-import 'package:test_ex1/core/util/extensions/build_context_x.dart';
+import 'package:test_ex1/core/util/util.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
 @RoutePage()
@@ -40,9 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: BackGroundWidget(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: S.s24,
-          ).copyWith(top: S.s36, bottom: S.s44),
+          padding: const P(horizontal: S.s24, top: S.s36, bottom: S.s44),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,

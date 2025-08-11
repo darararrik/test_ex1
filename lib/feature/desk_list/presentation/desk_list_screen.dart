@@ -5,9 +5,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 import 'package:test_ex1/core/constants/constants.dart';
+import 'package:test_ex1/core/presentation/providers/desk_list/providers.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
-import 'package:test_ex1/core/util/extensions/build_context_x.dart';
-import '../../../core/presentation/providers/desk_list/providers.dart';
+import 'package:test_ex1/core/util/util.dart';
 import 'widgets/widgets.dart';
 
 @RoutePage()
@@ -37,7 +37,7 @@ class DeskListScreen extends StatelessWidget {
         physics: data.isEmpty ? const NeverScrollableScrollPhysics() : null,
         slivers: [
           MySliverAppBar(
-            actionsPadding: const EdgeInsets.only(right: S.s16),
+            actionsPadding: const P(right: S.s16),
             backgroundColor: context.appColors.gray200,
             title: Text(
               context.l10n.myDesk,
@@ -61,7 +61,7 @@ class DeskListScreen extends StatelessWidget {
             visible: data.isNotEmpty,
             replacement: EmptyState(message: context.l10n.emptyDeskScreen),
             child: SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: S.s16),
+              padding: const P(horizontal: S.s16),
               sliver: SliverToBoxAdapter(
                 child: Stack(
                   children: [
@@ -88,10 +88,7 @@ class DeskListScreen extends StatelessWidget {
                     ListView.separated(
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: data.length,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: S.s16,
-                        vertical: S.s24,
-                      ),
+                      padding: const P(horizontal: S.s16, vertical: S.s24),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return Dock(desk: data[index]);

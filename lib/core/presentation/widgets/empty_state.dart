@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
-import 'package:test_ex1/core/util/extensions/build_context_x.dart';
+import 'package:test_ex1/core/util/util.dart';
 
 class EmptyState extends StatelessWidget {
   const EmptyState({super.key, required this.message});
@@ -23,7 +23,7 @@ class EmptyState extends StatelessWidget {
               const SizedBox(height: S.s20),
               Text(message, style: context.appTextStyle.headline3),
               Padding(
-                padding: EdgeInsets.only(
+                padding: P(
                   top: MediaQuery.of(context).size.height * 0.02,
                   left: MediaQuery.of(context).size.width * 0.25,
                 ),

@@ -5,7 +5,7 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/domain/models/task/task_model.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
-import 'package:test_ex1/core/util/extensions/extensions.dart';
+import 'package:test_ex1/core/util/util.dart';
 import 'package:test_ex1/feature/task_detail/presentation/widgets/white_box_text.dart';
 
 class TaskData extends StatelessWidget {
@@ -20,9 +20,7 @@ class TaskData extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: S.s16,
-        ).copyWith(bottom: S.s24),
+        padding: const P(horizontal: S.s16, bottom: S.s24),
         child: Column(
           children: [
             DecoratedBox(
@@ -34,10 +32,7 @@ class TaskData extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: S.s16,
-                  horizontal: S.s16,
-                ),
+                padding: const P(all: S.s16),
                 child: Column(
                   children: [
                     Row(

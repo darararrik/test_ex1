@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:test_ex1/core/constants/constants.dart';
-import 'package:test_ex1/core/util/extensions/extensions.dart';
+import 'package:test_ex1/core/util/util.dart';
 
 class WhiteBoxText extends StatelessWidget {
   const WhiteBoxText({super.key, required this.title, required this.data});
@@ -16,7 +16,7 @@ class WhiteBoxText extends StatelessWidget {
           borderRadius: BorderRadius.circular(R.r28),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: S.s28),
+          padding: const P(vertical: S.s28),
           child: Center(
             child: Column(
               children: [

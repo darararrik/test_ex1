@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:test_ex1/core/constants/constants.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
-import 'package:test_ex1/core/presentation/widgets/input_widget.dart';
-import 'package:test_ex1/core/util/extensions/build_context_x.dart';
+import 'package:test_ex1/core/presentation/widgets/widgets.dart';
+import 'package:test_ex1/core/util/util.dart';
 
 class MyDialog extends StatefulWidget {
   const MyDialog({
@@ -52,9 +50,7 @@ class _MyDialogState extends State<MyDialog> {
         borderRadius: BorderRadiusGeometry.circular(R.r28),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: S.s24,
-        ).copyWith(bottom: S.s40, top: S.s32),
+        padding: const P(horizontal: S.s24, bottom: S.s40, top: S.s32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

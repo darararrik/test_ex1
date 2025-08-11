@@ -47,9 +47,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
       body: BackGroundWidget(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: S.s24,
-          ).copyWith(top: S.s36, bottom: S.s44),
+          padding: const P(horizontal: S.s24, top: S.s36, bottom: S.s44),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,

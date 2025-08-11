@@ -6,7 +6,7 @@ import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/domain/models/desk/desk_model.dart';
 import 'package:test_ex1/core/presentation/providers/desk_list/desk_list_provider.dart';
 import 'package:test_ex1/core/presentation/widgets/background_delete_icon.dart';
-import 'package:test_ex1/core/util/extensions/build_context_x.dart';
+import 'package:test_ex1/core/util/util.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
 class Dock extends StatefulWidget {
@@ -95,7 +95,7 @@ class _DockState extends State<Dock> {
                     splashColor: context.appColors.gray300,
                     highlightColor: context.appColors.gray300,
                     child: Padding(
-                      padding: const EdgeInsets.all(S.s24),
+                      padding: const P(all: S.s24),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: isEditing.value

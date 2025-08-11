@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_back_button.dart';
+import 'package:test_ex1/core/util/util.dart';
 
 class MySliverAppBar extends StatelessWidget {
   const MySliverAppBar({
@@ -22,9 +23,7 @@ class MySliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-      ).copyWith(top: S.s12, bottom: S.s24), //
+      padding: const P(horizontal: 16, top: S.s12, bottom: S.s24),
       sliver: SliverAppBar(
         automaticallyImplyLeading: false,
         actions: actions,

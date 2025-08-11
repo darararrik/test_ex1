@@ -47,14 +47,11 @@ class _InputCommentWidgetState extends State<InputCommentWidget> {
             border: _outlinedBorder(),
             enabledBorder: _outlinedBorder(),
             focusedBorder: _outlinedBorder(),
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: S.s16,
-              horizontal: S.s24,
-            ),
+            contentPadding: const P(vertical: S.s16, horizontal: S.s24),
             suffixIcon: Visibility(
               visible: _hasFocus.value,
               child: Padding(
-                padding: const EdgeInsets.all(S.s4),
+                padding: const P(all: S.s4),
                 child: MyIconButton(
                   onPressed: () {},
                   iconPath: AppIcons.paperAirplane,

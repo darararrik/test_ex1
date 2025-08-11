@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:test_ex1/core/constants/constants.dart';
-import 'package:test_ex1/core/util/extensions/extensions.dart';
+import 'package:test_ex1/core/util/util.dart';
 import 'package:test_ex1/feature/task_detail/presentation/widgets/input_comment_widget.dart';
 
 class Comment extends StatelessWidget {
@@ -16,10 +16,7 @@ class Comment extends StatelessWidget {
         Text(context.l10n.comments, style: context.appTextStyle.headline2),
         const SizedBox(height: S.s12),
         Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: S.s16,
-            horizontal: S.s32,
-          ),
+          padding: const P(vertical: S.s16, horizontal: S.s32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -36,7 +33,7 @@ class Comment extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: S.s12),
+                padding: const P(vertical: S.s12),
                 child: Text("comment", style: context.appTextStyle.body2),
               ),
             ],
@@ -44,7 +41,7 @@ class Comment extends StatelessWidget {
         ),
         const SizedBox(height: S.s12),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: S.s16),
+          padding: const P(horizontal: S.s16),
           child: InputCommentWidget(commentController: _commentController),
         ),
       ],
