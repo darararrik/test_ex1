@@ -1,24 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppPalette extends ThemeExtension<AppPalette> {
-  final Color gray800;
-  final Color gray700;
-  final Color gray600;
-  final Color gray500;
-  final Color gray400;
-  final Color gray300;
-  final Color gray200;
-  final Color gray100;
-  final Color error;
-  final Color success;
-  final Gradient? gradientOrange;
-  final Color orangeIndicator;
-  final Color blueIndicator;
-  final Color yellowIndicator;
-  final Color background;
-  final BoxShadow shadow1;
-  final BoxShadow shadow2;
-
   AppPalette({
     required this.gray800,
     required this.gray700,
@@ -38,6 +20,23 @@ class AppPalette extends ThemeExtension<AppPalette> {
     required this.shadow1,
     required this.shadow2,
   });
+  final Color gray800;
+  final Color gray700;
+  final Color gray600;
+  final Color gray500;
+  final Color gray400;
+  final Color gray300;
+  final Color gray200;
+  final Color gray100;
+  final Color error;
+  final Color success;
+  final Gradient? gradientOrange;
+  final Color orangeIndicator;
+  final Color blueIndicator;
+  final Color yellowIndicator;
+  final Color background;
+  final BoxShadow shadow1;
+  final BoxShadow shadow2;
 
   @override
   ThemeExtension<AppPalette> copyWith({

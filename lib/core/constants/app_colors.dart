@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/util/theme/theme-x/app_palette.dart';
+
+import 'package:test_ex1/core/util/theme/theme_x/app_palette.dart';
 
 final AppPalette appColors = AppPalette(
   gray800: const Color(0xFF2A2A2A),
@@ -15,25 +16,25 @@ final AppPalette appColors = AppPalette(
   orangeIndicator: const Color(0xFFDE6352),
   blueIndicator: const Color(0xFF4757B0),
   yellowIndicator: const Color(0xFFBFAF3A),
-  gradientOrange: LinearGradient(
+  gradientOrange: const LinearGradient(
     tileMode: TileMode.clamp,
     colors: [
-      const Color.fromRGBO(255, 101, 15, 1),
-      const Color.fromRGBO(255, 245, 0, 0.03),
+      Color.fromRGBO(255, 101, 15, 1),
+      Color.fromRGBO(255, 245, 0, 0.03),
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     stops: [0, 100],
   ),
   background: const Color(0xFFFCFCFC),
-  shadow1: BoxShadow(
-    color: const Color.fromRGBO(0, 0, 0, 0.04),
+  shadow1: const BoxShadow(
+    color: Color.fromRGBO(0, 0, 0, 0.04),
     blurRadius: 60,
     offset: Offset(0, 0),
     spreadRadius: 0,
   ),
-  shadow2: BoxShadow(
-    color: const Color.fromRGBO(0, 0, 0, 0.1),
+  shadow2: const BoxShadow(
+    color: Color.fromRGBO(0, 0, 0, 0.1),
     blurRadius: 50,
     offset: Offset(0, 0),
     spreadRadius: 0,

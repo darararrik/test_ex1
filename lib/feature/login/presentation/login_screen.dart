@@ -1,11 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/constants/app_spacing.dart';
+import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/providers/auth/auth_provider.dart';
-import 'package:test_ex1/core/presentation/widgets/background.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/under_button_text.dart';
-import 'package:test_ex1/core/presentation/widgets/input_widget.dart';
+import 'package:test_ex1/core/presentation/widgets/widgets.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
@@ -41,15 +38,15 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: BackGroundWidget(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppSpacing.s24,
-          ).copyWith(top: AppSpacing.s36, bottom: AppSpacing.s44),
+          padding: const EdgeInsets.symmetric(
+            horizontal: S.s24,
+          ).copyWith(top: S.s36, bottom: S.s44),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(context.l10n.login, style: context.appTextStyle.title1),
-              SizedBox(height: AppSpacing.s28),
+              const SizedBox(height: S.s28),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -60,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     textInputAction: TextInputAction.next,
                     labelText: context.l10n.emailLabel,
                   ),
-                  SizedBox(height: AppSpacing.s28),
+                  const SizedBox(height: S.s28),
                   InputWidget(
                     controller: _passwordController,
                     hintText: context.l10n.enterPassword,
@@ -68,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     textInputAction: TextInputAction.done,
                     labelText: context.l10n.passwordLabel,
                   ),
-                  SizedBox(height: AppSpacing.s42),
+                  const SizedBox(height: S.s42),
                   PrimaryButton(
                     isEnabled: true,
                     onPressed: () async {
@@ -78,12 +75,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         _passwordController.text.trim(),
                       );
                       if (resp == true) {
-                        router.replace(NavBarRoute());
+                        router.replace(const NavBarRoute());
                       }
                     },
                     text: context.l10n.login,
                   ),
-                  SizedBox(height: AppSpacing.s12),
+                  const SizedBox(height: S.s12),
                   UnderButtonText(
                     text: context.l10n.dontHaveAccount,
                     buttonText: context.l10n.signUp,

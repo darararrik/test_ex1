@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppIcon extends StatelessWidget {
-  final String assetName;
-  final double? width;
-  final BoxFit? fit;
-  final double? height;
-  final Color? color;
-
   const AppIcon(
     this.assetName, {
     super.key,
@@ -16,6 +11,11 @@ class AppIcon extends StatelessWidget {
     this.color,
     this.fit,
   });
+  final String assetName;
+  final double? width;
+  final BoxFit? fit;
+  final double? height;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {

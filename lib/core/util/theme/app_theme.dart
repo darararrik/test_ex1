@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/constants/app_colors.dart';
-import 'package:test_ex1/core/constants/app_rounding.dart';
-import 'package:test_ex1/core/constants/app_size.dart';
-import 'package:test_ex1/core/constants/app_text_style.dart';
+
+import 'package:test_ex1/core/constants/constants.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
@@ -31,12 +29,10 @@ class AppTheme {
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       elevation: 0,
-      iconSize: AppSize.s24,
+      iconSize: S.s24,
       backgroundColor: appColors.gray800,
       foregroundColor: appColors.gray100,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRounding.r95),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(R.r95)),
     ),
     dividerTheme: DividerThemeData(color: appColors.gray500, thickness: 1),
     appBarTheme: AppBarTheme(
@@ -47,7 +43,7 @@ class AppTheme {
       backgroundColor: appColors.gray100,
       indicatorColor: Colors.transparent,
       labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-      overlayColor: WidgetStatePropertyAll(Colors.transparent),
+      overlayColor: const WidgetStatePropertyAll(Colors.transparent),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
@@ -68,13 +64,9 @@ class AppTheme {
           return appColors.gray100;
         }),
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppRounding.r18),
-          ),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(R.r18)),
         ),
-        minimumSize: WidgetStateProperty.all(
-          const Size.fromHeight(AppSize.s54),
-        ),
+        minimumSize: WidgetStateProperty.all(const Size.fromHeight(Sz.s54)),
         elevation: WidgetStateProperty.all(0),
         textStyle: WidgetStateProperty.all(appTextStyle.body1),
       ),

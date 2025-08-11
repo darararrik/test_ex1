@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:test_ex1/core/constants/app_icons.dart';
-import 'package:test_ex1/core/constants/app_spacing.dart';
+import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/providers/password_visibility/password_visibility_provider.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
@@ -74,8 +75,7 @@ class InputWidget extends StatelessWidget {
               color: context.appColors.gray600,
             ),
             contentPadding:
-                contentPadding ??
-                const EdgeInsets.symmetric(vertical: AppSpacing.s12),
+                contentPadding ?? const EdgeInsets.symmetric(vertical: S.s12),
             border: border,
             enabledBorder: enabledBorder,
             focusedBorder: focusedBorder,

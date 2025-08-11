@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/constants/app_icons.dart';
-import 'package:test_ex1/core/constants/app_rounding.dart';
-import 'package:test_ex1/core/constants/app_size.dart';
-import 'package:test_ex1/core/constants/app_spacing.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
-import 'package:test_ex1/core/util/extensions/build_context_x.dart';
+
+import 'package:test_ex1/core/constants/constants.dart';
+import 'package:test_ex1/core/presentation/widgets/widgets.dart';
+import 'package:test_ex1/core/util/util.dart';
 
 class InputCommentWidget extends StatefulWidget {
   const InputCommentWidget({
@@ -50,22 +48,22 @@ class _InputCommentWidgetState extends State<InputCommentWidget> {
             enabledBorder: _outlinedBorder(),
             focusedBorder: _outlinedBorder(),
             contentPadding: const EdgeInsets.symmetric(
-              vertical: AppSpacing.s16,
-              horizontal: AppSpacing.s24,
+              vertical: S.s16,
+              horizontal: S.s24,
             ),
             suffixIcon: _hasFocus.value
                 ? Padding(
-                    padding: const EdgeInsets.all(AppSpacing.s4),
+                    padding: const EdgeInsets.all(S.s4),
                     child: MyIconButton(
                       onPressed: () {},
                       iconPath: AppIcons.paperAirplane,
-                      width: AppSize.s48,
-                      height: AppSize.s48,
-                      iconHeight: AppSize.s24,
-                      iconWidth: AppSize.s24,
+                      width: Sz.s48,
+                      height: Sz.s48,
+                      iconHeight: Sz.s24,
+                      iconWidth: Sz.s24,
                       backgroundColor: context.appColors.gray800,
                       iconColor: context.appColors.gray100,
-                      borderRadius: BorderRadius.circular(AppRounding.r12),
+                      borderRadius: BorderRadius.circular(R.r12),
                     ),
                   )
                 : null,
@@ -78,7 +76,7 @@ class _InputCommentWidgetState extends State<InputCommentWidget> {
   OutlineInputBorder _outlinedBorder() {
     return OutlineInputBorder(
       borderSide: BorderSide.none,
-      borderRadius: BorderRadius.circular(AppRounding.r16),
+      borderRadius: BorderRadius.circular(R.r16),
     );
   }
 }

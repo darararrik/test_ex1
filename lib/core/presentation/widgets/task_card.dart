@@ -1,9 +1,10 @@
-import 'package:auto_route/auto_route.dart';
+// Flutter imports:
+
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/constants/app_icons.dart';
-import 'package:test_ex1/core/constants/app_rounding.dart';
-import 'package:test_ex1/core/constants/app_size.dart';
-import 'package:test_ex1/core/constants/app_spacing.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/domain/models/task/task_model.dart';
 import 'package:test_ex1/core/presentation/widgets/background_delete_icon.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
@@ -56,7 +57,7 @@ class _TaskCardState extends State<TaskCard> {
   void _startEditing() {
     setState(() {
       isEditing = true;
-      Future.delayed(Duration(milliseconds: 100), () {
+      Future.delayed(const Duration(milliseconds: 100), () {
         if (mounted) {
           _focusNode.requestFocus();
           _controller.selection = TextSelection(
@@ -88,7 +89,7 @@ class _TaskCardState extends State<TaskCard> {
 
     return Stack(
       children: [
-        BackgroundDeleteIcon(),
+        const BackgroundDeleteIcon(),
         Dismissible(
           key: ValueKey(task.id),
           onDismissed: (direction) => notifier.deleteTaskById(task.id),
@@ -102,14 +103,14 @@ class _TaskCardState extends State<TaskCard> {
             },
             child: DecoratedBox(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppRounding.r24),
+                borderRadius: BorderRadius.circular(R.r24),
                 color: context.appColors.gray100,
                 boxShadow: [context.appColors.shadow1],
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.s24,
-                  vertical: AppSpacing.s24,
+                  horizontal: S.s24,
+                  vertical: S.s24,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,13 +118,13 @@ class _TaskCardState extends State<TaskCard> {
                     Row(
                       children: [
                         CapsuleIcon(status: task.status),
-                        const SizedBox(width: AppSpacing.s12),
+                        const SizedBox(width: S.s12),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             isEditing
                                 ? SizedBox(
-                                    width: AppSize.s200,
+                                    width: Sz.s200,
                                     child: TextField(
                                       focusNode: _focusNode,
                                       controller: _controller,
@@ -135,21 +136,21 @@ class _TaskCardState extends State<TaskCard> {
                                     ),
                                   )
                                 : SizedBox(
-                                    width: AppSize.s200,
+                                    width: Sz.s200,
                                     child: Text(
                                       task.name,
                                       style: context.appTextStyle.headline2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                            const SizedBox(height: AppSpacing.s2),
+                            const SizedBox(height: S.s2),
                             Row(
                               children: [
                                 _Text(
                                   text: context.l10n.members,
                                   count: countMembers,
                                 ),
-                                const SizedBox(width: AppSpacing.s12),
+                                const SizedBox(width: S.s12),
                                 _Text(
                                   text: context.l10n.complete,
                                   count: countComplete,
@@ -164,8 +165,8 @@ class _TaskCardState extends State<TaskCard> {
                       onPressed: () {},
                       iconPath: AppIcons.prayArms,
                       backgroundColor: context.appColors.gray300,
-                      width: AppSize.s46,
-                      height: AppSize.s46,
+                      width: Sz.s46,
+                      height: Sz.s46,
                     ),
                   ],
                 ),
@@ -179,9 +180,9 @@ class _TaskCardState extends State<TaskCard> {
 }
 
 class _Text extends StatelessWidget {
+  const _Text({required this.count, required this.text});
   final String count;
   final String text;
-  const _Text({required this.count, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +194,7 @@ class _Text extends StatelessWidget {
             color: context.appColors.gray700,
           ),
         ),
-        const SizedBox(width: AppSpacing.s4),
+        const SizedBox(width: S.s4),
         Text(count, style: context.appTextStyle.body3),
       ],
     );

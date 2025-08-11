@@ -1,17 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppTypography extends ThemeExtension<AppTypography> {
-  final TextStyle title1;
-  final TextStyle title2;
-  final TextStyle headline1;
-  final TextStyle headline2;
-  final TextStyle headline3;
-  final TextStyle headline4;
-  final TextStyle body1;
-  final TextStyle body2;
-  final TextStyle body3;
-  final TextStyle body4;
-  final TextStyle caption;
   AppTypography({
     required this.title1,
     required this.title2,
@@ -25,6 +14,17 @@ class AppTypography extends ThemeExtension<AppTypography> {
     required this.body4,
     required this.caption,
   });
+  final TextStyle title1;
+  final TextStyle title2;
+  final TextStyle headline1;
+  final TextStyle headline2;
+  final TextStyle headline3;
+  final TextStyle headline4;
+  final TextStyle body1;
+  final TextStyle body2;
+  final TextStyle body3;
+  final TextStyle body4;
+  final TextStyle caption;
 
   @override
   ThemeExtension<AppTypography> copyWith({

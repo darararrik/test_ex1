@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+
 import 'password_visibility_notifier.dart'; // если в другом файле
 
 class PasswordVisibilityProvider

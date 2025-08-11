@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:test_ex1/core/constants/app_colors.dart';
-import 'package:test_ex1/core/util/theme/theme-x/app_typography.dart';
+import 'package:test_ex1/core/util/theme/theme_x/app_typography.dart';
 
 final AppTypography appTextStyle = AppTypography(
   title1: TextStyle(

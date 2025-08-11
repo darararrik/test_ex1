@@ -1,7 +1,11 @@
-import 'package:auto_route/auto_route.dart';
+// Flutter imports:
+
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
 import 'package:test_ex1/core/constants/app_icons.dart';
-import 'package:test_ex1/core/constants/app_size.dart';
+import 'package:test_ex1/core/constants/sz.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
 
 class MyBackButton extends StatelessWidget {
@@ -12,8 +16,8 @@ class MyBackButton extends StatelessWidget {
     return MyIconButton(
       onPressed: () => context.pop(),
       iconPath: AppIcons.backIcon,
-      width: AppSize.s42,
-      height: AppSize.s42,
+      width: Sz.s42,
+      height: Sz.s42,
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
-import 'package:test_ex1/core/presentation/providers/auth/auth_provider.dart';
+import 'package:test_ex1/core/presentation/providers/providers.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
 @RoutePage()
@@ -25,6 +25,6 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("data"));
+    return const Center(child: Text("data"));
   }
 }

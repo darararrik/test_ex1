@@ -2,9 +2,21 @@ include: package:flutter_lints/flutter.yaml
 
 linter:
   rules:
+      sort_constructors_first: true
+      sort_unnamed_constructors_first: true
+      directives_ordering: false 
+      avoid_print: true              
+      prefer_const_constructors: true 
+      prefer_const_literals_to_create_immutables: true 
+      always_use_package_imports: false 
+      unnecessary_this: true          
+      prefer_final_fields: true     
+      avoid_unnecessary_containers: true
+      use_key_in_widget_constructors: true
 analyzer:
   errors:
     invalid_annotation_target: ignore
+    unused_import: ignore
   exclude:
     - "**/*.g.dart"
     - "**/*.gr.dart"

@@ -9,24 +9,28 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i11;
+
 import 'package:flutter/material.dart' as _i12;
+
+import 'package:auto_route/auto_route.dart' as _i11;
+
 import 'package:test_ex1/core/domain/models/task/task_model.dart' as _i13;
+import 'package:test_ex1/feature/login/presentation/login_screen.dart' as _i4;
+import 'package:test_ex1/feature/nav_bar/nav_bar.dart' as _i6;
+import 'package:test_ex1/feature/tasks/presentation/tasks_screen.dart' as _i9;
+import 'package:test_ex1/routing/wrappers/auth_wrapper.dart' as _i1;
+import 'package:test_ex1/routing/wrappers/my_desk_wrapper.dart' as _i5;
+
 import 'package:test_ex1/feature/desk_list/presentation/desk_list_screen.dart'
     as _i2;
 import 'package:test_ex1/feature/followed/presentation/followed_screen.dart'
     as _i3;
-import 'package:test_ex1/feature/login/presentation/login_screen.dart' as _i4;
-import 'package:test_ex1/feature/nav_bar/nav_bar.dart' as _i6;
 import 'package:test_ex1/feature/registration/presentation/registration_screen.dart'
     as _i7;
 import 'package:test_ex1/feature/task_detail/presentation/task_detail_screen.dart'
     as _i8;
-import 'package:test_ex1/feature/tasks/presentation/tasks_screen.dart' as _i9;
 import 'package:test_ex1/feature/users_desks/presentation/users_desks_screen.dart'
     as _i10;
-import 'package:test_ex1/routing/wrappers/auth_wrapper.dart' as _i1;
-import 'package:test_ex1/routing/wrappers/my_desk_wrapper.dart' as _i5;
 
 /// generated route for
 /// [_i1.AuthWrapperScreen]

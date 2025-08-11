@@ -1,7 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/constants/app_rounding.dart';
-import 'package:test_ex1/core/constants/app_spacing.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/domain/models/desk/desk_model.dart';
 import 'package:test_ex1/core/presentation/widgets/background_delete_icon.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
@@ -57,7 +58,7 @@ class _DockState extends State<Dock> {
       builder: (context, value, child) {
         return Stack(
           children: [
-            BackgroundDeleteIcon(),
+            const BackgroundDeleteIcon(),
             Dismissible(
               key: ValueKey(widget.desk.id),
               direction: DismissDirection.endToStart,
@@ -68,22 +69,22 @@ class _DockState extends State<Dock> {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: context.appColors.gray100,
-                  borderRadius: BorderRadius.circular(AppRounding.r24),
+                  borderRadius: BorderRadius.circular(R.r24),
                   boxShadow: [context.appColors.shadow1],
                 ),
                 child: Material(
                   color: context.appColors.gray100,
-                  borderRadius: BorderRadius.circular(AppRounding.r24),
+                  borderRadius: BorderRadius.circular(R.r24),
                   child: InkWell(
-                    borderRadius: BorderRadius.circular(AppRounding.r24),
+                    borderRadius: BorderRadius.circular(R.r24),
                     onTap: () {
-                      context.pushRoute(TasksRoute());
+                      context.pushRoute(const TasksRoute());
                       final notifier = DeskListProvider.of(context);
                       notifier.setCurrentDesk(widget.desk.id);
                     },
                     onLongPress: () {
                       isEditing.value = true;
-                      Future.delayed(Duration(milliseconds: 100), () {
+                      Future.delayed(const Duration(milliseconds: 100), () {
                         _focusNode.requestFocus();
                         _controller.selection = TextSelection(
                           baseOffset: 0,
@@ -94,7 +95,7 @@ class _DockState extends State<Dock> {
                     splashColor: context.appColors.gray300,
                     highlightColor: context.appColors.gray300,
                     child: Padding(
-                      padding: const EdgeInsets.all(AppSpacing.s24),
+                      padding: const EdgeInsets.all(S.s24),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: isEditing.value

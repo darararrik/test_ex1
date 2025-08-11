@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
-import 'package:test_ex1/core/db/app_db/app_db.dart';
+
+import 'package:test_ex1/core/db/app_db/db.dart';
 import 'package:test_ex1/core/db/tables/profile.dart';
 
 part 'profile_dao.g.dart';

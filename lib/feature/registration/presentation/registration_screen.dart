@@ -1,15 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/constants/app_spacing.dart';
+import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/providers/auth/auth_provider.dart';
-import 'package:test_ex1/core/presentation/widgets/background.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/under_button_text.dart';
-import 'package:test_ex1/core/presentation/widgets/input_widget.dart';
-import 'package:test_ex1/core/util/extensions/build_context_x.dart';
-import 'package:test_ex1/core/util/extensions/list_x.dart';
-import 'package:test_ex1/core/util/validators/email_validator.dart';
-import 'package:test_ex1/core/util/validators/password_validator.dart';
+import 'package:test_ex1/core/presentation/widgets/widgets.dart';
+import 'package:test_ex1/core/util/util.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
 @RoutePage()
@@ -51,9 +45,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
       body: BackGroundWidget(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppSpacing.s24,
-          ).copyWith(top: AppSpacing.s36, bottom: AppSpacing.s44),
+          padding: const EdgeInsets.symmetric(
+            horizontal: S.s24,
+          ).copyWith(top: S.s36, bottom: S.s44),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -66,7 +60,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     context.l10n.registration,
                     style: context.appTextStyle.title1,
                   ),
-                  SizedBox(height: AppSpacing.s28),
+                  const SizedBox(height: S.s28),
                   ...[
                     InputWidget(
                       controller: _usernameController,
@@ -109,8 +103,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         _passwordController,
                       ),
                     ),
-                  ].separated(SizedBox(height: AppSpacing.s28)),
-                  SizedBox(height: AppSpacing.s42),
+                  ].separated(const SizedBox(height: S.s28)),
+                  const SizedBox(height: S.s42),
                   PrimaryButton(
                     onPressed: () async {
                       if (_formKey.currentState?.validate() ?? false) {
@@ -121,14 +115,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           _passwordController.text.trim(),
                         );
                         if (resp == true) {
-                          router.replace(NavBarRoute());
+                          router.replace(const NavBarRoute());
                         }
                       }
                     },
                     text: context.l10n.registration,
                     isEnabled: true,
                   ),
-                  SizedBox(height: AppSpacing.s12),
+                  const SizedBox(height: S.s12),
                   UnderButtonText(
                     text: context.l10n.alreadyHaveAccount,
                     buttonText: context.l10n.login,

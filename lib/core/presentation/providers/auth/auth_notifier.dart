@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
-import 'package:test_ex1/core/db/app_db/app_db.dart';
+
+import 'package:test_ex1/core/db/app_db/db.dart';
 import 'package:test_ex1/core/db/dao/profile_dao.dart';
 
 class AuthNotifier extends ChangeNotifier {
+  AuthNotifier(this._profileDao);
   final ProfileDao _profileDao;
 
   ProfileEntity? _currentUser;
   ProfileEntity? get currentUser => _currentUser;
-
-  AuthNotifier(this._profileDao);
 
   Future<bool> login(String email, String password) async {
     final user = await _profileDao.login(email: email, password: password);

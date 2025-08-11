@@ -1,9 +1,10 @@
-import 'package:auto_route/auto_route.dart';
+// Flutter imports:
+
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/constants/app_icons.dart';
-import 'package:test_ex1/core/constants/app_rounding.dart';
-import 'package:test_ex1/core/constants/app_size.dart';
-import 'package:test_ex1/core/constants/app_spacing.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/my_icon_button.dart';
 import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
 import 'package:test_ex1/core/presentation/widgets/input_widget.dart';
@@ -48,12 +49,12 @@ class _MyDialogState extends State<MyDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(AppRounding.r28),
+        borderRadius: BorderRadiusGeometry.circular(R.r28),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.s24,
-        ).copyWith(bottom: AppSpacing.s40, top: AppSpacing.s32),
+        padding: const EdgeInsets.symmetric(
+          horizontal: S.s24,
+        ).copyWith(bottom: S.s40, top: S.s32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -65,14 +66,14 @@ class _MyDialogState extends State<MyDialog> {
                   backgroundColor: context.appColors.gray400,
                   onPressed: () => context.pop(),
                   iconPath: AppIcons.close,
-                  width: AppSize.s34,
-                  height: AppSize.s34,
+                  width: Sz.s34,
+                  height: Sz.s34,
                 ),
               ],
             ),
-            const SizedBox(height: AppSpacing.s28),
+            const SizedBox(height: S.s28),
             InputWidget(controller: _nameController, hintText: widget.hintText),
-            const SizedBox(height: AppSpacing.s20),
+            const SizedBox(height: S.s20),
             ValueListenableBuilder<bool>(
               valueListenable: isButtonEnabled,
               builder: (context, enabled, _) {

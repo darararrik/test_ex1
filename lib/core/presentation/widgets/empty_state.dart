@@ -1,7 +1,9 @@
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
+
 import 'package:test_ex1/core/constants/app_icons.dart';
-import 'package:test_ex1/core/constants/app_spacing.dart';
+import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 
@@ -17,8 +19,8 @@ class EmptyState extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppIcon(AppIcons.emptyDesk),
-              const SizedBox(height: AppSpacing.s20),
+              const AppIcon(AppIcons.emptyDesk),
+              const SizedBox(height: S.s20),
               Text(message, style: context.appTextStyle.headline3),
               Padding(
                 padding: EdgeInsets.only(
@@ -27,7 +29,7 @@ class EmptyState extends StatelessWidget {
                 ),
                 child: Transform.rotate(
                   angle: (math.pi * 5) / 80,
-                  child: AppIcon(AppIcons.arrow, width: 100),
+                  child: const AppIcon(AppIcons.arrow, width: 100),
                 ),
               ),
             ],

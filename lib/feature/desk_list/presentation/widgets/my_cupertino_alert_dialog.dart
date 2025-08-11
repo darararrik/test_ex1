@@ -1,6 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:test_ex1/core/constants/app_spacing.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/providers/auth/auth_provider.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 
@@ -10,7 +12,7 @@ class MyCupertinoAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s24),
+      padding: const EdgeInsets.symmetric(horizontal: S.s24),
       child: CupertinoActionSheet(
         title: Text(
           context.l10n.logOutTitle,

@@ -1,18 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:test_ex1/core/constants/app_icons.dart';
-import 'package:test_ex1/core/constants/app_rounding.dart';
-import 'package:test_ex1/core/constants/app_size.dart';
-import 'package:test_ex1/core/constants/app_spacing.dart';
-import 'package:test_ex1/core/domain/models/task/task_model.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/primary_button.dart';
-import 'package:test_ex1/core/presentation/widgets/buttons/secondary_button.dart';
-import 'package:test_ex1/core/presentation/widgets/my_sliver_app_bar.dart';
-import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:test_ex1/core/util/extensions/date_time_x.dart';
-import 'package:test_ex1/feature/desk_list/presentation/providers/desk_list_provider.dart';
-import 'package:test_ex1/feature/task_detail/presentation/widgets/input_comment_widget.dart';
+import 'package:test_ex1/core/constants/constants.dart';
+import 'package:test_ex1/core/domain/models/task/task_model.dart';
+import 'package:test_ex1/core/presentation/widgets/widgets.dart';
+import 'package:test_ex1/core/util/extensions/extensions.dart';
+import 'package:test_ex1/feature/desk_list/presentation/providers/providers.dart';
+
+import 'widgets/input_comment_widget.dart';
 
 @RoutePage()
 class TaskDetailScreen extends StatefulWidget {
@@ -51,7 +46,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
               child: Column(
                 children: [
                   _TaskData(currentTask),
-                  const SizedBox(height: AppSize.s20),
+                  const SizedBox(height: S.s20),
                   _Comment(commentController: _commentController),
                 ],
               ),
@@ -75,23 +70,23 @@ class _TaskData extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.s16,
-        ).copyWith(bottom: AppSpacing.s24),
+        padding: const EdgeInsets.symmetric(
+          horizontal: S.s16,
+        ).copyWith(bottom: S.s24),
         child: Column(
           children: [
             DecoratedBox(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppRounding.r24),
-                image: DecorationImage(
+                borderRadius: BorderRadius.circular(R.r24),
+                image: const DecorationImage(
                   image: Svg(AppIcons.background),
                   fit: BoxFit.cover,
                 ),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: AppSpacing.s16,
-                  horizontal: AppSpacing.s16,
+                  vertical: S.s16,
+                  horizontal: S.s16,
                 ),
                 child: Column(
                   children: [
@@ -102,14 +97,14 @@ class _TaskData extends StatelessWidget {
                           title: context.l10n.date,
                           data: task.date.toFormattedString(),
                         ),
-                        const SizedBox(width: AppSpacing.s12),
+                        const SizedBox(width: S.s12),
                         _WhiteBoxText(
                           title: context.l10n.totalPrayers,
                           data: task.totalPrayers.toString(),
                         ),
                       ],
                     ),
-                    const SizedBox(height: AppSize.s12),
+                    const SizedBox(height: S.s12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -117,7 +112,7 @@ class _TaskData extends StatelessWidget {
                           title: context.l10n.otherPrayers,
                           data: task.otherPrayers.toString(),
                         ),
-                        const SizedBox(width: AppSpacing.s12),
+                        const SizedBox(width: S.s12),
                         _WhiteBoxText(
                           title: context.l10n.myPrayers,
                           data: task.myPrayers.toString(),
@@ -128,13 +123,13 @@ class _TaskData extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: AppSize.s12),
+            const SizedBox(height: S.s12),
             PrimaryButton(
               isEnabled: true,
               onPressed: () {},
               text: context.l10n.prayed,
             ),
-            const SizedBox(height: AppSize.s8),
+            const SizedBox(height: S.s8),
             SecondaryButton(
               isEnabled: false,
               onPressed: () {},
@@ -157,10 +152,10 @@ class _WhiteBoxText extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.appColors.gray100,
-          borderRadius: BorderRadius.circular(AppRounding.r28),
+          borderRadius: BorderRadius.circular(R.r28),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: AppSpacing.s28),
+          padding: const EdgeInsets.symmetric(vertical: S.s28),
           child: Center(
             child: Column(
               children: [
@@ -190,11 +185,11 @@ class _Comment extends StatelessWidget {
     return Column(
       children: [
         Text(context.l10n.comments, style: context.appTextStyle.headline2),
-        const SizedBox(height: AppSize.s12),
+        const SizedBox(height: S.s12),
         Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: AppSpacing.s16,
-            horizontal: AppSpacing.s32,
+            vertical: S.s16,
+            horizontal: S.s32,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,15 +207,15 @@ class _Comment extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: AppSpacing.s12),
+                padding: const EdgeInsets.symmetric(vertical: S.s12),
                 child: Text("comment", style: context.appTextStyle.body2),
               ),
             ],
           ),
         ),
-        const SizedBox(height: AppSize.s12),
+        const SizedBox(height: S.s12),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSize.s16),
+          padding: const EdgeInsets.symmetric(horizontal: S.s16),
           child: InputCommentWidget(commentController: _commentController),
         ),
       ],
