@@ -7,7 +7,7 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
-import 'providers/providers.dart';
+import '../../../core/presentation/providers/desk_list/providers.dart';
 import 'widgets/widgets.dart';
 
 @RoutePage()
@@ -57,51 +57,54 @@ class DeskListScreen extends StatelessWidget {
             ],
             centerTitle: false,
           ),
-          data.isNotEmpty
-              ? SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: S.s16),
-                  sliver: SliverToBoxAdapter(
-                    child: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: ShaderMask(
-                            shaderCallback: (Rect bounds) {
-                              return context.appColors.gradientOrange!
-                                  .createShader(bounds);
-                            },
-                            blendMode: BlendMode.srcATop,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(R.r24),
-                                image: const DecorationImage(
-                                  image: Svg(AppIcons.background),
-                                  repeat: ImageRepeat.repeat,
-                                  fit: BoxFit.none,
-                                ),
-                              ),
+          Visibility(
+            visible: data.isNotEmpty,
+            replacement: EmptyState(message: context.l10n.emptyDeskScreen),
+            child: SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: S.s16),
+              sliver: SliverToBoxAdapter(
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: ShaderMask(
+                        shaderCallback: (Rect bounds) {
+                          return context.appColors.gradientOrange!.createShader(
+                            bounds,
+                          );
+                        },
+                        blendMode: BlendMode.srcATop,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(R.r24),
+                            image: const DecorationImage(
+                              image: Svg(AppIcons.background),
+                              repeat: ImageRepeat.repeat,
+                              fit: BoxFit.none,
                             ),
                           ),
                         ),
-                        ListView.separated(
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: data.length,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: S.s16,
-                            vertical: S.s24,
-                          ),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return Dock(desk: data[index]);
-                          },
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: S.s16);
-                          },
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                )
-              : EmptyState(message: context.l10n.emptyDeskScreen),
+                    ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: data.length,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: S.s16,
+                        vertical: S.s24,
+                      ),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Dock(desk: data[index]);
+                      },
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: S.s16);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

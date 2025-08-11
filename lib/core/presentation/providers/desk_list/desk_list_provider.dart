@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:test_ex1/feature/desk_list/presentation/providers/desk_list_notifier.dart';
+import 'package:test_ex1/core/presentation/providers/desk_list/desk_list_notifier.dart';
 
 class DeskListProvider extends InheritedNotifier<DeskListNotifier> {
   const DeskListProvider({

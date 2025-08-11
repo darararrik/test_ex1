@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:test_ex1/core/db/db.dart';
+import 'package:test_ex1/core/presentation/providers/desk_list/providers.dart';
 import 'package:test_ex1/core/presentation/providers/providers.dart';
-import 'package:test_ex1/feature/desk_list/presentation/providers/providers.dart';
 import 'package:test_ex1/feature/task_detail/presentation/providers/providers.dart';
 
 class AppMultiProviders extends StatelessWidget {

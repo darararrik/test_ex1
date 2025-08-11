@@ -51,22 +51,23 @@ class _InputCommentWidgetState extends State<InputCommentWidget> {
               vertical: S.s16,
               horizontal: S.s24,
             ),
-            suffixIcon: _hasFocus.value
-                ? Padding(
-                    padding: const EdgeInsets.all(S.s4),
-                    child: MyIconButton(
-                      onPressed: () {},
-                      iconPath: AppIcons.paperAirplane,
-                      width: Sz.s48,
-                      height: Sz.s48,
-                      iconHeight: Sz.s24,
-                      iconWidth: Sz.s24,
-                      backgroundColor: context.appColors.gray800,
-                      iconColor: context.appColors.gray100,
-                      borderRadius: BorderRadius.circular(R.r12),
-                    ),
-                  )
-                : null,
+            suffixIcon: Visibility(
+              visible: _hasFocus.value,
+              child: Padding(
+                padding: const EdgeInsets.all(S.s4),
+                child: MyIconButton(
+                  onPressed: () {},
+                  iconPath: AppIcons.paperAirplane,
+                  width: Sz.s48,
+                  height: Sz.s48,
+                  iconHeight: Sz.s24,
+                  iconWidth: Sz.s24,
+                  backgroundColor: context.appColors.gray800,
+                  iconColor: context.appColors.gray100,
+                  borderRadius: BorderRadius.circular(R.r12),
+                ),
+              ),
+            ),
           ),
         );
       },

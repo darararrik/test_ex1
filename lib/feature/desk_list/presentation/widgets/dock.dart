@@ -4,9 +4,9 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/domain/models/desk/desk_model.dart';
+import 'package:test_ex1/core/presentation/providers/desk_list/desk_list_provider.dart';
 import 'package:test_ex1/core/presentation/widgets/background_delete_icon.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
-import 'package:test_ex1/feature/desk_list/presentation/providers/desk_list_provider.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
 class Dock extends StatefulWidget {

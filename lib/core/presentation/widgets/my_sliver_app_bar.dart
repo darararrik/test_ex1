@@ -31,8 +31,7 @@ class MySliverAppBar extends StatelessWidget {
         centerTitle: centerTitle,
         actionsPadding: actionsPadding,
         backgroundColor: backgroundColor,
-        leading: canPop ? const MyBackButton() : null,
-
+        leading: Visibility(visible: canPop, child: const MyBackButton()),
         title: title,
       ),
     );

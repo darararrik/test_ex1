@@ -4,7 +4,7 @@ import 'package:test_ex1/core/constants/app_icons.dart';
 import 'package:test_ex1/core/constants/s.dart';
 import 'package:test_ex1/core/presentation/providers/password_visibility/password_visibility_provider.dart';
 import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
-import 'package:test_ex1/core/util/extensions/build_context_x.dart';
+import 'package:test_ex1/core/util/util.dart';
 
 class InputWidget extends StatelessWidget {
   const InputWidget({
@@ -74,26 +74,28 @@ class InputWidget extends StatelessWidget {
             hintStyle: context.appTextStyle.body2.copyWith(
               color: context.appColors.gray600,
             ),
-            contentPadding:
-                contentPadding ?? const EdgeInsets.symmetric(vertical: S.s12),
+            contentPadding: contentPadding ?? const P(vertical: S.s12),
             border: border,
             enabledBorder: enabledBorder,
             focusedBorder: focusedBorder,
 
-            suffixIcon: usePasswordToggle
-                ? IconButton(
-                    onPressed: passwordNotifier.toggleVisibility,
-                    icon: obscureText
-                        ? AppIcon(
-                            AppIcons.eyeClose,
-                            color: context.appColors.gray600,
-                          )
-                        : AppIcon(
-                            AppIcons.eyeOpen,
-                            color: context.appColors.gray800,
-                          ),
-                  )
-                : null,
+            suffixIcon: Visibility(
+              visible: usePasswordToggle,
+              child: IconButton(
+                onPressed: passwordNotifier.toggleVisibility,
+                icon: Visibility(
+                  visible: obscureText,
+                  replacement: AppIcon(
+                    AppIcons.eyeOpen,
+                    color: context.appColors.gray800,
+                  ),
+                  child: AppIcon(
+                    AppIcons.eyeClose,
+                    color: context.appColors.gray600,
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
       ],
