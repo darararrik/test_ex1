@@ -7,27 +7,39 @@ sealed class TaskModel with _$TaskModel {
   const factory TaskModel({
     required int id,
     required String name,
-    required Status status,
     required int totalPrayers,
     required int myPrayers,
     required int otherPrayers,
     required int members,
     required int complete,
     required DateTime date,
+    required DateTime lastPray,
   }) = _TaskModel;
+  const TaskModel._();
 
-  // Фабричный конструктор для создания с default-значениями
-  factory TaskModel.create(int id, String name) => TaskModel(
+  factory TaskModel.create({
+    required int id,
+    required String name,
+    DateTime? lastPray,
+  }) => TaskModel(
     id: id,
     name: name,
-    status: Status.lessHour,
     totalPrayers: 0,
     myPrayers: 0,
     otherPrayers: 0,
     complete: 0,
     members: 0,
     date: DateTime.now(),
+    lastPray: lastPray ?? DateTime.now(),
   );
+
+  Status get getActualStatus {
+    final diff = DateTime.now().difference(lastPray);
+
+    if (diff.inHours < 1) return Status.lessHour;
+    if (diff.inHours < 24) return Status.lessDay;
+    return Status.moreDay;
+  }
 }
 
 enum Status {

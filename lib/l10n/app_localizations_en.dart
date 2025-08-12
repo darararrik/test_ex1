@@ -128,4 +128,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get sorry => 'Sorry!';
+
+  @override
+  String get sorryText => 'The counter can be pressed\nonce per hour.';
+
+  @override
+  String get ok => 'OK';
 }

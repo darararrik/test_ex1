@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 
 import 'package:test_ex1/routing/app_routing.gr.dart';
-import 'package:test_ex1/routing/routes/my_deks_routes.dart';
+import 'package:test_ex1/routing/routes/routes.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -15,8 +15,8 @@ class AppRouter extends RootStackRouter {
       initial: true,
       children: [
         MyDeskRoutes.routes,
-        AutoRoute(page: UsersDesksRoute.page),
-        AutoRoute(page: FollowedRoute.page),
+        UsersDesksRoutes.routes,
+        FollowedRoutes.routes,
       ],
     ),
     AutoRoute(

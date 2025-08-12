@@ -9,8 +9,8 @@ import 'package:test_ex1/core/util/util.dart';
 import 'package:test_ex1/feature/task_detail/presentation/widgets/white_box_text.dart';
 import 'package:test_ex1/resources/resources.dart';
 
-class TaskData extends StatelessWidget {
-  const TaskData({super.key, required this.task});
+class TaskDataAndButtons extends StatelessWidget {
+  const TaskDataAndButtons({super.key, required this.task});
   final TaskModel task;
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class TaskData extends StatelessWidget {
             const SizedBox(height: S.s12),
             PrimaryButton(
               isEnabled: true,
-              onPressed: () {},
+              onPressed: () => handlePrayButtonPressed(context, task),
               text: context.l10n.prayed,
             ),
             const SizedBox(height: S.s8),

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TaskModel {
 
- int get id; String get name; Status get status; int get totalPrayers; int get myPrayers; int get otherPrayers; int get members; int get complete; DateTime get date;
+ int get id; String get name; int get totalPrayers; int get myPrayers; int get otherPrayers; int get members; int get complete; DateTime get date; DateTime get lastPray;
 /// Create a copy of TaskModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $TaskModelCopyWith<TaskModel> get copyWith => _$TaskModelCopyWithImpl<TaskModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.status, status) || other.status == status)&&(identical(other.totalPrayers, totalPrayers) || other.totalPrayers == totalPrayers)&&(identical(other.myPrayers, myPrayers) || other.myPrayers == myPrayers)&&(identical(other.otherPrayers, otherPrayers) || other.otherPrayers == otherPrayers)&&(identical(other.members, members) || other.members == members)&&(identical(other.complete, complete) || other.complete == complete)&&(identical(other.date, date) || other.date == date));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.totalPrayers, totalPrayers) || other.totalPrayers == totalPrayers)&&(identical(other.myPrayers, myPrayers) || other.myPrayers == myPrayers)&&(identical(other.otherPrayers, otherPrayers) || other.otherPrayers == otherPrayers)&&(identical(other.members, members) || other.members == members)&&(identical(other.complete, complete) || other.complete == complete)&&(identical(other.date, date) || other.date == date)&&(identical(other.lastPray, lastPray) || other.lastPray == lastPray));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name,status,totalPrayers,myPrayers,otherPrayers,members,complete,date);
+int get hashCode => Object.hash(runtimeType,id,name,totalPrayers,myPrayers,otherPrayers,members,complete,date,lastPray);
 
 @override
 String toString() {
-  return 'TaskModel(id: $id, name: $name, status: $status, totalPrayers: $totalPrayers, myPrayers: $myPrayers, otherPrayers: $otherPrayers, members: $members, complete: $complete, date: $date)';
+  return 'TaskModel(id: $id, name: $name, totalPrayers: $totalPrayers, myPrayers: $myPrayers, otherPrayers: $otherPrayers, members: $members, complete: $complete, date: $date, lastPray: $lastPray)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $TaskModelCopyWith<$Res>  {
   factory $TaskModelCopyWith(TaskModel value, $Res Function(TaskModel) _then) = _$TaskModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, Status status, int totalPrayers, int myPrayers, int otherPrayers, int members, int complete, DateTime date
+ int id, String name, int totalPrayers, int myPrayers, int otherPrayers, int members, int complete, DateTime date, DateTime lastPray
 });
 
 
@@ -62,17 +62,17 @@ class _$TaskModelCopyWithImpl<$Res>
 
 /// Create a copy of TaskModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? status = null,Object? totalPrayers = null,Object? myPrayers = null,Object? otherPrayers = null,Object? members = null,Object? complete = null,Object? date = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? totalPrayers = null,Object? myPrayers = null,Object? otherPrayers = null,Object? members = null,Object? complete = null,Object? date = null,Object? lastPray = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as Status,totalPrayers: null == totalPrayers ? _self.totalPrayers : totalPrayers // ignore: cast_nullable_to_non_nullable
+as String,totalPrayers: null == totalPrayers ? _self.totalPrayers : totalPrayers // ignore: cast_nullable_to_non_nullable
 as int,myPrayers: null == myPrayers ? _self.myPrayers : myPrayers // ignore: cast_nullable_to_non_nullable
 as int,otherPrayers: null == otherPrayers ? _self.otherPrayers : otherPrayers // ignore: cast_nullable_to_non_nullable
 as int,members: null == members ? _self.members : members // ignore: cast_nullable_to_non_nullable
 as int,complete: null == complete ? _self.complete : complete // ignore: cast_nullable_to_non_nullable
 as int,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as DateTime,lastPray: null == lastPray ? _self.lastPray : lastPray // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }
@@ -155,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  Status status,  int totalPrayers,  int myPrayers,  int otherPrayers,  int members,  int complete,  DateTime date)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  int totalPrayers,  int myPrayers,  int otherPrayers,  int members,  int complete,  DateTime date,  DateTime lastPray)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TaskModel() when $default != null:
-return $default(_that.id,_that.name,_that.status,_that.totalPrayers,_that.myPrayers,_that.otherPrayers,_that.members,_that.complete,_that.date);case _:
+return $default(_that.id,_that.name,_that.totalPrayers,_that.myPrayers,_that.otherPrayers,_that.members,_that.complete,_that.date,_that.lastPray);case _:
   return orElse();
 
 }
@@ -176,10 +176,10 @@ return $default(_that.id,_that.name,_that.status,_that.totalPrayers,_that.myPray
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  Status status,  int totalPrayers,  int myPrayers,  int otherPrayers,  int members,  int complete,  DateTime date)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  int totalPrayers,  int myPrayers,  int otherPrayers,  int members,  int complete,  DateTime date,  DateTime lastPray)  $default,) {final _that = this;
 switch (_that) {
 case _TaskModel():
-return $default(_that.id,_that.name,_that.status,_that.totalPrayers,_that.myPrayers,_that.otherPrayers,_that.members,_that.complete,_that.date);}
+return $default(_that.id,_that.name,_that.totalPrayers,_that.myPrayers,_that.otherPrayers,_that.members,_that.complete,_that.date,_that.lastPray);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -193,10 +193,10 @@ return $default(_that.id,_that.name,_that.status,_that.totalPrayers,_that.myPray
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  Status status,  int totalPrayers,  int myPrayers,  int otherPrayers,  int members,  int complete,  DateTime date)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  int totalPrayers,  int myPrayers,  int otherPrayers,  int members,  int complete,  DateTime date,  DateTime lastPray)?  $default,) {final _that = this;
 switch (_that) {
 case _TaskModel() when $default != null:
-return $default(_that.id,_that.name,_that.status,_that.totalPrayers,_that.myPrayers,_that.otherPrayers,_that.members,_that.complete,_that.date);case _:
+return $default(_that.id,_that.name,_that.totalPrayers,_that.myPrayers,_that.otherPrayers,_that.members,_that.complete,_that.date,_that.lastPray);case _:
   return null;
 
 }
@@ -207,19 +207,19 @@ return $default(_that.id,_that.name,_that.status,_that.totalPrayers,_that.myPray
 /// @nodoc
 
 
-class _TaskModel implements TaskModel {
-  const _TaskModel({required this.id, required this.name, required this.status, required this.totalPrayers, required this.myPrayers, required this.otherPrayers, required this.members, required this.complete, required this.date});
+class _TaskModel extends TaskModel {
+  const _TaskModel({required this.id, required this.name, required this.totalPrayers, required this.myPrayers, required this.otherPrayers, required this.members, required this.complete, required this.date, required this.lastPray}): super._();
   
 
 @override final  int id;
 @override final  String name;
-@override final  Status status;
 @override final  int totalPrayers;
 @override final  int myPrayers;
 @override final  int otherPrayers;
 @override final  int members;
 @override final  int complete;
 @override final  DateTime date;
+@override final  DateTime lastPray;
 
 /// Create a copy of TaskModel
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +231,16 @@ _$TaskModelCopyWith<_TaskModel> get copyWith => __$TaskModelCopyWithImpl<_TaskMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TaskModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.status, status) || other.status == status)&&(identical(other.totalPrayers, totalPrayers) || other.totalPrayers == totalPrayers)&&(identical(other.myPrayers, myPrayers) || other.myPrayers == myPrayers)&&(identical(other.otherPrayers, otherPrayers) || other.otherPrayers == otherPrayers)&&(identical(other.members, members) || other.members == members)&&(identical(other.complete, complete) || other.complete == complete)&&(identical(other.date, date) || other.date == date));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TaskModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.totalPrayers, totalPrayers) || other.totalPrayers == totalPrayers)&&(identical(other.myPrayers, myPrayers) || other.myPrayers == myPrayers)&&(identical(other.otherPrayers, otherPrayers) || other.otherPrayers == otherPrayers)&&(identical(other.members, members) || other.members == members)&&(identical(other.complete, complete) || other.complete == complete)&&(identical(other.date, date) || other.date == date)&&(identical(other.lastPray, lastPray) || other.lastPray == lastPray));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name,status,totalPrayers,myPrayers,otherPrayers,members,complete,date);
+int get hashCode => Object.hash(runtimeType,id,name,totalPrayers,myPrayers,otherPrayers,members,complete,date,lastPray);
 
 @override
 String toString() {
-  return 'TaskModel(id: $id, name: $name, status: $status, totalPrayers: $totalPrayers, myPrayers: $myPrayers, otherPrayers: $otherPrayers, members: $members, complete: $complete, date: $date)';
+  return 'TaskModel(id: $id, name: $name, totalPrayers: $totalPrayers, myPrayers: $myPrayers, otherPrayers: $otherPrayers, members: $members, complete: $complete, date: $date, lastPray: $lastPray)';
 }
 
 
@@ -251,7 +251,7 @@ abstract mixin class _$TaskModelCopyWith<$Res> implements $TaskModelCopyWith<$Re
   factory _$TaskModelCopyWith(_TaskModel value, $Res Function(_TaskModel) _then) = __$TaskModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, Status status, int totalPrayers, int myPrayers, int otherPrayers, int members, int complete, DateTime date
+ int id, String name, int totalPrayers, int myPrayers, int otherPrayers, int members, int complete, DateTime date, DateTime lastPray
 });
 
 
@@ -268,17 +268,17 @@ class __$TaskModelCopyWithImpl<$Res>
 
 /// Create a copy of TaskModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? status = null,Object? totalPrayers = null,Object? myPrayers = null,Object? otherPrayers = null,Object? members = null,Object? complete = null,Object? date = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? totalPrayers = null,Object? myPrayers = null,Object? otherPrayers = null,Object? members = null,Object? complete = null,Object? date = null,Object? lastPray = null,}) {
   return _then(_TaskModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as Status,totalPrayers: null == totalPrayers ? _self.totalPrayers : totalPrayers // ignore: cast_nullable_to_non_nullable
+as String,totalPrayers: null == totalPrayers ? _self.totalPrayers : totalPrayers // ignore: cast_nullable_to_non_nullable
 as int,myPrayers: null == myPrayers ? _self.myPrayers : myPrayers // ignore: cast_nullable_to_non_nullable
 as int,otherPrayers: null == otherPrayers ? _self.otherPrayers : otherPrayers // ignore: cast_nullable_to_non_nullable
 as int,members: null == members ? _self.members : members // ignore: cast_nullable_to_non_nullable
 as int,complete: null == complete ? _self.complete : complete // ignore: cast_nullable_to_non_nullable
 as int,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as DateTime,lastPray: null == lastPray ? _self.lastPray : lastPray // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }

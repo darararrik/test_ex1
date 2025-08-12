@@ -38,7 +38,10 @@
   "errorEnterName": "Name cannot be empty",
   "logOutTitle":"Are you sure you want to log out?",
   "logOut": "Log out",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "sorry": "Sorry!",
+  "sorryText": "The counter can be pressed\nonce per hour.",
+  "ok":"OK"
 
   
 }

@@ -4,8 +4,10 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/domain/models/task/task_model.dart';
-import 'package:test_ex1/core/presentation/providers/desk_list/providers.dart';
+import 'package:test_ex1/core/presentation/providers/providers.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
+import 'package:test_ex1/core/util/util.dart';
+import 'package:test_ex1/routing/app_routing.gr.dart';
 import 'widgets/widgets.dart';
 
 @RoutePage()
@@ -32,7 +34,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final notifier = DeskListProvider.of(context);
+    final notifier = context.currentDeskNotifier;
     final currentTask = notifier.currentDesk.tasks.firstWhere(
       (element) => element.id == widget.task.id,
     );
@@ -44,7 +46,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  TaskData(task: currentTask),
+                  TaskDataAndButtons(task: currentTask),
                   const SizedBox(height: S.s20),
                   Comment(commentController: _commentController),
                 ],

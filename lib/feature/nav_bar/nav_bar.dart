@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:test_ex1/core/constants/constants.dart';
-import 'package:test_ex1/core/presentation/widgets/app_icon.dart';
+import 'package:test_ex1/core/presentation/widgets/ui/app_icon.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 import 'package:test_ex1/resources/resources.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
+import 'package:test_ex1/routing/wrappers/users_desks_wrapper.dart';
 
 @RoutePage(name: 'NavBarRoute')
 class NavBar extends StatelessWidget {
@@ -15,7 +16,11 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: const [MyDeskWrapperRoute(), UsersDesksRoute(), FollowedRoute()],
+      routes: const [
+        MyDesksWrapperRoute(),
+        UsersDesksWrapperRoute(),
+        FollowedWrapperRoute(),
+      ],
       bottomNavigationBuilder: (_, tabsRouter) => ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(R.r24)),
         child: NavigationBar(

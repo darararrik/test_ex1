@@ -1,24 +1,33 @@
 import 'package:flutter/material.dart';
-
+import 'package:test_ex1/core/domain/interface/desk_tasks_list.dart';
 import 'package:test_ex1/core/domain/models/models.dart';
 
-class DeskListNotifier extends ChangeNotifier {
+class DeskListNotifier extends ChangeNotifier implements IDesksTasksList {
   final List<DeskModel> _desks = [];
   int _nextDeskId = 1;
   int _nextTaskId = 1;
-
-  List<DeskModel> get desks => List.unmodifiable(_desks);
   int _currentDeskId = -1;
+
+  @override
   DeskModel get currentDesk => _desks.firstWhere((d) => d.id == _currentDeskId);
+  @override
+  List<DeskModel> get desks => List.unmodifiable(_desks);
+
+  @override
   TaskModel getTaskById(int id) =>
       currentDesk.tasks.firstWhere((t) => t.id == id);
 
+  @override
   void setCurrentDesk(int deskId) {
     if (_desks.any((d) => d.id == deskId)) {
       _currentDeskId = deskId;
       notifyListeners();
     }
   }
+
+  @override
+  Status getStatus(int id) =>
+      currentDesk.tasks.firstWhere((t) => t.id == id).getActualStatus;
 
   void addDesk(String title) {
     _desks.add(DeskModel(id: _nextDeskId++, title: title, tasks: []));
@@ -46,7 +55,7 @@ class DeskListNotifier extends ChangeNotifier {
     if (deskIndex == -1) return;
 
     final oldDesk = _desks[deskIndex];
-    final newTask = TaskModel.create(_nextTaskId++, taskTitle);
+    final newTask = TaskModel.create(id: _nextTaskId++, name: taskTitle);
 
     final updatedTasks = List<TaskModel>.from(oldDesk.tasks)..add(newTask);
     final updatedDesk = oldDesk.copyWith(tasks: updatedTasks);
@@ -76,6 +85,30 @@ class DeskListNotifier extends ChangeNotifier {
     final oldTask = oldDesk.tasks[taskIndex];
     final updatedTask = oldTask.copyWith(name: newName);
 
+    final updatedTasks = List<TaskModel>.from(oldDesk.tasks)
+      ..[taskIndex] = updatedTask;
+
+    final updatedDesk = oldDesk.copyWith(tasks: updatedTasks);
+
+    _desks[deskIndex] = updatedDesk;
+    notifyListeners();
+  }
+
+  @override
+  void pray(int taskId) {
+    final deskIndex = _desks.indexWhere((d) => d.id == _currentDeskId);
+    if (deskIndex == -1) return;
+
+    final oldDesk = _desks[deskIndex];
+    final taskIndex = oldDesk.tasks.indexWhere((task) => task.id == taskId);
+
+    if (taskIndex == -1) return;
+
+    final oldTask = oldDesk.tasks[taskIndex];
+    final updatedTask = oldTask.copyWith(
+      myPrayers: oldTask.myPrayers + 1,
+      lastPray: DateTime.now(),
+    );
     final updatedTasks = List<TaskModel>.from(oldDesk.tasks)
       ..[taskIndex] = updatedTask;
 
