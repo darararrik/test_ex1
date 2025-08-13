@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -34,26 +35,43 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final notifier = context.currentDeskNotifier;
-    final currentTask = notifier.currentDesk.tasks.firstWhere(
-      (element) => element.id == widget.task.id,
-    );
+    final TaskModel? currentTask;
+    final parentRouter = context.router.parent(); // NavBarRoute
+    final activeTabName = parentRouter?.current.name;
+    if (FollowedWrapperRoute.name == activeTabName) {
+      final notifier = context.followedNotifier;
+      currentTask = notifier.tasks.firstWhereOrNull(
+        (element) =>
+            element.id == widget.task.id &&
+            element.userId == widget.task.userId &&
+            element.deskId == widget.task.deskId,
+      );
+    } else {
+      final notifier = context.currentDeskNotifier;
+      currentTask = notifier.getCurrentDesk?.tasks.firstWhereOrNull(
+        (element) => element.id == widget.task.id,
+      );
+    }
+
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          MySliverAppBar(title: Text(currentTask.name)),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  TaskDataAndButtons(task: currentTask),
-                  const SizedBox(height: S.s20),
-                  Comment(commentController: _commentController),
-                ],
+      body: Visibility(
+        visible: currentTask != null,
+        child: CustomScrollView(
+          slivers: [
+            MySliverAppBar(title: currentTask!.name),
+            SliverToBoxAdapter(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    TaskDataAndButtons(task: currentTask),
+                    const SizedBox(height: S.s20),
+                    Comment(commentController: _commentController),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -60,9 +60,8 @@ class _TaskCardState extends State<TaskCard> {
   Widget build(BuildContext context) {
     final notifier = context.currentDeskNotifier;
     final task = notifier.getTaskById(widget.task.id);
-    final countMembers = task.members.resolveCountMembers();
+    final countMembers = task!.members.resolveCountMembers();
     final countComplete = task.complete.resolveCountComplete();
-
     return ValueListenableBuilder<bool>(
       valueListenable: isEditing,
       builder: (context, value, child) {

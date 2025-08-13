@@ -7,18 +7,18 @@ import 'package:test_ex1/core/util/util.dart';
 class MySliverAppBar extends StatelessWidget {
   const MySliverAppBar({
     super.key,
-    this.title,
+    required this.title,
     this.actionsPadding,
     this.backgroundColor,
     this.actions,
-    this.centerTitle,
+    this.centerTitle = true,
     this.canPop = true,
   });
-  final Widget? title;
+  final String title;
   final EdgeInsets? actionsPadding;
   final Color? backgroundColor;
   final List<Widget>? actions;
-  final bool? centerTitle;
+  final bool centerTitle;
   final bool canPop;
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,12 @@ class MySliverAppBar extends StatelessWidget {
         actionsPadding: actionsPadding,
         backgroundColor: backgroundColor,
         leading: canPop ? const MyBackButton() : null,
-        title: title,
+        title: Text(
+          title,
+          style: centerTitle
+              ? context.appTextStyle.headline1
+              : context.appTextStyle.title2,
+        ),
       ),
     );
   }

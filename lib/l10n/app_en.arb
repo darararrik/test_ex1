@@ -41,7 +41,8 @@
   "cancel": "Cancel",
   "sorry": "Sorry!",
   "sorryText": "The counter can be pressed\nonce per hour.",
-  "ok":"OK"
+  "ok":"OK",
+  "emptySubscriptions":"You haven no subscriptions yet."
 
   
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:test_ex1/core/presentation/widgets/ui/app_icon.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 
 class SecondaryButton extends StatelessWidget {
@@ -8,24 +8,69 @@ class SecondaryButton extends StatelessWidget {
     required this.isEnabled,
     required this.onPressed,
     required this.text,
+    this.iconPath,
+    this.borderColor,
+    this.backgroundColor,
+    this.foregroundColor,
   });
+
+  factory SecondaryButton.icon({
+    required String text,
+    required String iconPath,
+    required VoidCallback onPressed,
+    bool isEnabled = true,
+    Color? backgroundColor,
+    Color? foregroundColor,
+    Color? borderColor,
+  }) {
+    return SecondaryButton(
+      text: text,
+      iconPath: iconPath,
+      onPressed: onPressed,
+      isEnabled: isEnabled,
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
+      borderColor: borderColor,
+    );
+  }
+
   final VoidCallback onPressed;
   final String text;
   final bool isEnabled;
+  final String? iconPath;
+  final Color? borderColor;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
         backgroundColor: WidgetStateColor.resolveWith(
-          (states) => _resolveBackgroundColor(context, states),
+          (states) =>
+              backgroundColor ?? _resolveBackgroundColor(context, states),
         ),
         foregroundColor: WidgetStateColor.resolveWith(
-          (states) => _resolveForegroundColor(context, states),
+          (states) =>
+              foregroundColor ?? _resolveForegroundColor(context, states),
+        ),
+        side: WidgetStatePropertyAll(
+          borderColor != null
+              ? BorderSide(color: borderColor!)
+              : BorderSide.none,
         ),
       ),
-
       onPressed: isEnabled ? onPressed : null,
-      child: Text(text),
+      child: iconPath != null
+          ? Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AppIcon(iconPath!, width: 20),
+                const SizedBox(width: 8),
+                Text(text),
+              ],
+            )
+          : Text(text),
     );
   }
 

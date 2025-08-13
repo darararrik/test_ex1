@@ -12,7 +12,10 @@ extension BuildContextX on BuildContext {
   AppTypography get appTextStyle => Theme.of(this).extension<AppTypography>()!;
   ThemeData get appTheme => Theme.of(this);
   AppLocalizations get l10n => AppLocalizations.of(this)!;
-
+  FollowedListNotifier get followedNotifier =>
+      FollowedTasksListProvider.of(this);
+  DeskListNotifier get deskNotifier => DeskListProvider.of(this);
+  UsersDesksListNotifier get userNotifier => UsersDesksListProvider.of(this);
   bool get isMyDesksWrapperRoute {
     final parentRouter = router.parent();
     if (parentRouter == null) return false;

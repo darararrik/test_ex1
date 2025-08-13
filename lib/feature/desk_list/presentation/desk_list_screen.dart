@@ -18,7 +18,7 @@ class MyDesksListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = context.currentDeskNotifier.desks;
+    final data = context.currentDeskNotifier.getDesks;
     return Scaffold(
       floatingActionButton: MyFloatingActionButton(
         onPressed: () async {

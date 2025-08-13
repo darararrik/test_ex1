@@ -351,6 +351,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'OK'**
   String get ok;
+
+  /// No description provided for @emptySubscriptions.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven no subscriptions yet.'**
+  String get emptySubscriptions;
 }
 
 class _AppLocalizationsDelegate

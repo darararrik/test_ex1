@@ -6,6 +6,9 @@ part 'task_model.freezed.dart'; // название файла под себя
 sealed class TaskModel with _$TaskModel {
   const factory TaskModel({
     required int id,
+    required int userId,
+    required int deskId,
+    required bool isFollow,
     required String name,
     required int totalPrayers,
     required int myPrayers,
@@ -17,12 +20,17 @@ sealed class TaskModel with _$TaskModel {
   }) = _TaskModel;
   const TaskModel._();
 
-  factory TaskModel.create({
+  factory TaskModel.createDefault({
     required int id,
+    required int userId,
+    required int deskId,
+
     required String name,
     DateTime? lastPray,
   }) => TaskModel(
     id: id,
+    userId: userId,
+    deskId: deskId,
     name: name,
     totalPrayers: 0,
     myPrayers: 0,
@@ -31,8 +39,22 @@ sealed class TaskModel with _$TaskModel {
     members: 0,
     date: DateTime.now(),
     lastPray: lastPray ?? DateTime.now(),
+    isFollow: false,
   );
-
+  factory TaskModel.createEmpty() => TaskModel(
+    id: -1,
+    userId: -1,
+    deskId: -1,
+    name: "name",
+    totalPrayers: 0,
+    myPrayers: 0,
+    otherPrayers: 0,
+    complete: 0,
+    members: 0,
+    date: DateTime.now(),
+    lastPray: DateTime.now(),
+    isFollow: false,
+  );
   Status get getActualStatus {
     final diff = DateTime.now().difference(lastPray);
 

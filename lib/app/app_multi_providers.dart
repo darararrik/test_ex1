@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:test_ex1/core/db/db.dart';
-import 'package:test_ex1/core/presentation/providers/followed_desks/followed_desks.dart';
 import 'package:test_ex1/core/presentation/providers/providers.dart';
 import 'package:test_ex1/feature/task_detail/presentation/providers/providers.dart';
 
