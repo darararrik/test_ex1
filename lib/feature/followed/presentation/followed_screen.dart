@@ -17,12 +17,12 @@ class _FollowedScreenState extends State<FollowedScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final notifier = AuthProvider.of(context);
-      if (notifier.currentUser == null) {
-        context.replaceRoute(const AuthWrapperRoute());
-      }
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   final notifier = AuthProvider.of(context);
+    //   if (notifier.currentUser == null) {
+    //     context.replaceRoute(const AuthWrapperRoute());
+    //   }
+    // });
   }
 
   @override

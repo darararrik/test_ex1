@@ -58,7 +58,11 @@ class _TaskCardState extends State<TaskCard> {
 
   @override
   Widget build(BuildContext context) {
-    final notifier = context.currentDeskNotifier;
+    final notifier = context.currentNotifier;
+    if (notifier == null) {
+      return const SizedBox.shrink(); // нет подходящего провайдера
+    }
+
     final task = notifier.getTaskById(widget.task.id);
     final countMembers = task.members.resolveCountMembers();
     final countComplete = task.complete.resolveCountComplete();
