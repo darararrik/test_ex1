@@ -1,21 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:test_ex1/core/domain/interface/desk_tasks_list.dart';
 import 'package:test_ex1/core/domain/models/models.dart';
+import 'package:collection/collection.dart'; 
 
 class DeskListNotifier extends ChangeNotifier implements IDesksTasksList {
-  final List<DeskModel> _desks = [];
-  int _nextDeskId = 1;
-  int _nextTaskId = 1;
-  int _currentDeskId = -1;
+  final List<DeskModel> _desks = [
+    DeskModel(
+      id: 1,
+      userId: 0,
+      title: 'example',
+      tasks: [
+        TaskModel.createDefault(
+          id: 1,
+          userId: 0,
+          deskId: 1,
+          name: "name",
+          lastPray: DateTime.now().subtract(const Duration(hours: 3)),
+        ),
+      ],
+    ),
+  ];
+  int _nextDeskId = 0;
+  int _nextTaskId = 0;
+  int _currentDeskId = 0;
+  @override
+  DeskModel? get getCurrentDesk =>
+      _desks.firstWhereOrNull((d) => d.id == _currentDeskId);
 
   @override
-  DeskModel get currentDesk => _desks.firstWhere((d) => d.id == _currentDeskId);
-  @override
-  List<DeskModel> get desks => List.unmodifiable(_desks);
+  Status? getStatus({required int taskId, int? userId, int? deskId}) {
+    final desk = getCurrentDesk;
+    if (desk == null) return null;
+    final task = desk.tasks.firstWhereOrNull((t) => t.id == taskId);
+    return task?.getActualStatus;
+  }
 
   @override
-  TaskModel getTaskById(int id) =>
-      currentDesk.tasks.firstWhere((t) => t.id == id);
+  List<DeskModel> get getDesks => List.unmodifiable(_desks);
+
+  @override
+  TaskModel? getTaskById({required int taskId, int? deskId, int? userId}) =>
+      getCurrentDesk?.tasks.firstWhereOrNull((t) => t.id == taskId);
 
   @override
   void setCurrentDesk(int deskId) {
@@ -25,12 +50,10 @@ class DeskListNotifier extends ChangeNotifier implements IDesksTasksList {
     }
   }
 
-  @override
-  Status getStatus(int id) =>
-      currentDesk.tasks.firstWhere((t) => t.id == id).getActualStatus;
-
   void addDesk(String title) {
-    _desks.add(DeskModel(id: _nextDeskId++, title: title, tasks: []));
+    _desks.add(
+      DeskModel(id: _nextDeskId++, title: title, tasks: [], userId: 0),
+    );
     notifyListeners();
   }
 
@@ -55,7 +78,12 @@ class DeskListNotifier extends ChangeNotifier implements IDesksTasksList {
     if (deskIndex == -1) return;
 
     final oldDesk = _desks[deskIndex];
-    final newTask = TaskModel.create(id: _nextTaskId++, name: taskTitle);
+    final newTask = TaskModel.createDefault(
+      id: _nextTaskId++,
+      name: taskTitle,
+      userId: 0,
+      deskId: _currentDeskId,
+    );
 
     final updatedTasks = List<TaskModel>.from(oldDesk.tasks)..add(newTask);
     final updatedDesk = oldDesk.copyWith(tasks: updatedTasks);
@@ -95,26 +123,54 @@ class DeskListNotifier extends ChangeNotifier implements IDesksTasksList {
   }
 
   @override
-  void pray(int taskId) {
-    final deskIndex = _desks.indexWhere((d) => d.id == _currentDeskId);
-    if (deskIndex == -1) return;
+  TaskModel pray({required int taskId, int? deskId, int? userId}) {
+    final targetDeskId = deskId ?? _currentDeskId;
+
+    final deskIndex = _desks.indexWhere((d) => d.id == targetDeskId);
+    if (deskIndex == -1) return TaskModel.createEmpty();
 
     final oldDesk = _desks[deskIndex];
     final taskIndex = oldDesk.tasks.indexWhere((task) => task.id == taskId);
 
-    if (taskIndex == -1) return;
+    if (taskIndex == -1) return TaskModel.createEmpty();
 
     final oldTask = oldDesk.tasks[taskIndex];
     final updatedTask = oldTask.copyWith(
+      totalPrayers: oldTask.totalPrayers + 1,
       myPrayers: oldTask.myPrayers + 1,
       lastPray: DateTime.now(),
     );
+
     final updatedTasks = List<TaskModel>.from(oldDesk.tasks)
       ..[taskIndex] = updatedTask;
 
     final updatedDesk = oldDesk.copyWith(tasks: updatedTasks);
-
     _desks[deskIndex] = updatedDesk;
+
+    notifyListeners();
+    return updatedTask;
+  }
+
+  TaskModel? getTaskByDeskAndId(int deskId, int taskId) {
+    final DeskModel? desk = _desks.firstWhereOrNull((e) => e.id == deskId);
+    final task = desk?.tasks.firstWhereOrNull((e) => e.id == taskId);
+    return task;
+  }
+
+  void updateTask(TaskModel updatedTask, int deskId) {
+    final deskIndex = _desks.indexWhere((d) => d.id == deskId);
+    if (deskIndex == -1) return;
+
+    final desk = _desks[deskIndex];
+    final taskIndex = desk.tasks.indexWhere((t) => t.id == updatedTask.id);
+    if (taskIndex == -1) return;
+
+    // создаем новую доску с обновленной задачей
+    final updatedTasks = List<TaskModel>.from(desk.tasks);
+    updatedTasks[taskIndex] = updatedTask;
+
+    _desks[deskIndex] = desk.copyWith(tasks: updatedTasks);
+
     notifyListeners();
   }
 }

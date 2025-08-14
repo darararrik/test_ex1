@@ -137,4 +137,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ok => 'OK';
+
+  @override
+  String get emptySubscriptions => 'You haven no subscriptions yet.';
 }

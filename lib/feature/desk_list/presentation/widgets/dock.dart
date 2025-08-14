@@ -139,8 +139,10 @@ class _DockState extends State<Dock> {
 
   void _onTap() {
     context.pushRoute(const TasksRoute());
-    final notifier = context.currentDeskNotifier;
-    notifier.setCurrentDesk(widget.desk.id);
+    final notifier = context.currentNotifier;
+    if (context.currentWrapperName != FollowedWrapperRoute.name) {
+      notifier?.setCurrentDesk(widget.desk.id);
+    }
   }
 
   void _finishEditing() {

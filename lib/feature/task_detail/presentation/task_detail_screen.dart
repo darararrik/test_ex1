@@ -1,6 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:path/path.dart';
 
 import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/domain/models/task/task_model.dart';
@@ -34,14 +36,20 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final notifier = context.currentDeskNotifier;
-    final currentTask = notifier.currentDesk.tasks.firstWhere(
+    final notifier = context.currentNotifier;
+    if (notifier == null) {
+      return const SizedBox.shrink();
+    }
+    final currentTask = notifier.getCurrentDesk?.tasks.firstWhereOrNull(
       (element) => element.id == widget.task.id,
     );
+    if (currentTask == null) {
+      return const SizedBox.shrink();
+    }
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          MySliverAppBar(title: Text(currentTask.name)),
+          MySliverAppBar(title: currentTask.name),
           SliverToBoxAdapter(
             child: SingleChildScrollView(
               child: Column(

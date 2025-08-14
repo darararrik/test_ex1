@@ -7,6 +7,7 @@ void handlePrayButtonPressed(BuildContext context, TaskModel task) {
   if (task.getActualStatus == Status.lessHour) {
     showDialog(context: context, builder: (context) => const SorryDialog());
   } else {
-    context.currentDeskNotifier.pray(task.id);
+    final notif = context.currentNotifier;
+    notif?.pray(taskId: task.id, deskId: task.deskId, userId: task.userId);
   }
 }

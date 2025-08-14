@@ -9,12 +9,22 @@ import 'package:test_ex1/core/presentation/widgets/widgets.dart';
 import 'package:test_ex1/core/util/util.dart';
 import 'package:test_ex1/feature/task_detail/presentation/widgets/white_box_text.dart';
 import 'package:test_ex1/resources/resources.dart';
+import 'package:test_ex1/routing/app_routing.gr.dart';
 
-class TaskDataAndButtons extends StatelessWidget {
+class TaskDataAndButtons extends StatefulWidget {
   const TaskDataAndButtons({super.key, required this.task});
   final TaskModel task;
+
+  @override
+  State<TaskDataAndButtons> createState() => _TaskDataAndButtonsState();
+}
+
+class _TaskDataAndButtonsState extends State<TaskDataAndButtons> {
   @override
   Widget build(BuildContext context) {
+    final isFollow = widget.task.isFollow;
+    final isSubscribed = ValueNotifier<bool>(isFollow);
+
     return DecoratedBox(
       decoration: BoxDecoration(
         border: Border(
@@ -42,12 +52,12 @@ class TaskDataAndButtons extends StatelessWidget {
                       children: [
                         WhiteBoxText(
                           title: context.l10n.date,
-                          data: task.date.toFormattedString(),
+                          data: widget.task.date.toFormattedString(),
                         ),
                         const SizedBox(width: S.s12),
                         WhiteBoxText(
                           title: context.l10n.totalPrayers,
-                          data: task.totalPrayers.toString(),
+                          data: widget.task.totalPrayers.toString(),
                         ),
                       ],
                     ),
@@ -57,12 +67,12 @@ class TaskDataAndButtons extends StatelessWidget {
                       children: [
                         WhiteBoxText(
                           title: context.l10n.otherPrayers,
-                          data: task.otherPrayers.toString(),
+                          data: widget.task.otherPrayers.toString(),
                         ),
                         const SizedBox(width: S.s12),
                         WhiteBoxText(
                           title: context.l10n.myPrayers,
-                          data: task.myPrayers.toString(),
+                          data: widget.task.myPrayers.toString(),
                         ),
                       ],
                     ),
@@ -73,17 +83,50 @@ class TaskDataAndButtons extends StatelessWidget {
             const SizedBox(height: S.s12),
             PrimaryButton(
               isEnabled: true,
-              onPressed: () => handlePrayButtonPressed(context, task),
+              onPressed: () => handlePrayButtonPressed(context, widget.task),
               text: context.l10n.prayed,
             ),
             const SizedBox(height: S.s8),
-            SecondaryButton(
-              isEnabled: false,
-              onPressed: () {
-                var current = context.router.current;
-                if (context.isMyDesksWrapperRoute)
+            ValueListenableBuilder(
+              valueListenable: isSubscribed,
+              builder: (context, value, child) {
+                return Visibility(
+                  visible: isSubscribed.value,
+                  replacement: SecondaryButton(
+                    isEnabled: true,
+                    onPressed: () {
+                      final notifier = context.followedNotifier;
+                      isSubscribed.value = true;
+                      notifier.subscribeById(
+                        widget.task.id,
+                        deskId: widget.task.deskId,
+                        ownerId: widget.task.userId,
+                      );
+                    },
+                    text: context.l10n.follow,
+                  ),
+                  child: SecondaryButton.icon(
+                    isEnabled: true,
+                    backgroundColor: Colors.transparent,
+                    borderColor: context.appColors.gray600,
+                    onPressed: () {
+                      isSubscribed.value = false;
+                      final notifier = context.followedNotifier;
+                      notifier.unsubscribe(
+                        widget.task.id,
+                        deskId: widget.task.deskId,
+                        ownerId: widget.task.userId,
+                      );
+                      if (context.currentWrapperName ==
+                          FollowedWrapperRoute.name) {
+                        context.pop();
+                      }
+                    },
+                    text: context.l10n.follow,
+                    iconPath: AppIcons.check,
+                  ),
+                );
               },
-              text: context.l10n.follow,
             ),
           ],
         ),

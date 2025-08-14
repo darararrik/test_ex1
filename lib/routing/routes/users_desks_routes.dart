@@ -6,10 +6,11 @@ import 'package:test_ex1/routing/wrappers/users_desks_wrapper.dart';
 abstract class UsersDesksRoutes {
   static final routes = AutoRoute(
     page: UsersDesksWrapperRoute.page,
+    path: 'users-desks',
     children: [
-      AutoRoute(page: UsersDesksRoute.page, initial: true),
-      AutoRoute(page: TasksRoute.page),
-      AutoRoute(page: TaskDetailRoute.page),
+      AutoRoute(page: UsersDesksRoute.page, initial: true, path: ''),
+      AutoRoute(page: TasksRoute.page, path: 'tasks'),
+      AutoRoute(page: TaskDetailRoute.page, path: 'task-detail'),
     ],
   );
 }

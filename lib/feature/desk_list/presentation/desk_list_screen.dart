@@ -13,12 +13,23 @@ import 'package:test_ex1/resources/resources.dart';
 import 'widgets/widgets.dart';
 
 @RoutePage()
-class MyDesksListScreen extends StatelessWidget {
+class MyDesksListScreen extends StatefulWidget {
   const MyDesksListScreen({super.key});
 
   @override
+  State<MyDesksListScreen> createState() => _MyDesksListScreenState();
+}
+
+class _MyDesksListScreenState extends State<MyDesksListScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final data = context.currentDeskNotifier.desks;
+    //TODO: Переделать
+    final data = context.currentNotifier?.getDesks;
     return Scaffold(
       floatingActionButton: MyFloatingActionButton(
         onPressed: () async {
@@ -35,7 +46,7 @@ class MyDesksListScreen extends StatelessWidget {
           );
         },
       ),
-      body: DesksListBody(data: data, titleAppBar: context.l10n.myDesk),
+      body: DesksListBody(data: data!, titleAppBar: context.l10n.myDesk),
     );
   }
 }

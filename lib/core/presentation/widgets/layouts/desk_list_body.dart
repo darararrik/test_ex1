@@ -4,6 +4,7 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/domain/models/desk/desk_model.dart';
+import 'package:test_ex1/core/presentation/widgets/ui/first_sliver_app_bar.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
 import 'package:test_ex1/core/util/util.dart';
 import 'package:test_ex1/feature/desk_list/presentation/widgets/widgets.dart';
@@ -23,27 +24,13 @@ class DesksListBody extends StatelessWidget {
     return CustomScrollView(
       physics: data.isEmpty ? const NeverScrollableScrollPhysics() : null,
       slivers: [
-        MySliverAppBar(
-          actionsPadding: const P(right: S.s16),
-          backgroundColor: context.appColors.gray200,
-          title: Text(titleAppBar, style: context.appTextStyle.title2),
-          canPop: false,
-          actions: [
-            MyIconButton(
-              onPressed: () => showCupertinoModalPopup(
-                context: context,
-                builder: (context) => const MyCupertinoAlertDialog(),
-              ),
-              iconPath: AppIcons.exit,
-              width: Sz.s42,
-              height: Sz.s42,
-            ),
-          ],
-          centerTitle: false,
-        ),
+        FirstSliverAppBar(title: titleAppBar),
         Visibility(
           visible: data.isNotEmpty,
-          replacement: EmptyState(message: context.l10n.emptyDeskScreen),
+          replacement: EmptyState(
+            message: context.l10n.emptyDeskScreen,
+            iconPath: AppIcons.sketch,
+          ),
           child: SliverPadding(
             padding: const P(horizontal: S.s16),
             sliver: SliverToBoxAdapter(

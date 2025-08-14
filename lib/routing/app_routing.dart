@@ -6,24 +6,26 @@ import 'package:test_ex1/routing/routes/routes.dart';
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
   @override
-  RouteType get defaultRouteType => const RouteType.cupertino(); //.cupertino, .adaptive ..etc
+  RouteType get defaultRouteType => const RouteType.cupertino();
 
   @override
   List<AutoRoute> get routes => [
     AutoRoute(
       page: NavBarRoute.page,
       initial: true,
+      path: '/', // главный wrapper с табами
       children: [
-        MyDeskRoutes.routes,
+        MyDeskRoutes.routes, // вложенные маршруты с путями внутри
         UsersDesksRoutes.routes,
         FollowedRoutes.routes,
       ],
     ),
     AutoRoute(
       page: AuthWrapperRoute.page,
+      path: '/auth', // wrapper для авторизации
       children: [
-        AutoRoute(page: LoginRoute.page, initial: true),
-        AutoRoute(page: RegistrationRoute.page),
+        AutoRoute(page: LoginRoute.page, initial: true, path: 'login'),
+        AutoRoute(page: RegistrationRoute.page, path: 'registration'),
       ],
     ),
   ];

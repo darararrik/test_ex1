@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DeskModel {
 
- int get id; String get title; List<TaskModel> get tasks;
+ int get id; int get userId; String get title; List<TaskModel> get tasks;
 /// Create a copy of DeskModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $DeskModelCopyWith<DeskModel> get copyWith => _$DeskModelCopyWithImpl<DeskModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeskModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.tasks, tasks));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeskModel&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.tasks, tasks));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(tasks));
+int get hashCode => Object.hash(runtimeType,id,userId,title,const DeepCollectionEquality().hash(tasks));
 
 @override
 String toString() {
-  return 'DeskModel(id: $id, title: $title, tasks: $tasks)';
+  return 'DeskModel(id: $id, userId: $userId, title: $title, tasks: $tasks)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $DeskModelCopyWith<$Res>  {
   factory $DeskModelCopyWith(DeskModel value, $Res Function(DeskModel) _then) = _$DeskModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String title, List<TaskModel> tasks
+ int id, int userId, String title, List<TaskModel> tasks
 });
 
 
@@ -62,9 +62,10 @@ class _$DeskModelCopyWithImpl<$Res>
 
 /// Create a copy of DeskModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? tasks = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? userId = null,Object? title = null,Object? tasks = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,tasks: null == tasks ? _self.tasks : tasks // ignore: cast_nullable_to_non_nullable
 as List<TaskModel>,
@@ -149,10 +150,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title,  List<TaskModel> tasks)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int userId,  String title,  List<TaskModel> tasks)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DeskModel() when $default != null:
-return $default(_that.id,_that.title,_that.tasks);case _:
+return $default(_that.id,_that.userId,_that.title,_that.tasks);case _:
   return orElse();
 
 }
@@ -170,10 +171,10 @@ return $default(_that.id,_that.title,_that.tasks);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title,  List<TaskModel> tasks)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int userId,  String title,  List<TaskModel> tasks)  $default,) {final _that = this;
 switch (_that) {
 case _DeskModel():
-return $default(_that.id,_that.title,_that.tasks);}
+return $default(_that.id,_that.userId,_that.title,_that.tasks);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -187,10 +188,10 @@ return $default(_that.id,_that.title,_that.tasks);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title,  List<TaskModel> tasks)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int userId,  String title,  List<TaskModel> tasks)?  $default,) {final _that = this;
 switch (_that) {
 case _DeskModel() when $default != null:
-return $default(_that.id,_that.title,_that.tasks);case _:
+return $default(_that.id,_that.userId,_that.title,_that.tasks);case _:
   return null;
 
 }
@@ -202,10 +203,11 @@ return $default(_that.id,_that.title,_that.tasks);case _:
 
 
 class _DeskModel implements DeskModel {
-  const _DeskModel({required this.id, required this.title, required final  List<TaskModel> tasks}): _tasks = tasks;
+  const _DeskModel({required this.id, required this.userId, required this.title, required final  List<TaskModel> tasks}): _tasks = tasks;
   
 
 @override final  int id;
+@override final  int userId;
 @override final  String title;
  final  List<TaskModel> _tasks;
 @override List<TaskModel> get tasks {
@@ -225,16 +227,16 @@ _$DeskModelCopyWith<_DeskModel> get copyWith => __$DeskModelCopyWithImpl<_DeskMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeskModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._tasks, _tasks));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeskModel&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._tasks, _tasks));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(_tasks));
+int get hashCode => Object.hash(runtimeType,id,userId,title,const DeepCollectionEquality().hash(_tasks));
 
 @override
 String toString() {
-  return 'DeskModel(id: $id, title: $title, tasks: $tasks)';
+  return 'DeskModel(id: $id, userId: $userId, title: $title, tasks: $tasks)';
 }
 
 
@@ -245,7 +247,7 @@ abstract mixin class _$DeskModelCopyWith<$Res> implements $DeskModelCopyWith<$Re
   factory _$DeskModelCopyWith(_DeskModel value, $Res Function(_DeskModel) _then) = __$DeskModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String title, List<TaskModel> tasks
+ int id, int userId, String title, List<TaskModel> tasks
 });
 
 
@@ -262,9 +264,10 @@ class __$DeskModelCopyWithImpl<$Res>
 
 /// Create a copy of DeskModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? tasks = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? userId = null,Object? title = null,Object? tasks = null,}) {
   return _then(_DeskModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,tasks: null == tasks ? _self._tasks : tasks // ignore: cast_nullable_to_non_nullable
 as List<TaskModel>,

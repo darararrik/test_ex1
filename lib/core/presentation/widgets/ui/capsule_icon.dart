@@ -5,15 +5,19 @@ import 'package:test_ex1/core/domain/models/task/task_model.dart';
 import 'package:test_ex1/core/util/extensions/build_context_x.dart';
 
 class CapsuleIcon extends StatelessWidget {
-  const CapsuleIcon({super.key, required this.taskId});
-  final int taskId;
+  const CapsuleIcon({super.key, required this.task});
+  final TaskModel task;
 
   @override
   Widget build(BuildContext context) {
     final blue = context.appColors.blueIndicator;
     final yellow = context.appColors.yellowIndicator;
     final orange = context.appColors.orangeIndicator;
-    final status = context.currentDeskNotifier.getStatus(taskId);
+    final status = context.currentNotifier?.getStatus(
+      taskId: task.id,
+      deskId: task.deskId,
+      userId: task.userId,
+    );
     return SizedBox(
       width: Sz.s24,
       height: Sz.s48,

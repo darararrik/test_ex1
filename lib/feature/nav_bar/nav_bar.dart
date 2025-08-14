@@ -21,39 +21,44 @@ class NavBar extends StatelessWidget {
         UsersDesksWrapperRoute(),
         FollowedWrapperRoute(),
       ],
-      bottomNavigationBuilder: (_, tabsRouter) => ClipRRect(
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(R.r24)),
-        child: NavigationBar(
-          selectedIndex: tabsRouter.activeIndex,
-          onDestinationSelected: tabsRouter.setActiveIndex,
-          destinations: [
-            NavigationDestination(
-              icon: const AppIcon(AppIcons.myDesk),
-              selectedIcon: AppIcon(
-                AppIcons.myDesk,
-                color: context.appColors.gray800,
+      bottomNavigationBuilder: (_, tabsRouter) {
+        return ClipRRect(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(R.r24),
+          ),
+          child: NavigationBar(
+            selectedIndex: tabsRouter.activeIndex,
+            onDestinationSelected: tabsRouter.setActiveIndex,
+
+            destinations: [
+              NavigationDestination(
+                icon: const AppIcon(AppIcons.myDesk),
+                selectedIcon: AppIcon(
+                  AppIcons.myDesk,
+                  color: context.appColors.gray800,
+                ),
+                label: context.l10n.myDesk,
               ),
-              label: context.l10n.myDesk,
-            ),
-            NavigationDestination(
-              icon: const AppIcon(AppIcons.usersDesks),
-              selectedIcon: AppIcon(
-                AppIcons.usersDesks,
-                color: context.appColors.gray800,
+              NavigationDestination(
+                icon: const AppIcon(AppIcons.usersDesks),
+                selectedIcon: AppIcon(
+                  AppIcons.usersDesks,
+                  color: context.appColors.gray800,
+                ),
+                label: context.l10n.usersDesks,
               ),
-              label: context.l10n.usersDesks,
-            ),
-            NavigationDestination(
-              icon: const AppIcon(AppIcons.subscribers),
-              selectedIcon: AppIcon(
-                AppIcons.subscribers,
-                color: context.appColors.gray800,
+              NavigationDestination(
+                icon: const AppIcon(AppIcons.subscribers),
+                selectedIcon: AppIcon(
+                  AppIcons.subscribers,
+                  color: context.appColors.gray800,
+                ),
+                label: context.l10n.followed,
               ),
-              label: context.l10n.followed,
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

@@ -29,9 +29,9 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final data = context.currentDeskNotifier.desks;
+    final data = context.currentNotifier?.getDesks;
     return Scaffold(
-      body: DesksListBody(titleAppBar: context.l10n.usersDesks, data: data),
+      body: DesksListBody(titleAppBar: context.l10n.usersDesks, data: data!),
     );
   }
 }

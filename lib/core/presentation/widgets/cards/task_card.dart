@@ -59,14 +59,13 @@ class _TaskCardState extends State<TaskCard> {
   @override
   Widget build(BuildContext context) {
     final notifier = context.currentNotifier;
-    if (notifier == null) {
-      return const SizedBox.shrink(); // нет подходящего провайдера
-    }
-
-    final task = notifier.getTaskById(widget.task.id);
-    final countMembers = task.members.resolveCountMembers();
+    final task = notifier?.getTaskById(
+      taskId: widget.task.id,
+      deskId: widget.task.deskId,
+      userId: widget.task.userId,
+    );
+    final countMembers = task!.members.resolveCountMembers();
     final countComplete = task.complete.resolveCountComplete();
-
     return ValueListenableBuilder<bool>(
       valueListenable: isEditing,
       builder: (context, value, child) {
@@ -95,7 +94,7 @@ class _TaskCardState extends State<TaskCard> {
                       children: [
                         Row(
                           children: [
-                            CapsuleIcon(taskId: task.id),
+                            CapsuleIcon(task: task),
                             const SizedBox(width: S.s12),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
