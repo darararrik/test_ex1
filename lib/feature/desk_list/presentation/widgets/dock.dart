@@ -4,8 +4,8 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/domain/models/desk/desk_model.dart';
-import 'package:test_ex1/core/presentation/providers/desk_list/desk_list_provider.dart';
-import 'package:test_ex1/core/presentation/widgets/background_delete_icon.dart';
+import 'package:test_ex1/core/presentation/providers/providers.dart';
+import 'package:test_ex1/core/presentation/widgets/cards/background_card_delete.dart';
 import 'package:test_ex1/core/util/util.dart';
 import 'package:test_ex1/routing/app_routing.gr.dart';
 
@@ -34,38 +34,38 @@ class _DockState extends State<Dock> {
   }
 
   @override
+  void didUpdateWidget(covariant Dock oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.desk.title != widget.desk.title && !isEditing.value) {
+      _controller.text = widget.desk.title;
+    }
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     _focusNode.dispose();
+    isEditing.dispose();
     super.dispose();
   }
 
-  void _finishEditing() {
-    isEditing.value = false;
-    final newTitle = _controller.text.trim();
-    if (newTitle.isNotEmpty && newTitle != widget.desk.title) {
-      final notifier = DeskListProvider.of(context);
-      notifier.updateDeskTitle(widget.desk.id, newTitle);
-    } else {
-      _controller.text = widget.desk.title; // сбросить изменения
-    }
-  }
+  void onDismissed(DismissDirection direction) =>
+      DeskListProvider.of(context).deleteDeskbyId(widget.desk.id);
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
       valueListenable: isEditing,
-      builder: (context, value, child) {
+      builder: (context, editing, child) {
         return Stack(
           children: [
-            const BackgroundDeleteIcon(),
+            if (context.isMyDesksWrapperRoute) const BackgroundCardDelete(),
             Dismissible(
               key: ValueKey(widget.desk.id),
-              direction: DismissDirection.endToStart,
-              onDismissed: (direction) {
-                final notifier = DeskListProvider.of(context);
-                notifier.deleteDeskbyId(widget.desk.id);
-              },
+              direction: context.isMyDesksWrapperRoute
+                  ? DismissDirection.endToStart
+                  : DismissDirection.none,
+              onDismissed: context.isMyDesksWrapperRoute ? onDismissed : null,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: context.appColors.gray100,
@@ -77,43 +77,43 @@ class _DockState extends State<Dock> {
                   borderRadius: BorderRadius.circular(R.r24),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(R.r24),
-                    onTap: () {
-                      context.pushRoute(const TasksRoute());
-                      final notifier = DeskListProvider.of(context);
-                      notifier.setCurrentDesk(widget.desk.id);
-                    },
-                    onLongPress: () {
-                      isEditing.value = true;
-                      Future.delayed(const Duration(milliseconds: 100), () {
-                        _focusNode.requestFocus();
-                        _controller.selection = TextSelection(
-                          baseOffset: 0,
-                          extentOffset: _controller.text.length,
-                        );
-                      });
-                    },
+                    onTap: _onTap,
+                    onLongPress: context.isMyDesksWrapperRoute
+                        ? _onLongPress
+                        : null,
                     splashColor: context.appColors.gray300,
                     highlightColor: context.appColors.gray300,
                     child: Padding(
                       padding: const P(all: S.s24),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: isEditing.value
-                            ? TextField(
-                                focusNode: _focusNode,
-                                controller: _controller,
-                                style: context.appTextStyle.headline1,
-                                decoration: null,
-                                onSubmitted: (_) => _finishEditing(),
-                                autofocus: true,
-                                cursorColor: context.appColors.error,
-                              )
-                            : Text(
-                                widget.desk.title,
-                                style: context.appTextStyle.headline1,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
-                              ),
+                        child: Visibility(
+                          visible: context.isMyDesksWrapperRoute,
+                          replacement: Text(
+                            widget.desk.title,
+                            style: context.appTextStyle.headline1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Visibility(
+                            visible: editing,
+                            replacement: Text(
+                              widget.desk.title,
+                              style: context.appTextStyle.headline1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                            ),
+                            child: TextField(
+                              focusNode: _focusNode,
+                              controller: _controller,
+                              style: context.appTextStyle.headline1,
+                              decoration: null,
+                              onSubmitted: (_) => _finishEditing(),
+                              autofocus: true,
+                              cursorColor: context.appColors.error,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -124,5 +124,35 @@ class _DockState extends State<Dock> {
         );
       },
     );
+  }
+
+  void _onLongPress() {
+    isEditing.value = true;
+    Future.delayed(const Duration(milliseconds: 100), () {
+      _focusNode.requestFocus();
+      _controller.selection = TextSelection(
+        baseOffset: 0,
+        extentOffset: _controller.text.length,
+      );
+    });
+  }
+
+  void _onTap() {
+    context.pushRoute(const TasksRoute());
+    final notifier = context.currentNotifier;
+    if (context.currentWrapperName != FollowedWrapperRoute.name) {
+      notifier?.setCurrentDesk(widget.desk.id);
+    }
+  }
+
+  void _finishEditing() {
+    isEditing.value = false;
+    final newTitle = _controller.text.trim();
+    if (newTitle.isNotEmpty && newTitle != widget.desk.title) {
+      final notifier = DeskListProvider.of(context);
+      notifier.updateDeskTitle(widget.desk.id, newTitle);
+    } else {
+      _controller.text = widget.desk.title; // сбросить изменения
+    }
   }
 }

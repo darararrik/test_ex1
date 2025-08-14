@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:test_ex1/core/db/db.dart';
-import 'package:test_ex1/core/presentation/providers/desk_list/providers.dart';
 import 'package:test_ex1/core/presentation/providers/providers.dart';
 import 'package:test_ex1/feature/task_detail/presentation/providers/providers.dart';
 
@@ -11,15 +10,26 @@ class AppMultiProviders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final myDeskListNotifier = DeskListNotifier();
+    final usersDesksNotifier = UsersDesksListNotifier();
     return AuthProvider(
       notifier: AuthNotifier(ProfileDao(AppDatabase())),
-      child: DeskListProvider(
-        notifier: DeskListNotifier(),
-        child: FocusProvider(
-          notifier: FocusNotifier(),
-          child: PasswordVisibilityProvider(
-            notifier: PasswordVisibilityNotifier(),
-            child: child,
+      child: FollowedTasksListProvider(
+        notifier: FollowedListNotifier(
+          myDeskListNotifier: myDeskListNotifier,
+          usersDesksNotifier: usersDesksNotifier,
+        ),
+        child: UsersDesksListProvider(
+          notifier: usersDesksNotifier,
+          child: DeskListProvider(
+            notifier: myDeskListNotifier,
+            child: FocusProvider(
+              notifier: FocusNotifier(),
+              child: PasswordVisibilityProvider(
+                notifier: PasswordVisibilityNotifier(),
+                child: child,
+              ),
+            ),
           ),
         ),
       ),

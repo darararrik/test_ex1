@@ -20,6 +20,7 @@ abstract class Sz {
   static const double s56 = 56.0;
   static const double s60 = 60.0;
   static const double s62 = 62.0;
+  static const double s100 = 100.0;
   static const double s150 = 150.0;
   static const double s200 = 200.0;
 }
