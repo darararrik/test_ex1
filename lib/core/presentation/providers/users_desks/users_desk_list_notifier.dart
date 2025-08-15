@@ -1,5 +1,7 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+
+import 'package:collection/collection.dart';
+
 import 'package:test_ex1/core/domain/interface/desk_tasks_list.dart';
 import 'package:test_ex1/core/domain/models/models.dart';
 import 'package:test_ex1/core/presentation/providers/providers.dart';

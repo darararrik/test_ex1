@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:auto_route/auto_route.dart';
+
 import 'package:test_ex1/core/constants/constants.dart';
 import 'package:test_ex1/core/domain/models/task/task_model.dart';
-
 import 'package:test_ex1/core/presentation/providers/auth/auth_provider.dart';
 import 'package:test_ex1/core/presentation/widgets/ui/first_sliver_app_bar.dart';
 import 'package:test_ex1/core/presentation/widgets/widgets.dart';
