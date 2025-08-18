@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+
+import 'package:test_ex1/presentation/constants/r.dart';
+import 'package:test_ex1/presentation/constants/sz.dart';
+import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
+import 'package:test_ex1/presentation/utils/extensions/build_context_x.dart';
+
+class MyIconButton extends StatelessWidget {
+  const MyIconButton({
+    super.key,
+    required this.onPressed,
+    required this.iconPath,
+    this.backgroundColor,
+    required this.width,
+    required this.height,
+    this.iconColor,
+    this.borderRadius,
+    this.iconWidth,
+    this.iconHeight,
+  });
+  final VoidCallback onPressed;
+  final String iconPath;
+  final Color? backgroundColor;
+  final Color? iconColor;
+  final BorderRadius? borderRadius;
+  final double width;
+  final double height;
+  final double? iconWidth;
+  final double? iconHeight;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      height: height,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          boxShadow: [context.appColors.shadow1],
+          color: backgroundColor ?? context.appColors.gray100,
+          borderRadius: borderRadius ?? BorderRadius.circular(R.r30),
+        ),
+        child: IconButton(
+          icon: AppIcon(
+            iconPath,
+            width: iconWidth ?? Sz.s18,
+            height: iconHeight ?? Sz.s18,
+            color: iconColor,
+          ),
+          onPressed: onPressed,
+        ),
+      ),
+    );
+  }
+}

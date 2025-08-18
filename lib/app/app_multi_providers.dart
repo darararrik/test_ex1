@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:test_ex1/core/db/db.dart';
-import 'package:test_ex1/core/presentation/providers/providers.dart';
-import 'package:test_ex1/feature/task_detail/presentation/providers/providers.dart';
+import 'package:test_ex1/data/db/db.dart';
+import 'package:test_ex1/old-providers/providers.dart';
+import 'package:test_ex1/presentation/screens/task_detail/providers/providers.dart';
 
 class AppMultiProviders extends StatelessWidget {
   const AppMultiProviders({super.key, required this.child});

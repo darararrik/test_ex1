@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:test_ex1/app/app_multi_providers.dart';
-import 'package:test_ex1/core/util/theme/app_theme.dart';
-import 'package:test_ex1/l10n/app_localizations.dart';
-import 'package:test_ex1/routing/app_routing.dart';
+import 'package:test_ex1/presentation/utils/theme/app_theme.dart';
+import 'package:test_ex1/presentation/l10n/app_localizations.dart';
+import 'package:test_ex1/presentation/routing/app_routing.dart';
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
