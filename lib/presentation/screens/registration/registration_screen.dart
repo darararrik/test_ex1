@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 
-import 'package:test_ex1/presentation/constants/s.dart';
 import 'package:test_ex1/old-providers/auth/auth_provider.dart';
-import 'package:test_ex1/presentation/widgets/widgets.dart';
-import 'package:test_ex1/presentation/utils/utils.dart';
+import 'package:test_ex1/presentation/constants/s.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
+import 'package:test_ex1/presentation/utils/utils.dart';
+import 'package:test_ex1/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class RegistrationScreen extends StatefulWidget {

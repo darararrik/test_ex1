@@ -3,8 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import 'package:test_ex1/presentation/constants/constants.dart';
-import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
+import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
 
 class EmptyState extends StatelessWidget {
   const EmptyState({

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:test_ex1/domain/interface/desk_tasks_list.dart';
+import 'package:test_ex1/domain/interfaces/desk_tasks_list.dart';
 import 'package:test_ex1/domain/models/models.dart';
 
-import 'package:collection/collection.dart'; 
+import 'package:collection/collection.dart';
 
 class DeskListNotifier extends ChangeNotifier implements IDesksTasksList {
   final List<DeskModel> _desks = [

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:test_ex1/domain/interface/desk_list.dart';
-import 'package:test_ex1/domain/interface/interface.dart';
-import 'package:test_ex1/domain/interface/task_list.dart';
+import 'package:test_ex1/domain/interfaces/desk_list.dart';
+import 'package:test_ex1/domain/interfaces/interface.dart';
+import 'package:test_ex1/domain/interfaces/task_list.dart';
 import 'package:test_ex1/domain/models/followed_task_ref/followed_task_ref_model.dart';
 import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/old-providers/providers.dart';

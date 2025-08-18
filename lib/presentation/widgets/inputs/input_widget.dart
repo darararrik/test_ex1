@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_ex1/presentation/constants/constants.dart';
 
 import 'package:test_ex1/old-providers/password_visibility/password_visibility_provider.dart';
-import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
+import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
+import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
 
 class InputWidget extends StatelessWidget {
   const InputWidget({

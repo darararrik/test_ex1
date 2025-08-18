@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 
-import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/domain/models/desk/desk_model.dart';
 import 'package:test_ex1/old-providers/providers.dart';
-import 'package:test_ex1/presentation/widgets/cards/background_card_delete.dart';
-import 'package:test_ex1/presentation/utils/utils.dart';
+import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
+import 'package:test_ex1/presentation/utils/utils.dart';
+import 'package:test_ex1/presentation/widgets/cards/background_card_delete.dart';
 
 class Dock extends StatefulWidget {
   const Dock({super.key, required this.desk});

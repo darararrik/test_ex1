@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
-import 'package:test_ex1/domain/interface/desk_tasks_list.dart';
+import 'package:test_ex1/domain/interfaces/desk_tasks_list.dart';
 import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/old-providers/providers.dart';
 

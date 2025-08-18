@@ -9,29 +9,29 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
-import 'package:flutter/material.dart' as _i14;
-
 import 'package:auto_route/auto_route.dart' as _i13;
-
-import 'package:test_ex1/core/domain/models/task/task_model.dart' as _i15;
-import 'package:test_ex1/feature/login/presentation/login_screen.dart' as _i4;
-import 'package:test_ex1/feature/nav_bar/nav_bar.dart' as _i7;
-import 'package:test_ex1/feature/tasks/presentation/tasks_screen.dart' as _i10;
-import 'package:test_ex1/routing/wrappers/auth_wrapper.dart' as _i1;
-import 'package:test_ex1/routing/wrappers/followed_wrapper.dart' as _i3;
-import 'package:test_ex1/routing/wrappers/my_desks_wrapper.dart' as _i6;
-import 'package:test_ex1/routing/wrappers/users_desks_wrapper.dart' as _i12;
-
-import 'package:test_ex1/feature/desk_list/presentation/desk_list_screen.dart'
+import 'package:flutter/material.dart' as _i14;
+import 'package:test_ex1/domain/models/task/task_model.dart' as _i15;
+import 'package:test_ex1/presentation/routing/wrappers/auth_wrapper.dart'
+    as _i1;
+import 'package:test_ex1/presentation/routing/wrappers/followed_wrapper.dart'
+    as _i3;
+import 'package:test_ex1/presentation/routing/wrappers/my_desks_wrapper.dart'
+    as _i6;
+import 'package:test_ex1/presentation/routing/wrappers/users_desks_wrapper.dart'
+    as _i12;
+import 'package:test_ex1/presentation/screens/desk_list/desk_list_screen.dart'
     as _i5;
-import 'package:test_ex1/feature/followed/presentation/followed_screen.dart'
+import 'package:test_ex1/presentation/screens/followed/followed_screen.dart'
     as _i2;
-import 'package:test_ex1/feature/registration/presentation/registration_screen.dart'
+import 'package:test_ex1/presentation/screens/login/login_screen.dart' as _i4;
+import 'package:test_ex1/presentation/screens/nav_bar/nav_bar.dart' as _i7;
+import 'package:test_ex1/presentation/screens/registration/registration_screen.dart'
     as _i8;
-import 'package:test_ex1/feature/task_detail/presentation/task_detail_screen.dart'
+import 'package:test_ex1/presentation/screens/task_detail/task_detail_screen.dart'
     as _i9;
-import 'package:test_ex1/feature/users_desks/presentation/users_desks_screen.dart'
+import 'package:test_ex1/presentation/screens/tasks/tasks_screen.dart' as _i10;
+import 'package:test_ex1/presentation/screens/users_desks/users_desks_screen.dart'
     as _i11;
 
 /// generated route for

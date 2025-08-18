@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 
-import 'package:test_ex1/domain/interface/interface.dart';
+import 'package:test_ex1/domain/interfaces/interface.dart';
 import 'package:test_ex1/old-providers/providers.dart';
-import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/l10n/app_localizations.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
+import 'package:test_ex1/presentation/utils/utils.dart';
 
 extension BuildContextX on BuildContext {
   AppPalette get appColors => Theme.of(this).extension<AppPalette>()!;
