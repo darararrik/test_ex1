@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:test_ex1/domain/models/desk/desk_model.dart';
 
 part 'users_desks_model.freezed.dart';

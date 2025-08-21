@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:test_ex1/domain/repositories/auth_repository.dart';
 
 part 'auth_event.dart';

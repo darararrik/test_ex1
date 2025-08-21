@@ -9,8 +9,14 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i13;
+
 import 'package:flutter/material.dart' as _i14;
+
+import 'package:auto_route/auto_route.dart' as _i13;
+
+import 'package:test_ex1/presentation/screens/login/login_screen.dart' as _i4;
+import 'package:test_ex1/presentation/screens/nav_bar/nav_bar.dart' as _i9;
+
 import 'package:test_ex1/presentation/routing/wrappers/auth_wrapper.dart'
     as _i1;
 import 'package:test_ex1/presentation/routing/wrappers/followed_tasks/followed_wrapper.dart'
@@ -25,10 +31,8 @@ import 'package:test_ex1/presentation/routing/wrappers/users_desks/users_desks_w
     as _i12;
 import 'package:test_ex1/presentation/screens/followed_tasks/followed_tasks_screen.dart'
     as _i2;
-import 'package:test_ex1/presentation/screens/login/login_screen.dart' as _i4;
 import 'package:test_ex1/presentation/screens/my_desks/my_desk_screen.dart'
     as _i5;
-import 'package:test_ex1/presentation/screens/nav_bar/nav_bar.dart' as _i9;
 import 'package:test_ex1/presentation/screens/registration/registration_screen.dart'
     as _i10;
 import 'package:test_ex1/presentation/screens/users_desks/users_desks_screen.dart'

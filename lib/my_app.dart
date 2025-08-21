@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:test_ex1/data/data.dart';
 import 'package:test_ex1/domain/repositories/auth_repository.dart';
 import 'package:test_ex1/domain/repositories/my_desks_repository.dart';

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_ex1/domain/cubits/password_visibility/password_visibility_cubit.dart';
-import 'package:test_ex1/old-providers/password_visibility/password_visibility_notifier.dart';
 
-import 'package:test_ex1/old-providers/password_visibility/password_visibility_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:test_ex1/domain/cubits/password_visibility/password_visibility_cubit.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
