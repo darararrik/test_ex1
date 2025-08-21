@@ -17,8 +17,10 @@ class UsersDesksWrapperScreen extends StatelessWidget
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UsersDesksBloc(context.read()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => UsersDesksBloc(context.read())),
+      ],
       child: this,
     );
   }

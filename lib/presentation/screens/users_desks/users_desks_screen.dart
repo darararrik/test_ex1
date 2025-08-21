@@ -58,8 +58,14 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
                 },
                 loaded: (usersDesks) => DesksListBody<UsersDesksModel>(
                   items: usersDesks,
-                  itemBuilder: (context, usersDesk) =>
-                      UserDeskCard(usersDesk: usersDesk),
+                  itemBuilder: (context, usersDesk) => UserDeskCard(
+                    usersDesk: usersDesk,
+                    onTap: () {
+                      // context.pushRoute(
+                      //   MyTasksWrapper(deskId: desk.id, titleAB: desk.title),
+                      // );
+                    },
+                  ),
                 ),
               );
             },

@@ -54,7 +54,7 @@ class MyDesksListScreen extends StatelessWidget {
                     desk: desk,
                     onTap: () {
                       context.pushRoute(
-                        MyTasksWrapper(deskId: desk.id, titleAB: desk.title),
+                        MyTasksRoute(deskId: desk.id, titleAB: desk.title),
                       );
                     },
                   ),

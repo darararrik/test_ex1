@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -13,6 +11,7 @@ import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 
+@RoutePage()
 class TaskDetailScreen extends StatefulWidget {
   const TaskDetailScreen({
     super.key,
@@ -21,7 +20,6 @@ class TaskDetailScreen extends StatefulWidget {
   });
   final TaskModel task;
   final VoidCallback onPressedPrayButton;
-
   @override
   State<TaskDetailScreen> createState() => _TaskDetailScreenState();
 }

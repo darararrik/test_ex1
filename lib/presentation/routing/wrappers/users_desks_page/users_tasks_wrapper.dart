@@ -1,5 +1,3 @@
-// lib/presentation/pages/my_desks/task_detail_page.dart
-
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -17,8 +15,8 @@ import 'package:test_ex1/presentation/widgets/layouts/loading_state.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class MyTasksWrapper extends StatelessWidget {
-  const MyTasksWrapper({
+class UsersTasksWrapper extends StatelessWidget {
+  const UsersTasksWrapper({
     super.key,
     required this.deskId,
     required this.titleAB,
@@ -51,29 +49,31 @@ class MyTasksWrapper extends StatelessWidget {
             builder: (context, state) {
               return state.when(
                 loading: () => const LoadingState(),
-                loaded: (tasks) => TasksScreen(
-                  tasks: tasks,
-                  onTap: (int taskId, int deskId, String taskTitle) {
-                    context.pushRoute(
-                      MyTaskDetailRoute(
-                        taskId: taskId,
-                        deskId: deskId,
-                        titleAB: taskTitle,
-                      ),
-                    );
-                  },
-                  onPressedPrayButton: (TaskModel task) => handlePrayButtonPressed(
-                    context,
-                    task,
-                    () => context.read<MyTasksBloc>().add(
-                      MyTasksEvent.pray(task),
-                    ),
-                  ),
-                ),
                 error: (message) => Center(child: Text(message)),
                 empty: () => EmptyState(
                   message: context.l10n.emptyTasksScreen,
                   iconPath: AppIcons.sketch,
+                ),
+                loaded: (tasks) => TasksScreen(
+                  tasks: tasks,
+                  onTapRoute: (TaskModel task) {
+                    context.pushRoute(
+                      TaskDetailRoute(
+                        task: task,
+                        onPressedPrayButton: () => context
+                            .read<MyTasksDetailBloc>()
+                            .add(MyTasksDetailEvent.pray(task)),
+                      ),
+                    );
+                  },
+                  onPressedPrayButton: (TaskModel task) =>
+                      handlePrayButtonPressed(
+                        context,
+                        task,
+                        () => context.read<MyTasksBloc>().add(
+                          MyTasksEvent.pray(task),
+                        ),
+                      ),
                 ),
               );
             },

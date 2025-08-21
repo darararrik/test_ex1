@@ -15,13 +15,13 @@ class TaskCard extends StatefulWidget {
   const TaskCard({
     super.key,
     required this.task,
-    required this.onTap,
+    required this.onTapRoute,
     required this.onPressed,
   });
   final TaskModel task;
 
   final Function(TaskModel task) onPressed;
-  final Function(int taskId, int deskId, String taskTitle) onTap;
+  final Function(TaskModel task) onTapRoute;
   @override
   State<TaskCard> createState() => _TaskCardState();
 }
@@ -79,11 +79,7 @@ class _TaskCardState extends State<TaskCard> {
                   ? DismissDirection.endToStart
                   : DismissDirection.none,
               child: GestureDetector(
-                onTap: () => widget.onTap(
-                  widget.task.id,
-                  widget.task.deskId,
-                  widget.task.title,
-                ),
+                onTap: () => widget.onTapRoute(widget.task),
                 onLongPress: _onLongPress,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
@@ -185,8 +181,8 @@ class _TaskCardState extends State<TaskCard> {
     isEditing.value = false;
     final newName = _controller.text.trim();
     if (newName.isNotEmpty && newName != widget.task.title) {
-      context.read<MyDesksBloc>().add(
-        MyDesksEvent.renameDesk(widget.task.deskId, newName),
+      context.read<MyTasksBloc>().add(
+        MyTasksEvent.renameTask(widget.task.id, widget.task.deskId, newName),
       );
     } else {
       _controller.text = widget.task.title;

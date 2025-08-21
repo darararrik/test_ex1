@@ -13,7 +13,8 @@ void handlePrayButtonPressed(
   TaskModel task,
   VoidCallback blocAction,
 ) {
-  if (task.getActualStatus == Status.lessHour) {
+  //FIXME: поенять условие на более подходящее
+  if (task.getActualStatus != Status.lessHour) {
     showDialog(context: context, builder: (context) => const SorryDialog());
   } else {
     blocAction.call();

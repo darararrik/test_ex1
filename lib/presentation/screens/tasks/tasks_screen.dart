@@ -16,10 +16,10 @@ class TasksScreen extends StatelessWidget {
   const TasksScreen({
     super.key,
     required this.tasks,
-    required this.onTap,
+    required this.onTapRoute,
     required this.onPressedPrayButton,
   });
-  final void Function(int taskId, int deskId, String taskTitle) onTap;
+  final void Function(TaskModel task) onTapRoute;
   final Function(TaskModel task) onPressedPrayButton;
   final List<TaskModel> tasks;
   @override
@@ -34,7 +34,11 @@ class TasksScreen extends StatelessWidget {
           final taskCard = tasks[index];
           return Padding(
             padding: const P(bottom: S.s12),
-            child: TaskCard(task: taskCard, onTap: onTap, onPressed: onPressedPrayButton),
+            child: TaskCard(
+              task: taskCard,
+              onTapRoute: onTapRoute,
+              onPressed: onPressedPrayButton,
+            ),
           );
         }),
       ),

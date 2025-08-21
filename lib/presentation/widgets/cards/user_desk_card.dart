@@ -6,7 +6,8 @@ import 'package:test_ex1/presentation/constants/s.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 
 class UserDeskCard extends StatelessWidget {
-  const UserDeskCard({super.key, required this.usersDesk});
+  const UserDeskCard({super.key, required this.usersDesk, required this.onTap});
+  final VoidCallback onTap;
   final UsersDesksModel usersDesk;
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class UserDeskCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(R.r24),
       child: InkWell(
         borderRadius: BorderRadius.circular(R.r24),
-        onTap: () => {},
+        onTap: onTap,
         splashColor: context.appColors.gray300,
         highlightColor: context.appColors.gray300,
         child: Padding(
