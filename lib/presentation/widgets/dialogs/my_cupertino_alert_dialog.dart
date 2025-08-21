@@ -28,7 +28,7 @@ class MyCupertinoAlertDialog extends StatelessWidget {
           CupertinoActionSheetAction(
             isDestructiveAction: true,
             onPressed: () {
-              AuthProvider.of(context).logout();
+              // AuthProvider.of(context).logout();
               context.pop();
             },
             child: Text(

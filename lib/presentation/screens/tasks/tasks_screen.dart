@@ -1,80 +1,42 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
 
-import 'package:test_ex1/domain/models/desk/desk_model.dart';
+import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/old-providers/providers.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
-import 'package:test_ex1/presentation/utils/extensions/build_context_x.dart';
-import 'package:test_ex1/presentation/utils/p.dart';
+import 'package:test_ex1/presentation/utils/utils.dart';
+import 'package:test_ex1/presentation/widgets/layouts/loading_state.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 
-@RoutePage()
-class TasksScreen extends StatefulWidget {
-  const TasksScreen({super.key});
-
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  // late final ChangeNotifier notifier;
-
+class TasksScreen extends StatelessWidget {
+  const TasksScreen({
+    super.key,
+    required this.tasks,
+    required this.onTap,
+    required this.onPressedPrayButton,
+  });
+  final void Function(int taskId, int deskId, String taskTitle) onTap;
+  final Function(TaskModel task) onPressedPrayButton;
+  final List<TaskModel> tasks;
   @override
   Widget build(BuildContext context) {
-    final notifier = context.currentNotifier;
-    final currentDesk = notifier?.getCurrentDesk;
-    if (currentDesk == null) {
-      return const SizedBox.shrink();
-    }
-    return Scaffold(
-      floatingActionButton: context.isMyDesksWrapperRoute
-          ? CreateUnitFAB(onPressed: () => onPressed(currentDesk.id))
-          : null,
-      body: CustomScrollView(
-        physics: currentDesk.tasks.isEmpty
-            ? const NeverScrollableScrollPhysics()
-            : null,
-        slivers: [
-          MySliverAppBar(title: currentDesk.title),
-          Visibility(
-            visible: currentDesk.tasks.isNotEmpty,
-            replacement: EmptyState(
-              message: context.l10n.emptyTasksScreen,
-              iconPath: AppIcons.sketch,
-            ),
-            child: SliverPadding(
-              padding: const P(horizontal: S.s16),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  childCount: currentDesk.tasks.length,
-                  (context, index) {
-                    final taskCard = currentDesk.tasks[index];
-                    return Padding(
-                      padding: const P(bottom: S.s12),
-                      child: TaskCard(task: taskCard),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void onPressed(int id) async {
-    await showDialog(
-      context: context,
-      builder: (context) => CreateDialog(
-        title: context.l10n.newPrayer,
-        hintText: context.l10n.enterTitlePrayer,
-        onSubmit: (name) {
-          final notifier = DeskListProvider.of(context);
-          notifier.addTask(id, name);
-        },
+    return SliverPadding(
+      padding: const P(horizontal: S.s16),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(childCount: tasks.length, (
+          context,
+          index,
+        ) {
+          final taskCard = tasks[index];
+          return Padding(
+            padding: const P(bottom: S.s12),
+            child: TaskCard(task: taskCard, onTap: onTap, onPressed: onPressedPrayButton),
+          );
+        }),
       ),
     );
   }

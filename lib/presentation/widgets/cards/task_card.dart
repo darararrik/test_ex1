@@ -1,21 +1,27 @@
-// Flutter imports:
-
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
 
 import 'package:test_ex1/domain/models/task/task_model.dart';
-import 'package:test_ex1/old-providers/providers.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
-import 'package:test_ex1/presentation/widgets/dialogs/sorry_dialog.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 
 class TaskCard extends StatefulWidget {
-  const TaskCard({super.key, required this.task});
+  const TaskCard({
+    super.key,
+    required this.task,
+    required this.onTap,
+    required this.onPressed,
+  });
   final TaskModel task;
 
+  final Function(TaskModel task) onPressed;
+  final Function(int taskId, int deskId, String taskTitle) onTap;
   @override
   State<TaskCard> createState() => _TaskCardState();
 }
@@ -28,7 +34,7 @@ class _TaskCardState extends State<TaskCard> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: widget.task.name);
+    _controller = TextEditingController(text: widget.task.title);
     _focusNode = FocusNode();
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus && isEditing.value) {
@@ -40,8 +46,8 @@ class _TaskCardState extends State<TaskCard> {
   @override
   void didUpdateWidget(covariant TaskCard oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.task.name != widget.task.name && !isEditing.value) {
-      _controller.text = widget.task.name;
+    if (oldWidget.task.title != widget.task.title && !isEditing.value) {
+      _controller.text = widget.task.title;
     }
   }
 
@@ -52,19 +58,14 @@ class _TaskCardState extends State<TaskCard> {
     super.dispose();
   }
 
-  void onDismissed(DismissDirection direction) =>
-      DeskListProvider.of(context).deleteTaskById(widget.task.id);
+  void onDismissed(DismissDirection direction) => context
+      .read<MyTasksBloc>()
+      .add(MyTasksEvent.removeTask(widget.task.id, widget.task.deskId));
 
   @override
   Widget build(BuildContext context) {
-    final notifier = context.currentNotifier;
-    final task = notifier?.getTaskById(
-      taskId: widget.task.id,
-      deskId: widget.task.deskId,
-      userId: widget.task.userId,
-    );
-    final countMembers = task!.members.resolveCountMembers();
-    final countComplete = task.complete.resolveCountComplete();
+    final countMembers = widget.task.members.resolveCountMembers();
+    final countComplete = widget.task.complete.resolveCountComplete();
     return ValueListenableBuilder<bool>(
       valueListenable: isEditing,
       builder: (context, value, child) {
@@ -72,13 +73,17 @@ class _TaskCardState extends State<TaskCard> {
           children: [
             const BackgroundCardDelete(),
             Dismissible(
-              key: ValueKey(task.id),
+              key: ValueKey(widget.task.id),
               onDismissed: context.isMyDesksWrapperRoute ? onDismissed : null,
               direction: context.isMyDesksWrapperRoute
                   ? DismissDirection.endToStart
                   : DismissDirection.none,
               child: GestureDetector(
-                onTap: () => context.pushRoute(TaskDetailRoute(task: task)),
+                onTap: () => widget.onTap(
+                  widget.task.id,
+                  widget.task.deskId,
+                  widget.task.title,
+                ),
                 onLongPress: _onLongPress,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
@@ -93,7 +98,7 @@ class _TaskCardState extends State<TaskCard> {
                       children: [
                         Row(
                           children: [
-                            CapsuleIcon(task: task),
+                            CapsuleIcon(task: widget.task),
                             const SizedBox(width: S.s12),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,14 +106,14 @@ class _TaskCardState extends State<TaskCard> {
                                 Visibility(
                                   visible: context.isMyDesksWrapperRoute,
                                   replacement: Text(
-                                    task.name,
+                                    widget.task.title,
                                     style: context.appTextStyle.headline2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   child: Visibility(
                                     visible: isEditing.value,
                                     replacement: Text(
-                                      task.name,
+                                      widget.task.title,
                                       style: context.appTextStyle.headline2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -145,8 +150,7 @@ class _TaskCardState extends State<TaskCard> {
                           ],
                         ),
                         MyIconButton(
-                          onPressed: () =>
-                              handlePrayButtonPressed(context, task),
+                          onPressed: () => widget.onPressed(widget.task),
                           iconPath: AppIcons.prayArms,
                           backgroundColor: context.appColors.gray300,
                           width: Sz.s46,
@@ -180,11 +184,12 @@ class _TaskCardState extends State<TaskCard> {
   void _finishEditing() {
     isEditing.value = false;
     final newName = _controller.text.trim();
-    if (newName.isNotEmpty && newName != widget.task.name) {
-      final notifier = DeskListProvider.of(context);
-      notifier.updateTaskTitle(widget.task.id, newName);
+    if (newName.isNotEmpty && newName != widget.task.title) {
+      context.read<MyDesksBloc>().add(
+        MyDesksEvent.renameDesk(widget.task.deskId, newName),
+      );
     } else {
-      _controller.text = widget.task.name;
+      _controller.text = widget.task.title;
     }
   }
 }

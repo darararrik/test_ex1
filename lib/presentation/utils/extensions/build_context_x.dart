@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_ex1/domain/blocs/followed/bloc/followed_tasks_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
+import 'package:test_ex1/domain/blocs/users_desks/users_desks_bloc.dart';
 
 import 'package:test_ex1/domain/interfaces/interface.dart';
 import 'package:test_ex1/old-providers/providers.dart';
@@ -13,27 +17,24 @@ extension BuildContextX on BuildContext {
   AppTypography get appTextStyle => Theme.of(this).extension<AppTypography>()!;
   ThemeData get appTheme => Theme.of(this);
   AppLocalizations get l10n => AppLocalizations.of(this)!;
-  FollowedListNotifier get followedNotifier =>
-      FollowedTasksListProvider.of(this);
-  DeskListNotifier get deskNotifier => DeskListProvider.of(this);
-  UsersDesksListNotifier get userNotifier => UsersDesksListProvider.of(this);
+  MyDesksBloc get deskBloc => read<MyDesksBloc>();
+  UsersDesksBloc get usersBloc => read<UsersDesksBloc>();
+  FollowedTasksBloc get followedBloc => read<FollowedTasksBloc>();
 
   String? get currentWrapperName {
     final parentRouter = router.parent();
     return parentRouter?.current.name;
   }
 
-  IDesksTasksList? get currentNotifier {
+  BlocBase? get currentBloc {
     final tabsRouter = AutoTabsRouter.of(this, watch: true);
-    final activeTab = tabsRouter.current.name;
-
-    switch (activeTab) {
-      case (MyDesksWrapperRoute.name):
-        return DeskListProvider.of(this);
-      case (UsersDesksWrapperRoute.name):
-        return UsersDesksListProvider.of(this);
-      case (FollowedWrapperRoute.name):
-        return FollowedTasksListProvider.of(this);
+    switch (tabsRouter.current.name) {
+      case MyDesksWrapperRoute.name:
+        return deskBloc;
+      case UsersDesksWrapperRoute.name:
+        return usersBloc;
+      case FollowedWrapperRoute.name:
+        return followedBloc;
       default:
         return null;
     }

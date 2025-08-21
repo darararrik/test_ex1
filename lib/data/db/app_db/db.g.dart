@@ -4,7 +4,7 @@ part of 'db.dart';
 
 // ignore_for_file: type=lint
 class $ProfileTableTable extends ProfileTable
-    with TableInfo<$ProfileTableTable, ProfileEntity> {
+    with TableInfo<$ProfileTableTable, ProfileDto> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -61,7 +61,7 @@ class $ProfileTableTable extends ProfileTable
   static const String $name = 'profile_table';
   @override
   VerificationContext validateIntegrity(
-    Insertable<ProfileEntity> instance, {
+    Insertable<ProfileDto> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -99,9 +99,9 @@ class $ProfileTableTable extends ProfileTable
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  ProfileEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
+  ProfileDto map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return ProfileEntity(
+    return ProfileDto(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}id'],
@@ -127,12 +127,12 @@ class $ProfileTableTable extends ProfileTable
   }
 }
 
-class ProfileEntity extends DataClass implements Insertable<ProfileEntity> {
+class ProfileDto extends DataClass implements Insertable<ProfileDto> {
   final int id;
   final String name;
   final String email;
   final String password;
-  const ProfileEntity({
+  const ProfileDto({
     required this.id,
     required this.name,
     required this.email,
@@ -157,12 +157,12 @@ class ProfileEntity extends DataClass implements Insertable<ProfileEntity> {
     );
   }
 
-  factory ProfileEntity.fromJson(
+  factory ProfileDto.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return ProfileEntity(
+    return ProfileDto(
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       email: serializer.fromJson<String>(json['email']),
@@ -180,19 +180,19 @@ class ProfileEntity extends DataClass implements Insertable<ProfileEntity> {
     };
   }
 
-  ProfileEntity copyWith({
+  ProfileDto copyWith({
     int? id,
     String? name,
     String? email,
     String? password,
-  }) => ProfileEntity(
+  }) => ProfileDto(
     id: id ?? this.id,
     name: name ?? this.name,
     email: email ?? this.email,
     password: password ?? this.password,
   );
-  ProfileEntity copyWithCompanion(ProfileTableCompanion data) {
-    return ProfileEntity(
+  ProfileDto copyWithCompanion(ProfileTableCompanion data) {
+    return ProfileDto(
       id: data.id.present ? data.id.value : this.id,
       name: data.name.present ? data.name.value : this.name,
       email: data.email.present ? data.email.value : this.email,
@@ -202,7 +202,7 @@ class ProfileEntity extends DataClass implements Insertable<ProfileEntity> {
 
   @override
   String toString() {
-    return (StringBuffer('ProfileEntity(')
+    return (StringBuffer('ProfileDto(')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('email: $email, ')
@@ -216,14 +216,14 @@ class ProfileEntity extends DataClass implements Insertable<ProfileEntity> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is ProfileEntity &&
+      (other is ProfileDto &&
           other.id == this.id &&
           other.name == this.name &&
           other.email == this.email &&
           other.password == this.password);
 }
 
-class ProfileTableCompanion extends UpdateCompanion<ProfileEntity> {
+class ProfileTableCompanion extends UpdateCompanion<ProfileDto> {
   final Value<int> id;
   final Value<String> name;
   final Value<String> email;
@@ -242,7 +242,7 @@ class ProfileTableCompanion extends UpdateCompanion<ProfileEntity> {
   }) : name = Value(name),
        email = Value(email),
        password = Value(password);
-  static Insertable<ProfileEntity> custom({
+  static Insertable<ProfileDto> custom({
     Expression<int>? id,
     Expression<String>? name,
     Expression<String>? email,
@@ -414,17 +414,17 @@ class $$ProfileTableTableTableManager
         RootTableManager<
           _$AppDatabase,
           $ProfileTableTable,
-          ProfileEntity,
+          ProfileDto,
           $$ProfileTableTableFilterComposer,
           $$ProfileTableTableOrderingComposer,
           $$ProfileTableTableAnnotationComposer,
           $$ProfileTableTableCreateCompanionBuilder,
           $$ProfileTableTableUpdateCompanionBuilder,
           (
-            ProfileEntity,
-            BaseReferences<_$AppDatabase, $ProfileTableTable, ProfileEntity>,
+            ProfileDto,
+            BaseReferences<_$AppDatabase, $ProfileTableTable, ProfileDto>,
           ),
-          ProfileEntity,
+          ProfileDto,
           PrefetchHooks Function()
         > {
   $$ProfileTableTableTableManager(_$AppDatabase db, $ProfileTableTable table)
@@ -474,17 +474,17 @@ typedef $$ProfileTableTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $ProfileTableTable,
-      ProfileEntity,
+      ProfileDto,
       $$ProfileTableTableFilterComposer,
       $$ProfileTableTableOrderingComposer,
       $$ProfileTableTableAnnotationComposer,
       $$ProfileTableTableCreateCompanionBuilder,
       $$ProfileTableTableUpdateCompanionBuilder,
       (
-        ProfileEntity,
-        BaseReferences<_$AppDatabase, $ProfileTableTable, ProfileEntity>,
+        ProfileDto,
+        BaseReferences<_$AppDatabase, $ProfileTableTable, ProfileDto>,
       ),
-      ProfileEntity,
+      ProfileDto,
       PrefetchHooks Function()
     >;
 

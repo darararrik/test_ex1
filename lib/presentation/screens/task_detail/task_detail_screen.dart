@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
 import 'package:test_ex1/domain/models/task/task_model.dart';
@@ -11,16 +11,22 @@ import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 
-@RoutePage()
 class TaskDetailScreen extends StatefulWidget {
-  const TaskDetailScreen({super.key, required this.task});
+  const TaskDetailScreen({
+    super.key,
+    required this.task,
+    required this.onPressedPrayButton,
+  });
   final TaskModel task;
+  final VoidCallback onPressedPrayButton;
+
   @override
   State<TaskDetailScreen> createState() => _TaskDetailScreenState();
 }
 
 class _TaskDetailScreenState extends State<TaskDetailScreen> {
   late final TextEditingController _commentController;
+
   @override
   void initState() {
     super.initState();
@@ -35,32 +41,18 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final notifier = context.currentNotifier;
-    if (notifier == null) {
-      return const SizedBox.shrink();
-    }
-    final currentTask = notifier.getCurrentDesk?.tasks.firstWhereOrNull(
-      (element) => element.id == widget.task.id,
-    );
-    if (currentTask == null) {
-      return const SizedBox.shrink();
-    }
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          MySliverAppBar(title: currentTask.name),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  TaskDataAndButtons(task: currentTask),
-                  const SizedBox(height: S.s20),
-                  Comment(commentController: _commentController),
-                ],
-              ),
+    return SliverToBoxAdapter(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            TaskDataAndButtons(
+              task: widget.task,
+              onPressedPrayButton: widget.onPressedPrayButton,
             ),
-          ),
-        ],
+            const SizedBox(height: S.s20),
+            Comment(commentController: _commentController),
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,3 @@
 export 'background_card_delete.dart';
-export 'dock.dart';
+export 'desk_card.dart';
 export 'task_card.dart';

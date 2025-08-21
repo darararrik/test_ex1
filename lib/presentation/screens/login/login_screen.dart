@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_ex1/domain/blocs/auth/auth_bloc.dart';
 
 import 'package:test_ex1/old-providers/auth/auth_provider.dart';
 import 'package:test_ex1/presentation/constants/s.dart';
@@ -36,7 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final router = context.router;
     return Scaffold(
       body: BackGroundWidget(
         child: Padding(
@@ -68,16 +69,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: S.s42),
                   PrimaryButton(
                     isEnabled: true,
-                    onPressed: () async {
-                      final notifier = AuthProvider.of(context);
-                      final resp = await notifier.login(
+                    onPressed: () => context.read<AuthBloc>().add(
+                      AuthEvent.login(
                         _emailController.text.trim(),
                         _passwordController.text.trim(),
-                      );
-                      if (resp == true) {
-                        router.replace(const NavBarRoute());
-                      }
-                    },
+                      ),
+                    ),
                     text: context.l10n.login,
                   ),
                   const SizedBox(height: S.s12),

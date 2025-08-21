@@ -13,9 +13,9 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: NavBarRoute.page,
       initial: true,
-      path: '/', // главный wrapper с табами
+      path: '/',
       children: [
-        MyDeskRoutes.routes, // вложенные маршруты с путями внутри
+        MyDeskRoutes.routes,
         UsersDesksRoutes.routes,
         FollowedRoutes.routes,
       ],

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
-import 'package:test_ex1/presentation/routing/wrappers/users_desks_wrapper.dart';
+import 'package:test_ex1/presentation/routing/wrappers/users_desks/users_desks_wrapper.dart';
 
 abstract class UsersDesksRoutes {
   static final routes = AutoRoute(
@@ -9,8 +9,7 @@ abstract class UsersDesksRoutes {
     path: 'users-desks',
     children: [
       AutoRoute(page: UsersDesksRoute.page, initial: true, path: ''),
-      AutoRoute(page: TasksRoute.page, path: 'tasks'),
-      AutoRoute(page: TaskDetailRoute.page, path: 'task-detail'),
+  
     ],
   );
 }

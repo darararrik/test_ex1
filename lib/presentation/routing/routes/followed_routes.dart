@@ -8,7 +8,6 @@ abstract class FollowedRoutes {
     path: 'followed',
     children: [
       AutoRoute(page: FollowedRoute.page, initial: true, path: ''),
-      AutoRoute(page: TaskDetailRoute.page, path: 'task-detail'),
     ],
   );
 }

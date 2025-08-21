@@ -12,6 +12,5 @@ sealed class DeskModel with _$DeskModel {
     required String title,
     required List<TaskModel> tasks,
   }) = _DeskModel;
-  factory DeskModel.createDefault() =>
-      const DeskModel(id: 1, userId: 0, title: "title", tasks: []);
+
 }

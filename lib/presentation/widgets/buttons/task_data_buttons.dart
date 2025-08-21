@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:test_ex1/domain/blocs/followed/bloc/followed_tasks_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_task_detail/my_tasks_detail_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
+import 'package:test_ex1/domain/blocs/users_desks/users_desks_bloc.dart';
 
 import 'package:test_ex1/domain/models/task/task_model.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
@@ -9,18 +15,17 @@ import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 
-class TaskDataAndButtons extends StatefulWidget {
-  const TaskDataAndButtons({super.key, required this.task});
+class TaskDataAndButtons extends StatelessWidget {
+  const TaskDataAndButtons({
+    super.key,
+    required this.task,
+    required this.onPressedPrayButton,
+  });
   final TaskModel task;
-
-  @override
-  State<TaskDataAndButtons> createState() => _TaskDataAndButtonsState();
-}
-
-class _TaskDataAndButtonsState extends State<TaskDataAndButtons> {
+  final VoidCallback onPressedPrayButton;
   @override
   Widget build(BuildContext context) {
-    final isFollow = widget.task.isFollow;
+    final isFollow = task.isFollow;
     final isSubscribed = ValueNotifier<bool>(isFollow);
 
     return DecoratedBox(
@@ -50,12 +55,12 @@ class _TaskDataAndButtonsState extends State<TaskDataAndButtons> {
                       children: [
                         WhiteBoxText(
                           title: context.l10n.date,
-                          data: widget.task.date.toFormattedString(),
+                          data: task.date.toFormattedString(),
                         ),
                         const SizedBox(width: S.s12),
                         WhiteBoxText(
                           title: context.l10n.totalPrayers,
-                          data: widget.task.totalPrayers.toString(),
+                          data: task.totalPrayers.toString(),
                         ),
                       ],
                     ),
@@ -65,12 +70,12 @@ class _TaskDataAndButtonsState extends State<TaskDataAndButtons> {
                       children: [
                         WhiteBoxText(
                           title: context.l10n.otherPrayers,
-                          data: widget.task.otherPrayers.toString(),
+                          data: task.otherPrayers.toString(),
                         ),
                         const SizedBox(width: S.s12),
                         WhiteBoxText(
                           title: context.l10n.myPrayers,
-                          data: widget.task.myPrayers.toString(),
+                          data: task.myPrayers.toString(),
                         ),
                       ],
                     ),
@@ -81,7 +86,7 @@ class _TaskDataAndButtonsState extends State<TaskDataAndButtons> {
             const SizedBox(height: S.s12),
             PrimaryButton(
               isEnabled: true,
-              onPressed: () => handlePrayButtonPressed(context, widget.task),
+              onPressed: onPressedPrayButton,
               text: context.l10n.prayed,
             ),
             const SizedBox(height: S.s8),
@@ -92,15 +97,7 @@ class _TaskDataAndButtonsState extends State<TaskDataAndButtons> {
                   visible: isSubscribed.value,
                   replacement: SecondaryButton(
                     isEnabled: true,
-                    onPressed: () {
-                      final notifier = context.followedNotifier;
-                      isSubscribed.value = true;
-                      notifier.subscribeById(
-                        widget.task.id,
-                        deskId: widget.task.deskId,
-                        ownerId: widget.task.userId,
-                      );
-                    },
+                    onPressed: () {},
                     text: context.l10n.follow,
                   ),
                   child: SecondaryButton.icon(
@@ -109,12 +106,7 @@ class _TaskDataAndButtonsState extends State<TaskDataAndButtons> {
                     borderColor: context.appColors.gray600,
                     onPressed: () {
                       isSubscribed.value = false;
-                      final notifier = context.followedNotifier;
-                      notifier.unsubscribe(
-                        widget.task.id,
-                        deskId: widget.task.deskId,
-                        ownerId: widget.task.userId,
-                      );
+
                       if (context.currentWrapperName ==
                           FollowedWrapperRoute.name) {
                         context.pop();

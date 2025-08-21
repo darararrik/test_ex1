@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName("ProfileEntity")
+@DataClassName("ProfileDto")
 class ProfileTable extends Table {
   IntColumn get id => integer().autoIncrement()();
 

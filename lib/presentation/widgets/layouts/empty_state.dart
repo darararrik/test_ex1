@@ -18,33 +18,32 @@ class EmptyState extends StatelessWidget {
   final bool needArrow;
   @override
   Widget build(BuildContext context) {
-    return SliverFillRemaining(
-      child: Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AppIcon(iconPath),
-              const SizedBox(height: S.s20),
-              Text(message, style: context.appTextStyle.headline3),
-              Padding(
-                padding: P(
-                  top: MediaQuery.of(context).size.height * 0.02,
-                  left: MediaQuery.of(context).size.width * 0.25,
-                ),
-                child: Visibility(
-                  visible: needArrow,
-                  replacement: const SizedBox(height: Sz.s150),
-                  child: Transform.rotate(
-                    angle: (math.pi * R.r5) / R.r80,
-                    child: const AppIcon(AppIcons.arrow, height: Sz.s150),
-                  ),
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: P(top: MediaQuery.of(context).size.height * 0.2),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Align(alignment: Alignment.center, child: AppIcon(iconPath)),
+            const SizedBox(height: S.s20),
+            Text(message, style: context.appTextStyle.headline3),
+            Padding(
+              padding: P(
+                top: MediaQuery.of(context).size.height * 0.02,
+                left: MediaQuery.of(context).size.width * 0.25,
+              ),
+              child: Visibility(
+                visible: needArrow,
+                replacement: const SizedBox(height: Sz.s150),
+                child: Transform.rotate(
+                  angle: (math.pi * R.r5) / R.r80,
+                  child: const AppIcon(AppIcons.arrow, height: Sz.s150),
                 ),
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -22,6 +22,7 @@ dependencies:
   path: 1.9.1
   collection: ^1.19.1
   bloc: ^9.0.0
+  flutter_bloc: ^9.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -40,13 +41,13 @@ flutter:
   fonts:
     - family: Outfit
       fonts:
-        - asset: presentation/assets/fonts/Outfit-Bold.ttf
+        - asset: lib/presentation/assets/fonts/Outfit-Bold.ttf
           weight: 700
-        - asset: presentation/assets/fonts/Outfit-Regular.ttf
+        - asset: lib/presentation/assets/fonts/Outfit-Regular.ttf
           weight: 400
-        - asset: presentation/assets/fonts/Outfit-Medium.ttf
+        - asset: lib/presentation/assets/fonts/Outfit-Medium.ttf
           weight: 500
-        - asset: presentation/assets/fonts/Outfit-SemiBold.ttf
+        - asset: lib/presentation/assets/fonts/Outfit-SemiBold.ttf
           weight: 600
 import_sorter:
   emojis: true

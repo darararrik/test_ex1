@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 
 import 'package:test_ex1/domain/models/task/task_model.dart';
@@ -13,23 +15,20 @@ class CapsuleIcon extends StatelessWidget {
     final blue = context.appColors.blueIndicator;
     final yellow = context.appColors.yellowIndicator;
     final orange = context.appColors.orangeIndicator;
-    final status = context.currentNotifier?.getStatus(
-      taskId: task.id,
-      deskId: task.deskId,
-      userId: task.userId,
-    );
     return SizedBox(
       width: Sz.s24,
       height: Sz.s48,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(R.r10),
-        child: ColoredBox(
-          color: status == Status.lessHour
-              ? blue
-              : status == Status.lessDay
-              ? yellow
-              : orange,
-        ),
+        child: ColoredBox(color: blue),
+
+        // ColoredBox(
+        //   color: status == Status.lessHour
+        //       ? blue
+        //       : status == Status.lessDay
+        //       ? yellow
+        //       : orange,
+        // ),
       ),
     );
   }

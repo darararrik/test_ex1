@@ -43,7 +43,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final router = context.router;
     return Scaffold(
       body: BackGroundWidget(
         child: Padding(
@@ -108,15 +107,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   PrimaryButton(
                     onPressed: () async {
                       if (_formKey.currentState?.validate() ?? false) {
-                        final notifier = AuthProvider.of(context);
-                        final resp = await notifier.register(
-                          _usernameController.text.trim(),
-                          _emailController.text.trim(),
-                          _passwordController.text.trim(),
-                        );
-                        if (resp == true) {
-                          router.replace(const NavBarRoute());
-                        }
+                        // final notifier = AuthProvider.of(context);
+                        // final resp = await notifier.register(
+                        //   _usernameController.text.trim(),
+                        //   _emailController.text.trim(),
+                        //   _passwordController.text.trim(),
+                        // );
+                        // if (resp == true) {
+                        //   router.replace(const NavBarRoute());
+                        // }
                       }
                     },
                     text: context.l10n.registration,
