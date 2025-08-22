@@ -1,9 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:test_ex1/domain/blocs/followed/followed_tasks_bloc.dart';
 import 'package:test_ex1/domain/blocs/followed_task_detail/followed_detail_bloc.dart';
-
 import 'package:test_ex1/presentation/pages/followed_page/followed_page.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 

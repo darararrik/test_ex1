@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_ex1/data/dto/followed_task_ref/followed_task_ref_model.dart';
 
+import 'package:test_ex1/data/dto/followed_task_ref/followed_task_ref_model.dart';
 import 'package:test_ex1/domain/models/task/task_model.dart';
 import 'package:test_ex1/domain/repositories/followed_tasks_repository.dart';
 import 'package:test_ex1/domain/repositories/repositories.dart';

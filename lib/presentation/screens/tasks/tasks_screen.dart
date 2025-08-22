@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
 import 'package:test_ex1/domain/models/models.dart';
-import 'package:test_ex1/old-providers/providers.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
