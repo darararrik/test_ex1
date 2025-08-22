@@ -74,8 +74,8 @@ class FollowedPage extends StatelessWidget {
                       ),
                       onPressedPrayButton: (task) =>
                           context.handlePray(task, () {
-                            context.read<MyTasksBloc>().add(
-                              MyTasksEvent.pray(task),
+                            context.read<FollowedTasksBloc>().add(
+                              FollowedTasksEvent.pray(task),
                             );
                           }),
                     );

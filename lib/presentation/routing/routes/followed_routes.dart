@@ -12,7 +12,23 @@ abstract class FollowedRoutes {
   static final routes = AutoRoute(
     page: FollowedWrapperRoute.page,
     children: [
-      AutoRoute(page: FollowedRoute.page, initial: true),
+      // AutoRoute(page: FollowedRoute.page, initial: true),
+      CustomRoute(
+        page: FollowedRoute.page,
+        initial: true,
+        customRouteBuilder:
+            <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
+              return CupertinoPageRoute<T>(
+                fullscreenDialog: page.fullscreenDialog,
+                settings: page,
+                builder: (_) => BlocProvider<FollowedTasksBloc>.value(
+                  value: context.read()
+                    ..add(const FollowedTasksEvent.getFollowedTasks()),
+                  child: child,
+                ),
+              );
+            },
+      ),
       CustomRoute(
         page: FollowedTaskDetailRoute.page,
         customRouteBuilder:
