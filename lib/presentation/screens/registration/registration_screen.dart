@@ -45,88 +45,97 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BackGroundWidget(
-        child: Padding(
-          padding: const P(horizontal: S.s24, top: S.s36, bottom: S.s44),
-          child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            error: (message) {
+              context.showSnackBar(message: message);
+            },
+          );
+        },
+        child: BackGroundWidget(
+          child: Padding(
+            padding: const P(horizontal: S.s24, top: S.s36, bottom: S.s44),
+            child: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
 
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    context.l10n.registration,
-                    style: context.appTextStyle.title1,
-                  ),
-                  const SizedBox(height: S.s28),
-                  ...[
-                    InputWidget(
-                      controller: _usernameController,
-                      hintText: context.l10n.enterFirstName,
-                      textInputAction: TextInputAction.next,
-                      labelText: context.l10n.firstNameLabel,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return context.l10n.errorEnterName;
-                        }
-                        return null;
-                      },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      context.l10n.registration,
+                      style: context.appTextStyle.title1,
                     ),
-                    InputWidget(
-                      controller: _emailController,
-                      hintText: context.l10n.enterEmail,
-                      keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.next,
-                      labelText: context.l10n.emailLabel,
-                      validator: (value) => validatorEmail(value, context),
-                    ),
-                    InputWidget(
-                      controller: _passwordController,
-                      hintText: context.l10n.enterPassword,
-                      isPassword: true,
-                      textInputAction: TextInputAction.next,
-                      labelText: context.l10n.passwordLabel,
-                      validator: (value) =>
-                          shortPasswordValidator(value, context),
-                    ),
-                    InputWidget(
-                      controller: _confirmPasswordController,
-                      hintText: context.l10n.confirmPassword,
-                      isPassword: true,
-                      textInputAction: TextInputAction.done,
-                      labelText: context.l10n.confirmPasswordLabel,
-                      validator: (value) => matchPasswordcValidator(
-                        value,
-                        context,
-                        _passwordController,
+                    const SizedBox(height: S.s28),
+                    ...[
+                      InputWidget(
+                        controller: _usernameController,
+                        hintText: context.l10n.enterFirstName,
+                        textInputAction: TextInputAction.next,
+                        labelText: context.l10n.firstNameLabel,
+                        validator: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return context.l10n.errorEnterName;
+                          }
+                          return null;
+                        },
                       ),
+                      InputWidget(
+                        controller: _emailController,
+                        hintText: context.l10n.enterEmail,
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        labelText: context.l10n.emailLabel,
+                        validator: (value) => validatorEmail(value, context),
+                      ),
+                      InputWidget(
+                        controller: _passwordController,
+                        hintText: context.l10n.enterPassword,
+                        isPassword: true,
+                        textInputAction: TextInputAction.next,
+                        labelText: context.l10n.passwordLabel,
+                        validator: (value) =>
+                            shortPasswordValidator(value, context),
+                      ),
+                      InputWidget(
+                        controller: _confirmPasswordController,
+                        hintText: context.l10n.confirmPassword,
+                        isPassword: true,
+                        textInputAction: TextInputAction.done,
+                        labelText: context.l10n.confirmPasswordLabel,
+                        validator: (value) => matchPasswordcValidator(
+                          value,
+                          context,
+                          _passwordController,
+                        ),
+                      ),
+                    ].separated(const SizedBox(height: S.s28)),
+                    const SizedBox(height: S.s42),
+                    PrimaryButton(
+                      onPressed: () async {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          context.read<AuthBloc>().add(
+                            AuthEvent.register(
+                              _usernameController.text.trim(),
+                              _emailController.text.trim(),
+                              _passwordController.text.trim(),
+                            ),
+                          );
+                        }
+                      },
+                      text: context.l10n.registration,
+                      isEnabled: true,
                     ),
-                  ].separated(const SizedBox(height: S.s28)),
-                  const SizedBox(height: S.s42),
-                  PrimaryButton(
-                    onPressed: () async {
-                      if (_formKey.currentState?.validate() ?? false) {
-                        context.read<AuthBloc>().add(
-                          AuthEvent.register(
-                            _usernameController.text.trim(),
-                            _emailController.text.trim(),
-                            _passwordController.text.trim(),
-                          ),
-                        );
-                      }
-                    },
-                    text: context.l10n.registration,
-                    isEnabled: true,
-                  ),
-                  const SizedBox(height: S.s12),
-                  UnderButtonText(
-                    text: context.l10n.alreadyHaveAccount,
-                    buttonText: context.l10n.login,
-                    onPressed: () => context.replaceRoute(const LoginRoute()),
-                  ),
-                ],
+                    const SizedBox(height: S.s12),
+                    UnderButtonText(
+                      text: context.l10n.alreadyHaveAccount,
+                      buttonText: context.l10n.login,
+                      onPressed: () => context.replaceRoute(const LoginRoute()),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -22,10 +22,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (answer == true) {
         emit(const AuthState.logined());
       } else {
-        emit(const AuthState.error("Ошибка авторизации"));
+        emit(const AuthState.error("Incorrect login or password"));
       }
     } catch (e) {
-      emit(const AuthState.error("Ошибка"));
+      emit(const AuthState.error("Exception"));
     }
   }
 
@@ -40,10 +40,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (answer == true) {
         emit(const AuthState.logined());
       } else {
-        emit(const AuthState.error("Ошибка авторизации"));
+        emit(const AuthState.error("Incorrect login or password"));
       }
     } catch (e) {
-      emit(const AuthState.error("Ошибка"));
+      emit(const AuthState.error("Exception"));
     }
   }
 

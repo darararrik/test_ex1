@@ -9,7 +9,14 @@ class AppTheme {
     primaryColor: appColors.gray800,
     scaffoldBackgroundColor: appColors.background,
     dialogTheme: DialogThemeData(backgroundColor: appColors.gray100),
-
+    snackBarTheme: SnackBarThemeData(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: appColors.gray200,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusGeometry.circular(R.r30),
+      ),
+      actionTextColor: appColors.orangeIndicator,
+    ),
     inputDecorationTheme: InputDecorationTheme(
       border: UnderlineInputBorder(
         borderSide: BorderSide(color: appColors.gray600),

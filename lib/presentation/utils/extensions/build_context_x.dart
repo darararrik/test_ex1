@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_ex1/domain/blocs/blocs.dart';
 import 'package:test_ex1/domain/interfaces/interface.dart';
 import 'package:test_ex1/domain/models/task/task_model.dart';
+import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/l10n/app_localizations.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
@@ -47,5 +48,25 @@ extension BuildContextX on BuildContext {
     } else {
       action();
     }
+  }
+
+  void showSnackBar({required String message}) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        margin: const P(all: S.s16),
+        duration: const Duration(seconds: 3),
+        
+        action: SnackBarAction(
+          label: l10n.ok,
+          onPressed: () {
+            ScaffoldMessenger.of(this).hideCurrentSnackBar();
+          },
+        ),
+        content: Text(
+          message,
+          style: appTextStyle.body3.copyWith(fontWeight: FontWeight.w400),
+        ),
+      ),
+    );
   }
 }
