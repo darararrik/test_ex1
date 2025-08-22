@@ -20,8 +20,6 @@ class MyDesksWrapperScreen extends StatelessWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => MyDesksBloc(context.read())),
-        BlocProvider(create: (context) => MyTasksBloc(context.read())),
         BlocProvider(create: (context) => MyTasksDetailBloc(context.read())),
       ],
       child: this,

@@ -22,7 +22,7 @@ class AppRouter extends RootStackRouter {
     ),
     AutoRoute(
       page: AuthWrapperRoute.page,
-      path: '/auth', // wrapper для авторизации
+
       children: [
         AutoRoute(page: LoginRoute.page, initial: true, path: 'login'),
         AutoRoute(page: RegistrationRoute.page, path: 'registration'),

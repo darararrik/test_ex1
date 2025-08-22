@@ -7,9 +7,9 @@ import 'package:test_ex1/domain/models/users_desks/users_desks_model.dart';
 import 'package:test_ex1/domain/repositories/users_desks_repository.dart';
 
 class UsersDesksRepositoryImpl implements IUsersDesksRepository {
-  UsersDesksRepositoryImpl({required UsersDesksLocalDS localDS})
+  UsersDesksRepositoryImpl({required LocalDSUsersDesks localDS})
     : _localDS = localDS;
-  final UsersDesksLocalDS _localDS;
+  final LocalDSUsersDesks _localDS;
 
   @override
   Future<List<UsersDesksModel>> getUsersDesks() async => _localDS.getUsersDesks;
@@ -19,10 +19,14 @@ class UsersDesksRepositoryImpl implements IUsersDesksRepository {
       _localDS.getDesksByUserId(userId);
 
   @override
-  Future<List<TaskModel>> getTasksByDeskId(int deskId) async =>
-      _localDS.getTasksByDeskId(deskId);
+  Future<List<TaskModel>> getTasksByDeskId(int deskId, int userId) async =>
+      _localDS.getTasksByDeskId(deskId, userId);
 
   @override
   Future<void> pray(TaskModel task) =>
       _localDS.pray(task.id, task.deskId, task.userId);
+
+  @override
+  Future<TaskModel> getTaskById(int taskId, int deskId, int userId) =>
+      _localDS.getTaskById(taskId, deskId, userId);
 }

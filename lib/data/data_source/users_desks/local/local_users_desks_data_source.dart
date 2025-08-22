@@ -2,7 +2,7 @@ import 'package:test_ex1/domain/models/desk/desk_model.dart';
 import 'package:test_ex1/domain/models/task/task_model.dart';
 import 'package:test_ex1/domain/models/users_desks/users_desks_model.dart';
 
-class UsersDesksLocalDS {
+class LocalDSUsersDesks {
   final List<UsersDesksModel> _usersDesks = [
     UsersDesksModel(
       id: 1,
@@ -58,12 +58,14 @@ class UsersDesksLocalDS {
               title: "Complete Report",
               userId: 2,
               deskId: 1,
+              lastPray: DateTime.now().subtract(const Duration(days: 1)),
             ),
             TaskModel.createDefault(
               id: 2,
               title: "Attend Meeting",
               userId: 2,
               deskId: 1,
+              lastPray: DateTime.now().subtract(const Duration(hours: 1)),
             ),
           ],
         ),
@@ -93,11 +95,13 @@ class UsersDesksLocalDS {
         .toList();
   }
 
-  Future<List<TaskModel>> getTasksByDeskId(int deskId) async {
+  Future<List<TaskModel>> getTasksByDeskId(int deskId, int userId) async {
     return _usersDesks
-        .expand((usersDesks) => usersDesks.desks)
-        .firstWhere((desk) => desk.id == deskId)
-        .tasks;
+        .where((userDesk) => userDesk.userId == userId)
+        .expand((userDesk) => userDesk.desks)
+        .where((desk) => desk.id == deskId)
+        .expand((desk) => desk.tasks)
+        .toList();
   }
 
   Future<void> pray(int taskId, int deskId, int userId) async {
@@ -132,5 +136,13 @@ class UsersDesksLocalDS {
           )..[taskIndex] = updatedTask,
         ),
     );
+  }
+
+  Future<TaskModel> getTaskById(int taskId, int deskId, int userId) async {
+    final desk = _usersDesks
+        .where((userDesk) => userDesk.userId == userId)
+        .expand((userDesk) => userDesk.desks)
+        .firstWhere((desk) => desk.id == deskId);
+    return desk.tasks.firstWhere((task) => task.id == taskId);
   }
 }

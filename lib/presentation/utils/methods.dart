@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/followed/bloc/followed_tasks_bloc.dart';
 import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
 import 'package:test_ex1/domain/models/task/task_model.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
@@ -13,8 +12,7 @@ void handlePrayButtonPressed(
   TaskModel task,
   VoidCallback blocAction,
 ) {
-  //FIXME: поенять условие на более подходящее
-  if (task.getActualStatus != Status.lessHour) {
+  if (task.getActualStatus == Status.lessHour) {
     showDialog(context: context, builder: (context) => const SorryDialog());
   } else {
     blocAction.call();

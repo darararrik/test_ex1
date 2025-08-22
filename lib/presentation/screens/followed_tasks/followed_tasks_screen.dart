@@ -9,7 +9,6 @@ import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 
-@RoutePage()
 class FollowedScreen extends StatelessWidget {
   const FollowedScreen({super.key});
 

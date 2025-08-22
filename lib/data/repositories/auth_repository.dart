@@ -3,8 +3,8 @@ import 'package:test_ex1/data/db/dao/profile_dao.dart';
 import 'package:test_ex1/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements IAuthRepository {
-  AuthRepositoryImpl({required LocalProfileDS localDS}) : _localDS = localDS;
-  final LocalProfileDS _localDS;
+  AuthRepositoryImpl({required LocalDSProfile localDS}) : _localDS = localDS;
+  final LocalDSProfile _localDS;
   @override
   Future<bool> login(String email, String password) async {
     try {
@@ -30,5 +30,4 @@ class AuthRepositoryImpl implements IAuthRepository {
       return false;
     }
   }
-  
 }

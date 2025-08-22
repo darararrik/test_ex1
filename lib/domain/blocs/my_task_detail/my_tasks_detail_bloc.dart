@@ -26,7 +26,9 @@ class MyTasksDetailBloc extends Bloc<MyTasksDetailEvent, MyTasksDetailState> {
         event.taskId,
         event.deskId,
       );
-      emit(MyTasksDetailState.loaded(task: task));
+      task != null
+          ? emit(MyTasksDetailState.loaded(task: task))
+          : emit(const MyTasksDetailState.error("Task not found"));
     } catch (e) {
       emit(MyTasksDetailState.error(e.toString()));
     }
@@ -45,7 +47,9 @@ class MyTasksDetailBloc extends Bloc<MyTasksDetailEvent, MyTasksDetailState> {
         event.task.id,
         event.task.deskId,
       );
-      emit(MyTasksDetailState.loaded(task: task));
+      task != null
+          ? emit(MyTasksDetailState.loaded(task: task))
+          : emit(const MyTasksDetailState.error("Task not found"));
     } catch (e) {
       emit(const MyTasksDetailState.error("Failed to load task"));
     }

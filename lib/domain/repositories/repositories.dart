@@ -1,3 +1,4 @@
 export 'auth_repository.dart';
 export 'my_desks_repository.dart';
 export 'users_desks_repository.dart';
+export 'followed_tasks_repository.dart';

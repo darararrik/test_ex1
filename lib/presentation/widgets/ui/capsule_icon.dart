@@ -20,15 +20,13 @@ class CapsuleIcon extends StatelessWidget {
       height: Sz.s48,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(R.r10),
-        child: ColoredBox(color: blue),
-
-        // ColoredBox(
-        //   color: status == Status.lessHour
-        //       ? blue
-        //       : status == Status.lessDay
-        //       ? yellow
-        //       : orange,
-        // ),
+        child: ColoredBox(
+          color: task.getActualStatus == Status.lessHour
+              ? blue
+              : task.getActualStatus == Status.lessDay
+              ? yellow
+              : orange,
+        ),
       ),
     );
   }

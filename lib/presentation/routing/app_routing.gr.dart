@@ -9,139 +9,193 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i15;
-import 'package:flutter/material.dart' as _i16;
-import 'package:test_ex1/domain/models/task/task_model.dart' as _i17;
-import 'package:test_ex1/presentation/routing/pages/my_desks_page/my_tasks_detail_page.dart'
-    as _i7;
-import 'package:test_ex1/presentation/routing/pages/my_desks_page/my_tasks_page.dart'
+import 'package:auto_route/auto_route.dart' as _i18;
+import 'package:flutter/material.dart' as _i19;
+import 'package:test_ex1/domain/models/task/task_model.dart' as _i20;
+import 'package:test_ex1/presentation/pages/followed_page/followed_page.dart'
+    as _i2;
+import 'package:test_ex1/presentation/pages/followed_page/followed_task_detail_page.dart'
+    as _i3;
+import 'package:test_ex1/presentation/pages/my_desks_page/my_tasks_detail_page.dart'
     as _i8;
+import 'package:test_ex1/presentation/pages/my_desks_page/my_tasks_page.dart'
+    as _i9;
+import 'package:test_ex1/presentation/pages/users_desks_page/user_task_detail_page.dart'
+    as _i14;
+import 'package:test_ex1/presentation/pages/users_desks_page/user_tasks_page.dart'
+    as _i15;
 import 'package:test_ex1/presentation/routing/wrappers/auth_wrapper.dart'
     as _i1;
 import 'package:test_ex1/presentation/routing/wrappers/followed_wrapper.dart'
-    as _i3;
+    as _i4;
 import 'package:test_ex1/presentation/routing/wrappers/my_desks_wrapper.dart'
-    as _i6;
-import 'package:test_ex1/presentation/routing/wrappers/users_desks_page/users_tasks_wrapper.dart'
-    as _i14;
+    as _i7;
 import 'package:test_ex1/presentation/routing/wrappers/users_desks_wrapper.dart'
-    as _i13;
-import 'package:test_ex1/presentation/screens/followed_tasks/followed_tasks_screen.dart'
-    as _i2;
-import 'package:test_ex1/presentation/screens/login/login_screen.dart' as _i4;
+    as _i17;
+import 'package:test_ex1/presentation/screens/login/login_screen.dart' as _i5;
 import 'package:test_ex1/presentation/screens/my_desks/my_desk_screen.dart'
-    as _i5;
-import 'package:test_ex1/presentation/screens/nav_bar/nav_bar.dart' as _i9;
+    as _i6;
+import 'package:test_ex1/presentation/screens/nav_bar/nav_bar.dart' as _i10;
 import 'package:test_ex1/presentation/screens/registration/registration_screen.dart'
-    as _i10;
-import 'package:test_ex1/presentation/screens/task_detail/task_detail_screen.dart'
     as _i11;
-import 'package:test_ex1/presentation/screens/users_desks/users_desks_screen.dart'
+import 'package:test_ex1/presentation/screens/task_detail/task_detail_screen.dart'
     as _i12;
+import 'package:test_ex1/presentation/screens/user_desks/user_desks_screen.dart'
+    as _i13;
+import 'package:test_ex1/presentation/screens/users_desks/users_desks_screen.dart'
+    as _i16;
 
 /// generated route for
 /// [_i1.AuthWrapperScreen]
-class AuthWrapperRoute extends _i15.PageRouteInfo<void> {
-  const AuthWrapperRoute({List<_i15.PageRouteInfo>? children})
+class AuthWrapperRoute extends _i18.PageRouteInfo<void> {
+  const AuthWrapperRoute({List<_i18.PageRouteInfo>? children})
     : super(AuthWrapperRoute.name, initialChildren: children);
 
   static const String name = 'AuthWrapperRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return _i15.WrappedRoute(child: const _i1.AuthWrapperScreen());
+      return _i18.WrappedRoute(child: const _i1.AuthWrapperScreen());
     },
   );
 }
 
 /// generated route for
-/// [_i2.FollowedScreen]
-class FollowedRoute extends _i15.PageRouteInfo<void> {
-  const FollowedRoute({List<_i15.PageRouteInfo>? children})
+/// [_i2.FollowedPage]
+class FollowedRoute extends _i18.PageRouteInfo<void> {
+  const FollowedRoute({List<_i18.PageRouteInfo>? children})
     : super(FollowedRoute.name, initialChildren: children);
 
   static const String name = 'FollowedRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i2.FollowedScreen();
+      return const _i2.FollowedPage();
     },
   );
 }
 
 /// generated route for
-/// [_i3.FollowedWrapperScreen]
-class FollowedWrapperRoute extends _i15.PageRouteInfo<void> {
-  const FollowedWrapperRoute({List<_i15.PageRouteInfo>? children})
+/// [_i3.FollowedTaskDetailPage]
+class FollowedTaskDetailRoute
+    extends _i18.PageRouteInfo<FollowedTaskDetailRouteArgs> {
+  FollowedTaskDetailRoute({
+    _i19.Key? key,
+    required _i20.TaskModel task,
+    List<_i18.PageRouteInfo>? children,
+  }) : super(
+         FollowedTaskDetailRoute.name,
+         args: FollowedTaskDetailRouteArgs(key: key, task: task),
+         initialChildren: children,
+       );
+
+  static const String name = 'FollowedTaskDetailRoute';
+
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<FollowedTaskDetailRouteArgs>();
+      return _i3.FollowedTaskDetailPage(key: args.key, task: args.task);
+    },
+  );
+}
+
+class FollowedTaskDetailRouteArgs {
+  const FollowedTaskDetailRouteArgs({this.key, required this.task});
+
+  final _i19.Key? key;
+
+  final _i20.TaskModel task;
+
+  @override
+  String toString() {
+    return 'FollowedTaskDetailRouteArgs{key: $key, task: $task}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! FollowedTaskDetailRouteArgs) return false;
+    return key == other.key && task == other.task;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ task.hashCode;
+}
+
+/// generated route for
+/// [_i4.FollowedWrapperScreen]
+class FollowedWrapperRoute extends _i18.PageRouteInfo<void> {
+  const FollowedWrapperRoute({List<_i18.PageRouteInfo>? children})
     : super(FollowedWrapperRoute.name, initialChildren: children);
 
   static const String name = 'FollowedWrapperRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return _i15.WrappedRoute(child: const _i3.FollowedWrapperScreen());
+      return _i18.WrappedRoute(child: const _i4.FollowedWrapperScreen());
     },
   );
 }
 
 /// generated route for
-/// [_i4.LoginScreen]
-class LoginRoute extends _i15.PageRouteInfo<void> {
-  const LoginRoute({List<_i15.PageRouteInfo>? children})
+/// [_i5.LoginScreen]
+class LoginRoute extends _i18.PageRouteInfo<void> {
+  const LoginRoute({List<_i18.PageRouteInfo>? children})
     : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i4.LoginScreen();
+      return const _i5.LoginScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i5.MyDesksListScreen]
-class MyDesksListRoute extends _i15.PageRouteInfo<void> {
-  const MyDesksListRoute({List<_i15.PageRouteInfo>? children})
+/// [_i6.MyDesksListScreen]
+class MyDesksListRoute extends _i18.PageRouteInfo<void> {
+  const MyDesksListRoute({List<_i18.PageRouteInfo>? children})
     : super(MyDesksListRoute.name, initialChildren: children);
 
   static const String name = 'MyDesksListRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i5.MyDesksListScreen();
+      return const _i6.MyDesksListScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i6.MyDesksWrapperScreen]
-class MyDesksWrapperRoute extends _i15.PageRouteInfo<void> {
-  const MyDesksWrapperRoute({List<_i15.PageRouteInfo>? children})
+/// [_i7.MyDesksWrapperScreen]
+class MyDesksWrapperRoute extends _i18.PageRouteInfo<void> {
+  const MyDesksWrapperRoute({List<_i18.PageRouteInfo>? children})
     : super(MyDesksWrapperRoute.name, initialChildren: children);
 
   static const String name = 'MyDesksWrapperRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return _i15.WrappedRoute(child: const _i6.MyDesksWrapperScreen());
+      return _i18.WrappedRoute(child: const _i7.MyDesksWrapperScreen());
     },
   );
 }
 
 /// generated route for
-/// [_i7.MyTaskDetailPage]
-class MyTaskDetailRoute extends _i15.PageRouteInfo<MyTaskDetailRouteArgs> {
+/// [_i8.MyTaskDetailPage]
+class MyTaskDetailRoute extends _i18.PageRouteInfo<MyTaskDetailRouteArgs> {
   MyTaskDetailRoute({
-    _i16.Key? key,
-    required _i17.TaskModel task,
-    List<_i15.PageRouteInfo>? children,
+    _i19.Key? key,
+    required _i20.TaskModel task,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
          MyTaskDetailRoute.name,
          args: MyTaskDetailRouteArgs(key: key, task: task),
@@ -150,11 +204,11 @@ class MyTaskDetailRoute extends _i15.PageRouteInfo<MyTaskDetailRouteArgs> {
 
   static const String name = 'MyTaskDetailRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<MyTaskDetailRouteArgs>();
-      return _i7.MyTaskDetailPage(key: args.key, task: args.task);
+      return _i8.MyTaskDetailPage(key: args.key, task: args.task);
     },
   );
 }
@@ -162,9 +216,9 @@ class MyTaskDetailRoute extends _i15.PageRouteInfo<MyTaskDetailRouteArgs> {
 class MyTaskDetailRouteArgs {
   const MyTaskDetailRouteArgs({this.key, required this.task});
 
-  final _i16.Key? key;
+  final _i19.Key? key;
 
-  final _i17.TaskModel task;
+  final _i20.TaskModel task;
 
   @override
   String toString() {
@@ -183,13 +237,13 @@ class MyTaskDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i8.MyTasksPage]
-class MyTasksRoute extends _i15.PageRouteInfo<MyTasksRouteArgs> {
+/// [_i9.MyTasksPage]
+class MyTasksRoute extends _i18.PageRouteInfo<MyTasksRouteArgs> {
   MyTasksRoute({
-    _i16.Key? key,
+    _i19.Key? key,
     required int deskId,
     required String titleAB,
-    List<_i15.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
          MyTasksRoute.name,
          args: MyTasksRouteArgs(key: key, deskId: deskId, titleAB: titleAB),
@@ -198,11 +252,11 @@ class MyTasksRoute extends _i15.PageRouteInfo<MyTasksRouteArgs> {
 
   static const String name = 'MyTasksRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<MyTasksRouteArgs>();
-      return _i8.MyTasksPage(
+      return _i9.MyTasksPage(
         key: args.key,
         deskId: args.deskId,
         titleAB: args.titleAB,
@@ -218,7 +272,7 @@ class MyTasksRouteArgs {
     required this.titleAB,
   });
 
-  final _i16.Key? key;
+  final _i19.Key? key;
 
   final int deskId;
 
@@ -243,45 +297,45 @@ class MyTasksRouteArgs {
 }
 
 /// generated route for
-/// [_i9.NavBar]
-class NavBarRoute extends _i15.PageRouteInfo<void> {
-  const NavBarRoute({List<_i15.PageRouteInfo>? children})
+/// [_i10.NavBar]
+class NavBarRoute extends _i18.PageRouteInfo<void> {
+  const NavBarRoute({List<_i18.PageRouteInfo>? children})
     : super(NavBarRoute.name, initialChildren: children);
 
   static const String name = 'NavBarRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i9.NavBar();
+      return const _i10.NavBar();
     },
   );
 }
 
 /// generated route for
-/// [_i10.RegistrationScreen]
-class RegistrationRoute extends _i15.PageRouteInfo<void> {
-  const RegistrationRoute({List<_i15.PageRouteInfo>? children})
+/// [_i11.RegistrationScreen]
+class RegistrationRoute extends _i18.PageRouteInfo<void> {
+  const RegistrationRoute({List<_i18.PageRouteInfo>? children})
     : super(RegistrationRoute.name, initialChildren: children);
 
   static const String name = 'RegistrationRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i10.RegistrationScreen();
+      return const _i11.RegistrationScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i11.TaskDetailScreen]
-class TaskDetailRoute extends _i15.PageRouteInfo<TaskDetailRouteArgs> {
+/// [_i12.TaskDetailScreen]
+class TaskDetailRoute extends _i18.PageRouteInfo<TaskDetailRouteArgs> {
   TaskDetailRoute({
-    _i16.Key? key,
-    required _i17.TaskModel task,
-    required _i16.VoidCallback onPressedPrayButton,
-    List<_i15.PageRouteInfo>? children,
+    _i19.Key? key,
+    required _i20.TaskModel task,
+    required _i19.VoidCallback onPressedPrayButton,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
          TaskDetailRoute.name,
          args: TaskDetailRouteArgs(
@@ -294,11 +348,11 @@ class TaskDetailRoute extends _i15.PageRouteInfo<TaskDetailRouteArgs> {
 
   static const String name = 'TaskDetailRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<TaskDetailRouteArgs>();
-      return _i11.TaskDetailScreen(
+      return _i12.TaskDetailScreen(
         key: args.key,
         task: args.task,
         onPressedPrayButton: args.onPressedPrayButton,
@@ -314,11 +368,11 @@ class TaskDetailRouteArgs {
     required this.onPressedPrayButton,
   });
 
-  final _i16.Key? key;
+  final _i19.Key? key;
 
-  final _i17.TaskModel task;
+  final _i20.TaskModel task;
 
-  final _i16.VoidCallback onPressedPrayButton;
+  final _i19.VoidCallback onPressedPrayButton;
 
   @override
   String toString() {
@@ -340,97 +394,212 @@ class TaskDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i12.UsersDesksScreen]
-class UsersDesksRoute extends _i15.PageRouteInfo<void> {
-  const UsersDesksRoute({List<_i15.PageRouteInfo>? children})
-    : super(UsersDesksRoute.name, initialChildren: children);
-
-  static const String name = 'UsersDesksRoute';
-
-  static _i15.PageInfo page = _i15.PageInfo(
-    name,
-    builder: (data) {
-      return const _i12.UsersDesksScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i13.UsersDesksWrapperScreen]
-class UsersDesksWrapperRoute extends _i15.PageRouteInfo<void> {
-  const UsersDesksWrapperRoute({List<_i15.PageRouteInfo>? children})
-    : super(UsersDesksWrapperRoute.name, initialChildren: children);
-
-  static const String name = 'UsersDesksWrapperRoute';
-
-  static _i15.PageInfo page = _i15.PageInfo(
-    name,
-    builder: (data) {
-      return _i15.WrappedRoute(child: const _i13.UsersDesksWrapperScreen());
-    },
-  );
-}
-
-/// generated route for
-/// [_i14.UsersTasksWrapper]
-class UsersTasksWrapper extends _i15.PageRouteInfo<UsersTasksWrapperArgs> {
-  UsersTasksWrapper({
-    _i16.Key? key,
-    required int deskId,
+/// [_i13.UserDesksScreen]
+class UserDesksRoute extends _i18.PageRouteInfo<UserDesksRouteArgs> {
+  UserDesksRoute({
+    _i19.Key? key,
+    required int userId,
     required String titleAB,
-    List<_i15.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
-         UsersTasksWrapper.name,
-         args: UsersTasksWrapperArgs(
-           key: key,
-           deskId: deskId,
-           titleAB: titleAB,
-         ),
+         UserDesksRoute.name,
+         args: UserDesksRouteArgs(key: key, userId: userId, titleAB: titleAB),
          initialChildren: children,
        );
 
-  static const String name = 'UsersTasksWrapper';
+  static const String name = 'UserDesksRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<UsersTasksWrapperArgs>();
-      return _i14.UsersTasksWrapper(
+      final args = data.argsAs<UserDesksRouteArgs>();
+      return _i13.UserDesksScreen(
         key: args.key,
-        deskId: args.deskId,
+        userId: args.userId,
         titleAB: args.titleAB,
       );
     },
   );
 }
 
-class UsersTasksWrapperArgs {
-  const UsersTasksWrapperArgs({
+class UserDesksRouteArgs {
+  const UserDesksRouteArgs({
     this.key,
-    required this.deskId,
+    required this.userId,
     required this.titleAB,
   });
 
-  final _i16.Key? key;
+  final _i19.Key? key;
 
-  final int deskId;
+  final int userId;
 
   final String titleAB;
 
   @override
   String toString() {
-    return 'UsersTasksWrapperArgs{key: $key, deskId: $deskId, titleAB: $titleAB}';
+    return 'UserDesksRouteArgs{key: $key, userId: $userId, titleAB: $titleAB}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (other is! UsersTasksWrapperArgs) return false;
+    if (other is! UserDesksRouteArgs) return false;
     return key == other.key &&
-        deskId == other.deskId &&
+        userId == other.userId &&
         titleAB == other.titleAB;
   }
 
   @override
-  int get hashCode => key.hashCode ^ deskId.hashCode ^ titleAB.hashCode;
+  int get hashCode => key.hashCode ^ userId.hashCode ^ titleAB.hashCode;
+}
+
+/// generated route for
+/// [_i14.UserTaskDetailPage]
+class UserTaskDetailRoute extends _i18.PageRouteInfo<UserTaskDetailRouteArgs> {
+  UserTaskDetailRoute({
+    _i19.Key? key,
+    required _i20.TaskModel task,
+    List<_i18.PageRouteInfo>? children,
+  }) : super(
+         UserTaskDetailRoute.name,
+         args: UserTaskDetailRouteArgs(key: key, task: task),
+         initialChildren: children,
+       );
+
+  static const String name = 'UserTaskDetailRoute';
+
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<UserTaskDetailRouteArgs>();
+      return _i14.UserTaskDetailPage(key: args.key, task: args.task);
+    },
+  );
+}
+
+class UserTaskDetailRouteArgs {
+  const UserTaskDetailRouteArgs({this.key, required this.task});
+
+  final _i19.Key? key;
+
+  final _i20.TaskModel task;
+
+  @override
+  String toString() {
+    return 'UserTaskDetailRouteArgs{key: $key, task: $task}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UserTaskDetailRouteArgs) return false;
+    return key == other.key && task == other.task;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ task.hashCode;
+}
+
+/// generated route for
+/// [_i15.UserTasksPage]
+class UserTasksRoute extends _i18.PageRouteInfo<UserTasksRouteArgs> {
+  UserTasksRoute({
+    _i19.Key? key,
+    required int deskId,
+    required int userId,
+    required String titleAB,
+    List<_i18.PageRouteInfo>? children,
+  }) : super(
+         UserTasksRoute.name,
+         args: UserTasksRouteArgs(
+           key: key,
+           deskId: deskId,
+           userId: userId,
+           titleAB: titleAB,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'UserTasksRoute';
+
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<UserTasksRouteArgs>();
+      return _i15.UserTasksPage(
+        key: args.key,
+        deskId: args.deskId,
+        userId: args.userId,
+        titleAB: args.titleAB,
+      );
+    },
+  );
+}
+
+class UserTasksRouteArgs {
+  const UserTasksRouteArgs({
+    this.key,
+    required this.deskId,
+    required this.userId,
+    required this.titleAB,
+  });
+
+  final _i19.Key? key;
+
+  final int deskId;
+
+  final int userId;
+
+  final String titleAB;
+
+  @override
+  String toString() {
+    return 'UserTasksRouteArgs{key: $key, deskId: $deskId, userId: $userId, titleAB: $titleAB}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UserTasksRouteArgs) return false;
+    return key == other.key &&
+        deskId == other.deskId &&
+        userId == other.userId &&
+        titleAB == other.titleAB;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^ deskId.hashCode ^ userId.hashCode ^ titleAB.hashCode;
+}
+
+/// generated route for
+/// [_i16.UsersDesksScreen]
+class UsersDesksRoute extends _i18.PageRouteInfo<void> {
+  const UsersDesksRoute({List<_i18.PageRouteInfo>? children})
+    : super(UsersDesksRoute.name, initialChildren: children);
+
+  static const String name = 'UsersDesksRoute';
+
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      return const _i16.UsersDesksScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i17.UsersDesksWrapperScreen]
+class UsersDesksWrapperRoute extends _i18.PageRouteInfo<void> {
+  const UsersDesksWrapperRoute({List<_i18.PageRouteInfo>? children})
+    : super(UsersDesksWrapperRoute.name, initialChildren: children);
+
+  static const String name = 'UsersDesksWrapperRoute';
+
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      return _i18.WrappedRoute(child: const _i17.UsersDesksWrapperScreen());
+    },
+  );
 }

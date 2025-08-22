@@ -55,14 +55,11 @@ extension UsersDesksEventPatterns on UsersDesksEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetUsersDesksEvent value)?  getUsersDesks,TResult Function( _GetDesksByUserIdEvent value)?  getDesksByUserId,TResult Function( _GetTasksByDeskIdEvent value)?  getTasksByDeskId,TResult Function( _PrayEvent value)?  pray,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetUsersDesksEvent value)?  getUsersDesks,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _GetUsersDesksEvent() when getUsersDesks != null:
-return getUsersDesks(_that);case _GetDesksByUserIdEvent() when getDesksByUserId != null:
-return getDesksByUserId(_that);case _GetTasksByDeskIdEvent() when getTasksByDeskId != null:
-return getTasksByDeskId(_that);case _PrayEvent() when pray != null:
-return pray(_that);case _:
+return getUsersDesks(_that);case _:
   return orElse();
 
 }
@@ -80,14 +77,11 @@ return pray(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetUsersDesksEvent value)  getUsersDesks,required TResult Function( _GetDesksByUserIdEvent value)  getDesksByUserId,required TResult Function( _GetTasksByDeskIdEvent value)  getTasksByDeskId,required TResult Function( _PrayEvent value)  pray,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetUsersDesksEvent value)  getUsersDesks,}){
 final _that = this;
 switch (_that) {
 case _GetUsersDesksEvent():
-return getUsersDesks(_that);case _GetDesksByUserIdEvent():
-return getDesksByUserId(_that);case _GetTasksByDeskIdEvent():
-return getTasksByDeskId(_that);case _PrayEvent():
-return pray(_that);case _:
+return getUsersDesks(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -104,14 +98,11 @@ return pray(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetUsersDesksEvent value)?  getUsersDesks,TResult? Function( _GetDesksByUserIdEvent value)?  getDesksByUserId,TResult? Function( _GetTasksByDeskIdEvent value)?  getTasksByDeskId,TResult? Function( _PrayEvent value)?  pray,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetUsersDesksEvent value)?  getUsersDesks,}){
 final _that = this;
 switch (_that) {
 case _GetUsersDesksEvent() when getUsersDesks != null:
-return getUsersDesks(_that);case _GetDesksByUserIdEvent() when getDesksByUserId != null:
-return getDesksByUserId(_that);case _GetTasksByDeskIdEvent() when getTasksByDeskId != null:
-return getTasksByDeskId(_that);case _PrayEvent() when pray != null:
-return pray(_that);case _:
+return getUsersDesks(_that);case _:
   return null;
 
 }
@@ -128,13 +119,10 @@ return pray(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getUsersDesks,TResult Function( int userId)?  getDesksByUserId,TResult Function( int userId,  int deskId)?  getTasksByDeskId,TResult Function( TaskModel task)?  pray,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getUsersDesks,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetUsersDesksEvent() when getUsersDesks != null:
-return getUsersDesks();case _GetDesksByUserIdEvent() when getDesksByUserId != null:
-return getDesksByUserId(_that.userId);case _GetTasksByDeskIdEvent() when getTasksByDeskId != null:
-return getTasksByDeskId(_that.userId,_that.deskId);case _PrayEvent() when pray != null:
-return pray(_that.task);case _:
+return getUsersDesks();case _:
   return orElse();
 
 }
@@ -152,13 +140,10 @@ return pray(_that.task);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getUsersDesks,required TResult Function( int userId)  getDesksByUserId,required TResult Function( int userId,  int deskId)  getTasksByDeskId,required TResult Function( TaskModel task)  pray,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getUsersDesks,}) {final _that = this;
 switch (_that) {
 case _GetUsersDesksEvent():
-return getUsersDesks();case _GetDesksByUserIdEvent():
-return getDesksByUserId(_that.userId);case _GetTasksByDeskIdEvent():
-return getTasksByDeskId(_that.userId,_that.deskId);case _PrayEvent():
-return pray(_that.task);case _:
+return getUsersDesks();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +160,10 @@ return pray(_that.task);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getUsersDesks,TResult? Function( int userId)?  getDesksByUserId,TResult? Function( int userId,  int deskId)?  getTasksByDeskId,TResult? Function( TaskModel task)?  pray,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getUsersDesks,}) {final _that = this;
 switch (_that) {
 case _GetUsersDesksEvent() when getUsersDesks != null:
-return getUsersDesks();case _GetDesksByUserIdEvent() when getDesksByUserId != null:
-return getDesksByUserId(_that.userId);case _GetTasksByDeskIdEvent() when getTasksByDeskId != null:
-return getTasksByDeskId(_that.userId,_that.deskId);case _PrayEvent() when pray != null:
-return pray(_that.task);case _:
+return getUsersDesks();case _:
   return null;
 
 }
@@ -220,215 +202,6 @@ String toString() {
 
 
 
-
-/// @nodoc
-
-
-class _GetDesksByUserIdEvent implements UsersDesksEvent {
-  const _GetDesksByUserIdEvent(this.userId);
-  
-
- final  int userId;
-
-/// Create a copy of UsersDesksEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$GetDesksByUserIdEventCopyWith<_GetDesksByUserIdEvent> get copyWith => __$GetDesksByUserIdEventCopyWithImpl<_GetDesksByUserIdEvent>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetDesksByUserIdEvent&&(identical(other.userId, userId) || other.userId == userId));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,userId);
-
-@override
-String toString() {
-  return 'UsersDesksEvent.getDesksByUserId(userId: $userId)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$GetDesksByUserIdEventCopyWith<$Res> implements $UsersDesksEventCopyWith<$Res> {
-  factory _$GetDesksByUserIdEventCopyWith(_GetDesksByUserIdEvent value, $Res Function(_GetDesksByUserIdEvent) _then) = __$GetDesksByUserIdEventCopyWithImpl;
-@useResult
-$Res call({
- int userId
-});
-
-
-
-
-}
-/// @nodoc
-class __$GetDesksByUserIdEventCopyWithImpl<$Res>
-    implements _$GetDesksByUserIdEventCopyWith<$Res> {
-  __$GetDesksByUserIdEventCopyWithImpl(this._self, this._then);
-
-  final _GetDesksByUserIdEvent _self;
-  final $Res Function(_GetDesksByUserIdEvent) _then;
-
-/// Create a copy of UsersDesksEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? userId = null,}) {
-  return _then(_GetDesksByUserIdEvent(
-null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _GetTasksByDeskIdEvent implements UsersDesksEvent {
-  const _GetTasksByDeskIdEvent(this.userId, this.deskId);
-  
-
- final  int userId;
- final  int deskId;
-
-/// Create a copy of UsersDesksEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$GetTasksByDeskIdEventCopyWith<_GetTasksByDeskIdEvent> get copyWith => __$GetTasksByDeskIdEventCopyWithImpl<_GetTasksByDeskIdEvent>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetTasksByDeskIdEvent&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.deskId, deskId) || other.deskId == deskId));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,userId,deskId);
-
-@override
-String toString() {
-  return 'UsersDesksEvent.getTasksByDeskId(userId: $userId, deskId: $deskId)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$GetTasksByDeskIdEventCopyWith<$Res> implements $UsersDesksEventCopyWith<$Res> {
-  factory _$GetTasksByDeskIdEventCopyWith(_GetTasksByDeskIdEvent value, $Res Function(_GetTasksByDeskIdEvent) _then) = __$GetTasksByDeskIdEventCopyWithImpl;
-@useResult
-$Res call({
- int userId, int deskId
-});
-
-
-
-
-}
-/// @nodoc
-class __$GetTasksByDeskIdEventCopyWithImpl<$Res>
-    implements _$GetTasksByDeskIdEventCopyWith<$Res> {
-  __$GetTasksByDeskIdEventCopyWithImpl(this._self, this._then);
-
-  final _GetTasksByDeskIdEvent _self;
-  final $Res Function(_GetTasksByDeskIdEvent) _then;
-
-/// Create a copy of UsersDesksEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? userId = null,Object? deskId = null,}) {
-  return _then(_GetTasksByDeskIdEvent(
-null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as int,null == deskId ? _self.deskId : deskId // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _PrayEvent implements UsersDesksEvent {
-  const _PrayEvent(this.task);
-  
-
- final  TaskModel task;
-
-/// Create a copy of UsersDesksEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$PrayEventCopyWith<_PrayEvent> get copyWith => __$PrayEventCopyWithImpl<_PrayEvent>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrayEvent&&(identical(other.task, task) || other.task == task));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,task);
-
-@override
-String toString() {
-  return 'UsersDesksEvent.pray(task: $task)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$PrayEventCopyWith<$Res> implements $UsersDesksEventCopyWith<$Res> {
-  factory _$PrayEventCopyWith(_PrayEvent value, $Res Function(_PrayEvent) _then) = __$PrayEventCopyWithImpl;
-@useResult
-$Res call({
- TaskModel task
-});
-
-
-$TaskModelCopyWith<$Res> get task;
-
-}
-/// @nodoc
-class __$PrayEventCopyWithImpl<$Res>
-    implements _$PrayEventCopyWith<$Res> {
-  __$PrayEventCopyWithImpl(this._self, this._then);
-
-  final _PrayEvent _self;
-  final $Res Function(_PrayEvent) _then;
-
-/// Create a copy of UsersDesksEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? task = null,}) {
-  return _then(_PrayEvent(
-null == task ? _self.task : task // ignore: cast_nullable_to_non_nullable
-as TaskModel,
-  ));
-}
-
-/// Create a copy of UsersDesksEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TaskModelCopyWith<$Res> get task {
-  
-  return $TaskModelCopyWith<$Res>(_self.task, (value) {
-    return _then(_self.copyWith(task: value));
-  });
-}
-}
 
 /// @nodoc
 mixin _$UsersDesksState {

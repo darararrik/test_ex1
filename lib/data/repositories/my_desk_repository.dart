@@ -4,8 +4,8 @@ import 'package:test_ex1/domain/models/task/task_model.dart';
 import 'package:test_ex1/domain/repositories/my_desks_repository.dart';
 
 class MyDeskRepositoryImpl implements IMyDesksRepository {
-  MyDeskRepositoryImpl({required MyDesksLocalDS localDS}) : _localDS = localDS;
-  final MyDesksLocalDS _localDS;
+  MyDeskRepositoryImpl({required LocalDSMyDesks localDS}) : _localDS = localDS;
+  final LocalDSMyDesks _localDS;
 
   @override
   Future<void> addDesk(String title) => _localDS.addDesk(title);
@@ -37,6 +37,6 @@ class MyDeskRepositoryImpl implements IMyDesksRepository {
       _localDS.renameTask(newTitle, taskId, deskId);
 
   @override
-  Future<TaskModel> getTaskById(int taskId, int deskId) =>
+  Future<TaskModel?> getTaskById(int taskId, int deskId) =>
       _localDS.getTaskByDeskId(taskId, deskId);
 }

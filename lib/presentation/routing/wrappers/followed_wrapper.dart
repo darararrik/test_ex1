@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:test_ex1/domain/blocs/followed/bloc/followed_tasks_bloc.dart';
+import 'package:test_ex1/domain/blocs/followed/followed_tasks_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
 
 @RoutePage()
 class FollowedWrapperScreen extends StatelessWidget
@@ -17,6 +18,16 @@ class FollowedWrapperScreen extends StatelessWidget
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(create: (context) => FollowedTasksBloc(), child: this);
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<FollowedTasksBloc>.value(
+          value: context.read()
+            ..add(const FollowedTasksEvent.getFollowedTasks()),
+        ),
+        BlocProvider<MyDesksBloc>.value(value: context.read()),
+        BlocProvider<MyTasksBloc>.value(value: context.read()),
+      ],
+      child: this,
+    );
   }
 }

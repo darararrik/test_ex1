@@ -11,16 +11,11 @@ import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/screens/task_detail/task_detail_screen.dart';
 import 'package:test_ex1/presentation/screens/tasks/tasks_screen.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
-import 'package:test_ex1/presentation/widgets/layouts/loading_state.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class UsersTasksWrapper extends StatelessWidget {
-  const UsersTasksWrapper({
-    super.key,
-    required this.deskId,
-    required this.titleAB,
-  });
+class MyTasksPage extends StatelessWidget {
+  const MyTasksPage({super.key, required this.deskId, required this.titleAB});
   final int deskId;
   final String titleAB;
   @override
@@ -57,14 +52,7 @@ class UsersTasksWrapper extends StatelessWidget {
                 loaded: (tasks) => TasksScreen(
                   tasks: tasks,
                   onTapRoute: (TaskModel task) {
-                    context.pushRoute(
-                      TaskDetailRoute(
-                        task: task,
-                        onPressedPrayButton: () => context
-                            .read<MyTasksDetailBloc>()
-                            .add(MyTasksDetailEvent.pray(task)),
-                      ),
-                    );
+                    context.pushRoute(MyTaskDetailRoute(task: task));
                   },
                   onPressedPrayButton: (TaskModel task) =>
                       handlePrayButtonPressed(

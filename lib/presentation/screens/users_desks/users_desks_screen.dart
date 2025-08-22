@@ -38,22 +38,14 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
           BlocBuilder<UsersDesksBloc, UsersDesksState>(
             builder: (context, state) {
               return state.when(
-                loading: () => const SliverToBoxAdapter(
-                  child: CircularProgressIndicator(),
-                ),
-                error: (message) => SliverToBoxAdapter(
-                  child: EmptyState(
-                    message: message,
-                    iconPath: AppIcons.search,
-                  ),
-                ),
+                loading: () => const LoadingState(),
+                error: (message) =>
+                    EmptyState(message: message, iconPath: AppIcons.search),
 
                 empty: () {
-                  return SliverToBoxAdapter(
-                    child: EmptyState(
-                      message: context.l10n.emptyDeskScreen,
-                      iconPath: AppIcons.sketch,
-                    ),
+                  return EmptyState(
+                    message: context.l10n.emptyDeskScreen,
+                    iconPath: AppIcons.sketch,
                   );
                 },
                 loaded: (usersDesks) => DesksListBody<UsersDesksModel>(
@@ -61,9 +53,11 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
                   itemBuilder: (context, usersDesk) => UserDeskCard(
                     usersDesk: usersDesk,
                     onTap: () {
-                      // context.pushRoute(
-                      //   MyTasksWrapper(deskId: desk.id, titleAB: desk.title),
-                      // );
+                      context.pushRoute(
+                        UserDesksRoute(userId: usersDesk.userId, 
+                          titleAB: usersDesk.title,
+                        ),
+                      );
                     },
                   ),
                 ),

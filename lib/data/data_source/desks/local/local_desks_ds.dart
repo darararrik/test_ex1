@@ -1,7 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:test_ex1/domain/models/desk/desk_model.dart';
 import 'package:test_ex1/domain/models/task/task_model.dart';
 
-class MyDesksLocalDS {
+class LocalDSMyDesks {
   final List<DeskModel> _desks = [];
   int deskIdCounter = 0;
   int taskIdCounter = 0;
@@ -94,8 +95,8 @@ class MyDesksLocalDS {
     _desks[deskIndex] = oldDesk.copyWith(tasks: updatedTasks);
   }
 
-  Future<TaskModel> getTaskByDeskId(int taskId, int deskId) async {
-    final desk = _desks.firstWhere((desk) => desk.id == deskId);
-    return desk.tasks.firstWhere((task) => task.id == taskId);
+  Future<TaskModel?> getTaskByDeskId(int taskId, int deskId) async {
+    final desk = _desks.firstWhereOrNull((desk) => desk.id == deskId);
+    return desk?.tasks.firstWhereOrNull((task) => task.id == taskId);
   }
 }

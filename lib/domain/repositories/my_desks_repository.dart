@@ -12,5 +12,5 @@ abstract class IMyDesksRepository {
   Future<void> pray(int taskId, int deskId);
   Future<List<TaskModel>> getTasksByDeskId(int deskId);
 
-  Future<TaskModel> getTaskById(int taskId, int deskId);
+  Future<TaskModel?> getTaskById(int taskId, int deskId);
 }
