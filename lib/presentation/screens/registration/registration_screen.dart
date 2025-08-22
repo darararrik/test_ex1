@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:test_ex1/domain/blocs/blocs.dart';
 import 'package:test_ex1/presentation/constants/s.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
@@ -83,7 +85,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     InputWidget(
                       controller: _passwordController,
                       hintText: context.l10n.enterPassword,
-                      usePasswordToggle: true,
+                      isPassword: true,
                       textInputAction: TextInputAction.next,
                       labelText: context.l10n.passwordLabel,
                       validator: (value) =>
@@ -92,7 +94,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     InputWidget(
                       controller: _confirmPasswordController,
                       hintText: context.l10n.confirmPassword,
-                      usePasswordToggle: true,
+                      isPassword: true,
                       textInputAction: TextInputAction.done,
                       labelText: context.l10n.confirmPasswordLabel,
                       validator: (value) => matchPasswordcValidator(
@@ -106,15 +108,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   PrimaryButton(
                     onPressed: () async {
                       if (_formKey.currentState?.validate() ?? false) {
-                        // final notifier = AuthProvider.of(context);
-                        // final resp = await notifier.register(
-                        //   _usernameController.text.trim(),
-                        //   _emailController.text.trim(),
-                        //   _passwordController.text.trim(),
-                        // );
-                        // if (resp == true) {
-                        //   router.replace(const NavBarRoute());
-                        // }
+                        context.read<AuthBloc>().add(
+                          AuthEvent.register(
+                            _usernameController.text.trim(),
+                            _emailController.text.trim(),
+                            _passwordController.text.trim(),
+                          ),
+                        );
                       }
                     },
                     text: context.l10n.registration,

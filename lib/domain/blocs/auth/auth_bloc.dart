@@ -8,18 +8,14 @@ part 'auth_state.dart';
 part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc(this._authRepository) : super(const _LoadingState()) {
-    on<AuthEvent>((event, emit) {
-      event.map(
-        login: (e) async => _onLogin(e, emit),
-        register: (e) async => _onRegister(e, emit),
-        logout: (e) => _onLogout(e, emit),
-      );
-    });
+  AuthBloc(this._authRepository) : super(const AuthState.unlogined()) {
+    on<_LoginEvent>(_onLogin);
+    on<_RegisterEvent>(_onRegister);
+    on<_LogoutEvent>(_onLogout);
   }
   final IAuthRepository _authRepository;
 
-  Future<void> _onLogin(_Login e, Emitter<AuthState> emit) async {
+  Future<void> _onLogin(_LoginEvent e, Emitter<AuthState> emit) async {
     try {
       emit(const AuthState.loading());
       final answer = await _authRepository.login(e.email, e.password);
@@ -33,7 +29,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _onRegister(_Register e, Emitter<AuthState> emit) async {
+  Future<void> _onRegister(_RegisterEvent e, Emitter<AuthState> emit) async {
     try {
       emit(const AuthState.loading());
       final answer = await _authRepository.register(
@@ -51,7 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  void _onLogout(_Logout e, Emitter<AuthState> emit) {
+  void _onLogout(_LogoutEvent e, Emitter<AuthState> emit) {
     emit(const AuthState.unlogined());
   }
 }

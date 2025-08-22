@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   InputWidget(
                     controller: _passwordController,
                     hintText: context.l10n.enterPassword,
-                    usePasswordToggle: true,
+                    isPassword: true,
                     textInputAction: TextInputAction.done,
                     labelText: context.l10n.passwordLabel,
                   ),

@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:test_ex1/domain/blocs/auth/auth_bloc.dart';
 import 'package:test_ex1/presentation/constants/s.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 
-class MyCupertinoAlertDialog extends StatelessWidget {
-  const MyCupertinoAlertDialog({super.key});
+class LogOutDialog extends StatelessWidget {
+  const LogOutDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class MyCupertinoAlertDialog extends StatelessWidget {
           CupertinoActionSheetAction(
             isDestructiveAction: true,
             onPressed: () {
-              // AuthProvider.of(context).logout();
+              context.read<AuthBloc>().add(const AuthEvent.logout());
               context.pop();
             },
             child: Text(

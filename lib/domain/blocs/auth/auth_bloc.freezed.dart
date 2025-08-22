@@ -55,12 +55,12 @@ extension AuthEventPatterns on AuthEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Login value)?  login,TResult Function( _Register value)?  register,TResult Function( _Logout value)?  logout,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _LoginEvent value)?  login,TResult Function( _RegisterEvent value)?  register,TResult Function( _LogoutEvent value)?  logout,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Login() when login != null:
-return login(_that);case _Register() when register != null:
-return register(_that);case _Logout() when logout != null:
+case _LoginEvent() when login != null:
+return login(_that);case _RegisterEvent() when register != null:
+return register(_that);case _LogoutEvent() when logout != null:
 return logout(_that);case _:
   return orElse();
 
@@ -79,12 +79,12 @@ return logout(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Login value)  login,required TResult Function( _Register value)  register,required TResult Function( _Logout value)  logout,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _LoginEvent value)  login,required TResult Function( _RegisterEvent value)  register,required TResult Function( _LogoutEvent value)  logout,}){
 final _that = this;
 switch (_that) {
-case _Login():
-return login(_that);case _Register():
-return register(_that);case _Logout():
+case _LoginEvent():
+return login(_that);case _RegisterEvent():
+return register(_that);case _LogoutEvent():
 return logout(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -102,12 +102,12 @@ return logout(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Login value)?  login,TResult? Function( _Register value)?  register,TResult? Function( _Logout value)?  logout,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _LoginEvent value)?  login,TResult? Function( _RegisterEvent value)?  register,TResult? Function( _LogoutEvent value)?  logout,}){
 final _that = this;
 switch (_that) {
-case _Login() when login != null:
-return login(_that);case _Register() when register != null:
-return register(_that);case _Logout() when logout != null:
+case _LoginEvent() when login != null:
+return login(_that);case _RegisterEvent() when register != null:
+return register(_that);case _LogoutEvent() when logout != null:
 return logout(_that);case _:
   return null;
 
@@ -127,9 +127,9 @@ return logout(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email,  String password)?  login,TResult Function( String name,  String email,  String password)?  register,TResult Function()?  logout,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Login() when login != null:
-return login(_that.email,_that.password);case _Register() when register != null:
-return register(_that.name,_that.email,_that.password);case _Logout() when logout != null:
+case _LoginEvent() when login != null:
+return login(_that.email,_that.password);case _RegisterEvent() when register != null:
+return register(_that.name,_that.email,_that.password);case _LogoutEvent() when logout != null:
 return logout();case _:
   return orElse();
 
@@ -150,9 +150,9 @@ return logout();case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email,  String password)  login,required TResult Function( String name,  String email,  String password)  register,required TResult Function()  logout,}) {final _that = this;
 switch (_that) {
-case _Login():
-return login(_that.email,_that.password);case _Register():
-return register(_that.name,_that.email,_that.password);case _Logout():
+case _LoginEvent():
+return login(_that.email,_that.password);case _RegisterEvent():
+return register(_that.name,_that.email,_that.password);case _LogoutEvent():
 return logout();case _:
   throw StateError('Unexpected subclass');
 
@@ -172,9 +172,9 @@ return logout();case _:
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email,  String password)?  login,TResult? Function( String name,  String email,  String password)?  register,TResult? Function()?  logout,}) {final _that = this;
 switch (_that) {
-case _Login() when login != null:
-return login(_that.email,_that.password);case _Register() when register != null:
-return register(_that.name,_that.email,_that.password);case _Logout() when logout != null:
+case _LoginEvent() when login != null:
+return login(_that.email,_that.password);case _RegisterEvent() when register != null:
+return register(_that.name,_that.email,_that.password);case _LogoutEvent() when logout != null:
 return logout();case _:
   return null;
 
@@ -186,8 +186,8 @@ return logout();case _:
 /// @nodoc
 
 
-class _Login implements AuthEvent {
-  const _Login(this.email, this.password);
+class _LoginEvent implements AuthEvent {
+  const _LoginEvent(this.email, this.password);
   
 
  final  String email;
@@ -197,13 +197,13 @@ class _Login implements AuthEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$LoginCopyWith<_Login> get copyWith => __$LoginCopyWithImpl<_Login>(this, _$identity);
+_$LoginEventCopyWith<_LoginEvent> get copyWith => __$LoginEventCopyWithImpl<_LoginEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Login&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginEvent&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password));
 }
 
 
@@ -219,8 +219,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class _$LoginCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
-  factory _$LoginCopyWith(_Login value, $Res Function(_Login) _then) = __$LoginCopyWithImpl;
+abstract mixin class _$LoginEventCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
+  factory _$LoginEventCopyWith(_LoginEvent value, $Res Function(_LoginEvent) _then) = __$LoginEventCopyWithImpl;
 @useResult
 $Res call({
  String email, String password
@@ -231,17 +231,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$LoginCopyWithImpl<$Res>
-    implements _$LoginCopyWith<$Res> {
-  __$LoginCopyWithImpl(this._self, this._then);
+class __$LoginEventCopyWithImpl<$Res>
+    implements _$LoginEventCopyWith<$Res> {
+  __$LoginEventCopyWithImpl(this._self, this._then);
 
-  final _Login _self;
-  final $Res Function(_Login) _then;
+  final _LoginEvent _self;
+  final $Res Function(_LoginEvent) _then;
 
 /// Create a copy of AuthEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? password = null,}) {
-  return _then(_Login(
+  return _then(_LoginEvent(
 null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
 as String,
@@ -254,8 +254,8 @@ as String,
 /// @nodoc
 
 
-class _Register implements AuthEvent {
-  const _Register(this.name, this.email, this.password);
+class _RegisterEvent implements AuthEvent {
+  const _RegisterEvent(this.name, this.email, this.password);
   
 
  final  String name;
@@ -266,13 +266,13 @@ class _Register implements AuthEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$RegisterCopyWith<_Register> get copyWith => __$RegisterCopyWithImpl<_Register>(this, _$identity);
+_$RegisterEventCopyWith<_RegisterEvent> get copyWith => __$RegisterEventCopyWithImpl<_RegisterEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Register&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RegisterEvent&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password));
 }
 
 
@@ -288,8 +288,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class _$RegisterCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
-  factory _$RegisterCopyWith(_Register value, $Res Function(_Register) _then) = __$RegisterCopyWithImpl;
+abstract mixin class _$RegisterEventCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
+  factory _$RegisterEventCopyWith(_RegisterEvent value, $Res Function(_RegisterEvent) _then) = __$RegisterEventCopyWithImpl;
 @useResult
 $Res call({
  String name, String email, String password
@@ -300,17 +300,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$RegisterCopyWithImpl<$Res>
-    implements _$RegisterCopyWith<$Res> {
-  __$RegisterCopyWithImpl(this._self, this._then);
+class __$RegisterEventCopyWithImpl<$Res>
+    implements _$RegisterEventCopyWith<$Res> {
+  __$RegisterEventCopyWithImpl(this._self, this._then);
 
-  final _Register _self;
-  final $Res Function(_Register) _then;
+  final _RegisterEvent _self;
+  final $Res Function(_RegisterEvent) _then;
 
 /// Create a copy of AuthEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? email = null,Object? password = null,}) {
-  return _then(_Register(
+  return _then(_RegisterEvent(
 null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
@@ -324,8 +324,8 @@ as String,
 /// @nodoc
 
 
-class _Logout implements AuthEvent {
-  const _Logout();
+class _LogoutEvent implements AuthEvent {
+  const _LogoutEvent();
   
 
 
@@ -335,7 +335,7 @@ class _Logout implements AuthEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Logout);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LogoutEvent);
 }
 
 

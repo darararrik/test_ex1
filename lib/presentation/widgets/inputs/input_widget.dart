@@ -15,7 +15,7 @@ class InputWidget extends StatelessWidget {
     this.labelText,
     this.onChanged,
     this.enabled = true,
-    this.usePasswordToggle = false,
+    this.isPassword = false,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
     this.border,
@@ -25,7 +25,6 @@ class InputWidget extends StatelessWidget {
     this.fillColor,
     this.contentPadding,
     this.validator,
-    this.obscureText = false,
   });
   final FormFieldValidator<String>? validator;
   final TextEditingController controller;
@@ -33,7 +32,7 @@ class InputWidget extends StatelessWidget {
   final String? labelText;
   final ValueChanged<String>? onChanged;
   final bool enabled;
-  final bool usePasswordToggle;
+  final bool isPassword;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
   final InputBorder? border;
@@ -42,7 +41,7 @@ class InputWidget extends StatelessWidget {
   final bool? filled;
   final Color? fillColor;
   final EdgeInsets? contentPadding;
-  final bool obscureText;
+  final bool obscureText = false;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -62,13 +61,14 @@ class InputWidget extends StatelessWidget {
               TextFormField(
                 controller: controller,
                 enabled: enabled,
-                obscureText: obscureText,
+                obscureText: isPassword
+                    ? !context.watch<PasswordVisibilityCubit>().state
+                    : obscureText,
                 keyboardType: keyboardType,
                 textInputAction: textInputAction,
                 onChanged: onChanged,
                 style: context.appTextStyle.body2,
                 validator: validator,
-
                 decoration: InputDecoration(
                   filled: filled,
                   fillColor: fillColor,
@@ -80,25 +80,17 @@ class InputWidget extends StatelessWidget {
                   border: border,
                   enabledBorder: enabledBorder,
                   focusedBorder: focusedBorder,
-
                   suffixIcon: Visibility(
-                    visible: usePasswordToggle,
+                    visible: isPassword,
                     child: IconButton(
                       onPressed: context
                           .read<PasswordVisibilityCubit>()
                           .toggleVisibility,
                       icon: BlocBuilder<PasswordVisibilityCubit, bool>(
                         builder: (context, isVisible) {
-                          return Visibility(
-                            visible: isVisible,
-                            replacement: AppIcon(
-                              AppIcons.eyeOpen,
-                              color: context.appColors.gray800,
-                            ),
-                            child: AppIcon(
-                              AppIcons.eyeClosed,
-                              color: context.appColors.gray600,
-                            ),
+                          return AppIcon(
+                            isVisible ? AppIcons.eyeOpen : AppIcons.eyeClosed,
+                            color: context.appColors.gray800,
                           );
                         },
                       ),

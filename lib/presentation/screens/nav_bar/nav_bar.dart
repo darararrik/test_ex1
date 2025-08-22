@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:test_ex1/domain/blocs/auth/auth_bloc.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/routing/wrappers/users_desks_wrapper.dart';
@@ -27,8 +29,14 @@ class NavBar extends StatelessWidget {
           ),
           child: NavigationBar(
             selectedIndex: tabsRouter.activeIndex,
-            onDestinationSelected: tabsRouter.setActiveIndex,
-
+            onDestinationSelected: (index) {
+              final authState = context.read<AuthBloc>().state;
+              authState.maybeWhen(
+                logined: () => tabsRouter.setActiveIndex(index),
+                orElse: () =>
+                    context.router.replaceAll([const AuthWrapperRoute()]),
+              );
+            },
             destinations: [
               NavigationDestination(
                 icon: const AppIcon(AppIcons.myDesk),

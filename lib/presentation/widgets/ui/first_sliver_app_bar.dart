@@ -20,7 +20,7 @@ class FirstSliverAppBar extends StatelessWidget {
         MyIconButton(
           onPressed: () => showCupertinoModalPopup(
             context: context,
-            builder: (context) => const MyCupertinoAlertDialog(),
+            builder: (context) => const LogOutDialog(),
           ),
           iconPath: AppIcons.exit,
           width: Sz.s42,

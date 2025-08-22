@@ -17,16 +17,14 @@ class AuthWrapperScreen extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthBloc(context.read()),
-      child: BlocListener<AuthBloc, AuthState>(
-        listener: (context, state) {
-          state.whenOrNull(
-            logined: () => context.replaceRoute(const NavBarRoute()),
-          );
-        },
-        child: this,
-      ),
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        state.maybeWhen(
+          logined: () => context.replaceRoute(const NavBarRoute()),
+          orElse: () => context.replaceRoute(const AuthWrapperRoute()),
+        );
+      },
+      child: this,
     );
   }
 }

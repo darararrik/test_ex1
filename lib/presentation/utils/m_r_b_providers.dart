@@ -47,6 +47,7 @@ class MRBProviders extends StatelessWidget {
           BlocProvider(create: (context) => FollowedTasksBloc(context.read())),
           BlocProvider(create: (context) => MyDesksBloc(context.read())),
           BlocProvider(create: (context) => MyTasksBloc(context.read())),
+          BlocProvider(create: (context) => AuthBloc(context.read())),
         ],
         child: child,
       ),

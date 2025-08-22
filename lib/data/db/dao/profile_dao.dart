@@ -9,8 +9,10 @@ part 'profile_dao.g.dart';
 class ProfileDao extends DatabaseAccessor<AppDatabase> with _$ProfileDaoMixin {
   ProfileDao(super.db);
 
-  Future<ProfileDto?> getUser() async {
-    return select(profileTable).getSingleOrNull();
+  Future<ProfileDto?> getUser(String email) async {
+    return (select(
+      profileTable,
+    )..where((t) => t.email.equals(email))).getSingleOrNull();
   }
 
   Future<ProfileDto?> registerUser({
@@ -18,15 +20,18 @@ class ProfileDao extends DatabaseAccessor<AppDatabase> with _$ProfileDaoMixin {
     required String email,
     required String password,
   }) async {
-    into(profileTable).insert(
+    await into(profileTable).insert(
       ProfileTableCompanion.insert(
         name: name,
         email: email,
         password: password,
       ),
-      mode: InsertMode.insertOrAbort,
+      //TODO: INFO: Пока так оставим
+      mode: InsertMode.insertOrReplace,
     );
-    return await getUser();
+
+    // безопасно получаем пользователя по email
+    return await getUser(email);
   }
 
   /// Вход по email и паролю
