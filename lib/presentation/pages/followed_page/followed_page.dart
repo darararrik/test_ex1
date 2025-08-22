@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/followed/followed_tasks_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
+import 'package:test_ex1/domain/blocs/blocs.dart';
 import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/screens/tasks/tasks_screen.dart';
@@ -67,17 +65,19 @@ class FollowedPage extends StatelessWidget {
                     message: context.l10n.emptySubscriptions,
                     iconPath: AppIcons.sketch,
                   ),
-                  error: (message) =>
-                      EmptyState(message: message, iconPath: AppIcons.sketch),
+                  error: (message) => const ErrorState(),
                   loaded: (tasks) {
                     return TasksScreen(
                       tasks: tasks,
                       onTapRoute: (task) => context.pushRoute(
                         FollowedTaskDetailRoute(task: task),
                       ),
-                      onPressedPrayButton: (task) => context.followedBloc.add(
-                        FollowedTasksEvent.pray(task),
-                      ),
+                      onPressedPrayButton: (task) =>
+                          context.handlePray(task, () {
+                            context.read<MyTasksBloc>().add(
+                              MyTasksEvent.pray(task),
+                            );
+                          }),
                     );
                   },
                 );

@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/my_task_detail/my_tasks_detail_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
+import 'package:test_ex1/domain/blocs/blocs.dart';
 import 'package:test_ex1/domain/models/task/task_model.dart';
 import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/screens/task_detail/task_detail_screen.dart';
@@ -27,16 +26,14 @@ class MyTaskDetailPage extends StatelessWidget {
                 loading: () => const LoadingState(),
                 loaded: (task) => TaskDetailScreen(
                   task: task,
-                  onPressedPrayButton: () => handlePrayButtonPressed(
-                    context,
+                  onPressedPrayButton: () => context.handlePray(
                     task,
                     () => context.read<MyTasksDetailBloc>().add(
                       MyTasksDetailEvent.pray(task),
                     ),
                   ),
                 ),
-                error: (message) =>
-                    EmptyState(message: message, iconPath: AppIcons.sketch),
+                error: (message) => const ErrorState(),
               );
             },
           ),

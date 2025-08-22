@@ -357,6 +357,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You haven no subscriptions yet.'**
   String get emptySubscriptions;
+
+  /// No description provided for @internetError.
+  ///
+  /// In en, this message translates to:
+  /// **'Internet connection lost.'**
+  String get internetError;
 }
 
 class _AppLocalizationsDelegate

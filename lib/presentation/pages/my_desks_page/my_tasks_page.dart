@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/my_task_detail/my_tasks_detail_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
+import 'package:test_ex1/domain/blocs/blocs.dart';
 import 'package:test_ex1/domain/models/task/task_model.dart';
 import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
@@ -44,7 +43,7 @@ class MyTasksPage extends StatelessWidget {
             builder: (context, state) {
               return state.when(
                 loading: () => const LoadingState(),
-                error: (message) => Center(child: Text(message)),
+                error: (message) => const ErrorState(),
                 empty: () => EmptyState(
                   message: context.l10n.emptyTasksScreen,
                   iconPath: AppIcons.sketch,
@@ -54,14 +53,12 @@ class MyTasksPage extends StatelessWidget {
                   onTapRoute: (TaskModel task) {
                     context.pushRoute(MyTaskDetailRoute(task: task));
                   },
-                  onPressedPrayButton: (TaskModel task) =>
-                      handlePrayButtonPressed(
-                        context,
-                        task,
-                        () => context.read<MyTasksBloc>().add(
-                          MyTasksEvent.pray(task),
-                        ),
-                      ),
+                  onPressedPrayButton: (task) => context.handlePray(
+                    task,
+                    () => context.read<MyTasksBloc>().add(
+                      MyTasksEvent.pray(task),
+                    ),
+                  ),
                 ),
               );
             },

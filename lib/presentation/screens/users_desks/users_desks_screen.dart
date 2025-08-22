@@ -5,12 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/domain/blocs/users_desks/users_desks_bloc.dart';
 import 'package:test_ex1/domain/models/users_desks/users_desks_model.dart';
-import 'package:test_ex1/presentation/constants/app_icons.dart';
-import 'package:test_ex1/presentation/constants/r.dart';
-import 'package:test_ex1/presentation/constants/s.dart';
+import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
-import 'package:test_ex1/presentation/widgets/cards/user_desk_card.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -38,9 +35,7 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
             builder: (context, state) {
               return state.when(
                 loading: () => const LoadingState(),
-                error: (message) =>
-                    EmptyState(message: message, iconPath: AppIcons.search),
-
+                error: (message) => const ErrorState(),
                 empty: () {
                   return EmptyState(
                     message: context.l10n.emptyDeskScreen,
@@ -53,7 +48,8 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
                     usersDesk: usersDesk,
                     onTap: () {
                       context.pushRoute(
-                        UserDesksRoute(userId: usersDesk.userId, 
+                        UserDesksRoute(
+                          userId: usersDesk.userId,
                           titleAB: usersDesk.title,
                         ),
                       );

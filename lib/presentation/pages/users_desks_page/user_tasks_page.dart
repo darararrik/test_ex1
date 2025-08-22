@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/my_task_detail/my_tasks_detail_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
-import 'package:test_ex1/domain/blocs/user_task_detail/user_task_detail_bloc.dart';
-import 'package:test_ex1/domain/blocs/user_tasks/user_tasks_bloc.dart';
-import 'package:test_ex1/domain/blocs/users_desks/users_desks_bloc.dart';
+import 'package:test_ex1/domain/blocs/blocs.dart';
 import 'package:test_ex1/domain/models/task/task_model.dart';
 import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
@@ -37,7 +33,7 @@ class UserTasksPage extends StatelessWidget {
             builder: (context, state) {
               return state.when(
                 loading: () => const LoadingState(),
-                error: (message) => Center(child: Text(message)),
+                error: (message) => const ErrorState(),
                 empty: () => EmptyState(
                   message: context.l10n.emptyTasksScreen,
                   iconPath: AppIcons.sketch,
@@ -47,14 +43,12 @@ class UserTasksPage extends StatelessWidget {
                   onTapRoute: (TaskModel task) {
                     context.pushRoute(UserTaskDetailRoute(task: task));
                   },
-                  onPressedPrayButton: (TaskModel task) =>
-                      handlePrayButtonPressed(
-                        context,
-                        task,
-                        () => context.read<UserTasksBloc>().add(
-                          UserTasksEvent.pray(task),
-                        ),
-                      ),
+                  onPressedPrayButton: (TaskModel task) => context.handlePray(
+                    task,
+                    () => context.read<UserTasksBloc>().add(
+                      UserTasksEvent.pray(task),
+                    ),
+                  ),
                 ),
               );
             },

@@ -140,4 +140,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptySubscriptions => 'You haven no subscriptions yet.';
+
+  @override
+  String get internetError => 'Internet connection lost.';
 }
