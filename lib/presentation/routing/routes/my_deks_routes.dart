@@ -24,11 +24,12 @@ abstract class MyDeskRoutes {
               return CupertinoPageRoute<T>(
                 fullscreenDialog: page.fullscreenDialog,
                 settings: page,
-                builder: (_) => BlocProvider<MyTasksBloc>.value(
-                  value: context.read()
-                    ..add(MyTasksEvent.getTasksByDeskId(args.deskId)),
-                  child: child,
-                ),
+                builder: (_) {
+                  context.read<MyTasksBloc>().add(
+                    MyTasksEvent.getTasksByDeskId(args.deskId),
+                  );
+                  return child;
+                },
               );
             },
       ),
@@ -40,16 +41,15 @@ abstract class MyDeskRoutes {
               return CupertinoPageRoute<T>(
                 fullscreenDialog: page.fullscreenDialog,
                 settings: page,
-                builder: (_) => BlocProvider<MyTasksDetailBloc>.value(
-                  value: context.read()
-                    ..add(
-                      MyTasksDetailEvent.getTaskById(
-                        args.task.id,
-                        args.task.deskId,
-                      ),
+                builder: (_) {
+                  context.read<MyTasksDetailBloc>().add(
+                    MyTasksDetailEvent.getTaskById(
+                      args.task.id,
+                      args.task.deskId,
                     ),
-                  child: child,
-                ),
+                  );
+                  return child;
+                },
               );
             },
       ),

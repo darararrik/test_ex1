@@ -21,11 +21,13 @@ abstract class FollowedRoutes {
               return CupertinoPageRoute<T>(
                 fullscreenDialog: page.fullscreenDialog,
                 settings: page,
-                builder: (_) => BlocProvider<FollowedTasksBloc>.value(
-                  value: context.read()
-                    ..add(const FollowedTasksEvent.getFollowedTasks()),
-                  child: child,
-                ),
+                builder: (_) {
+                  context.read<FollowedTasksBloc>().add(
+                    const FollowedTasksEvent.getFollowedTasks(),
+                  );
+
+                  return child;
+                },
               );
             },
       ),
