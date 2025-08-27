@@ -480,12 +480,12 @@ _$PrayEventCopyWith<_PrayEvent> get copyWith => __$PrayEventCopyWithImpl<_PrayEv
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrayEvent&&(identical(other.task, task) || other.task == task));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrayEvent&&const DeepCollectionEquality().equals(other.task, task));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,task);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(task));
 
 @override
 String toString() {
@@ -504,7 +504,7 @@ $Res call({
 });
 
 
-$TaskModelCopyWith<$Res> get task;
+
 
 }
 /// @nodoc
@@ -517,23 +517,14 @@ class __$PrayEventCopyWithImpl<$Res>
 
 /// Create a copy of MyTasksEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? task = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? task = freezed,}) {
   return _then(_PrayEvent(
-null == task ? _self.task : task // ignore: cast_nullable_to_non_nullable
+freezed == task ? _self.task : task // ignore: cast_nullable_to_non_nullable
 as TaskModel,
   ));
 }
 
-/// Create a copy of MyTasksEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TaskModelCopyWith<$Res> get task {
-  
-  return $TaskModelCopyWith<$Res>(_self.task, (value) {
-    return _then(_self.copyWith(task: value));
-  });
-}
+
 }
 
 /// @nodoc

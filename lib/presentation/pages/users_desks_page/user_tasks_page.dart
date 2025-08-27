@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/domain/blocs/blocs.dart';
-import 'package:test_ex1/domain/models/task/task_model.dart';
+import 'package:test_ex1/domain/models/column/column_model.dart';
 import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/screens/task_detail/task_detail_screen.dart';

@@ -5,16 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/domain/blocs/user_desks/user_desks_bloc.dart';
 import 'package:test_ex1/domain/blocs/users_desks/users_desks_bloc.dart';
-import 'package:test_ex1/domain/models/desk/desk_model.dart';
+import 'package:test_ex1/data/dto/desks/desks_dto.dart';
 import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/screens/tasks/tasks_screen.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
-import 'package:test_ex1/presentation/widgets/cards/desk_card.dart';
-import 'package:test_ex1/presentation/widgets/layouts/desk_list_body.dart';
-import 'package:test_ex1/presentation/widgets/layouts/empty_state.dart';
-import 'package:test_ex1/presentation/widgets/layouts/loading_state.dart';
-import 'package:test_ex1/presentation/widgets/ui/my_sliver_app_bar.dart';
+import 'package:test_ex1/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class UserDesksScreen extends StatelessWidget {
@@ -43,7 +39,7 @@ class UserDesksScreen extends StatelessWidget {
                   message: context.l10n.emptyDeskScreen,
                   iconPath: AppIcons.sketch,
                 ),
-                loaded: (desks) => DesksListBody<DeskModel>(
+                loaded: (desks) => DesksListBody<DesksModel>(
                   items: desks,
                   itemBuilder: (context, desk) => DeskCard(
                     desk: desk,

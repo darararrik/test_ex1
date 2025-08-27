@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
-import 'package:test_ex1/domain/models/desk/desk_model.dart';
+import 'package:test_ex1/data/dto/desks/desks_dto.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
@@ -12,7 +12,7 @@ import 'package:test_ex1/presentation/widgets/cards/background_card_delete.dart'
 
 class DeskCard extends StatefulWidget {
   const DeskCard({super.key, required this.desk, required this.onTap});
-  final DeskModel desk;
+  final DesksModel desk;
   final VoidCallback onTap;
   @override
   State<DeskCard> createState() => _DeskCardState();

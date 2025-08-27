@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:test_ex1/domain/models/task/task_model.dart';
+import 'package:test_ex1/domain/models/column/column_model.dart';
 import 'package:test_ex1/domain/repositories/repositories.dart';
 
 part 'my_tasks_detail_event.dart';

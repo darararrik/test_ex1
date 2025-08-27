@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:path/path.dart';
 
-import 'package:test_ex1/domain/models/task/task_model.dart';
+import 'package:test_ex1/domain/models/column/column_model.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';

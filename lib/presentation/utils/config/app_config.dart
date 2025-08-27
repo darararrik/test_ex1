@@ -4,7 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:talker/talker.dart';
 
 import 'package:test_ex1/data/db/app_db/db.dart';
-import 'package:test_ex1/data/repositories/token_repository.dart';
+import 'package:test_ex1/data/repositories/token_repository_impl.dart';
 import 'package:test_ex1/domain/repositories/token_repository.dart';
 import 'package:test_ex1/presentation/routing/app_routing.dart';
 import 'package:test_ex1/presentation/utils/config/dio_config.dart';

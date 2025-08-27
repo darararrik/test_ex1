@@ -240,12 +240,12 @@ _$PrayFollowedTasksEventCopyWith<_PrayFollowedTasksEvent> get copyWith => __$Pra
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrayFollowedTasksEvent&&(identical(other.task, task) || other.task == task));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrayFollowedTasksEvent&&const DeepCollectionEquality().equals(other.task, task));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,task);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(task));
 
 @override
 String toString() {
@@ -264,7 +264,7 @@ $Res call({
 });
 
 
-$TaskModelCopyWith<$Res> get task;
+
 
 }
 /// @nodoc
@@ -277,23 +277,14 @@ class __$PrayFollowedTasksEventCopyWithImpl<$Res>
 
 /// Create a copy of FollowedTasksEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? task = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? task = freezed,}) {
   return _then(_PrayFollowedTasksEvent(
-null == task ? _self.task : task // ignore: cast_nullable_to_non_nullable
+freezed == task ? _self.task : task // ignore: cast_nullable_to_non_nullable
 as TaskModel,
   ));
 }
 
-/// Create a copy of FollowedTasksEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TaskModelCopyWith<$Res> get task {
-  
-  return $TaskModelCopyWith<$Res>(_self.task, (value) {
-    return _then(_self.copyWith(task: value));
-  });
-}
+
 }
 
 /// @nodoc
@@ -315,12 +306,12 @@ _$SubscribeEventCopyWith<_SubscribeEvent> get copyWith => __$SubscribeEventCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubscribeEvent&&(identical(other.task, task) || other.task == task));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubscribeEvent&&const DeepCollectionEquality().equals(other.task, task));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,task);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(task));
 
 @override
 String toString() {
@@ -339,7 +330,7 @@ $Res call({
 });
 
 
-$TaskModelCopyWith<$Res> get task;
+
 
 }
 /// @nodoc
@@ -352,23 +343,14 @@ class __$SubscribeEventCopyWithImpl<$Res>
 
 /// Create a copy of FollowedTasksEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? task = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? task = freezed,}) {
   return _then(_SubscribeEvent(
-null == task ? _self.task : task // ignore: cast_nullable_to_non_nullable
+freezed == task ? _self.task : task // ignore: cast_nullable_to_non_nullable
 as TaskModel,
   ));
 }
 
-/// Create a copy of FollowedTasksEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TaskModelCopyWith<$Res> get task {
-  
-  return $TaskModelCopyWith<$Res>(_self.task, (value) {
-    return _then(_self.copyWith(task: value));
-  });
-}
+
 }
 
 /// @nodoc
@@ -390,12 +372,12 @@ _$UnsubscribeEventCopyWith<_UnsubscribeEvent> get copyWith => __$UnsubscribeEven
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UnsubscribeEvent&&(identical(other.task, task) || other.task == task));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UnsubscribeEvent&&const DeepCollectionEquality().equals(other.task, task));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,task);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(task));
 
 @override
 String toString() {
@@ -414,7 +396,7 @@ $Res call({
 });
 
 
-$TaskModelCopyWith<$Res> get task;
+
 
 }
 /// @nodoc
@@ -427,23 +409,14 @@ class __$UnsubscribeEventCopyWithImpl<$Res>
 
 /// Create a copy of FollowedTasksEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? task = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? task = freezed,}) {
   return _then(_UnsubscribeEvent(
-null == task ? _self.task : task // ignore: cast_nullable_to_non_nullable
+freezed == task ? _self.task : task // ignore: cast_nullable_to_non_nullable
 as TaskModel,
   ));
 }
 
-/// Create a copy of FollowedTasksEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TaskModelCopyWith<$Res> get task {
-  
-  return $TaskModelCopyWith<$Res>(_self.task, (value) {
-    return _then(_self.copyWith(task: value));
-  });
-}
+
 }
 
 /// @nodoc

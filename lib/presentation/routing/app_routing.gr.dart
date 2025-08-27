@@ -11,7 +11,6 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i18;
 import 'package:flutter/material.dart' as _i19;
-import 'package:test_ex1/domain/models/task/task_model.dart' as _i20;
 import 'package:test_ex1/presentation/pages/followed_page/followed_page.dart'
     as _i2;
 import 'package:test_ex1/presentation/pages/followed_page/followed_task_detail_page.dart'
@@ -83,7 +82,7 @@ class FollowedTaskDetailRoute
     extends _i18.PageRouteInfo<FollowedTaskDetailRouteArgs> {
   FollowedTaskDetailRoute({
     _i19.Key? key,
-    required _i20.TaskModel task,
+    required InvalidType task,
     List<_i18.PageRouteInfo>? children,
   }) : super(
          FollowedTaskDetailRoute.name,
@@ -107,7 +106,7 @@ class FollowedTaskDetailRouteArgs {
 
   final _i19.Key? key;
 
-  final _i20.TaskModel task;
+  final InvalidType task;
 
   @override
   String toString() {
@@ -194,7 +193,7 @@ class MyDesksWrapperRoute extends _i18.PageRouteInfo<void> {
 class MyTaskDetailRoute extends _i18.PageRouteInfo<MyTaskDetailRouteArgs> {
   MyTaskDetailRoute({
     _i19.Key? key,
-    required _i20.TaskModel task,
+    required InvalidType task,
     List<_i18.PageRouteInfo>? children,
   }) : super(
          MyTaskDetailRoute.name,
@@ -218,7 +217,7 @@ class MyTaskDetailRouteArgs {
 
   final _i19.Key? key;
 
-  final _i20.TaskModel task;
+  final InvalidType task;
 
   @override
   String toString() {
@@ -333,7 +332,7 @@ class RegistrationRoute extends _i18.PageRouteInfo<void> {
 class TaskDetailRoute extends _i18.PageRouteInfo<TaskDetailRouteArgs> {
   TaskDetailRoute({
     _i19.Key? key,
-    required _i20.TaskModel task,
+    required InvalidType task,
     required _i19.VoidCallback onPressedPrayButton,
     List<_i18.PageRouteInfo>? children,
   }) : super(
@@ -370,7 +369,7 @@ class TaskDetailRouteArgs {
 
   final _i19.Key? key;
 
-  final _i20.TaskModel task;
+  final InvalidType task;
 
   final _i19.VoidCallback onPressedPrayButton;
 
@@ -458,7 +457,7 @@ class UserDesksRouteArgs {
 class UserTaskDetailRoute extends _i18.PageRouteInfo<UserTaskDetailRouteArgs> {
   UserTaskDetailRoute({
     _i19.Key? key,
-    required _i20.TaskModel task,
+    required InvalidType task,
     List<_i18.PageRouteInfo>? children,
   }) : super(
          UserTaskDetailRoute.name,
@@ -482,7 +481,7 @@ class UserTaskDetailRouteArgs {
 
   final _i19.Key? key;
 
-  final _i20.TaskModel task;
+  final InvalidType task;
 
   @override
   String toString() {

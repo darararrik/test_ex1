@@ -385,7 +385,7 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  empty,TResult Function()?  loading,TResult Function( List<DeskModel> desks)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  empty,TResult Function()?  loading,TResult Function( List<DesksModel> desks)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EmptyState() when empty != null:
 return empty();case _LoadingState() when loading != null:
@@ -409,7 +409,7 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  empty,required TResult Function()  loading,required TResult Function( List<DeskModel> desks)  loaded,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  empty,required TResult Function()  loading,required TResult Function( List<DesksModel> desks)  loaded,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _EmptyState():
 return empty();case _LoadingState():
@@ -432,7 +432,7 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  empty,TResult? Function()?  loading,TResult? Function( List<DeskModel> desks)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  empty,TResult? Function()?  loading,TResult? Function( List<DesksModel> desks)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _EmptyState() when empty != null:
 return empty();case _LoadingState() when loading != null:
@@ -514,11 +514,11 @@ String toString() {
 
 
 class _LoadedState implements UserDesksState {
-  const _LoadedState(final  List<DeskModel> desks): _desks = desks;
+  const _LoadedState(final  List<DesksModel> desks): _desks = desks;
   
 
- final  List<DeskModel> _desks;
- List<DeskModel> get desks {
+ final  List<DesksModel> _desks;
+ List<DesksModel> get desks {
   if (_desks is EqualUnmodifiableListView) return _desks;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_desks);
@@ -555,7 +555,7 @@ abstract mixin class _$LoadedStateCopyWith<$Res> implements $UserDesksStateCopyW
   factory _$LoadedStateCopyWith(_LoadedState value, $Res Function(_LoadedState) _then) = __$LoadedStateCopyWithImpl;
 @useResult
 $Res call({
- List<DeskModel> desks
+ List<DesksModel> desks
 });
 
 
@@ -575,7 +575,7 @@ class __$LoadedStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? desks = null,}) {
   return _then(_LoadedState(
 null == desks ? _self._desks : desks // ignore: cast_nullable_to_non_nullable
-as List<DeskModel>,
+as List<DesksModel>,
   ));
 }
 

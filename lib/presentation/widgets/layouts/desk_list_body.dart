@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-import 'package:test_ex1/domain/models/desk/desk_model.dart';
+import 'package:test_ex1/data/dto/desks/desks_dto.dart';
 import 'package:test_ex1/domain/models/users_desks/users_desks_model.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';

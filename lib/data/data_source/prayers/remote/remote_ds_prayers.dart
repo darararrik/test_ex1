@@ -1,0 +1,51 @@
+import 'package:dio/dio.dart';
+import 'package:retrofit/dio.dart';
+import 'package:retrofit/http.dart';
+import 'package:test_ex1/data/dto/columns/columns_dto.dart';
+import 'package:test_ex1/data/dto/created_prayer/created_prayer_dto.dart';
+import 'package:test_ex1/data/dto/prayers/prayers_dto.dart';
+import 'package:test_ex1/data/dto/prayers_response/prayers_response_dto.dart';
+import 'package:test_ex1/data/utils/app_defaults.dart';
+part 'remote_ds_prayers.g.dart';
+
+@RestApi()
+abstract class RemoteDSPrayers {
+  factory RemoteDSPrayers(Dio dio, {String? baseUrl}) = _RemoteDSPrayers;
+
+  @POST("/columns/{columnId}/prayers")
+  @Extra({AppDefaults.requiresAuth: true})
+  Future<PrayersResponseDTO> createPrayerByColumnId(
+    @Path("columnId") int columnId,
+    @Body() CreatedPrayerDTO prayer,
+  );
+
+  @GET("/columns/{columnId}/prayers")
+  @Extra({AppDefaults.requiresAuth: true})
+  Future<PrayersResponseDTO> getPrayersByColumnId(
+    @Path("columnId") int columnId,
+  );
+
+  @GET("/subscribed-prayers")
+  @Extra({AppDefaults.requiresAuth: true})
+  Future<PrayersResponseDTO> getSubscribedPrayers();
+
+  @POST("/prayers/{prayerId}/subscribe")
+  @Extra({AppDefaults.requiresAuth: true})
+  Future<PrayersDTO> subscribe(@Path("prayerId") int prayerId);
+
+  @DELETE("/prayers/{prayerId}/subscribe")
+  @Extra({AppDefaults.requiresAuth: true})
+  Future<PrayersDTO> unsubscribe(@Path("prayerId") int prayerId);
+
+  @POST("/prayers/{prayerId}")
+  @Extra({AppDefaults.requiresAuth: true})
+  Future<PrayersDTO> doPrayerById(@Path("prayerId") int prayerId);
+
+  @GET("/prayers/{prayerId}")
+  @Extra({AppDefaults.requiresAuth: true})
+  Future<PrayersDTO> getPrayerById(@Path("prayerId") int prayerId);
+
+  @POST("/prayers/{prayerId}")
+  @Extra({AppDefaults.requiresAuth: true})
+  Future<PrayersDTO> deletePrayerById(@Path("prayerId") int prayerId);
+}

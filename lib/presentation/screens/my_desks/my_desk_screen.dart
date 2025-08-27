@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
-import 'package:test_ex1/domain/models/desk/desk_model.dart';
+import 'package:test_ex1/data/dto/desks/desks_dto.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
@@ -46,7 +46,7 @@ class MyDesksListScreen extends StatelessWidget {
                   message: context.l10n.emptyDeskScreen,
                   iconPath: AppIcons.sketch,
                 ),
-                loaded: (desks) => DesksListBody<DeskModel>(
+                loaded: (desks) => DesksListBody<DesksModel>(
                   items: desks,
                   itemBuilder: (context, desk) => DeskCard(
                     desk: desk,
