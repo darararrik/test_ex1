@@ -19,12 +19,6 @@ class FollowedWrapperScreen extends StatelessWidget
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<MyDesksBloc>.value(value: context.read()),
-        BlocProvider<MyTasksBloc>.value(value: context.read()),
-      ],
-      child: this,
-    );
+    return this;
   }
 }

@@ -23,11 +23,12 @@ abstract class UsersDesksRoutes {
               final args = page.routeData.argsAs<UserDesksRouteArgs>();
               return CupertinoPageRoute<T>(
                 settings: page,
-                builder: (_) => BlocProvider<UserDesksBloc>.value(
-                  value: context.read<UserDesksBloc>()
-                    ..add(UserDesksEvent.getDesksByUserId(args.userId)),
-                  child: child,
-                ),
+                builder: (_) {
+                  context.read<UserDesksBloc>().add(
+                    UserDesksEvent.getDesksByUserId(args.userId),
+                  );
+                  return child;
+                },
               );
             },
       ),
@@ -38,13 +39,12 @@ abstract class UsersDesksRoutes {
               final args = page.routeData.argsAs<UserTasksRouteArgs>();
               return CupertinoPageRoute(
                 settings: page,
-                builder: (_) => BlocProvider<UserTasksBloc>.value(
-                  value: context.read<UserTasksBloc>()
-                    ..add(
-                      UserTasksEvent.getTasksByDeskId(args.userId, args.deskId),
-                    ),
-                  child: child,
-                ),
+                builder: (_) {
+                  context.read<UserTasksBloc>().add(
+                    UserTasksEvent.getTasksByDeskId(args.userId, args.deskId),
+                  );
+                  return child;
+                },
               );
             },
       ),
@@ -55,17 +55,16 @@ abstract class UsersDesksRoutes {
               final args = page.routeData.argsAs<UserTaskDetailRouteArgs>();
               return CupertinoPageRoute<T>(
                 settings: page,
-                builder: (_) => BlocProvider<UserTaskDetailBloc>.value(
-                  value: context.read<UserTaskDetailBloc>()
-                    ..add(
-                      UserTaskDetailEvent.getTaskById(
-                        args.task.id,
-                        args.task.deskId,
-                        args.task.userId,
-                      ),
+                builder: (_) {
+                  context.read<UserTaskDetailBloc>().add(
+                    UserTaskDetailEvent.getTaskById(
+                      args.task.id,
+                      args.task.deskId,
+                      args.task.userId,
                     ),
-                  child: child,
-                ),
+                  );
+                  return child;
+                },
               );
             },
       ),
