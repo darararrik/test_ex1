@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 
 import 'package:test_ex1/data/data_source/data_source.dart';
-import 'package:test_ex1/data/dto/followed_task_ref/followed_task_ref_model.dart';
+import 'package:test_ex1/data/dto/followed_task_ref/followed_task_ref_dto.dart';
 import 'package:test_ex1/domain/models/task/task_model.dart';
 import 'package:test_ex1/domain/repositories/followed_tasks_repository.dart';
 

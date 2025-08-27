@@ -18,12 +18,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _onLogin(_LoginEvent e, Emitter<AuthState> emit) async {
     try {
       emit(const AuthState.loading());
-      final answer = await _authRepository.login(e.email, e.password);
-      if (answer == true) {
-        emit(const AuthState.logined());
-      } else {
-        emit(const AuthState.error("Incorrect login or password"));
-      }
+      await _authRepository.login(e.email, e.password);
+      emit(const AuthState.logined());
     } catch (e) {
       emit(const AuthState.error("Exception"));
     }
@@ -32,16 +28,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _onRegister(_RegisterEvent e, Emitter<AuthState> emit) async {
     try {
       emit(const AuthState.loading());
-      final answer = await _authRepository.register(
-        e.name,
-        e.email,
-        e.password,
-      );
-      if (answer == true) {
-        emit(const AuthState.logined());
-      } else {
-        emit(const AuthState.error("Incorrect login or password"));
-      }
+      await _authRepository.register(e.name, e.email, e.password);
+      emit(const AuthState.logined());
     } catch (e) {
       emit(const AuthState.error("Exception"));
     }

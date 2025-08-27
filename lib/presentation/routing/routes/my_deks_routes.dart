@@ -40,16 +40,15 @@ abstract class MyDeskRoutes {
               return CupertinoPageRoute<T>(
                 fullscreenDialog: page.fullscreenDialog,
                 settings: page,
-                builder: (_) => BlocProvider<MyTasksDetailBloc>.value(
-                  value: context.read()
-                    ..add(
-                      MyTasksDetailEvent.getTaskById(
-                        args.task.id,
-                        args.task.deskId,
-                      ),
+                builder: (_) {
+                  context.read<MyTasksDetailBloc>().add(
+                    MyTasksDetailEvent.getTaskById(
+                      args.task.id,
+                      args.task.deskId,
                     ),
-                  child: child,
-                ),
+                  );
+                  return child;
+                },
               );
             },
       ),

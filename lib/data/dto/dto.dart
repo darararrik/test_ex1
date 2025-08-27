@@ -1,1 +1,1 @@
-export 'followed_task_ref/followed_task_ref_model.dart';
+export 'followed_task_ref/followed_task_ref_dto.dart';
