@@ -18,8 +18,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _onLogin(_LoginEvent e, Emitter<AuthState> emit) async {
     try {
       emit(const AuthState.loading());
-      await _authRepository.login(e.email, e.password);
-      emit(const AuthState.logined());
+      final result = await _authRepository.login(e.email, e.password);
+      if (result.isSuccess) {
+        emit(const AuthState.logined());
+      } else {
+        emit(AuthState.error(result.error!.message));
+      }
     } catch (e) {
       emit(const AuthState.error("Exception"));
     }
@@ -28,8 +32,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _onRegister(_RegisterEvent e, Emitter<AuthState> emit) async {
     try {
       emit(const AuthState.loading());
-      await _authRepository.register(e.name, e.email, e.password);
-      emit(const AuthState.logined());
+      final result = await _authRepository.register(e.name, e.email, e.password);
+      if (result.isSuccess) {
+        emit(const AuthState.logined());
+      } else {
+        emit(AuthState.error(result.error!.message));
+      }
     } catch (e) {
       emit(const AuthState.error("Exception"));
     }

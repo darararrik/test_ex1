@@ -1,5 +1,5 @@
 import 'package:test_ex1/data/data_source/desks/desks.dart';
-import 'package:test_ex1/domain/models/desk/desk_model.dart';
+import 'package:test_ex1/domain/models/desk/desk.dart';
 import 'package:test_ex1/domain/models/task/task_model.dart';
 import 'package:test_ex1/domain/repositories/my_desks_repository.dart';
 

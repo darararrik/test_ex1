@@ -2,11 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:talker/talker.dart';
+
 import 'package:test_ex1/data/db/app_db/db.dart';
 import 'package:test_ex1/data/repositories/token_repository.dart';
-import 'package:test_ex1/data/utils/interceptor.dart';
 import 'package:test_ex1/domain/repositories/token_repository.dart';
 import 'package:test_ex1/presentation/routing/app_routing.dart';
+import 'package:test_ex1/presentation/utils/config/dio_config.dart';
 
 class AppConfig {
   const AppConfig({
@@ -37,27 +38,14 @@ class AppConfig {
       if (apiUrl == null || apiUrl.isEmpty) {
         throw Exception('API_URL не найден в .env файле');
       }
-      final dio = Dio(
-        BaseOptions(
-          baseUrl: apiUrl,
-          connectTimeout: const Duration(milliseconds: 15000),
-          receiveTimeout: const Duration(milliseconds: 10000),
-          headers: {"Content-Type": "application/json"},
-          validateStatus: (_) => true,
-        ),
-      );
-      final talker = Talker();
 
-      dio.interceptors.add(
-        AppInterceptor(tokenRepository: tokenRepository, talker: talker),
-      );
-      dio.interceptors.add(
-        LogInterceptor(
-          requestBody: true,
-          responseBody: true,
-          logPrint: (obj) => talker.log(obj),
-        ),
-      );
+      final talker = Talker();
+      final dio = DioConfig(
+        apiUrl: apiUrl,
+        tokenRepository: tokenRepository,
+        talker: talker,
+      ).create();
+
       final appDatabase = AppDatabase();
       final appRouter = AppRouter();
 
