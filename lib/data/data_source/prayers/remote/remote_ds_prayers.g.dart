@@ -48,12 +48,12 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
   }
 
   @override
-  Future<PrayersResponseDTO> getPrayersByColumnId(int columnId) async {
+  Future<List<PrayerDTO>> getPrayersByColumnId(int columnId) async {
     final _extra = <String, dynamic>{'requiresAuth': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PrayersResponseDTO>(
+    final _options = _setStreamType<List<PrayerDTO>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -63,10 +63,12 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PrayersResponseDTO _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<PrayerDTO> _value;
     try {
-      _value = PrayersResponseDTO.fromJson(_result.data!);
+      _value = _result.data!
+          .map((dynamic i) => PrayerDTO.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -75,12 +77,12 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
   }
 
   @override
-  Future<PrayersResponseDTO> getSubscribedPrayers() async {
+  Future<List<PrayerDTO>> getSubscribedPrayers() async {
     final _extra = <String, dynamic>{'requiresAuth': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PrayersResponseDTO>(
+    final _options = _setStreamType<List<PrayerDTO>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -90,10 +92,12 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PrayersResponseDTO _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<PrayerDTO> _value;
     try {
-      _value = PrayersResponseDTO.fromJson(_result.data!);
+      _value = _result.data!
+          .map((dynamic i) => PrayerDTO.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -102,12 +106,12 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
   }
 
   @override
-  Future<PrayersDTO> subscribe(int prayerId) async {
+  Future<PrayerDTO> subscribe(int prayerId) async {
     final _extra = <String, dynamic>{'requiresAuth': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PrayersDTO>(
+    final _options = _setStreamType<PrayerDTO>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -118,9 +122,9 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PrayersDTO _value;
+    late PrayerDTO _value;
     try {
-      _value = PrayersDTO.fromJson(_result.data!);
+      _value = PrayerDTO.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -129,12 +133,12 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
   }
 
   @override
-  Future<PrayersDTO> unsubscribe(int prayerId) async {
+  Future<PrayerDTO> unsubscribe(int prayerId) async {
     final _extra = <String, dynamic>{'requiresAuth': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PrayersDTO>(
+    final _options = _setStreamType<PrayerDTO>(
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -145,9 +149,9 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PrayersDTO _value;
+    late PrayerDTO _value;
     try {
-      _value = PrayersDTO.fromJson(_result.data!);
+      _value = PrayerDTO.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -156,12 +160,12 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
   }
 
   @override
-  Future<PrayersDTO> doPrayerById(int prayerId) async {
+  Future<PrayerDTO> doPrayerById(int prayerId) async {
     final _extra = <String, dynamic>{'requiresAuth': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PrayersDTO>(
+    final _options = _setStreamType<PrayerDTO>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -172,9 +176,9 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PrayersDTO _value;
+    late PrayerDTO _value;
     try {
-      _value = PrayersDTO.fromJson(_result.data!);
+      _value = PrayerDTO.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -183,12 +187,12 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
   }
 
   @override
-  Future<PrayersDTO> getPrayerById(int prayerId) async {
+  Future<PrayerDTO> getPrayerById(int prayerId) async {
     final _extra = <String, dynamic>{'requiresAuth': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PrayersDTO>(
+    final _options = _setStreamType<PrayerDTO>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -199,9 +203,9 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PrayersDTO _value;
+    late PrayerDTO _value;
     try {
-      _value = PrayersDTO.fromJson(_result.data!);
+      _value = PrayerDTO.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -210,12 +214,12 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
   }
 
   @override
-  Future<PrayersDTO> deletePrayerById(int prayerId) async {
+  Future<PrayerDTO> deletePrayerById(int prayerId) async {
     final _extra = <String, dynamic>{'requiresAuth': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PrayersDTO>(
+    final _options = _setStreamType<PrayerDTO>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -226,9 +230,9 @@ class _RemoteDSPrayers implements RemoteDSPrayers {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PrayersDTO _value;
+    late PrayerDTO _value;
     try {
-      _value = PrayersDTO.fromJson(_result.data!);
+      _value = PrayerDTO.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

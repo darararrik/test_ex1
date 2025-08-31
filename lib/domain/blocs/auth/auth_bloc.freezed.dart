@@ -55,10 +55,11 @@ extension AuthEventPatterns on AuthEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _LoginEvent value)?  login,TResult Function( _RegisterEvent value)?  register,TResult Function( _LogoutEvent value)?  logout,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _CheckEvent value)?  check,TResult Function( _LoginEvent value)?  login,TResult Function( _RegisterEvent value)?  register,TResult Function( _LogoutEvent value)?  logout,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _LoginEvent() when login != null:
+case _CheckEvent() when check != null:
+return check(_that);case _LoginEvent() when login != null:
 return login(_that);case _RegisterEvent() when register != null:
 return register(_that);case _LogoutEvent() when logout != null:
 return logout(_that);case _:
@@ -79,10 +80,11 @@ return logout(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _LoginEvent value)  login,required TResult Function( _RegisterEvent value)  register,required TResult Function( _LogoutEvent value)  logout,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _CheckEvent value)  check,required TResult Function( _LoginEvent value)  login,required TResult Function( _RegisterEvent value)  register,required TResult Function( _LogoutEvent value)  logout,}){
 final _that = this;
 switch (_that) {
-case _LoginEvent():
+case _CheckEvent():
+return check(_that);case _LoginEvent():
 return login(_that);case _RegisterEvent():
 return register(_that);case _LogoutEvent():
 return logout(_that);case _:
@@ -102,10 +104,11 @@ return logout(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _LoginEvent value)?  login,TResult? Function( _RegisterEvent value)?  register,TResult? Function( _LogoutEvent value)?  logout,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _CheckEvent value)?  check,TResult? Function( _LoginEvent value)?  login,TResult? Function( _RegisterEvent value)?  register,TResult? Function( _LogoutEvent value)?  logout,}){
 final _that = this;
 switch (_that) {
-case _LoginEvent() when login != null:
+case _CheckEvent() when check != null:
+return check(_that);case _LoginEvent() when login != null:
 return login(_that);case _RegisterEvent() when register != null:
 return register(_that);case _LogoutEvent() when logout != null:
 return logout(_that);case _:
@@ -125,9 +128,10 @@ return logout(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email,  String password)?  login,TResult Function( String name,  String email,  String password)?  register,TResult Function()?  logout,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  check,TResult Function( String email,  String password)?  login,TResult Function( String name,  String email,  String password)?  register,TResult Function()?  logout,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _LoginEvent() when login != null:
+case _CheckEvent() when check != null:
+return check();case _LoginEvent() when login != null:
 return login(_that.email,_that.password);case _RegisterEvent() when register != null:
 return register(_that.name,_that.email,_that.password);case _LogoutEvent() when logout != null:
 return logout();case _:
@@ -148,9 +152,10 @@ return logout();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email,  String password)  login,required TResult Function( String name,  String email,  String password)  register,required TResult Function()  logout,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  check,required TResult Function( String email,  String password)  login,required TResult Function( String name,  String email,  String password)  register,required TResult Function()  logout,}) {final _that = this;
 switch (_that) {
-case _LoginEvent():
+case _CheckEvent():
+return check();case _LoginEvent():
 return login(_that.email,_that.password);case _RegisterEvent():
 return register(_that.name,_that.email,_that.password);case _LogoutEvent():
 return logout();case _:
@@ -170,9 +175,10 @@ return logout();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email,  String password)?  login,TResult? Function( String name,  String email,  String password)?  register,TResult? Function()?  logout,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  check,TResult? Function( String email,  String password)?  login,TResult? Function( String name,  String email,  String password)?  register,TResult? Function()?  logout,}) {final _that = this;
 switch (_that) {
-case _LoginEvent() when login != null:
+case _CheckEvent() when check != null:
+return check();case _LoginEvent() when login != null:
 return login(_that.email,_that.password);case _RegisterEvent() when register != null:
 return register(_that.name,_that.email,_that.password);case _LogoutEvent() when logout != null:
 return logout();case _:
@@ -182,6 +188,38 @@ return logout();case _:
 }
 
 }
+
+/// @nodoc
+
+
+class _CheckEvent implements AuthEvent {
+  const _CheckEvent();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'AuthEvent.check()';
+}
+
+
+}
+
+
+
 
 /// @nodoc
 

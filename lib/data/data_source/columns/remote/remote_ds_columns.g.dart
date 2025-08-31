@@ -27,7 +27,7 @@ class _RemoteDSColumns implements RemoteDSColumns {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/desks/{deksId}/columns',
+            '/desks/${deskId}/columns',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -45,12 +45,12 @@ class _RemoteDSColumns implements RemoteDSColumns {
   }
 
   @override
-  Future<ColumnsDTO> getColumnById(int columnId) async {
+  Future<ColumnDTO> getColumnById(int columnId) async {
     final _extra = <String, dynamic>{'requiresAuth': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ColumnsDTO>(
+    final _options = _setStreamType<ColumnDTO>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -61,9 +61,9 @@ class _RemoteDSColumns implements RemoteDSColumns {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ColumnsDTO _value;
+    late ColumnDTO _value;
     try {
-      _value = ColumnsDTO.fromJson(_result.data!);
+      _value = ColumnDTO.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -72,12 +72,12 @@ class _RemoteDSColumns implements RemoteDSColumns {
   }
 
   @override
-  Future<ColumnsDTO> deleteColumn(int columnId) async {
+  Future<void> deleteColumn(int columnId) async {
     final _extra = <String, dynamic>{'requiresAuth': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ColumnsDTO>(
+    final _options = _setStreamType<void>(
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -87,24 +87,16 @@ class _RemoteDSColumns implements RemoteDSColumns {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ColumnsDTO _value;
-    try {
-      _value = ColumnsDTO.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
+    await _dio.fetch<void>(_options);
   }
 
   @override
-  Future<ColumnsDTO> createColumn(CreatedColumnDTO column) async {
+  Future<ColumnDTO> createColumn(CreatedColumnDTO column) async {
     final _extra = <String, dynamic>{'requiresAuth': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = column;
-    final _options = _setStreamType<ColumnsDTO>(
+    final _options = _setStreamType<ColumnDTO>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -115,9 +107,9 @@ class _RemoteDSColumns implements RemoteDSColumns {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ColumnsDTO _value;
+    late ColumnDTO _value;
     try {
-      _value = ColumnsDTO.fromJson(_result.data!);
+      _value = ColumnDTO.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:test_ex1/data/dto/column/column_dto.dart';
 
+import 'package:test_ex1/data/dto/desk/desk_dto.dart';
 import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
-import 'package:test_ex1/data/dto/desks/desks_dto.dart';
+import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
@@ -25,7 +27,8 @@ class MyDesksListScreen extends StatelessWidget {
             context: context,
             builder: (context) => CreateDialog(
               title: context.l10n.newColumn,
-              onSubmit: (name) => bloc.add(MyDesksEvent.createDesk(name)),
+              onSubmit: (name) =>
+                  bloc.add(MyDesksEvent.createColumn(title: name)),
               hintText: context.l10n.enterTitleColumn,
             ),
           );
@@ -46,13 +49,13 @@ class MyDesksListScreen extends StatelessWidget {
                   message: context.l10n.emptyDeskScreen,
                   iconPath: AppIcons.sketch,
                 ),
-                loaded: (desks) => DesksListBody<DesksModel>(
-                  items: desks,
-                  itemBuilder: (context, desk) => DeskCard(
-                    desk: desk,
+                loaded: (columns) => DesksListBody<ColumnModel>(
+                  items: columns,
+                  itemBuilder: (context, column) => ColumnCard(
+                    column: column,
                     onTap: () {
                       context.pushRoute(
-                        MyTasksRoute(deskId: desk.id, titleAB: desk.title),
+                        MyTasksRoute(deskId: column.id, titleAB: column.title),
                       );
                     },
                   ),

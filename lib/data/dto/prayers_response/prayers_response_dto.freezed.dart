@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PrayersResponseDTO {
 
- List<PrayersDTO> get data; CursorDTO get cursor;
+ List<PrayerDTO> get data; CursorDTO get cursor;
 /// Create a copy of PrayersResponseDTO
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $PrayersResponseDTOCopyWith<$Res>  {
   factory $PrayersResponseDTOCopyWith(PrayersResponseDTO value, $Res Function(PrayersResponseDTO) _then) = _$PrayersResponseDTOCopyWithImpl;
 @useResult
 $Res call({
- List<PrayersDTO> data, CursorDTO cursor
+ List<PrayerDTO> data, CursorDTO cursor
 });
 
 
@@ -68,7 +68,7 @@ class _$PrayersResponseDTOCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? data = null,Object? cursor = null,}) {
   return _then(_self.copyWith(
 data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as List<PrayersDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
+as List<PrayerDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
 as CursorDTO,
   ));
 }
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<PrayersDTO> data,  CursorDTO cursor)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<PrayerDTO> data,  CursorDTO cursor)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PrayersResponseDTO() when $default != null:
 return $default(_that.data,_that.cursor);case _:
@@ -181,7 +181,7 @@ return $default(_that.data,_that.cursor);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<PrayersDTO> data,  CursorDTO cursor)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<PrayerDTO> data,  CursorDTO cursor)  $default,) {final _that = this;
 switch (_that) {
 case _PrayersResponseDTO():
 return $default(_that.data,_that.cursor);}
@@ -198,7 +198,7 @@ return $default(_that.data,_that.cursor);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<PrayersDTO> data,  CursorDTO cursor)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<PrayerDTO> data,  CursorDTO cursor)?  $default,) {final _that = this;
 switch (_that) {
 case _PrayersResponseDTO() when $default != null:
 return $default(_that.data,_that.cursor);case _:
@@ -213,11 +213,11 @@ return $default(_that.data,_that.cursor);case _:
 @JsonSerializable()
 
 class _PrayersResponseDTO implements PrayersResponseDTO {
-  const _PrayersResponseDTO({required final  List<PrayersDTO> data, required this.cursor}): _data = data;
+  const _PrayersResponseDTO({required final  List<PrayerDTO> data, required this.cursor}): _data = data;
   factory _PrayersResponseDTO.fromJson(Map<String, dynamic> json) => _$PrayersResponseDTOFromJson(json);
 
- final  List<PrayersDTO> _data;
-@override List<PrayersDTO> get data {
+ final  List<PrayerDTO> _data;
+@override List<PrayerDTO> get data {
   if (_data is EqualUnmodifiableListView) return _data;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_data);
@@ -258,7 +258,7 @@ abstract mixin class _$PrayersResponseDTOCopyWith<$Res> implements $PrayersRespo
   factory _$PrayersResponseDTOCopyWith(_PrayersResponseDTO value, $Res Function(_PrayersResponseDTO) _then) = __$PrayersResponseDTOCopyWithImpl;
 @override @useResult
 $Res call({
- List<PrayersDTO> data, CursorDTO cursor
+ List<PrayerDTO> data, CursorDTO cursor
 });
 
 
@@ -278,7 +278,7 @@ class __$PrayersResponseDTOCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? data = null,Object? cursor = null,}) {
   return _then(_PrayersResponseDTO(
 data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<PrayersDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
+as List<PrayerDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
 as CursorDTO,
   ));
 }

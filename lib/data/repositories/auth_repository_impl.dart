@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:test_ex1/data/data.dart';
 
+import 'package:test_ex1/data/data.dart';
 import 'package:test_ex1/data/data_source/auth/remote/remote_ds_auth.dart';
 import 'package:test_ex1/data/dto/dto.dart';
 import 'package:test_ex1/data/dto/login_request/login_request_dto.dart';
 import 'package:test_ex1/data/dto/register_request/register_request_dto.dart';
+import 'package:test_ex1/data/dto/user/user_dto.dart';
 import 'package:test_ex1/data/utils/app_defaults.dart';
 import 'package:test_ex1/data/utils/utils.dart';
-import 'package:test_ex1/data/dto/user/user_dto.dart';
 import 'package:test_ex1/domain/repositories/repositories.dart';
 
 class AuthRepositoryImpl implements IAuthRepository {

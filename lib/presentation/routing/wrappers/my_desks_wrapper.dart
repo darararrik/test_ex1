@@ -4,8 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_task_detail/my_tasks_detail_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_prayers_detail/my_prayers_detail_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_prayers/my_prayers_bloc.dart';
 
 @RoutePage()
 class MyDesksWrapperScreen extends StatelessWidget implements AutoRouteWrapper {
@@ -20,7 +20,7 @@ class MyDesksWrapperScreen extends StatelessWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => MyTasksDetailBloc(context.read())),
+        BlocProvider(create: (context) => MyPrayersDetailBloc(context.read())),
       ],
       child: this,
     );

@@ -9,7 +9,7 @@ part of 'desks_response_dto.dart';
 _DesksResponseDTO _$DesksResponseDTOFromJson(Map<String, dynamic> json) =>
     _DesksResponseDTO(
       data: (json['data'] as List<dynamic>)
-          .map((e) => DesksDTO.fromJson(e as Map<String, dynamic>))
+          .map((e) => DeskDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
       cursor: CursorDTO.fromJson(json['cursor'] as Map<String, dynamic>),
     );

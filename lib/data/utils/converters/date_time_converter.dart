@@ -7,14 +7,25 @@ class DateTimeConverter implements JsonConverter<DateTime, String> {
   @override
   DateTime fromJson(String json) {
     try {
-      return DateFormat('dd.MM.yyyy HH:mm').parse(json);
-    } catch (e) {
-      return DateTime.fromMillisecondsSinceEpoch(0);
+      // сначала пробуем ISO8601
+      return DateTime.parse(json);
+    } catch (_) {
+      try {
+        // fallback: dd.MM.yyyy HH:mm
+        return DateFormat('dd.MM.yyyy HH:mm').parse(json);
+      } catch (_) {
+        // если вообще не удалось — возвращаем "нулевую" дату
+        return DateTime.fromMillisecondsSinceEpoch(0);
+      }
     }
   }
 
   @override
   String toJson(DateTime object) {
-    return DateFormat('dd.MM.yyyy').format(object);
+    // тут реши, какой формат тебе нужен в JSON:
+    // ISO8601:
+    return object.toUtc().toIso8601String();
+    // или локальный формат:
+    // return DateFormat('dd.MM.yyyy HH:mm').format(object);
   }
 }

@@ -9,7 +9,7 @@ part of 'columns_response_dto.dart';
 _ColumnsResponseDTO _$ColumnsResponseDTOFromJson(Map<String, dynamic> json) =>
     _ColumnsResponseDTO(
       data: (json['data'] as List<dynamic>)
-          .map((e) => ColumnsDTO.fromJson(e as Map<String, dynamic>))
+          .map((e) => ColumnDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
       cursor: CursorDTO.fromJson(json['cursor'] as Map<String, dynamic>),
     );

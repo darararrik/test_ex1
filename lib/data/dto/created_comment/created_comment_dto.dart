@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'created_comment_dto.freezed.dart';
 part 'created_comment_dto.g.dart';
 

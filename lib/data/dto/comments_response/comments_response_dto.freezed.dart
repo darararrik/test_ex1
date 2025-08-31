@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CommentsResponseDTO {
 
- List<CommentsDTO> get data; CursorDTO get cursor;
+ List<CommentDTO> get data; CursorDTO get cursor;
 /// Create a copy of CommentsResponseDTO
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $CommentsResponseDTOCopyWith<$Res>  {
   factory $CommentsResponseDTOCopyWith(CommentsResponseDTO value, $Res Function(CommentsResponseDTO) _then) = _$CommentsResponseDTOCopyWithImpl;
 @useResult
 $Res call({
- List<CommentsDTO> data, CursorDTO cursor
+ List<CommentDTO> data, CursorDTO cursor
 });
 
 
@@ -68,7 +68,7 @@ class _$CommentsResponseDTOCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? data = null,Object? cursor = null,}) {
   return _then(_self.copyWith(
 data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as List<CommentsDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
+as List<CommentDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
 as CursorDTO,
   ));
 }
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<CommentsDTO> data,  CursorDTO cursor)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<CommentDTO> data,  CursorDTO cursor)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CommentsResponseDTO() when $default != null:
 return $default(_that.data,_that.cursor);case _:
@@ -181,7 +181,7 @@ return $default(_that.data,_that.cursor);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<CommentsDTO> data,  CursorDTO cursor)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<CommentDTO> data,  CursorDTO cursor)  $default,) {final _that = this;
 switch (_that) {
 case _CommentsResponseDTO():
 return $default(_that.data,_that.cursor);}
@@ -198,7 +198,7 @@ return $default(_that.data,_that.cursor);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<CommentsDTO> data,  CursorDTO cursor)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<CommentDTO> data,  CursorDTO cursor)?  $default,) {final _that = this;
 switch (_that) {
 case _CommentsResponseDTO() when $default != null:
 return $default(_that.data,_that.cursor);case _:
@@ -213,11 +213,11 @@ return $default(_that.data,_that.cursor);case _:
 @JsonSerializable()
 
 class _CommentsResponseDTO implements CommentsResponseDTO {
-  const _CommentsResponseDTO({required final  List<CommentsDTO> data, required this.cursor}): _data = data;
+  const _CommentsResponseDTO({required final  List<CommentDTO> data, required this.cursor}): _data = data;
   factory _CommentsResponseDTO.fromJson(Map<String, dynamic> json) => _$CommentsResponseDTOFromJson(json);
 
- final  List<CommentsDTO> _data;
-@override List<CommentsDTO> get data {
+ final  List<CommentDTO> _data;
+@override List<CommentDTO> get data {
   if (_data is EqualUnmodifiableListView) return _data;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_data);
@@ -258,7 +258,7 @@ abstract mixin class _$CommentsResponseDTOCopyWith<$Res> implements $CommentsRes
   factory _$CommentsResponseDTOCopyWith(_CommentsResponseDTO value, $Res Function(_CommentsResponseDTO) _then) = __$CommentsResponseDTOCopyWithImpl;
 @override @useResult
 $Res call({
- List<CommentsDTO> data, CursorDTO cursor
+ List<CommentDTO> data, CursorDTO cursor
 });
 
 
@@ -278,7 +278,7 @@ class __$CommentsResponseDTOCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? data = null,Object? cursor = null,}) {
   return _then(_CommentsResponseDTO(
 data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<CommentsDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
+as List<CommentDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
 as CursorDTO,
   ));
 }

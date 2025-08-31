@@ -11,8 +11,19 @@ import 'package:test_ex1/presentation/utils/extensions/build_context_x.dart';
 import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
 
 @RoutePage(name: 'NavBarRoute')
-class NavBar extends StatelessWidget {
+class NavBar extends StatefulWidget {
   const NavBar({super.key});
+
+  @override
+  State<NavBar> createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<AuthBloc>().add(const AuthEvent.check());
+  }
 
   @override
   Widget build(BuildContext context) {

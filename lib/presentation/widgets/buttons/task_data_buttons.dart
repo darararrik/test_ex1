@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-import 'package:test_ex1/domain/blocs/followed/followed_tasks_bloc.dart';
-import 'package:test_ex1/domain/models/column/column_model.dart';
+import 'package:test_ex1/domain/blocs/subscribed_prayer_bloc/subscribed_prayer_bloc.dart';
+import 'package:test_ex1/domain/models/prayer.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
@@ -12,11 +12,11 @@ import 'package:test_ex1/presentation/widgets/widgets.dart';
 class TaskDataAndButtons extends StatelessWidget {
   const TaskDataAndButtons({
     super.key,
-    required this.task,
+    required this.prayer,
     required this.onPressedPrayButton,
   });
 
-  final TaskModel task;
+  final PrayerModel prayer;
   final VoidCallback onPressedPrayButton;
 
   @override
@@ -41,15 +41,10 @@ class TaskDataAndButtons extends StatelessWidget {
               text: context.l10n.prayed,
             ),
             const SizedBox(height: S.s8),
-            BlocBuilder<FollowedTasksBloc, FollowedTasksState>(
+            BlocBuilder<SubscribedPrayerBloc, SubscribedPrayerState>(
               builder: (context, state) {
                 final isSubscribed = state.maybeWhen(
-                  loaded: (tsk) => tsk.any(
-                    (t) =>
-                        t.id == task.id &&
-                        t.deskId == task.deskId &&
-                        t.userId == task.userId,
-                  ),
+                  loaded: (prayers) => prayers.any((p) => p.id == prayer.id),
                   orElse: () => false,
                 );
                 return Visibility(
@@ -57,8 +52,8 @@ class TaskDataAndButtons extends StatelessWidget {
                   replacement: SecondaryButton(
                     isEnabled: true,
                     onPressed: () {
-                      context.read<FollowedTasksBloc>().add(
-                        FollowedTasksEvent.subscribe(task),
+                      context.read<SubscribedPrayerBloc>().add(
+                        SubscribedPrayerEvent.subscribe(prayer: prayer),
                       );
                     },
                     text: context.l10n.follow,
@@ -68,8 +63,8 @@ class TaskDataAndButtons extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     borderColor: context.appColors.gray600,
                     onPressed: () {
-                      context.read<FollowedTasksBloc>().add(
-                        FollowedTasksEvent.unsubscribe(task),
+                      context.read<SubscribedPrayerBloc>().add(
+                        SubscribedPrayerEvent.unsubscribe(prayer: prayer),
                       );
                     },
                     text: context.l10n.follow,
@@ -102,12 +97,12 @@ class TaskDataAndButtons extends StatelessWidget {
               children: [
                 WhiteBoxText(
                   title: context.l10n.date,
-                  data: task.date.toFormattedString(),
+                  data: prayer.createdAt.toFormattedString(),
                 ),
                 const SizedBox(width: S.s12),
                 WhiteBoxText(
                   title: context.l10n.totalPrayers,
-                  data: task.totalPrayers.toString(),
+                  data: prayer.completesCount.toString(),
                 ),
               ],
             ),
@@ -117,12 +112,12 @@ class TaskDataAndButtons extends StatelessWidget {
               children: [
                 WhiteBoxText(
                   title: context.l10n.otherPrayers,
-                  data: task.otherPrayers.toString(),
+                  data: prayer.otherPrayCount.toString(),
                 ),
                 const SizedBox(width: S.s12),
                 WhiteBoxText(
                   title: context.l10n.myPrayers,
-                  data: task.myPrayers.toString(),
+                  data: prayer.myPrayCount.toString(),
                 ),
               ],
             ),

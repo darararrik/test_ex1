@@ -18,18 +18,14 @@ class FollowedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        BlocListener<MyTasksBloc, MyTasksState>(
+        BlocListener<MyPrayersBloc, MyPrayersState>(
           listener: (context, state) {
             state.maybeWhen(
               loaded: (_) {
-                context.followedBloc.add(
-                  const FollowedTasksEvent.getFollowedTasks(),
-                );
+                context.followedBloc.add(const SubscribedPrayerEvent.getSubs());
               },
               empty: () {
-                context.followedBloc.add(
-                  const FollowedTasksEvent.getFollowedTasks(),
-                );
+                context.followedBloc.add(const SubscribedPrayerEvent.getSubs());
               },
               orElse: () {},
             );
@@ -39,14 +35,10 @@ class FollowedPage extends StatelessWidget {
           listener: (context, state) {
             state.maybeWhen(
               loaded: (_) {
-                context.followedBloc.add(
-                  const FollowedTasksEvent.getFollowedTasks(),
-                );
+                context.followedBloc.add(const SubscribedPrayerEvent.getSubs());
               },
               empty: () {
-                context.followedBloc.add(
-                  const FollowedTasksEvent.getFollowedTasks(),
-                );
+                context.followedBloc.add(const SubscribedPrayerEvent.getSubs());
               },
               orElse: () {},
             );
@@ -57,7 +49,7 @@ class FollowedPage extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             FirstSliverAppBar(title: context.l10n.followed),
-            BlocBuilder<FollowedTasksBloc, FollowedTasksState>(
+            BlocBuilder<SubscribedPrayerBloc, SubscribedPrayerState>(
               builder: (context, state) {
                 return state.when(
                   loading: () => const LoadingState(),
@@ -66,16 +58,16 @@ class FollowedPage extends StatelessWidget {
                     iconPath: AppIcons.sketch,
                   ),
                   error: (message) => const ErrorState(),
-                  loaded: (tasks) {
+                  loaded: (prayers) {
                     return TasksScreen(
-                      tasks: tasks,
+                      prayers: prayers,
                       onTapRoute: (task) => context.pushRoute(
                         FollowedTaskDetailRoute(task: task),
                       ),
-                      onPressedPrayButton: (task) =>
-                          context.handlePray(task, () {
-                            context.read<FollowedTasksBloc>().add(
-                              FollowedTasksEvent.pray(task),
+                      onPressedPrayButton: (prayer) =>
+                          context.handlePray(prayer, () {
+                            context.read<SubscribedPrayerBloc>().add(
+                              SubscribedPrayerEvent.pray(prayer: prayer),
                             );
                           }),
                     );

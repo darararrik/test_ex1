@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ColumnsResponseDTO {
 
- List<ColumnsDTO> get data; CursorDTO get cursor;
+ List<ColumnDTO> get data; CursorDTO get cursor;
 /// Create a copy of ColumnsResponseDTO
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ColumnsResponseDTOCopyWith<$Res>  {
   factory $ColumnsResponseDTOCopyWith(ColumnsResponseDTO value, $Res Function(ColumnsResponseDTO) _then) = _$ColumnsResponseDTOCopyWithImpl;
 @useResult
 $Res call({
- List<ColumnsDTO> data, CursorDTO cursor
+ List<ColumnDTO> data, CursorDTO cursor
 });
 
 
@@ -68,7 +68,7 @@ class _$ColumnsResponseDTOCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? data = null,Object? cursor = null,}) {
   return _then(_self.copyWith(
 data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as List<ColumnsDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
+as List<ColumnDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
 as CursorDTO,
   ));
 }
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<ColumnsDTO> data,  CursorDTO cursor)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<ColumnDTO> data,  CursorDTO cursor)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ColumnsResponseDTO() when $default != null:
 return $default(_that.data,_that.cursor);case _:
@@ -181,7 +181,7 @@ return $default(_that.data,_that.cursor);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<ColumnsDTO> data,  CursorDTO cursor)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<ColumnDTO> data,  CursorDTO cursor)  $default,) {final _that = this;
 switch (_that) {
 case _ColumnsResponseDTO():
 return $default(_that.data,_that.cursor);}
@@ -198,7 +198,7 @@ return $default(_that.data,_that.cursor);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<ColumnsDTO> data,  CursorDTO cursor)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<ColumnDTO> data,  CursorDTO cursor)?  $default,) {final _that = this;
 switch (_that) {
 case _ColumnsResponseDTO() when $default != null:
 return $default(_that.data,_that.cursor);case _:
@@ -213,11 +213,11 @@ return $default(_that.data,_that.cursor);case _:
 @JsonSerializable()
 
 class _ColumnsResponseDTO implements ColumnsResponseDTO {
-  const _ColumnsResponseDTO({required final  List<ColumnsDTO> data, required this.cursor}): _data = data;
+  const _ColumnsResponseDTO({required final  List<ColumnDTO> data, required this.cursor}): _data = data;
   factory _ColumnsResponseDTO.fromJson(Map<String, dynamic> json) => _$ColumnsResponseDTOFromJson(json);
 
- final  List<ColumnsDTO> _data;
-@override List<ColumnsDTO> get data {
+ final  List<ColumnDTO> _data;
+@override List<ColumnDTO> get data {
   if (_data is EqualUnmodifiableListView) return _data;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_data);
@@ -258,7 +258,7 @@ abstract mixin class _$ColumnsResponseDTOCopyWith<$Res> implements $ColumnsRespo
   factory _$ColumnsResponseDTOCopyWith(_ColumnsResponseDTO value, $Res Function(_ColumnsResponseDTO) _then) = __$ColumnsResponseDTOCopyWithImpl;
 @override @useResult
 $Res call({
- List<ColumnsDTO> data, CursorDTO cursor
+ List<ColumnDTO> data, CursorDTO cursor
 });
 
 
@@ -278,7 +278,7 @@ class __$ColumnsResponseDTOCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? data = null,Object? cursor = null,}) {
   return _then(_ColumnsResponseDTO(
 data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<ColumnsDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
+as List<ColumnDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
 as CursorDTO,
   ));
 }

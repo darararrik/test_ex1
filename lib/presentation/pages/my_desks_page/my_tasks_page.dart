@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/domain/blocs/blocs.dart';
-import 'package:test_ex1/domain/models/column/column_model.dart';
+import 'package:test_ex1/domain/models/prayer.dart';
 import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/screens/task_detail/task_detail_screen.dart';
@@ -23,14 +23,18 @@ class MyTasksPage extends StatelessWidget {
       floatingActionButton: context.isMyDesksWrapperRoute
           ? CreateUnitFAB(
               onPressed: () async {
-                final bloc = context.read<MyTasksBloc>();
+                final bloc = context.read<MyPrayersBloc>();
                 await showDialog(
                   context: context,
                   builder: (context) => CreateDialog(
                     title: context.l10n.newPrayer,
                     hintText: context.l10n.enterTitlePrayer,
-                    onSubmit: (name) =>
-                        bloc.add(MyTasksEvent.createTask(name, deskId)),
+                    onSubmit: (name) => bloc.add(
+                      MyPrayersEvent.createPrayer(
+                        title: name,
+                        columnId: deskId,
+                      ),
+                    ),
                   ),
                 );
               },
@@ -39,7 +43,7 @@ class MyTasksPage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           MySliverAppBar(title: titleAB),
-          BlocBuilder<MyTasksBloc, MyTasksState>(
+          BlocBuilder<MyPrayersBloc, MyPrayersState>(
             builder: (context, state) {
               return state.when(
                 loading: () => const LoadingState(),
@@ -48,15 +52,15 @@ class MyTasksPage extends StatelessWidget {
                   message: context.l10n.emptyTasksScreen,
                   iconPath: AppIcons.sketch,
                 ),
-                loaded: (tasks) => TasksScreen(
-                  tasks: tasks,
-                  onTapRoute: (TaskModel task) {
-                    context.pushRoute(MyTaskDetailRoute(task: task));
+                loaded: (prayers) => TasksScreen(
+                  prayers: prayers,
+                  onTapRoute: (PrayerModel task) {
+                    context.pushRoute(MyTaskDetailRoute(prayer: task));
                   },
-                  onPressedPrayButton: (task) => context.handlePray(
-                    task,
-                    () => context.read<MyTasksBloc>().add(
-                      MyTasksEvent.pray(task),
+                  onPressedPrayButton: (prayer) => context.handlePray(
+                    prayer,
+                    () => context.read<MyPrayersBloc>().add(
+                      MyPrayersEvent.pray(prayer: prayer),
                     ),
                   ),
                 ),

@@ -4,8 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_task_detail/my_tasks_detail_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_prayers_detail/my_prayers_detail_bloc.dart';
+import 'package:test_ex1/domain/blocs/my_prayers/my_prayers_bloc.dart';
 import 'package:test_ex1/presentation/pages/my_desks_page/my_tasks_detail_page.dart';
 import 'package:test_ex1/presentation/pages/my_desks_page/my_tasks_page.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
@@ -25,8 +25,8 @@ abstract class MyDeskRoutes {
                 fullscreenDialog: page.fullscreenDialog,
                 settings: page,
                 builder: (_) {
-                  context.read<MyTasksBloc>().add(
-                    MyTasksEvent.getTasksByDeskId(args.deskId),
+                  context.read<MyPrayersBloc>().add(
+                    MyPrayersEvent.getMyPrayersByDeskId(columnId: args.deskId),
                   );
                   return child;
                 },
@@ -42,11 +42,8 @@ abstract class MyDeskRoutes {
                 fullscreenDialog: page.fullscreenDialog,
                 settings: page,
                 builder: (_) {
-                  context.read<MyTasksDetailBloc>().add(
-                    MyTasksDetailEvent.getTaskById(
-                      args.task.id,
-                      args.task.deskId,
-                    ),
+                  context.read<MyPrayersDetailBloc>().add(
+                    MyPrayersDetailEvent.getTaskById(prayerId: args.prayer.id),
                   );
                   return child;
                 },

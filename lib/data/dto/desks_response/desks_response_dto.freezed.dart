@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DesksResponseDTO {
 
- List<DesksDTO> get data; CursorDTO get cursor;
+ List<DeskDTO> get data; CursorDTO get cursor;
 /// Create a copy of DesksResponseDTO
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $DesksResponseDTOCopyWith<$Res>  {
   factory $DesksResponseDTOCopyWith(DesksResponseDTO value, $Res Function(DesksResponseDTO) _then) = _$DesksResponseDTOCopyWithImpl;
 @useResult
 $Res call({
- List<DesksDTO> data, CursorDTO cursor
+ List<DeskDTO> data, CursorDTO cursor
 });
 
 
@@ -68,7 +68,7 @@ class _$DesksResponseDTOCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? data = null,Object? cursor = null,}) {
   return _then(_self.copyWith(
 data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as List<DesksDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
+as List<DeskDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
 as CursorDTO,
   ));
 }
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<DesksDTO> data,  CursorDTO cursor)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<DeskDTO> data,  CursorDTO cursor)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DesksResponseDTO() when $default != null:
 return $default(_that.data,_that.cursor);case _:
@@ -181,7 +181,7 @@ return $default(_that.data,_that.cursor);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<DesksDTO> data,  CursorDTO cursor)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<DeskDTO> data,  CursorDTO cursor)  $default,) {final _that = this;
 switch (_that) {
 case _DesksResponseDTO():
 return $default(_that.data,_that.cursor);}
@@ -198,7 +198,7 @@ return $default(_that.data,_that.cursor);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<DesksDTO> data,  CursorDTO cursor)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<DeskDTO> data,  CursorDTO cursor)?  $default,) {final _that = this;
 switch (_that) {
 case _DesksResponseDTO() when $default != null:
 return $default(_that.data,_that.cursor);case _:
@@ -213,11 +213,11 @@ return $default(_that.data,_that.cursor);case _:
 @JsonSerializable()
 
 class _DesksResponseDTO implements DesksResponseDTO {
-  const _DesksResponseDTO({required final  List<DesksDTO> data, required this.cursor}): _data = data;
+  const _DesksResponseDTO({required final  List<DeskDTO> data, required this.cursor}): _data = data;
   factory _DesksResponseDTO.fromJson(Map<String, dynamic> json) => _$DesksResponseDTOFromJson(json);
 
- final  List<DesksDTO> _data;
-@override List<DesksDTO> get data {
+ final  List<DeskDTO> _data;
+@override List<DeskDTO> get data {
   if (_data is EqualUnmodifiableListView) return _data;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_data);
@@ -258,7 +258,7 @@ abstract mixin class _$DesksResponseDTOCopyWith<$Res> implements $DesksResponseD
   factory _$DesksResponseDTOCopyWith(_DesksResponseDTO value, $Res Function(_DesksResponseDTO) _then) = __$DesksResponseDTOCopyWithImpl;
 @override @useResult
 $Res call({
- List<DesksDTO> data, CursorDTO cursor
+ List<DeskDTO> data, CursorDTO cursor
 });
 
 
@@ -278,7 +278,7 @@ class __$DesksResponseDTOCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? data = null,Object? cursor = null,}) {
   return _then(_DesksResponseDTO(
 data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<DesksDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
+as List<DeskDTO>,cursor: null == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
 as CursorDTO,
   ));
 }

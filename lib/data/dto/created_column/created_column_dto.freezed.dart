@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreatedColumnDTO {
 
- String get title; String get description;
+ String get title;@JsonKey(includeIfNull: true) String? get description;
 /// Create a copy of CreatedColumnDTO
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $CreatedColumnDTOCopyWith<$Res>  {
   factory $CreatedColumnDTOCopyWith(CreatedColumnDTO value, $Res Function(CreatedColumnDTO) _then) = _$CreatedColumnDTOCopyWithImpl;
 @useResult
 $Res call({
- String title, String description
+ String title,@JsonKey(includeIfNull: true) String? description
 });
 
 
@@ -65,11 +65,11 @@ class _$CreatedColumnDTOCopyWithImpl<$Res>
 
 /// Create a copy of CreatedColumnDTO
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? description = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? description = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,
+as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -151,7 +151,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String description)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title, @JsonKey(includeIfNull: true)  String? description)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreatedColumnDTO() when $default != null:
 return $default(_that.title,_that.description);case _:
@@ -172,7 +172,7 @@ return $default(_that.title,_that.description);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String description)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title, @JsonKey(includeIfNull: true)  String? description)  $default,) {final _that = this;
 switch (_that) {
 case _CreatedColumnDTO():
 return $default(_that.title,_that.description);}
@@ -189,7 +189,7 @@ return $default(_that.title,_that.description);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String description)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title, @JsonKey(includeIfNull: true)  String? description)?  $default,) {final _that = this;
 switch (_that) {
 case _CreatedColumnDTO() when $default != null:
 return $default(_that.title,_that.description);case _:
@@ -204,11 +204,11 @@ return $default(_that.title,_that.description);case _:
 @JsonSerializable()
 
 class _CreatedColumnDTO implements CreatedColumnDTO {
-  const _CreatedColumnDTO({required this.title, required this.description});
+  const _CreatedColumnDTO({required this.title, @JsonKey(includeIfNull: true) this.description});
   factory _CreatedColumnDTO.fromJson(Map<String, dynamic> json) => _$CreatedColumnDTOFromJson(json);
 
 @override final  String title;
-@override final  String description;
+@override@JsonKey(includeIfNull: true) final  String? description;
 
 /// Create a copy of CreatedColumnDTO
 /// with the given fields replaced by the non-null parameter values.
@@ -243,7 +243,7 @@ abstract mixin class _$CreatedColumnDTOCopyWith<$Res> implements $CreatedColumnD
   factory _$CreatedColumnDTOCopyWith(_CreatedColumnDTO value, $Res Function(_CreatedColumnDTO) _then) = __$CreatedColumnDTOCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String description
+ String title,@JsonKey(includeIfNull: true) String? description
 });
 
 
@@ -260,11 +260,11 @@ class __$CreatedColumnDTOCopyWithImpl<$Res>
 
 /// Create a copy of CreatedColumnDTO
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? description = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? description = freezed,}) {
   return _then(_CreatedColumnDTO(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,
+as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

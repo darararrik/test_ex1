@@ -55,10 +55,10 @@ extension UsersDesksEventPatterns on UsersDesksEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetUsersDesksEvent value)?  getUsersDesks,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetUsersDesks value)?  getUsersDesks,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _GetUsersDesksEvent() when getUsersDesks != null:
+case _GetUsersDesks() when getUsersDesks != null:
 return getUsersDesks(_that);case _:
   return orElse();
 
@@ -77,10 +77,10 @@ return getUsersDesks(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetUsersDesksEvent value)  getUsersDesks,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetUsersDesks value)  getUsersDesks,}){
 final _that = this;
 switch (_that) {
-case _GetUsersDesksEvent():
+case _GetUsersDesks():
 return getUsersDesks(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -98,10 +98,10 @@ return getUsersDesks(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetUsersDesksEvent value)?  getUsersDesks,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetUsersDesks value)?  getUsersDesks,}){
 final _that = this;
 switch (_that) {
-case _GetUsersDesksEvent() when getUsersDesks != null:
+case _GetUsersDesks() when getUsersDesks != null:
 return getUsersDesks(_that);case _:
   return null;
 
@@ -121,7 +121,7 @@ return getUsersDesks(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getUsersDesks,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _GetUsersDesksEvent() when getUsersDesks != null:
+case _GetUsersDesks() when getUsersDesks != null:
 return getUsersDesks();case _:
   return orElse();
 
@@ -142,7 +142,7 @@ return getUsersDesks();case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getUsersDesks,}) {final _that = this;
 switch (_that) {
-case _GetUsersDesksEvent():
+case _GetUsersDesks():
 return getUsersDesks();case _:
   throw StateError('Unexpected subclass');
 
@@ -162,7 +162,7 @@ return getUsersDesks();case _:
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getUsersDesks,}) {final _that = this;
 switch (_that) {
-case _GetUsersDesksEvent() when getUsersDesks != null:
+case _GetUsersDesks() when getUsersDesks != null:
 return getUsersDesks();case _:
   return null;
 
@@ -174,8 +174,8 @@ return getUsersDesks();case _:
 /// @nodoc
 
 
-class _GetUsersDesksEvent implements UsersDesksEvent {
-  const _GetUsersDesksEvent();
+class _GetUsersDesks implements UsersDesksEvent {
+  const _GetUsersDesks();
   
 
 
@@ -185,7 +185,7 @@ class _GetUsersDesksEvent implements UsersDesksEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetUsersDesksEvent);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetUsersDesks);
 }
 
 
@@ -247,14 +247,14 @@ extension UsersDesksStatePatterns on UsersDesksState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _LoadingState value)?  loading,TResult Function( _EmptyState value)?  empty,TResult Function( _ErrorState value)?  error,TResult Function( _LoadedState value)?  loaded,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _EmptyState value)?  empty,TResult Function( _LoadingState value)?  loading,TResult Function( _LoadedState value)?  loaded,TResult Function( _ErrorState value)?  error,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _LoadingState() when loading != null:
-return loading(_that);case _EmptyState() when empty != null:
-return empty(_that);case _ErrorState() when error != null:
-return error(_that);case _LoadedState() when loaded != null:
-return loaded(_that);case _:
+case _EmptyState() when empty != null:
+return empty(_that);case _LoadingState() when loading != null:
+return loading(_that);case _LoadedState() when loaded != null:
+return loaded(_that);case _ErrorState() when error != null:
+return error(_that);case _:
   return orElse();
 
 }
@@ -272,14 +272,14 @@ return loaded(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _LoadingState value)  loading,required TResult Function( _EmptyState value)  empty,required TResult Function( _ErrorState value)  error,required TResult Function( _LoadedState value)  loaded,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _EmptyState value)  empty,required TResult Function( _LoadingState value)  loading,required TResult Function( _LoadedState value)  loaded,required TResult Function( _ErrorState value)  error,}){
 final _that = this;
 switch (_that) {
-case _LoadingState():
-return loading(_that);case _EmptyState():
-return empty(_that);case _ErrorState():
-return error(_that);case _LoadedState():
-return loaded(_that);case _:
+case _EmptyState():
+return empty(_that);case _LoadingState():
+return loading(_that);case _LoadedState():
+return loaded(_that);case _ErrorState():
+return error(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -296,14 +296,14 @@ return loaded(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _LoadingState value)?  loading,TResult? Function( _EmptyState value)?  empty,TResult? Function( _ErrorState value)?  error,TResult? Function( _LoadedState value)?  loaded,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _EmptyState value)?  empty,TResult? Function( _LoadingState value)?  loading,TResult? Function( _LoadedState value)?  loaded,TResult? Function( _ErrorState value)?  error,}){
 final _that = this;
 switch (_that) {
-case _LoadingState() when loading != null:
-return loading(_that);case _EmptyState() when empty != null:
-return empty(_that);case _ErrorState() when error != null:
-return error(_that);case _LoadedState() when loaded != null:
-return loaded(_that);case _:
+case _EmptyState() when empty != null:
+return empty(_that);case _LoadingState() when loading != null:
+return loading(_that);case _LoadedState() when loaded != null:
+return loaded(_that);case _ErrorState() when error != null:
+return error(_that);case _:
   return null;
 
 }
@@ -320,13 +320,13 @@ return loaded(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function()?  empty,TResult Function( String message)?  error,TResult Function( List<UsersDesksModel> desks)?  loaded,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  empty,TResult Function()?  loading,TResult Function( List<DeskModel> desks)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _LoadingState() when loading != null:
-return loading();case _EmptyState() when empty != null:
-return empty();case _ErrorState() when error != null:
-return error(_that.message);case _LoadedState() when loaded != null:
-return loaded(_that.desks);case _:
+case _EmptyState() when empty != null:
+return empty();case _LoadingState() when loading != null:
+return loading();case _LoadedState() when loaded != null:
+return loaded(_that.desks);case _ErrorState() when error != null:
+return error(_that.message);case _:
   return orElse();
 
 }
@@ -344,13 +344,13 @@ return loaded(_that.desks);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function()  empty,required TResult Function( String message)  error,required TResult Function( List<UsersDesksModel> desks)  loaded,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  empty,required TResult Function()  loading,required TResult Function( List<DeskModel> desks)  loaded,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
-case _LoadingState():
-return loading();case _EmptyState():
-return empty();case _ErrorState():
-return error(_that.message);case _LoadedState():
-return loaded(_that.desks);case _:
+case _EmptyState():
+return empty();case _LoadingState():
+return loading();case _LoadedState():
+return loaded(_that.desks);case _ErrorState():
+return error(_that.message);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -367,51 +367,19 @@ return loaded(_that.desks);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function()?  empty,TResult? Function( String message)?  error,TResult? Function( List<UsersDesksModel> desks)?  loaded,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  empty,TResult? Function()?  loading,TResult? Function( List<DeskModel> desks)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
-case _LoadingState() when loading != null:
-return loading();case _EmptyState() when empty != null:
-return empty();case _ErrorState() when error != null:
-return error(_that.message);case _LoadedState() when loaded != null:
-return loaded(_that.desks);case _:
+case _EmptyState() when empty != null:
+return empty();case _LoadingState() when loading != null:
+return loading();case _LoadedState() when loaded != null:
+return loaded(_that.desks);case _ErrorState() when error != null:
+return error(_that.message);case _:
   return null;
 
 }
 }
 
 }
-
-/// @nodoc
-
-
-class _LoadingState implements UsersDesksState {
-  const _LoadingState();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadingState);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'UsersDesksState.loading()';
-}
-
-
-}
-
-
-
 
 /// @nodoc
 
@@ -448,8 +416,112 @@ String toString() {
 /// @nodoc
 
 
+class _LoadingState implements UsersDesksState {
+  const _LoadingState();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadingState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'UsersDesksState.loading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _LoadedState implements UsersDesksState {
+  const _LoadedState({required final  List<DeskModel> desks}): _desks = desks;
+  
+
+ final  List<DeskModel> _desks;
+ List<DeskModel> get desks {
+  if (_desks is EqualUnmodifiableListView) return _desks;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_desks);
+}
+
+
+/// Create a copy of UsersDesksState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedStateCopyWith<_LoadedState> get copyWith => __$LoadedStateCopyWithImpl<_LoadedState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadedState&&const DeepCollectionEquality().equals(other._desks, _desks));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_desks));
+
+@override
+String toString() {
+  return 'UsersDesksState.loaded(desks: $desks)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LoadedStateCopyWith<$Res> implements $UsersDesksStateCopyWith<$Res> {
+  factory _$LoadedStateCopyWith(_LoadedState value, $Res Function(_LoadedState) _then) = __$LoadedStateCopyWithImpl;
+@useResult
+$Res call({
+ List<DeskModel> desks
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoadedStateCopyWithImpl<$Res>
+    implements _$LoadedStateCopyWith<$Res> {
+  __$LoadedStateCopyWithImpl(this._self, this._then);
+
+  final _LoadedState _self;
+  final $Res Function(_LoadedState) _then;
+
+/// Create a copy of UsersDesksState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? desks = null,}) {
+  return _then(_LoadedState(
+desks: null == desks ? _self._desks : desks // ignore: cast_nullable_to_non_nullable
+as List<DeskModel>,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
 class _ErrorState implements UsersDesksState {
-  const _ErrorState(this.message);
+  const _ErrorState({required this.message});
   
 
  final  String message;
@@ -503,80 +575,8 @@ class __$ErrorStateCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
   return _then(_ErrorState(
-null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _LoadedState implements UsersDesksState {
-  const _LoadedState(final  List<UsersDesksModel> desks): _desks = desks;
-  
-
- final  List<UsersDesksModel> _desks;
- List<UsersDesksModel> get desks {
-  if (_desks is EqualUnmodifiableListView) return _desks;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_desks);
-}
-
-
-/// Create a copy of UsersDesksState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$LoadedStateCopyWith<_LoadedState> get copyWith => __$LoadedStateCopyWithImpl<_LoadedState>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadedState&&const DeepCollectionEquality().equals(other._desks, _desks));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_desks));
-
-@override
-String toString() {
-  return 'UsersDesksState.loaded(desks: $desks)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$LoadedStateCopyWith<$Res> implements $UsersDesksStateCopyWith<$Res> {
-  factory _$LoadedStateCopyWith(_LoadedState value, $Res Function(_LoadedState) _then) = __$LoadedStateCopyWithImpl;
-@useResult
-$Res call({
- List<UsersDesksModel> desks
-});
-
-
-
-
-}
-/// @nodoc
-class __$LoadedStateCopyWithImpl<$Res>
-    implements _$LoadedStateCopyWith<$Res> {
-  __$LoadedStateCopyWithImpl(this._self, this._then);
-
-  final _LoadedState _self;
-  final $Res Function(_LoadedState) _then;
-
-/// Create a copy of UsersDesksState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? desks = null,}) {
-  return _then(_LoadedState(
-null == desks ? _self._desks : desks // ignore: cast_nullable_to_non_nullable
-as List<UsersDesksModel>,
   ));
 }
 

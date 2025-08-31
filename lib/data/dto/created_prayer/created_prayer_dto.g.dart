@@ -9,7 +9,7 @@ part of 'created_prayer_dto.dart';
 _CreatedPrayerDTO _$CreatedPrayerDTOFromJson(Map<String, dynamic> json) =>
     _CreatedPrayerDTO(
       title: json['title'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String? ?? "",
     );
 
 Map<String, dynamic> _$CreatedPrayerDTOToJson(_CreatedPrayerDTO instance) =>

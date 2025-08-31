@@ -31,16 +31,13 @@ class DioConfig {
       AppInterceptor(tokenRepository: tokenRepository, talker: talker),
       TalkerDioLogger(
         talker: talker,
-        settings: TalkerDioLoggerSettings(
+        settings: const TalkerDioLoggerSettings(
           printRequestHeaders: true,
           printRequestData: true,
           printResponseData: true,
           printResponseHeaders: false,
           printErrorData: true,
           printErrorHeaders: false,
-          requestPen: AnsiPen()..blue(),
-          responsePen: AnsiPen()..green(),
-          errorPen: AnsiPen()..red(),
         ),
       ),
     ]);

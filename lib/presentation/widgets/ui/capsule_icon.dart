@@ -1,14 +1,12 @@
-// ignore_for_file: unused_local_variable
-
 import 'package:flutter/material.dart';
 
-import 'package:test_ex1/domain/models/column/column_model.dart';
+import 'package:test_ex1/domain/models/prayer.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/utils/extensions/build_context_x.dart';
 
 class CapsuleIcon extends StatelessWidget {
-  const CapsuleIcon({super.key, required this.task});
-  final TaskModel task;
+  const CapsuleIcon({super.key, required this.prayer});
+  final PrayerModel prayer;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +19,9 @@ class CapsuleIcon extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(R.r10),
         child: ColoredBox(
-          color: task.getActualStatus == Status.lessHour
+          color: prayer.getActualStatus == Status.lessHour
               ? blue
-              : task.getActualStatus == Status.lessDay
+              : prayer.getActualStatus == Status.lessDay
               ? yellow
               : orange,
         ),
@@ -31,3 +29,4 @@ class CapsuleIcon extends StatelessWidget {
     );
   }
 }
+

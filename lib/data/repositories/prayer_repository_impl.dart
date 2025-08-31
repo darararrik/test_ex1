@@ -1,6 +1,8 @@
 import 'package:test_ex1/data/data_source/prayers/remote/remote_ds_prayers.dart';
 import 'package:test_ex1/data/dto/created_prayer/created_prayer_dto.dart';
-import 'package:test_ex1/data/dto/prayers/prayers_dto.dart';
+import 'package:test_ex1/data/dto/prayer/prayer_dto.dart';
+import 'package:test_ex1/data/dto/prayers_response/prayers_response_dto.dart';
+import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/domain/repositories/prayer_repository.dart';
 
 class PrayerRepositoryImpl implements IPrayerRepository {
@@ -10,15 +12,16 @@ class PrayerRepositoryImpl implements IPrayerRepository {
   final RemoteDSPrayers _remoteDSPrayers;
 
   @override
-  Future<List<PrayersDTO>> createPrayer({
+  Future<List<PrayerModel>> createPrayer({
     required int columnId,
-    required CreatedPrayerDTO prayer,
+    required String title,
   }) async {
+    final createdPrayer = CreatedPrayerDTO(title: title);
     final response = await _remoteDSPrayers.createPrayerByColumnId(
       columnId,
-      prayer,
+      createdPrayer,
     );
-    return response.data;
+    return response.data.map((p) => p.toModel()).toList();
   }
 
   @override
@@ -26,28 +29,30 @@ class PrayerRepositoryImpl implements IPrayerRepository {
       _remoteDSPrayers.deletePrayerById(prayerId);
 
   @override
-  Future<PrayersDTO> doPrayer({required int prayerId}) =>
-      _remoteDSPrayers.doPrayerById(prayerId);
+  Future<PrayerModel> doPrayer({required int prayerId}) async =>
+      (await _remoteDSPrayers.doPrayerById(prayerId)).toModel();
   @override
-  Future<PrayersDTO> getPrayerById({required int prayerId}) =>
-      _remoteDSPrayers.getPrayerById(prayerId);
+  Future<PrayerModel> getPrayerById({required int prayerId}) async =>
+      (await _remoteDSPrayers.getPrayerById(prayerId)).toModel();
 
   @override
-  Future<List<PrayersDTO>> getPrayersByColumnId({required int columnId}) async {
+  Future<List<PrayerModel>> getPrayersByColumnId({
+    required int columnId,
+  }) async {
     final response = await _remoteDSPrayers.getPrayersByColumnId(columnId);
-    return response.data;
+    return response.map((p) => p.toModel()).toList();
   }
 
   @override
-  Future<List<PrayersDTO>> getSubscribedPrayers() async {
+  Future<List<PrayerModel>> getSubscribedPrayers() async {
     final response = await _remoteDSPrayers.getSubscribedPrayers();
-    return response.data;
+    return response.map((p) => p.toModel()).toList();
   }
 
   @override
-  Future<PrayersDTO> subscribePrayer({required int prayerId}) =>
-      _remoteDSPrayers.subscribe(prayerId);
+  Future<PrayerModel> subscribePrayer({required int prayerId}) async =>
+      (await _remoteDSPrayers.subscribe(prayerId)).toModel();
   @override
-  Future<PrayersDTO> unsubscribePrayer({required int prayerId}) =>
-      _remoteDSPrayers.unsubscribe(prayerId);
+  Future<PrayerModel> unsubscribePrayer({required int prayerId}) async =>
+      (await _remoteDSPrayers.unsubscribe(prayerId)).toModel();
 }

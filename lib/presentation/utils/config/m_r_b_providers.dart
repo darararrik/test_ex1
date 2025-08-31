@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/data/data.dart';
+import 'package:test_ex1/data/data_source/columns/remote/remote_ds_columns.dart';
+import 'package:test_ex1/data/data_source/prayers/remote/remote_ds_prayers.dart';
+import 'package:test_ex1/data/repositories/auth_repository_impl.dart';
+import 'package:test_ex1/data/repositories/columns_repository_impl.dart';
+import 'package:test_ex1/data/repositories/desk_repository_impl.dart';
+import 'package:test_ex1/data/repositories/prayer_repository_impl.dart';
 import 'package:test_ex1/domain/blocs/blocs.dart';
+import 'package:test_ex1/domain/repositories/column_repository.dart';
+import 'package:test_ex1/domain/repositories/prayer_repository.dart';
 import 'package:test_ex1/domain/repositories/repositories.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 
@@ -19,18 +27,19 @@ class MRBProviders extends StatelessWidget {
         RepositoryProvider<ITokenRepository>.value(
           value: config.tokenRepository,
         ),
-        RepositoryProvider<LocalDSMyDesks>(create: (_) => LocalDSMyDesks()),
-        RepositoryProvider<LocalDSUsersDesks>(
-          create: (_) => LocalDSUsersDesks(),
-        ),
-        RepositoryProvider<LocalDSFollowed>(create: (_) => LocalDSFollowed()),
-        RepositoryProvider<IMyDesksRepository>(
+
+        RepositoryProvider<IDeskRepository>(
           create: (context) =>
-              MyDeskRepositoryImpl(localDS: context.read<LocalDSMyDesks>()),
+              DeskRepositoryImpl(remoteDSDesks: RemoteDSDesks(config.dio)),
         ),
-        RepositoryProvider<IUsersDesksRepository>(
-          create: (context) => UsersDesksRepositoryImpl(
-            localDS: context.read<LocalDSUsersDesks>(),
+        RepositoryProvider<IColumnRepository>(
+          create: (context) => ColumnRepositoryImpl(
+            remoteDSColumns: RemoteDSColumns(config.dio),
+          ),
+        ),
+        RepositoryProvider<IPrayerRepository>(
+          create: (context) => PrayerRepositoryImpl(
+            remoteDSPrayers: RemoteDSPrayers(config.dio),
           ),
         ),
         RepositoryProvider<IAuthRepository>(
@@ -39,20 +48,19 @@ class MRBProviders extends StatelessWidget {
             tokenRepository: context.read(),
           ),
         ),
-        RepositoryProvider<IFollowedTasksRepository>(
-          create: (context) => FollowedTasksRepositoryImpl(
-            localDSMyDesks: context.read<LocalDSMyDesks>(),
-            localDSUsersDesks: context.read<LocalDSUsersDesks>(),
-            localDSFollowed: context.read<LocalDSFollowed>(),
-          ),
-        ),
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => FollowedTasksBloc(context.read())),
-          BlocProvider(create: (context) => MyDesksBloc(context.read())),
-          BlocProvider(create: (context) => MyTasksBloc(context.read())),
-          BlocProvider(create: (context) => AuthBloc(context.read())),
+          BlocProvider(
+            create: (context) => SubscribedPrayerBloc(context.read()),
+          ),
+          BlocProvider(
+            create: (context) => MyDesksBloc(context.read(), context.read()),
+          ),
+          BlocProvider(create: (context) => MyPrayersBloc(context.read())),
+          BlocProvider(
+            create: (context) => AuthBloc(context.read(), context.read()),
+          ),
         ],
         child: child,
       ),

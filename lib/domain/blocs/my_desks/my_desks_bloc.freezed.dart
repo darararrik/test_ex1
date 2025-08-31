@@ -55,14 +55,14 @@ extension MyDesksEventPatterns on MyDesksEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetMyDesksEvent value)?  getMyDesks,TResult Function( _RenameDeskEvent value)?  renameDesk,TResult Function( _CreateDeskEvent value)?  createDesk,TResult Function( _RemoveDeskEvent value)?  removeDesk,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetMyColumnsEvent value)?  getMyColumns,TResult Function( _RenameColumnEvent value)?  renameColumn,TResult Function( _CreateColumnEvent value)?  createColumn,TResult Function( _DeleteColumnEvent value)?  removeColumn,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _GetMyDesksEvent() when getMyDesks != null:
-return getMyDesks(_that);case _RenameDeskEvent() when renameDesk != null:
-return renameDesk(_that);case _CreateDeskEvent() when createDesk != null:
-return createDesk(_that);case _RemoveDeskEvent() when removeDesk != null:
-return removeDesk(_that);case _:
+case _GetMyColumnsEvent() when getMyColumns != null:
+return getMyColumns(_that);case _RenameColumnEvent() when renameColumn != null:
+return renameColumn(_that);case _CreateColumnEvent() when createColumn != null:
+return createColumn(_that);case _DeleteColumnEvent() when removeColumn != null:
+return removeColumn(_that);case _:
   return orElse();
 
 }
@@ -80,14 +80,14 @@ return removeDesk(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetMyDesksEvent value)  getMyDesks,required TResult Function( _RenameDeskEvent value)  renameDesk,required TResult Function( _CreateDeskEvent value)  createDesk,required TResult Function( _RemoveDeskEvent value)  removeDesk,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetMyColumnsEvent value)  getMyColumns,required TResult Function( _RenameColumnEvent value)  renameColumn,required TResult Function( _CreateColumnEvent value)  createColumn,required TResult Function( _DeleteColumnEvent value)  removeColumn,}){
 final _that = this;
 switch (_that) {
-case _GetMyDesksEvent():
-return getMyDesks(_that);case _RenameDeskEvent():
-return renameDesk(_that);case _CreateDeskEvent():
-return createDesk(_that);case _RemoveDeskEvent():
-return removeDesk(_that);case _:
+case _GetMyColumnsEvent():
+return getMyColumns(_that);case _RenameColumnEvent():
+return renameColumn(_that);case _CreateColumnEvent():
+return createColumn(_that);case _DeleteColumnEvent():
+return removeColumn(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -104,14 +104,14 @@ return removeDesk(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetMyDesksEvent value)?  getMyDesks,TResult? Function( _RenameDeskEvent value)?  renameDesk,TResult? Function( _CreateDeskEvent value)?  createDesk,TResult? Function( _RemoveDeskEvent value)?  removeDesk,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetMyColumnsEvent value)?  getMyColumns,TResult? Function( _RenameColumnEvent value)?  renameColumn,TResult? Function( _CreateColumnEvent value)?  createColumn,TResult? Function( _DeleteColumnEvent value)?  removeColumn,}){
 final _that = this;
 switch (_that) {
-case _GetMyDesksEvent() when getMyDesks != null:
-return getMyDesks(_that);case _RenameDeskEvent() when renameDesk != null:
-return renameDesk(_that);case _CreateDeskEvent() when createDesk != null:
-return createDesk(_that);case _RemoveDeskEvent() when removeDesk != null:
-return removeDesk(_that);case _:
+case _GetMyColumnsEvent() when getMyColumns != null:
+return getMyColumns(_that);case _RenameColumnEvent() when renameColumn != null:
+return renameColumn(_that);case _CreateColumnEvent() when createColumn != null:
+return createColumn(_that);case _DeleteColumnEvent() when removeColumn != null:
+return removeColumn(_that);case _:
   return null;
 
 }
@@ -128,13 +128,13 @@ return removeDesk(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getMyDesks,TResult Function( int id,  String newName)?  renameDesk,TResult Function( String title)?  createDesk,TResult Function( int id)?  removeDesk,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getMyColumns,TResult Function( int id,  String newName)?  renameColumn,TResult Function( String title)?  createColumn,TResult Function( int id)?  removeColumn,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _GetMyDesksEvent() when getMyDesks != null:
-return getMyDesks();case _RenameDeskEvent() when renameDesk != null:
-return renameDesk(_that.id,_that.newName);case _CreateDeskEvent() when createDesk != null:
-return createDesk(_that.title);case _RemoveDeskEvent() when removeDesk != null:
-return removeDesk(_that.id);case _:
+case _GetMyColumnsEvent() when getMyColumns != null:
+return getMyColumns();case _RenameColumnEvent() when renameColumn != null:
+return renameColumn(_that.id,_that.newName);case _CreateColumnEvent() when createColumn != null:
+return createColumn(_that.title);case _DeleteColumnEvent() when removeColumn != null:
+return removeColumn(_that.id);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return removeDesk(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getMyDesks,required TResult Function( int id,  String newName)  renameDesk,required TResult Function( String title)  createDesk,required TResult Function( int id)  removeDesk,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getMyColumns,required TResult Function( int id,  String newName)  renameColumn,required TResult Function( String title)  createColumn,required TResult Function( int id)  removeColumn,}) {final _that = this;
 switch (_that) {
-case _GetMyDesksEvent():
-return getMyDesks();case _RenameDeskEvent():
-return renameDesk(_that.id,_that.newName);case _CreateDeskEvent():
-return createDesk(_that.title);case _RemoveDeskEvent():
-return removeDesk(_that.id);case _:
+case _GetMyColumnsEvent():
+return getMyColumns();case _RenameColumnEvent():
+return renameColumn(_that.id,_that.newName);case _CreateColumnEvent():
+return createColumn(_that.title);case _DeleteColumnEvent():
+return removeColumn(_that.id);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return removeDesk(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getMyDesks,TResult? Function( int id,  String newName)?  renameDesk,TResult? Function( String title)?  createDesk,TResult? Function( int id)?  removeDesk,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getMyColumns,TResult? Function( int id,  String newName)?  renameColumn,TResult? Function( String title)?  createColumn,TResult? Function( int id)?  removeColumn,}) {final _that = this;
 switch (_that) {
-case _GetMyDesksEvent() when getMyDesks != null:
-return getMyDesks();case _RenameDeskEvent() when renameDesk != null:
-return renameDesk(_that.id,_that.newName);case _CreateDeskEvent() when createDesk != null:
-return createDesk(_that.title);case _RemoveDeskEvent() when removeDesk != null:
-return removeDesk(_that.id);case _:
+case _GetMyColumnsEvent() when getMyColumns != null:
+return getMyColumns();case _RenameColumnEvent() when renameColumn != null:
+return renameColumn(_that.id,_that.newName);case _CreateColumnEvent() when createColumn != null:
+return createColumn(_that.title);case _DeleteColumnEvent() when removeColumn != null:
+return removeColumn(_that.id);case _:
   return null;
 
 }
@@ -192,8 +192,8 @@ return removeDesk(_that.id);case _:
 /// @nodoc
 
 
-class _GetMyDesksEvent implements MyDesksEvent {
-  const _GetMyDesksEvent();
+class _GetMyColumnsEvent implements MyDesksEvent {
+  const _GetMyColumnsEvent();
   
 
 
@@ -203,7 +203,7 @@ class _GetMyDesksEvent implements MyDesksEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetMyDesksEvent);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetMyColumnsEvent);
 }
 
 
@@ -212,7 +212,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'MyDesksEvent.getMyDesks()';
+  return 'MyDesksEvent.getMyColumns()';
 }
 
 
@@ -224,8 +224,8 @@ String toString() {
 /// @nodoc
 
 
-class _RenameDeskEvent implements MyDesksEvent {
-  const _RenameDeskEvent(this.id, this.newName);
+class _RenameColumnEvent implements MyDesksEvent {
+  const _RenameColumnEvent({required this.id, required this.newName});
   
 
  final  int id;
@@ -235,13 +235,13 @@ class _RenameDeskEvent implements MyDesksEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$RenameDeskEventCopyWith<_RenameDeskEvent> get copyWith => __$RenameDeskEventCopyWithImpl<_RenameDeskEvent>(this, _$identity);
+_$RenameColumnEventCopyWith<_RenameColumnEvent> get copyWith => __$RenameColumnEventCopyWithImpl<_RenameColumnEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RenameDeskEvent&&(identical(other.id, id) || other.id == id)&&(identical(other.newName, newName) || other.newName == newName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RenameColumnEvent&&(identical(other.id, id) || other.id == id)&&(identical(other.newName, newName) || other.newName == newName));
 }
 
 
@@ -250,15 +250,15 @@ int get hashCode => Object.hash(runtimeType,id,newName);
 
 @override
 String toString() {
-  return 'MyDesksEvent.renameDesk(id: $id, newName: $newName)';
+  return 'MyDesksEvent.renameColumn(id: $id, newName: $newName)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$RenameDeskEventCopyWith<$Res> implements $MyDesksEventCopyWith<$Res> {
-  factory _$RenameDeskEventCopyWith(_RenameDeskEvent value, $Res Function(_RenameDeskEvent) _then) = __$RenameDeskEventCopyWithImpl;
+abstract mixin class _$RenameColumnEventCopyWith<$Res> implements $MyDesksEventCopyWith<$Res> {
+  factory _$RenameColumnEventCopyWith(_RenameColumnEvent value, $Res Function(_RenameColumnEvent) _then) = __$RenameColumnEventCopyWithImpl;
 @useResult
 $Res call({
  int id, String newName
@@ -269,19 +269,19 @@ $Res call({
 
 }
 /// @nodoc
-class __$RenameDeskEventCopyWithImpl<$Res>
-    implements _$RenameDeskEventCopyWith<$Res> {
-  __$RenameDeskEventCopyWithImpl(this._self, this._then);
+class __$RenameColumnEventCopyWithImpl<$Res>
+    implements _$RenameColumnEventCopyWith<$Res> {
+  __$RenameColumnEventCopyWithImpl(this._self, this._then);
 
-  final _RenameDeskEvent _self;
-  final $Res Function(_RenameDeskEvent) _then;
+  final _RenameColumnEvent _self;
+  final $Res Function(_RenameColumnEvent) _then;
 
 /// Create a copy of MyDesksEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? newName = null,}) {
-  return _then(_RenameDeskEvent(
-null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,null == newName ? _self.newName : newName // ignore: cast_nullable_to_non_nullable
+  return _then(_RenameColumnEvent(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,newName: null == newName ? _self.newName : newName // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -292,8 +292,8 @@ as String,
 /// @nodoc
 
 
-class _CreateDeskEvent implements MyDesksEvent {
-  const _CreateDeskEvent(this.title);
+class _CreateColumnEvent implements MyDesksEvent {
+  const _CreateColumnEvent({required this.title});
   
 
  final  String title;
@@ -302,13 +302,13 @@ class _CreateDeskEvent implements MyDesksEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$CreateDeskEventCopyWith<_CreateDeskEvent> get copyWith => __$CreateDeskEventCopyWithImpl<_CreateDeskEvent>(this, _$identity);
+_$CreateColumnEventCopyWith<_CreateColumnEvent> get copyWith => __$CreateColumnEventCopyWithImpl<_CreateColumnEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateDeskEvent&&(identical(other.title, title) || other.title == title));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateColumnEvent&&(identical(other.title, title) || other.title == title));
 }
 
 
@@ -317,15 +317,15 @@ int get hashCode => Object.hash(runtimeType,title);
 
 @override
 String toString() {
-  return 'MyDesksEvent.createDesk(title: $title)';
+  return 'MyDesksEvent.createColumn(title: $title)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$CreateDeskEventCopyWith<$Res> implements $MyDesksEventCopyWith<$Res> {
-  factory _$CreateDeskEventCopyWith(_CreateDeskEvent value, $Res Function(_CreateDeskEvent) _then) = __$CreateDeskEventCopyWithImpl;
+abstract mixin class _$CreateColumnEventCopyWith<$Res> implements $MyDesksEventCopyWith<$Res> {
+  factory _$CreateColumnEventCopyWith(_CreateColumnEvent value, $Res Function(_CreateColumnEvent) _then) = __$CreateColumnEventCopyWithImpl;
 @useResult
 $Res call({
  String title
@@ -336,18 +336,18 @@ $Res call({
 
 }
 /// @nodoc
-class __$CreateDeskEventCopyWithImpl<$Res>
-    implements _$CreateDeskEventCopyWith<$Res> {
-  __$CreateDeskEventCopyWithImpl(this._self, this._then);
+class __$CreateColumnEventCopyWithImpl<$Res>
+    implements _$CreateColumnEventCopyWith<$Res> {
+  __$CreateColumnEventCopyWithImpl(this._self, this._then);
 
-  final _CreateDeskEvent _self;
-  final $Res Function(_CreateDeskEvent) _then;
+  final _CreateColumnEvent _self;
+  final $Res Function(_CreateColumnEvent) _then;
 
 /// Create a copy of MyDesksEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? title = null,}) {
-  return _then(_CreateDeskEvent(
-null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+  return _then(_CreateColumnEvent(
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -358,8 +358,8 @@ as String,
 /// @nodoc
 
 
-class _RemoveDeskEvent implements MyDesksEvent {
-  const _RemoveDeskEvent(this.id);
+class _DeleteColumnEvent implements MyDesksEvent {
+  const _DeleteColumnEvent({required this.id});
   
 
  final  int id;
@@ -368,13 +368,13 @@ class _RemoveDeskEvent implements MyDesksEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$RemoveDeskEventCopyWith<_RemoveDeskEvent> get copyWith => __$RemoveDeskEventCopyWithImpl<_RemoveDeskEvent>(this, _$identity);
+_$DeleteColumnEventCopyWith<_DeleteColumnEvent> get copyWith => __$DeleteColumnEventCopyWithImpl<_DeleteColumnEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RemoveDeskEvent&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeleteColumnEvent&&(identical(other.id, id) || other.id == id));
 }
 
 
@@ -383,15 +383,15 @@ int get hashCode => Object.hash(runtimeType,id);
 
 @override
 String toString() {
-  return 'MyDesksEvent.removeDesk(id: $id)';
+  return 'MyDesksEvent.removeColumn(id: $id)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$RemoveDeskEventCopyWith<$Res> implements $MyDesksEventCopyWith<$Res> {
-  factory _$RemoveDeskEventCopyWith(_RemoveDeskEvent value, $Res Function(_RemoveDeskEvent) _then) = __$RemoveDeskEventCopyWithImpl;
+abstract mixin class _$DeleteColumnEventCopyWith<$Res> implements $MyDesksEventCopyWith<$Res> {
+  factory _$DeleteColumnEventCopyWith(_DeleteColumnEvent value, $Res Function(_DeleteColumnEvent) _then) = __$DeleteColumnEventCopyWithImpl;
 @useResult
 $Res call({
  int id
@@ -402,18 +402,18 @@ $Res call({
 
 }
 /// @nodoc
-class __$RemoveDeskEventCopyWithImpl<$Res>
-    implements _$RemoveDeskEventCopyWith<$Res> {
-  __$RemoveDeskEventCopyWithImpl(this._self, this._then);
+class __$DeleteColumnEventCopyWithImpl<$Res>
+    implements _$DeleteColumnEventCopyWith<$Res> {
+  __$DeleteColumnEventCopyWithImpl(this._self, this._then);
 
-  final _RemoveDeskEvent _self;
-  final $Res Function(_RemoveDeskEvent) _then;
+  final _DeleteColumnEvent _self;
+  final $Res Function(_DeleteColumnEvent) _then;
 
 /// Create a copy of MyDesksEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? id = null,}) {
-  return _then(_RemoveDeskEvent(
-null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+  return _then(_DeleteColumnEvent(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -538,11 +538,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( List<DesksModel> desks)?  loaded,TResult Function()?  empty,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( List<ColumnModel> columns)?  loaded,TResult Function()?  empty,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoadingState() when loading != null:
 return loading();case _LoadedState() when loaded != null:
-return loaded(_that.desks);case _EmptyState() when empty != null:
+return loaded(_that.columns);case _EmptyState() when empty != null:
 return empty();case _ErrorState() when error != null:
 return error(_that.message);case _:
   return orElse();
@@ -562,11 +562,11 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( List<DesksModel> desks)  loaded,required TResult Function()  empty,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( List<ColumnModel> columns)  loaded,required TResult Function()  empty,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _LoadingState():
 return loading();case _LoadedState():
-return loaded(_that.desks);case _EmptyState():
+return loaded(_that.columns);case _EmptyState():
 return empty();case _ErrorState():
 return error(_that.message);case _:
   throw StateError('Unexpected subclass');
@@ -585,11 +585,11 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( List<DesksModel> desks)?  loaded,TResult? Function()?  empty,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( List<ColumnModel> columns)?  loaded,TResult? Function()?  empty,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _LoadingState() when loading != null:
 return loading();case _LoadedState() when loaded != null:
-return loaded(_that.desks);case _EmptyState() when empty != null:
+return loaded(_that.columns);case _EmptyState() when empty != null:
 return empty();case _ErrorState() when error != null:
 return error(_that.message);case _:
   return null;
@@ -635,14 +635,14 @@ String toString() {
 
 
 class _LoadedState implements MyDesksState {
-  const _LoadedState(final  List<DesksModel> desks): _desks = desks;
+  const _LoadedState({required final  List<ColumnModel> columns}): _columns = columns;
   
 
- final  List<DesksModel> _desks;
- List<DesksModel> get desks {
-  if (_desks is EqualUnmodifiableListView) return _desks;
+ final  List<ColumnModel> _columns;
+ List<ColumnModel> get columns {
+  if (_columns is EqualUnmodifiableListView) return _columns;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_desks);
+  return EqualUnmodifiableListView(_columns);
 }
 
 
@@ -656,16 +656,16 @@ _$LoadedStateCopyWith<_LoadedState> get copyWith => __$LoadedStateCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadedState&&const DeepCollectionEquality().equals(other._desks, _desks));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadedState&&const DeepCollectionEquality().equals(other._columns, _columns));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_desks));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_columns));
 
 @override
 String toString() {
-  return 'MyDesksState.loaded(desks: $desks)';
+  return 'MyDesksState.loaded(columns: $columns)';
 }
 
 
@@ -676,7 +676,7 @@ abstract mixin class _$LoadedStateCopyWith<$Res> implements $MyDesksStateCopyWit
   factory _$LoadedStateCopyWith(_LoadedState value, $Res Function(_LoadedState) _then) = __$LoadedStateCopyWithImpl;
 @useResult
 $Res call({
- List<DesksModel> desks
+ List<ColumnModel> columns
 });
 
 
@@ -693,10 +693,10 @@ class __$LoadedStateCopyWithImpl<$Res>
 
 /// Create a copy of MyDesksState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? desks = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? columns = null,}) {
   return _then(_LoadedState(
-null == desks ? _self._desks : desks // ignore: cast_nullable_to_non_nullable
-as List<DesksModel>,
+columns: null == columns ? _self._columns : columns // ignore: cast_nullable_to_non_nullable
+as List<ColumnModel>,
   ));
 }
 
@@ -739,7 +739,7 @@ String toString() {
 
 
 class _ErrorState implements MyDesksState {
-  const _ErrorState(this.message);
+  const _ErrorState({required this.message});
   
 
  final  String message;
@@ -793,7 +793,7 @@ class __$ErrorStateCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
   return _then(_ErrorState(
-null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

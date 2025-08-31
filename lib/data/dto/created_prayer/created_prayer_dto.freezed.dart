@@ -204,11 +204,11 @@ return $default(_that.title,_that.description);case _:
 @JsonSerializable()
 
 class _CreatedPrayerDTO implements CreatedPrayerDTO {
-  const _CreatedPrayerDTO({required this.title, required this.description});
+  const _CreatedPrayerDTO({required this.title, this.description = ""});
   factory _CreatedPrayerDTO.fromJson(Map<String, dynamic> json) => _$CreatedPrayerDTOFromJson(json);
 
 @override final  String title;
-@override final  String description;
+@override@JsonKey() final  String description;
 
 /// Create a copy of CreatedPrayerDTO
 /// with the given fields replaced by the non-null parameter values.
