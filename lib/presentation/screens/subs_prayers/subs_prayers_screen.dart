@@ -11,8 +11,21 @@ import 'package:test_ex1/presentation/widgets/widgets.dart';
 import 'package:test_ex1/state/blocs/blocs.dart';
 
 @RoutePage()
-class SubsPrayersScreen extends StatelessWidget {
+class SubsPrayersScreen extends StatefulWidget {
   const SubsPrayersScreen({super.key});
+
+  @override
+  State<SubsPrayersScreen> createState() => _SubsPrayersScreenState();
+}
+
+class _SubsPrayersScreenState extends State<SubsPrayersScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<SubscribedPrayerBloc>().add(
+      const SubscribedPrayerEvent.getSubs(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -21,9 +21,7 @@ abstract class SubsRoutes {
                 fullscreenDialog: page.fullscreenDialog,
                 settings: page,
                 builder: (_) => BlocProvider(
-                  create: (context) =>
-                      SubscribedPrayerBloc(context.read())
-                        ..add(const SubscribedPrayerEvent.getSubs()),
+                  create: (context) => SubscribedPrayerBloc(context.read()),
                   child: child,
                 ),
               );
