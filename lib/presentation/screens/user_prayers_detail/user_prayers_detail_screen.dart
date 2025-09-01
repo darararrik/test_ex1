@@ -11,8 +11,8 @@ import 'package:test_ex1/presentation/widgets/widgets.dart';
 import 'package:test_ex1/state/blocs/blocs.dart';
 
 @RoutePage()
-class UserPrayerDetailPage extends StatelessWidget {
-  const UserPrayerDetailPage({super.key, required this.prayer});
+class UserPrayerDetailScreen extends StatelessWidget {
+  const UserPrayerDetailScreen({super.key, required this.prayer});
   final PrayerModel prayer;
   @override
   Widget build(BuildContext context) {

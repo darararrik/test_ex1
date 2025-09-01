@@ -395,7 +395,7 @@ class UserColumnsRouteArgs {
 }
 
 /// generated route for
-/// [_i13.UserPrayerDetailPage]
+/// [_i13.UserPrayerDetailScreen]
 class UserPrayerDetailRoute
     extends _i17.PageRouteInfo<UserPrayerDetailRouteArgs> {
   UserPrayerDetailRoute({
@@ -414,7 +414,7 @@ class UserPrayerDetailRoute
     name,
     builder: (data) {
       final args = data.argsAs<UserPrayerDetailRouteArgs>();
-      return _i13.UserPrayerDetailPage(key: args.key, prayer: args.prayer);
+      return _i13.UserPrayerDetailScreen(key: args.key, prayer: args.prayer);
     },
   );
 }
