@@ -11,8 +11,8 @@ import 'package:test_ex1/presentation/widgets/widgets.dart';
 import 'package:test_ex1/state/blocs/blocs.dart';
 
 @RoutePage()
-class SubsColumnsScreen extends StatelessWidget {
-  const SubsColumnsScreen({super.key});
+class SubsPrayersScreen extends StatelessWidget {
+  const SubsPrayersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

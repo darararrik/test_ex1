@@ -48,7 +48,7 @@ class MyPrayersScreen extends StatelessWidget {
                 loading: () => const LoadingState(),
                 error: (message) => const ErrorState(),
                 empty: () => EmptyState(
-                  message: context.l10n.emptyTasksScreen,
+                  message: context.l10n.emptyMyPrayersScreen,
                   iconPath: AppIcons.sketch,
                 ),
                 loaded: (prayers) => PrayersCardList(

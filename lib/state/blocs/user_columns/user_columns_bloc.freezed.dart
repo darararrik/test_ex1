@@ -14,61 +14,30 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserColumnsEvent {
 
- int get deskId;
-/// Create a copy of UserColumnsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$UserColumnsEventCopyWith<UserColumnsEvent> get copyWith => _$UserColumnsEventCopyWithImpl<UserColumnsEvent>(this as UserColumnsEvent, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserColumnsEvent&&(identical(other.deskId, deskId) || other.deskId == deskId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserColumnsEvent);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,deskId);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'UserColumnsEvent(deskId: $deskId)';
+  return 'UserColumnsEvent()';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $UserColumnsEventCopyWith<$Res>  {
-  factory $UserColumnsEventCopyWith(UserColumnsEvent value, $Res Function(UserColumnsEvent) _then) = _$UserColumnsEventCopyWithImpl;
-@useResult
-$Res call({
- int deskId
-});
-
-
-
-
-}
-/// @nodoc
-class _$UserColumnsEventCopyWithImpl<$Res>
-    implements $UserColumnsEventCopyWith<$Res> {
-  _$UserColumnsEventCopyWithImpl(this._self, this._then);
-
-  final UserColumnsEvent _self;
-  final $Res Function(UserColumnsEvent) _then;
-
-/// Create a copy of UserColumnsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? deskId = null,}) {
-  return _then(_self.copyWith(
-deskId: null == deskId ? _self.deskId : deskId // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
-}
-
+class $UserColumnsEventCopyWith<$Res>  {
+$UserColumnsEventCopyWith(UserColumnsEvent _, $Res Function(UserColumnsEvent) __);
 }
 
 
@@ -86,11 +55,12 @@ extension UserColumnsEventPatterns on UserColumnsEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetUserColumns value)?  getUserColumns,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetUserColumnsEvent value)?  getUserColumns,TResult Function( _LoadMoreEvent value)?  loadMore,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _GetUserColumns() when getUserColumns != null:
-return getUserColumns(_that);case _:
+case _GetUserColumnsEvent() when getUserColumns != null:
+return getUserColumns(_that);case _LoadMoreEvent() when loadMore != null:
+return loadMore(_that);case _:
   return orElse();
 
 }
@@ -108,11 +78,12 @@ return getUserColumns(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetUserColumns value)  getUserColumns,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetUserColumnsEvent value)  getUserColumns,required TResult Function( _LoadMoreEvent value)  loadMore,}){
 final _that = this;
 switch (_that) {
-case _GetUserColumns():
-return getUserColumns(_that);case _:
+case _GetUserColumnsEvent():
+return getUserColumns(_that);case _LoadMoreEvent():
+return loadMore(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -129,11 +100,12 @@ return getUserColumns(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetUserColumns value)?  getUserColumns,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetUserColumnsEvent value)?  getUserColumns,TResult? Function( _LoadMoreEvent value)?  loadMore,}){
 final _that = this;
 switch (_that) {
-case _GetUserColumns() when getUserColumns != null:
-return getUserColumns(_that);case _:
+case _GetUserColumnsEvent() when getUserColumns != null:
+return getUserColumns(_that);case _LoadMoreEvent() when loadMore != null:
+return loadMore(_that);case _:
   return null;
 
 }
@@ -150,10 +122,11 @@ return getUserColumns(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int deskId)?  getUserColumns,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int deskId)?  getUserColumns,TResult Function()?  loadMore,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _GetUserColumns() when getUserColumns != null:
-return getUserColumns(_that.deskId);case _:
+case _GetUserColumnsEvent() when getUserColumns != null:
+return getUserColumns(_that.deskId);case _LoadMoreEvent() when loadMore != null:
+return loadMore();case _:
   return orElse();
 
 }
@@ -171,10 +144,11 @@ return getUserColumns(_that.deskId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int deskId)  getUserColumns,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int deskId)  getUserColumns,required TResult Function()  loadMore,}) {final _that = this;
 switch (_that) {
-case _GetUserColumns():
-return getUserColumns(_that.deskId);case _:
+case _GetUserColumnsEvent():
+return getUserColumns(_that.deskId);case _LoadMoreEvent():
+return loadMore();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +165,11 @@ return getUserColumns(_that.deskId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int deskId)?  getUserColumns,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int deskId)?  getUserColumns,TResult? Function()?  loadMore,}) {final _that = this;
 switch (_that) {
-case _GetUserColumns() when getUserColumns != null:
-return getUserColumns(_that.deskId);case _:
+case _GetUserColumnsEvent() when getUserColumns != null:
+return getUserColumns(_that.deskId);case _LoadMoreEvent() when loadMore != null:
+return loadMore();case _:
   return null;
 
 }
@@ -205,23 +180,23 @@ return getUserColumns(_that.deskId);case _:
 /// @nodoc
 
 
-class _GetUserColumns implements UserColumnsEvent {
-  const _GetUserColumns({required this.deskId});
+class _GetUserColumnsEvent implements UserColumnsEvent {
+  const _GetUserColumnsEvent({required this.deskId});
   
 
-@override final  int deskId;
+ final  int deskId;
 
 /// Create a copy of UserColumnsEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
+@JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$GetUserColumnsCopyWith<_GetUserColumns> get copyWith => __$GetUserColumnsCopyWithImpl<_GetUserColumns>(this, _$identity);
+_$GetUserColumnsEventCopyWith<_GetUserColumnsEvent> get copyWith => __$GetUserColumnsEventCopyWithImpl<_GetUserColumnsEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetUserColumns&&(identical(other.deskId, deskId) || other.deskId == deskId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetUserColumnsEvent&&(identical(other.deskId, deskId) || other.deskId == deskId));
 }
 
 
@@ -237,9 +212,9 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class _$GetUserColumnsCopyWith<$Res> implements $UserColumnsEventCopyWith<$Res> {
-  factory _$GetUserColumnsCopyWith(_GetUserColumns value, $Res Function(_GetUserColumns) _then) = __$GetUserColumnsCopyWithImpl;
-@override @useResult
+abstract mixin class _$GetUserColumnsEventCopyWith<$Res> implements $UserColumnsEventCopyWith<$Res> {
+  factory _$GetUserColumnsEventCopyWith(_GetUserColumnsEvent value, $Res Function(_GetUserColumnsEvent) _then) = __$GetUserColumnsEventCopyWithImpl;
+@useResult
 $Res call({
  int deskId
 });
@@ -249,17 +224,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$GetUserColumnsCopyWithImpl<$Res>
-    implements _$GetUserColumnsCopyWith<$Res> {
-  __$GetUserColumnsCopyWithImpl(this._self, this._then);
+class __$GetUserColumnsEventCopyWithImpl<$Res>
+    implements _$GetUserColumnsEventCopyWith<$Res> {
+  __$GetUserColumnsEventCopyWithImpl(this._self, this._then);
 
-  final _GetUserColumns _self;
-  final $Res Function(_GetUserColumns) _then;
+  final _GetUserColumnsEvent _self;
+  final $Res Function(_GetUserColumnsEvent) _then;
 
 /// Create a copy of UserColumnsEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? deskId = null,}) {
-  return _then(_GetUserColumns(
+@pragma('vm:prefer-inline') $Res call({Object? deskId = null,}) {
+  return _then(_GetUserColumnsEvent(
 deskId: null == deskId ? _self.deskId : deskId // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -267,6 +242,38 @@ as int,
 
 
 }
+
+/// @nodoc
+
+
+class _LoadMoreEvent implements UserColumnsEvent {
+  const _LoadMoreEvent();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadMoreEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'UserColumnsEvent.loadMore()';
+}
+
+
+}
+
+
+
 
 /// @nodoc
 mixin _$UserColumnsState {
@@ -385,12 +392,12 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  empty,TResult Function()?  loading,TResult Function( List<ColumnModel> columns)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  empty,TResult Function()?  loading,TResult Function( List<ColumnModel> columns,  String? afterCursor,  bool isLoadingMore,  bool hasMore)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EmptyState() when empty != null:
 return empty();case _LoadingState() when loading != null:
 return loading();case _LoadedState() when loaded != null:
-return loaded(_that.columns);case _ErrorState() when error != null:
+return loaded(_that.columns,_that.afterCursor,_that.isLoadingMore,_that.hasMore);case _ErrorState() when error != null:
 return error(_that.message);case _:
   return orElse();
 
@@ -409,12 +416,12 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  empty,required TResult Function()  loading,required TResult Function( List<ColumnModel> columns)  loaded,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  empty,required TResult Function()  loading,required TResult Function( List<ColumnModel> columns,  String? afterCursor,  bool isLoadingMore,  bool hasMore)  loaded,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _EmptyState():
 return empty();case _LoadingState():
 return loading();case _LoadedState():
-return loaded(_that.columns);case _ErrorState():
+return loaded(_that.columns,_that.afterCursor,_that.isLoadingMore,_that.hasMore);case _ErrorState():
 return error(_that.message);case _:
   throw StateError('Unexpected subclass');
 
@@ -432,12 +439,12 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  empty,TResult? Function()?  loading,TResult? Function( List<ColumnModel> columns)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  empty,TResult? Function()?  loading,TResult? Function( List<ColumnModel> columns,  String? afterCursor,  bool isLoadingMore,  bool hasMore)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _EmptyState() when empty != null:
 return empty();case _LoadingState() when loading != null:
 return loading();case _LoadedState() when loaded != null:
-return loaded(_that.columns);case _ErrorState() when error != null:
+return loaded(_that.columns,_that.afterCursor,_that.isLoadingMore,_that.hasMore);case _ErrorState() when error != null:
 return error(_that.message);case _:
   return null;
 
@@ -514,7 +521,7 @@ String toString() {
 
 
 class _LoadedState implements UserColumnsState {
-  const _LoadedState({required final  List<ColumnModel> columns}): _columns = columns;
+  const _LoadedState({required final  List<ColumnModel> columns, required this.afterCursor, this.isLoadingMore = false, this.hasMore = true}): _columns = columns;
   
 
  final  List<ColumnModel> _columns;
@@ -524,6 +531,9 @@ class _LoadedState implements UserColumnsState {
   return EqualUnmodifiableListView(_columns);
 }
 
+ final  String? afterCursor;
+@JsonKey() final  bool isLoadingMore;
+@JsonKey() final  bool hasMore;
 
 /// Create a copy of UserColumnsState
 /// with the given fields replaced by the non-null parameter values.
@@ -535,16 +545,16 @@ _$LoadedStateCopyWith<_LoadedState> get copyWith => __$LoadedStateCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadedState&&const DeepCollectionEquality().equals(other._columns, _columns));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadedState&&const DeepCollectionEquality().equals(other._columns, _columns)&&(identical(other.afterCursor, afterCursor) || other.afterCursor == afterCursor)&&(identical(other.isLoadingMore, isLoadingMore) || other.isLoadingMore == isLoadingMore)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_columns));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_columns),afterCursor,isLoadingMore,hasMore);
 
 @override
 String toString() {
-  return 'UserColumnsState.loaded(columns: $columns)';
+  return 'UserColumnsState.loaded(columns: $columns, afterCursor: $afterCursor, isLoadingMore: $isLoadingMore, hasMore: $hasMore)';
 }
 
 
@@ -555,7 +565,7 @@ abstract mixin class _$LoadedStateCopyWith<$Res> implements $UserColumnsStateCop
   factory _$LoadedStateCopyWith(_LoadedState value, $Res Function(_LoadedState) _then) = __$LoadedStateCopyWithImpl;
 @useResult
 $Res call({
- List<ColumnModel> columns
+ List<ColumnModel> columns, String? afterCursor, bool isLoadingMore, bool hasMore
 });
 
 
@@ -572,10 +582,13 @@ class __$LoadedStateCopyWithImpl<$Res>
 
 /// Create a copy of UserColumnsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? columns = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? columns = null,Object? afterCursor = freezed,Object? isLoadingMore = null,Object? hasMore = null,}) {
   return _then(_LoadedState(
 columns: null == columns ? _self._columns : columns // ignore: cast_nullable_to_non_nullable
-as List<ColumnModel>,
+as List<ColumnModel>,afterCursor: freezed == afterCursor ? _self.afterCursor : afterCursor // ignore: cast_nullable_to_non_nullable
+as String?,isLoadingMore: null == isLoadingMore ? _self.isLoadingMore : isLoadingMore // ignore: cast_nullable_to_non_nullable
+as bool,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

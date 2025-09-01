@@ -30,7 +30,7 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
           _scrollController.position.maxScrollExtent - 200) {
-        context.read<UsersDesksBloc>().state.maybeWhen(
+        context.read<UsersDesksBloc>().state.whenOrNull(
           loaded: (desks, cursor, isLoadingMore, hasMore) {
             if (!isLoadingMore && hasMore) {
               context.read<UsersDesksBloc>().add(
@@ -38,7 +38,6 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
               );
             }
           },
-          orElse: () {},
         );
       }
     });
@@ -64,6 +63,7 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
                 empty: () => EmptyState(
                   message: context.l10n.emptyUsersDesks,
                   iconPath: AppIcons.sketch,
+                  needArrow: false,
                 ),
                 error: (mssg) => const ErrorState(),
                 loaded: (desks, cursor, isLoadingMore, hasMore) {

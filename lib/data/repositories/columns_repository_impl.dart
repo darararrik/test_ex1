@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 
 import 'package:test_ex1/data/data_source/columns/remote/remote_ds_columns.dart';
 import 'package:test_ex1/data/dto/column/column_dto.dart';
+import 'package:test_ex1/data/dto/columns_response/columns_response_dto.dart';
 import 'package:test_ex1/data/dto/created_column/created_column_dto.dart';
 import 'package:test_ex1/domain/models/column.dart';
+import 'package:test_ex1/domain/models/columns_response.dart';
 import 'package:test_ex1/domain/repositories/column_repository.dart';
 
 class ColumnRepositoryImpl implements IColumnRepository {
@@ -34,11 +36,11 @@ class ColumnRepositoryImpl implements IColumnRepository {
       (await _remoteDSColumns.getColumnById(columnId)).toModel();
 
   @override
-  Future<List<ColumnModel>> getColumns({
+  Future<ColumnsResponseModel> getColumns({
     required int deskId,
     int limit = 10,
   }) async {
     final response = await _remoteDSColumns.getColumnsByDeskId(deskId, limit);
-    return response.data.map((c) => c.toModel()).toList();
+    return response.toModel();
   }
 }

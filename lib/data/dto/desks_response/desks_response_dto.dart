@@ -19,7 +19,7 @@ sealed class DesksResponseDTO with _$DesksResponseDTO {
       _$DesksResponseDTOFromJson(json);
 }
 
-extension DeskResMapper on DesksResponseDTO {
+extension DeskResponseMapper on DesksResponseDTO {
   DesksResponseModel toModel() => DesksResponseModel(
     desksList: data.map((d) => d.toModel()).toList(),
     cursor: cursor.toModel(),

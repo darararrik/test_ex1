@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
-import 'package:test_ex1/presentation/screens/subs_columns/subs_columns_screen.dart';
+import 'package:test_ex1/presentation/screens/subs_prayers/subs_prayers_screen.dart';
 import 'package:test_ex1/state/blocs/subscribed_detail/subscribed_detail_bloc.dart';
 import 'package:test_ex1/state/blocs/subscribed_prayer/subscribed_prayer_bloc.dart';
 
@@ -13,7 +13,7 @@ abstract class SubsRoutes {
     page: SubsWrapperRoute.page,
     children: [
       CustomRoute(
-        page: SubsColumnsRoute.page,
+        page: SubsPrayersRoute.page,
         initial: true,
         customRouteBuilder:
             <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {

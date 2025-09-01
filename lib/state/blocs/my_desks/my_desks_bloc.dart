@@ -34,12 +34,11 @@ class MyDesksBloc extends Bloc<MyDesksEvent, MyDesksState> {
     try {
       emit(const MyDesksState.loading());
       final desk = await _myDeskRepository.getMyDesk();
-      final columns = await _columnRepository.getColumns(deskId: desk.id);
-      if (columns.isEmpty) {
+      final res = await _columnRepository.getColumns(deskId: desk.id);
+      if (res.columnsList.isEmpty) {
         emit(const MyDesksState.empty());
-        return;
       }
-      emit(MyDesksState.loaded(columns: columns));
+      emit(MyDesksState.loaded(columns: res.columnsList));
     } catch (e) {
       emit(const MyDesksState.error(message: "Failed to load desks"));
     }
@@ -67,12 +66,12 @@ class MyDesksBloc extends Bloc<MyDesksEvent, MyDesksState> {
       emit(const MyDesksState.loading());
       final desk = await _myDeskRepository.getMyDesk();
       await _columnRepository.createColumn(title: e.title);
-      final columns = await _columnRepository.getColumns(deskId: desk.id);
-      if (columns.isEmpty) {
+      final res = await _columnRepository.getColumns(deskId: desk.id);
+      if (res.columnsList.isEmpty) {
         emit(const MyDesksState.empty());
         return;
       }
-      emit(MyDesksState.loaded(columns: columns));
+      emit(MyDesksState.loaded(columns: res.columnsList));
     } catch (e) {
       emit(const MyDesksState.error(message: "Failed to create desk"));
     }
@@ -86,12 +85,12 @@ class MyDesksBloc extends Bloc<MyDesksEvent, MyDesksState> {
       emit(const MyDesksState.loading());
       final desk = await _myDeskRepository.getMyDesk();
       await _columnRepository.deleteColumnById(columnId: e.id);
-      final columns = await _columnRepository.getColumns(deskId: desk.id);
-      if (columns.isEmpty) {
+      final res = await _columnRepository.getColumns(deskId: desk.id);
+      if (res.columnsList.isEmpty) {
         emit(const MyDesksState.empty());
         return;
       }
-      emit(MyDesksState.loaded(columns: columns));
+      emit(MyDesksState.loaded(columns: res.columnsList));
     } catch (e) {
       emit(const MyDesksState.error(message: "Failed to remove desk"));
     }

@@ -15,7 +15,7 @@ import 'package:test_ex1/state/blocs/blocs.dart';
 import 'package:test_ex1/state/blocs/user_columns/user_columns_bloc.dart';
 
 @RoutePage()
-class UserColumnsScreen extends StatelessWidget {
+class UserColumnsScreen extends StatefulWidget {
   const UserColumnsScreen({
     super.key,
     required this.deskTitle,
@@ -23,12 +23,41 @@ class UserColumnsScreen extends StatelessWidget {
   });
   final String deskTitle;
   final int columnId;
+
+  @override
+  State<UserColumnsScreen> createState() => _UserColumnsScreenState();
+}
+
+class _UserColumnsScreenState extends State<UserColumnsScreen> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent - 200) {
+        context.read<UsersDesksBloc>().state.whenOrNull(
+          loaded: (desks, cursor, isLoadingMore, hasMore) {
+            if (!isLoadingMore && hasMore) {
+              context.read<UsersDesksBloc>().add(
+                const UsersDesksEvent.loadMore(),
+              );
+            }
+          },
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        controller: _scrollController,
         slivers: [
-          MySliverAppBar(title: deskTitle),
+          MySliverAppBar(title: widget.deskTitle),
           BlocBuilder<UserColumnsBloc, UserColumnsState>(
             builder: (context, state) {
               return state.when(
@@ -37,18 +66,22 @@ class UserColumnsScreen extends StatelessWidget {
                 empty: () => EmptyState(
                   message: context.l10n.emptyUsersColumns,
                   iconPath: AppIcons.sketch,
+                  needArrow: false,
                 ),
-                loaded: (columns) => CardListBody<ColumnModel>(
-                  items: columns,
-                  itemBuilder: (contetx, column) => ColumnCard(
-                    column: column,
-                    onTap: () => UserColumnsRoute(
-                      deskTitle: deskTitle,
-                      columnId: columnId,
+                loaded: (columns, afterCursor, isLoadingMore, hasMore) =>
+                    CardListBody<ColumnModel>(
+                      items: columns,
+                      itemBuilder: (contetx, column) => ColumnCard(
+                        column: column,
+                        onTap: () => context.pushRoute(
+                          UserPrayersRoute(
+                            columnId: column.id,
+                            columnTitle: column.title,
+                          ),
+                        ),
+                      ),
+                      itemCount: columns.length,
                     ),
-                  ),
-                  itemCount: columns.length,
-                ),
               );
             },
           ),

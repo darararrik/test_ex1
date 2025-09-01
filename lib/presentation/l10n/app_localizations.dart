@@ -286,11 +286,11 @@ abstract class AppLocalizations {
   /// **'Add'**
   String get add;
 
-  /// No description provided for @emptyTasksScreen.
+  /// No description provided for @emptyMyPrayersScreen.
   ///
   /// In en, this message translates to:
   /// **'You haven\'t created any prayer.'**
-  String get emptyTasksScreen;
+  String get emptyMyPrayersScreen;
 
   /// No description provided for @errorInvalidEmail.
   ///
@@ -375,6 +375,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'User has not created columns yet'**
   String get emptyUsersColumns;
+
+  /// No description provided for @emptyUserPrayers.
+  ///
+  /// In en, this message translates to:
+  /// **'The user has not created any prayers yet'**
+  String get emptyUserPrayers;
 }
 
 class _AppLocalizationsDelegate

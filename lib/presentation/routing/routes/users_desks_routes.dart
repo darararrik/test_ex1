@@ -50,10 +50,28 @@ abstract class UsersDesksRoutes {
             },
       ),
       CustomRoute(
-        page: UserTaskDetailRoute.page,
+        page: UserPrayersRoute.page,
         customRouteBuilder:
             <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
-              final args = page.routeData.argsAs<UserTaskDetailRouteArgs>();
+              final args = page.routeData.argsAs<UserPrayersRouteArgs>();
+              return CupertinoPageRoute<T>(
+                settings: page,
+                builder: (_) {
+                  context.read<UserPrayersBloc>().add(
+                    UserPrayersEvent.getPrayersByColumnId(
+                      columnId: args.columnId,
+                    ),
+                  );
+                  return child;
+                },
+              );
+            },
+      ),
+      CustomRoute(
+        page: UserPrayerDetailRoute.page,
+        customRouteBuilder:
+            <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
+              final args = page.routeData.argsAs<UserPrayerDetailRouteArgs>();
               return CupertinoPageRoute<T>(
                 settings: page,
                 builder: (_) {

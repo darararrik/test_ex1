@@ -105,7 +105,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get add => 'Add';
 
   @override
-  String get emptyTasksScreen => 'You haven\'t created any prayer.';
+  String get emptyMyPrayersScreen => 'You haven\'t created any prayer.';
 
   @override
   String get errorInvalidEmail => 'Enter correct e-mail';
@@ -149,4 +149,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyUsersColumns => 'User has not created columns yet';
+
+  @override
+  String get emptyUserPrayers => 'The user has not created any prayers yet';
 }

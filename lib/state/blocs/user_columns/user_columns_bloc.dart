@@ -14,21 +14,26 @@ part 'user_columns_bloc.freezed.dart';
 class UserColumnsBloc extends Bloc<UserColumnsEvent, UserColumnsState> {
   UserColumnsBloc(this._columnRepository)
     : super(const UserColumnsState.empty()) {
-    on<_GetUserColumns>(_getUserColumn);
-    
+    on<_GetUserColumnsEvent>(_getUserColumn);
   }
   final IColumnRepository _columnRepository;
   FutureOr<void> _getUserColumn(
-    _GetUserColumns event,
+    _GetUserColumnsEvent event,
     Emitter<UserColumnsState> emit,
   ) async {
     try {
       emit(const UserColumnsState.loading());
-      final columns = await _columnRepository.getColumns(deskId: event.deskId);
-      if (columns.isEmpty) {
+      final res = await _columnRepository.getColumns(deskId: event.deskId);
+      if (res.columnsList.isEmpty) {
         emit(const UserColumnsState.empty());
       } else {
-        emit(UserColumnsState.loaded(columns: columns));
+        emit(
+          UserColumnsState.loaded(
+            columns: res.columnsList,
+            afterCursor: res.cursor.afterCursor,
+            hasMore: res.cursor.afterCursor != null,
+          ),
+        );
       }
     } catch (_) {
       emit(const UserColumnsState.error(message: 'Error fetch columns'));
