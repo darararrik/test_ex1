@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_ex1/domain/models/models.dart';
 
+import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/presentation/constants/r.dart';
 import 'package:test_ex1/presentation/constants/s.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';

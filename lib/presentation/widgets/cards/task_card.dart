@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_prayers/my_prayers_bloc.dart';
 import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
+import 'package:test_ex1/state/blocs/my_desks/my_desks_bloc.dart';
+import 'package:test_ex1/state/blocs/my_prayers/my_prayers_bloc.dart';
 
-class TaskCard extends StatefulWidget {
-  const TaskCard({
+class PrayerCard extends StatefulWidget {
+  const PrayerCard({
     super.key,
     required this.prayer,
     required this.onTapRoute,
@@ -23,10 +23,10 @@ class TaskCard extends StatefulWidget {
   final Function(PrayerModel prayer) onPressed;
   final Function(PrayerModel prayer) onTapRoute;
   @override
-  State<TaskCard> createState() => _TaskCardState();
+  State<PrayerCard> createState() => _PrayerCardState();
 }
 
-class _TaskCardState extends State<TaskCard> {
+class _PrayerCardState extends State<PrayerCard> {
   late TextEditingController _controller;
   late FocusNode _focusNode;
   final isEditing = ValueNotifier<bool>(false);
@@ -44,7 +44,7 @@ class _TaskCardState extends State<TaskCard> {
   }
 
   @override
-  void didUpdateWidget(covariant TaskCard oldWidget) {
+  void didUpdateWidget(covariant PrayerCard oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.prayer.title != widget.prayer.title && !isEditing.value) {
       _controller.text = widget.prayer.title;

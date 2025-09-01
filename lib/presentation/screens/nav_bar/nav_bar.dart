@@ -3,27 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/auth/auth_bloc.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/routing/wrappers/users_desks_wrapper.dart';
 import 'package:test_ex1/presentation/utils/extensions/build_context_x.dart';
 import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
+import 'package:test_ex1/state/blocs/auth/auth_bloc.dart';
 
 @RoutePage(name: 'NavBarRoute')
-class NavBar extends StatefulWidget {
+class NavBar extends StatelessWidget {
   const NavBar({super.key});
-
-  @override
-  State<NavBar> createState() => _NavBarState();
-}
-
-class _NavBarState extends State<NavBar> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<AuthBloc>().add(const AuthEvent.check());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +20,7 @@ class _NavBarState extends State<NavBar> {
       routes: const [
         MyDesksWrapperRoute(),
         UsersDesksWrapperRoute(),
-        FollowedWrapperRoute(),
+        SubsWrapperRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return ClipRRect(

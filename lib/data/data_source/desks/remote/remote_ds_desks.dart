@@ -13,7 +13,10 @@ abstract class RemoteDSDesks {
 
   @GET("/desks")
   @Extra({AppDefaults.requiresAuth: true})
-  Future<DesksResponseDTO> geOthertDesks(@Query("limit") int limit);
+  Future<DesksResponseDTO> getOtherDesks(
+    @Query("limit") int limit,
+    @Query("afterCursor") String? afterCursor,
+  );
 
   @GET("/desks/my")
   @Extra({AppDefaults.requiresAuth: true})

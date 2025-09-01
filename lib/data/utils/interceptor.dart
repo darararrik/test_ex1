@@ -7,7 +7,6 @@ import 'package:test_ex1/domain/repositories/token_repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart'
     hide Options;
 
-
 class AppInterceptor extends Interceptor {
   AppInterceptor({
     required this.talker,
@@ -35,5 +34,11 @@ class AppInterceptor extends Interceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) {
     talker.error('Dio Error: ${err.message}', err);
     handler.next(err);
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    talker.log('Response [${response.statusCode}]: ${response.data}');
+    super.onResponse(response, handler);
   }
 }

@@ -5,6 +5,7 @@ import 'package:test_ex1/data/dto/cursor/cursor_dto.dart';
 
 part 'comments_response_dto.freezed.dart';
 part 'comments_response_dto.g.dart';
+
 @freezed
 sealed class CommentsResponseDTO with _$CommentsResponseDTO {
   const factory CommentsResponseDTO({

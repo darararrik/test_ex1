@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/users_desks/users_desks_bloc.dart';
+import 'package:test_ex1/domain/models/column.dart';
 import 'package:test_ex1/domain/models/models.dart';
-import 'package:test_ex1/presentation/constants/constants.dart';
+import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
+import 'package:test_ex1/presentation/widgets/cards/desk_card.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
+import 'package:test_ex1/state/blocs/users_desks/users_desks_bloc.dart';
 
 @RoutePage()
 class UsersDesksScreen extends StatefulWidget {
@@ -19,41 +21,69 @@ class UsersDesksScreen extends StatefulWidget {
 }
 
 class _UsersDesksScreenState extends State<UsersDesksScreen> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
-    context.read<UsersDesksBloc>().add(const UsersDesksEvent.getUsersDesks());
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent - 200) {
+        context.read<UsersDesksBloc>().state.maybeWhen(
+          loaded: (desks, cursor, isLoadingMore, hasMore) {
+            if (!isLoadingMore && hasMore) {
+              context.read<UsersDesksBloc>().add(
+                const UsersDesksEvent.loadMore(),
+              );
+            }
+          },
+          orElse: () {},
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        controller: _scrollController,
         slivers: [
           FirstSliverAppBar(title: context.l10n.usersDesks),
-          // BlocBuilder<UsersDesksBloc, UsersDesksState>(
-          //   builder: (context, state) {
-          //     return state.when(
-          //       loading: () => const LoadingState(),
-          //       error: (message) => const ErrorState(),
-          //       empty: () {
-          //         return EmptyState(
-          //           message: context.l10n.emptyDeskScreen,
-          //           iconPath: AppIcons.sketch,
-          //         );
-          //       },
-          //       loaded: (desks) => DesksListBody<DeskModel>(
-          //         items: desks,
-          //         itemBuilder: (context, desk) => UserDeskCard(
-          //           desk: desk,
-          //           onTap: () {
-          //             context.pushRoute(UserDesksRoute(titleAB: desk.name));
-          //           },
-          //         ),
-          //       ),
-          //     );
-          //   },
-          // ),
+          BlocBuilder<UsersDesksBloc, UsersDesksState>(
+            builder: (context, state) {
+              return state.when(
+                loading: () => const LoadingState(),
+                empty: () => EmptyState(
+                  message: context.l10n.emptyUsersDesks,
+                  iconPath: AppIcons.sketch,
+                ),
+                error: (mssg) => const ErrorState(),
+                loaded: (desks, cursor, isLoadingMore, hasMore) {
+                  return CardListBody<DeskModel>(
+                    items: desks,
+                    itemBuilder: (context, desk) => UserDeskCard(
+                      desk: desk,
+                      onTap: () => context.pushRoute(
+                        UserColumnsRoute(
+                          deskTitle: desk.name,
+                          columnId: desk.id,
+                        ),
+                      ),
+                    ),
+                    itemCount: desks.length + (isLoadingMore ? 1 : 0),
+                  );
+                },
+              );
+            },
+          ),
         ],
       ),
     );

@@ -14,6 +14,7 @@ class PrayerModel {
     required this.myPrayCount,
     required this.otherPrayCount,
     this.lastPrayerEvent,
+    required this.isSub,
   });
 
   final DateTime createdAt;
@@ -27,13 +28,17 @@ class PrayerModel {
   final String subscribersCount;
   final String myPrayCount;
   final String otherPrayCount;
-  final LastPrayerEvent? lastPrayerEvent;
+  final LastPrayerEventModel? lastPrayerEvent;
+  final bool isSub;
 
   Status get getActualStatus {
     if (lastPrayerEvent == null) {
-      return Status.lessHour;
+      return Status.moreDay;
     } else {
-      final diff = DateTime.now().difference(lastPrayerEvent!.updatedAt);
+      final now = DateTime.now();
+      final nowUtc = now.toUtc();
+      final lastPray = lastPrayerEvent!.updatedAt;
+      final diff = nowUtc.difference(lastPray);
       if (diff.inHours < 1) return Status.lessHour;
       if (diff.inHours < 24) return Status.lessDay;
       return Status.moreDay;
@@ -41,8 +46,8 @@ class PrayerModel {
   }
 }
 
-class LastPrayerEvent {
-  LastPrayerEvent({
+class LastPrayerEventModel {
+  LastPrayerEventModel({
     required this.deletedAt,
     required this.createdAt,
     required this.updatedAt,

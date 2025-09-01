@@ -24,6 +24,7 @@ class DioConfig {
         connectTimeout: const Duration(milliseconds: 15000),
         receiveTimeout: const Duration(milliseconds: 10000),
         headers: {"Content-Type": "application/json"},
+        validateStatus: (status) => status! < 500,
       ),
     );
 

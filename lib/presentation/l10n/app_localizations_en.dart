@@ -143,4 +143,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get internetError => 'Internet connection lost.';
+
+  @override
+  String get emptyUsersDesks => 'No one’s created a desk yet :(';
+
+  @override
+  String get emptyUsersColumns => 'User has not created columns yet';
 }

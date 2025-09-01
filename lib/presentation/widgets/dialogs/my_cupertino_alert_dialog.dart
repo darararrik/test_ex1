@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/auth/auth_bloc.dart';
 import 'package:test_ex1/presentation/constants/s.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
+import 'package:test_ex1/state/blocs/auth/auth_bloc.dart';
 
 class LogOutDialog extends StatelessWidget {
   const LogOutDialog({super.key});

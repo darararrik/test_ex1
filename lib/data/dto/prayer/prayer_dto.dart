@@ -29,7 +29,7 @@ sealed class PrayerDTO with _$PrayerDTO {
 }
 
 extension PrayerToModel on PrayerDTO {
-  PrayerModel toModel() => PrayerModel(
+  PrayerModel toModel({bool isSub = false}) => PrayerModel(
     createdAt: createdAt,
     updatedAt: updatedAt,
     deletedAt: deletedAt,
@@ -41,5 +41,7 @@ extension PrayerToModel on PrayerDTO {
     subscribersCount: subscribersCount.toString(),
     myPrayCount: myPrayCount.toString(),
     otherPrayCount: otherPrayCount.toString(),
+    lastPrayerEvent: lastPrayerEvent?.toModel(),
+    isSub: isSub,
   );
 }

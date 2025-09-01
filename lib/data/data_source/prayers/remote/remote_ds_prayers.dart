@@ -15,7 +15,7 @@ abstract class RemoteDSPrayers {
 
   @POST("/columns/{columnId}/prayers")
   @Extra({AppDefaults.requiresAuth: true})
-  Future<PrayersResponseDTO> createPrayerByColumnId(
+  Future<HttpResponse> createPrayerByColumnId(
     @Path("columnId") int columnId,
     @Body() CreatedPrayerDTO prayer,
   );
@@ -30,15 +30,15 @@ abstract class RemoteDSPrayers {
 
   @POST("/prayers/{prayerId}/subscribe")
   @Extra({AppDefaults.requiresAuth: true})
-  Future<PrayerDTO> subscribe(@Path("prayerId") int prayerId);
+  Future<HttpResponse> subscribe(@Path("prayerId") int prayerId);
 
   @DELETE("/prayers/{prayerId}/subscribe")
   @Extra({AppDefaults.requiresAuth: true})
-  Future<PrayerDTO> unsubscribe(@Path("prayerId") int prayerId);
+  Future<HttpResponse> unsubscribe(@Path("prayerId") int prayerId);
 
-  @POST("/prayers/{prayerId}")
+  @POST("/prayers/{prayerId}/do")
   @Extra({AppDefaults.requiresAuth: true})
-  Future<PrayerDTO> doPrayerById(@Path("prayerId") int prayerId);
+  Future<HttpResponse> doPrayerById(@Path("prayerId") int prayerId);
 
   @GET("/prayers/{prayerId}")
   @Extra({AppDefaults.requiresAuth: true})

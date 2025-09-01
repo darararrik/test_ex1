@@ -4,12 +4,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/data/dto/column/column_dto.dart';
-import 'package:test_ex1/domain/blocs/blocs.dart';
 import 'package:test_ex1/domain/models/column.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/cards/background_card_delete.dart';
+import 'package:test_ex1/state/blocs/blocs.dart';
 
 class ColumnCard extends StatefulWidget {
   const ColumnCard({super.key, required this.column, required this.onTap});

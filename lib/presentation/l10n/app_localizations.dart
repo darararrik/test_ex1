@@ -363,6 +363,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Internet connection lost.'**
   String get internetError;
+
+  /// No description provided for @emptyUsersDesks.
+  ///
+  /// In en, this message translates to:
+  /// **'No one’s created a desk yet :('**
+  String get emptyUsersDesks;
+
+  /// No description provided for @emptyUsersColumns.
+  ///
+  /// In en, this message translates to:
+  /// **'User has not created columns yet'**
+  String get emptyUsersColumns;
 }
 
 class _AppLocalizationsDelegate

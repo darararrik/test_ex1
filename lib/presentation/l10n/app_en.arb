@@ -43,7 +43,9 @@
   "sorryText": "The counter can be pressed\nonce per hour.",
   "ok":"OK",
   "emptySubscriptions":"You haven no subscriptions yet.",
-  "internetError":"Internet connection lost."
+  "internetError":"Internet connection lost.",
+  "emptyUsersDesks":"No one’s created a desk yet :(",
+  "emptyUsersColumns":"User has not created columns yet"
 
   
 }

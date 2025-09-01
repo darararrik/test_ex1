@@ -18,9 +18,13 @@ class _RemoteDSDesks implements RemoteDSDesks {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<DesksResponseDTO> geOthertDesks(int limit) async {
+  Future<DesksResponseDTO> getOtherDesks(int limit, String? afterCursor) async {
     final _extra = <String, dynamic>{'requiresAuth': true};
-    final queryParameters = <String, dynamic>{r'limit': limit};
+    final queryParameters = <String, dynamic>{
+      r'limit': limit,
+      r'afterCursor': afterCursor,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<DesksResponseDTO>(

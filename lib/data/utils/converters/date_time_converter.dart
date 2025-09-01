@@ -7,8 +7,8 @@ class DateTimeConverter implements JsonConverter<DateTime, String> {
   @override
   DateTime fromJson(String json) {
     try {
-      // сначала пробуем ISO8601
-      return DateTime.parse(json);
+      final utcTime = DateTime.parse(json).toUtc();
+      return utcTime;
     } catch (_) {
       try {
         // fallback: dd.MM.yyyy HH:mm
