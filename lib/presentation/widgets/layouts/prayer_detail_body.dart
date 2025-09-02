@@ -10,8 +10,8 @@ import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 
-class PrayerDetailBody extends StatefulWidget {
-  const PrayerDetailBody({
+class SliverPrayerDetailBody extends StatefulWidget {
+  const SliverPrayerDetailBody({
     super.key,
     required this.prayer,
     required this.onPressedPrayButton,
@@ -23,10 +23,10 @@ class PrayerDetailBody extends StatefulWidget {
   final VoidCallback onPressedSubscribeButton;
   final VoidCallback onPressedUnsubscribeButton;
   @override
-  State<PrayerDetailBody> createState() => _PrayerDetailBodyState();
+  State<SliverPrayerDetailBody> createState() => _SliverPrayerDetailBodyState();
 }
 
-class _PrayerDetailBodyState extends State<PrayerDetailBody> {
+class _SliverPrayerDetailBodyState extends State<SliverPrayerDetailBody> {
   late final TextEditingController _commentController;
 
   @override
@@ -43,21 +43,17 @@ class _PrayerDetailBodyState extends State<PrayerDetailBody> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            TaskDataAndButtons(
-              prayer: widget.prayer,
-              onPressedPrayButton: widget.onPressedPrayButton,
-              onPressedSubscribeButton: widget.onPressedSubscribeButton,
-              onPressedUnsubscribeButton: widget.onPressedUnsubscribeButton,
-            ),
-            const SizedBox(height: S.s20),
-            Comment(commentController: _commentController),
-          ],
+    return SliverList(
+      delegate: SliverChildListDelegate([
+        TaskDataAndButtons(
+          prayer: widget.prayer,
+          onPressedPrayButton: widget.onPressedPrayButton,
+          onPressedSubscribeButton: widget.onPressedSubscribeButton,
+          onPressedUnsubscribeButton: widget.onPressedUnsubscribeButton,
         ),
-      ),
+        const SizedBox(height: S.s20),
+        Comment(commentController: _commentController),
+      ]),
     );
   }
 }

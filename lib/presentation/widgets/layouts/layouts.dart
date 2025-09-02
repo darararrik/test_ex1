@@ -1,4 +1,4 @@
-export 'background.dart';
+export 'background_widget.dart';
 export 'comment.dart';
 export 'card_list_body.dart';
 export 'empty_state.dart';

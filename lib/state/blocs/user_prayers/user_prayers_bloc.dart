@@ -23,11 +23,17 @@ class UserPrayersBloc extends Bloc<UserPrayersEvent, UserPrayersState> {
     Emitter<UserPrayersState> emit,
   ) async {
     try {
-      emit(const UserPrayersState.loading());
+      if (state is! _LoadedState) {
+        emit(const UserPrayersState.loading());
+      }
       final prayers = await _prayerRepository.getPrayersByColumnId(
         columnId: event.columnId,
       );
-      emit(UserPrayersState.loaded(prayers: prayers));
+      if (prayers.isEmpty) {
+        emit(const UserPrayersState.empty());
+      } else {
+        emit(UserPrayersState.loaded(prayers: prayers));
+      }
     } catch (e) {
       emit(UserPrayersState.error(message: e.toString()));
     }
@@ -38,12 +44,18 @@ class UserPrayersBloc extends Bloc<UserPrayersEvent, UserPrayersState> {
     Emitter<UserPrayersState> emit,
   ) async {
     try {
-      emit(const UserPrayersState.loading());
+      if (state is! _LoadedState) {
+        emit(const UserPrayersState.loading());
+      }
       await _prayerRepository.doPrayer(prayerId: event.prayer.id);
       final prayers = await _prayerRepository.getPrayersByColumnId(
         columnId: event.prayer.columnId,
       );
-      emit(UserPrayersState.loaded(prayers: prayers));
+      if (prayers.isEmpty) {
+        emit(const UserPrayersState.empty());
+      } else {
+        emit(UserPrayersState.loaded(prayers: prayers));
+      }
     } catch (e) {
       emit(UserPrayersState.error(message: e.toString()));
     }

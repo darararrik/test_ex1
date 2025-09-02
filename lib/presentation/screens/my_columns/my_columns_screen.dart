@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:test_ex1/data/dto/column/column_dto.dart';
 import 'package:test_ex1/data/dto/desk/desk_dto.dart';
@@ -10,6 +11,7 @@ import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
+import 'package:test_ex1/presentation/widgets/layouts/background.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 import 'package:test_ex1/state/blocs/blocs.dart';
 
@@ -39,27 +41,37 @@ class MyColumnsScreen extends StatelessWidget {
           FirstSliverAppBar(title: context.l10n.myDesk),
           BlocBuilder<MyDesksBloc, MyDesksState>(
             builder: (context, state) {
-              return state.when(
-                loading: () => const LoadingState(),
-                empty: () => EmptyState(
-                  message: context.l10n.emptyDeskScreen,
-                  iconPath: AppIcons.sketch,
+              return Skeletonizer.sliver(
+                enabled: state.maybeWhen(
+                  loading: () => true,
+                  orElse: () => false,
                 ),
-                error: (mssg) => const ErrorState(),
-                loaded: (columns) => CardListBody<ColumnModel>(
-                  items: columns,
-                  itemBuilder: (context, column) => ColumnCard(
-                    column: column,
-                    onTap: () {
-                      context.pushRoute(
-                        MyPrayersRoute(
-                          columnId: column.id,
-                          columnTitle: column.title,
-                        ),
-                      );
-                    },
+                child: state.when(
+                  loading: () => const SliverLoadingState(),
+                  empty: () => SliverEmptyState(
+                    message: context.l10n.emptyDeskScreen,
+                    iconPath: AppIcons.sketch,
                   ),
-                  itemCount: columns.length,
+                  error: (mssg) => const SliverErrorState(),
+                  loaded: (columns) => SliverToBoxAdapter(
+                    child: Background(
+                      child: CardListBody<ColumnModel>(
+                        items: columns,
+                        itemBuilder: (context, column) => ColumnCard(
+                          column: column,
+                          onTap: () {
+                            context.pushRoute(
+                              MyPrayersRoute(
+                                columnId: column.id,
+                                columnTitle: column.title,
+                              ),
+                            );
+                          },
+                        ),
+                        itemCount: columns.length,
+                      ),
+                    ),
+                  ),
                 ),
               );
             },

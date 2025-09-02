@@ -25,8 +25,10 @@ class UsersDesksBloc extends Bloc<UsersDesksEvent, UsersDesksState> {
     _GetUsersDesksEvent event,
     Emitter<UsersDesksState> emit,
   ) async {
-    emit(const UsersDesksState.loading());
     try {
+      if (state is! _LoadedState) {
+        emit(const UsersDesksState.loading());
+      }
       final res = await _deskRepository.getOtherDesks(limit: 10);
       final desks = res.desksList;
 

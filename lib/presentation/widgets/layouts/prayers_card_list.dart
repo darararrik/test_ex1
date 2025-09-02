@@ -11,8 +11,8 @@ import 'package:test_ex1/presentation/widgets/layouts/loading_state.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 import 'package:test_ex1/state/blocs/my_prayers/my_prayers_bloc.dart';
 
-class PrayersCardList extends StatelessWidget {
-  const PrayersCardList({
+class SliverPrayersCardList extends StatelessWidget {
+  const SliverPrayersCardList({
     super.key,
     required this.prayers,
     required this.onTapCard,
@@ -30,11 +30,11 @@ class PrayersCardList extends StatelessWidget {
           context,
           index,
         ) {
-          final taskCard = prayers[index];
+          final prayerCard = prayers[index];
           return Padding(
             padding: const P(bottom: S.s12),
             child: PrayerCard(
-              prayer: taskCard,
+              prayer: prayerCard,
               onTapRoute: onTapCard,
               onPressed: onPressedPrayButton,
             ),

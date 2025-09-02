@@ -22,7 +22,9 @@ class UserColumnsBloc extends Bloc<UserColumnsEvent, UserColumnsState> {
     Emitter<UserColumnsState> emit,
   ) async {
     try {
-      emit(const UserColumnsState.loading());
+      if (state is! _LoadedState) {
+        emit(const UserColumnsState.loading());
+      }
       final res = await _columnRepository.getColumns(deskId: event.deskId);
       if (res.columnsList.isEmpty) {
         emit(const UserColumnsState.empty());

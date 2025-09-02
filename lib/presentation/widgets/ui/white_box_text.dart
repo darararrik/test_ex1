@@ -9,8 +9,7 @@ class WhiteBoxText extends StatelessWidget {
   final String data;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: Sz.s150,
+    return Expanded(
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.appColors.gray100,

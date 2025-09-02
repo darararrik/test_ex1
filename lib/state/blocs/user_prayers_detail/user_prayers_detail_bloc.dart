@@ -16,7 +16,7 @@ class UserPrayerDetailBloc
   UserPrayerDetailBloc(this._prayerRepository)
     : super(const UserPrayerDetailState.loading()) {
     on<_GetPrayerEvent>(_onGetPrayerEvent);
-    on<_PrayEvent>(_onPrayeEvent);
+    on<_PrayEvent>(_onDoPrayerEvent);
     on<_SubscribeEvent>(_subscribePrayer);
     on<_UnsubscribeEvent>(_unsubscribePrayer);
   }
@@ -26,8 +26,10 @@ class UserPrayerDetailBloc
     _GetPrayerEvent event,
     Emitter<UserPrayerDetailState> emit,
   ) async {
-    emit(const _LoadingState());
     try {
+      if (state is! _LoadedState) {
+        emit(const UserPrayerDetailState.loading());
+      }
       final prayer = await _prayerRepository.getPrayerById(
         prayerId: event.prayerId,
       );
@@ -37,14 +39,18 @@ class UserPrayerDetailBloc
     }
   }
 
-  FutureOr<void> _onPrayeEvent(
+  FutureOr<void> _onDoPrayerEvent(
     _PrayEvent event,
     Emitter<UserPrayerDetailState> emit,
   ) async {
     try {
+      if (state is! _LoadedState) {
+        emit(const UserPrayerDetailState.loading());
+      }
       final prayer = await _prayerRepository.doPrayer(
         prayerId: event.prayer.id,
       );
+
       emit(UserPrayerDetailState.loaded(prayer: prayer));
     } catch (error) {
       emit(UserPrayerDetailState.error(message: error.toString()));
@@ -56,8 +62,10 @@ class UserPrayerDetailBloc
     _SubscribeEvent event,
     Emitter<UserPrayerDetailState> emit,
   ) async {
-    emit(const UserPrayerDetailState.loading());
     try {
+      if (state is! _LoadedState) {
+        emit(const UserPrayerDetailState.loading());
+      }
       await _prayerRepository.subscribePrayer(prayerId: event.prayer.id);
       final prayer = await _prayerRepository.getPrayerById(
         prayerId: event.prayer.id,
@@ -72,8 +80,10 @@ class UserPrayerDetailBloc
     _UnsubscribeEvent event,
     Emitter<UserPrayerDetailState> emit,
   ) async {
-    emit(const UserPrayerDetailState.loading());
     try {
+      if (state is! _LoadedState) {
+        emit(const UserPrayerDetailState.loading());
+      }
       await _prayerRepository.unsubscribePrayer(prayerId: event.prayer.id);
       final prayer = await _prayerRepository.getPrayerById(
         prayerId: event.prayer.id,

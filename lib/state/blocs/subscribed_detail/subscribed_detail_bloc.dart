@@ -28,8 +28,10 @@ class SubscribedDetailBloc
     _GetPrayerByIdEvent event,
     Emitter<SubscribedDetailState> emit,
   ) async {
-    emit(const _LoadingState());
     try {
+      if (state is! _LoadedState) {
+        emit(const SubscribedDetailState.loading());
+      }
       final prayer = await _prayerRepository.getPrayerById(
         prayerId: event.prayerId,
       );
@@ -43,8 +45,10 @@ class SubscribedDetailBloc
     _PrayEvent event,
     Emitter<SubscribedDetailState> emit,
   ) async {
-    emit(const _LoadingState());
     try {
+      if (state is! _LoadedState) {
+        emit(const SubscribedDetailState.loading());
+      }
       await _prayerRepository.doPrayer(prayerId: event.prayer.id);
       final prayers = await _prayerRepository.getSubscribedPrayers();
       final prayer = prayers.firstWhere((p) => p.id == event.prayer.id);
@@ -58,8 +62,10 @@ class SubscribedDetailBloc
     _SubscribeEvent event,
     Emitter<SubscribedDetailState> emit,
   ) async {
-    emit(const SubscribedDetailState.loading());
     try {
+      if (state is! _LoadedState) {
+        emit(const SubscribedDetailState.loading());
+      }
       await _prayerRepository.subscribePrayer(prayerId: event.prayer.id);
       final prayer = await _prayerRepository.getPrayerById(
         prayerId: event.prayer.id,
@@ -74,8 +80,9 @@ class SubscribedDetailBloc
     _UnsubscribeEvent event,
     Emitter<SubscribedDetailState> emit,
   ) async {
-    emit(const SubscribedDetailState.loading());
-    try {
+    try {if (state is! _LoadedState) {
+        emit(const SubscribedDetailState.loading());
+      }
       await _prayerRepository.unsubscribePrayer(prayerId: event.prayer.id);
       final prayer = await _prayerRepository.getPrayerById(
         prayerId: event.prayer.id,

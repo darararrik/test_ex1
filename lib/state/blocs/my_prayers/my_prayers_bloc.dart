@@ -28,7 +28,9 @@ class MyPrayersBloc extends Bloc<MyPrayersEvent, MyPrayersState> {
     Emitter<MyPrayersState> emit,
   ) async {
     try {
-      emit(const MyPrayersState.loading());
+      if (state is! _LoadedState) {
+        emit(const MyPrayersState.loading());
+      }
       final prayers = await _prayerRepository.getPrayersByColumnId(
         columnId: event.columnId,
       );
@@ -65,7 +67,9 @@ class MyPrayersBloc extends Bloc<MyPrayersEvent, MyPrayersState> {
     Emitter<MyPrayersState> emit,
   ) async {
     try {
-      emit(const MyPrayersState.loading());
+      if (state is! _LoadedState) {
+        emit(const MyPrayersState.loading());
+      }
       await _prayerRepository.createPrayer(
         columnId: event.columnId,
         title: event.title,
@@ -88,7 +92,9 @@ class MyPrayersBloc extends Bloc<MyPrayersEvent, MyPrayersState> {
     Emitter<MyPrayersState> emit,
   ) async {
     try {
-      emit(const MyPrayersState.loading());
+      if (state is! _LoadedState) {
+        emit(const MyPrayersState.loading());
+      }
       await _prayerRepository.deletePrayer(prayerId: event.prayerId);
       final prayers = await _prayerRepository.getPrayersByColumnId(
         columnId: event.columnId,
@@ -105,7 +111,9 @@ class MyPrayersBloc extends Bloc<MyPrayersEvent, MyPrayersState> {
 
   FutureOr<void> _pray(_PrayEvent event, Emitter<MyPrayersState> emit) async {
     try {
-      emit(const MyPrayersState.loading());
+      if (state is! _LoadedState) {
+        emit(const MyPrayersState.loading());
+      }
       await _prayerRepository.doPrayer(prayerId: event.prayer.id);
       final prayers = await _prayerRepository.getPrayersByColumnId(
         columnId: event.prayer.columnId,

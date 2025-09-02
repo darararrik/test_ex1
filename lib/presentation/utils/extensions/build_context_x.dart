@@ -17,27 +17,10 @@ extension BuildContextX on BuildContext {
   AppTypography get appTextStyle => Theme.of(this).extension<AppTypography>()!;
   ThemeData get appTheme => Theme.of(this);
   AppLocalizations get l10n => AppLocalizations.of(this)!;
-  MyDesksBloc get deskBloc => read<MyDesksBloc>();
-  UsersDesksBloc get usersBloc => read<UsersDesksBloc>();
-  SubscribedPrayerBloc get followedBloc => read<SubscribedPrayerBloc>();
 
   String? get currentWrapperName {
     final parentRouter = router.parent();
     return parentRouter?.current.name;
-  }
-
-  BlocBase? get currentBloc {
-    final tabsRouter = AutoTabsRouter.of(this, watch: true);
-    switch (tabsRouter.current.name) {
-      case MyDesksWrapperRoute.name:
-        return deskBloc;
-      case UsersDesksWrapperRoute.name:
-        return usersBloc;
-      case SubsWrapperRoute.name:
-        return followedBloc;
-      default:
-        return null;
-    }
   }
 
   bool get isMyDesksWrapperRoute =>

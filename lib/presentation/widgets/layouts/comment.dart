@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
@@ -13,7 +14,12 @@ class Comment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(context.l10n.comments, style: context.appTextStyle.headline2),
+        Skeleton.keep(
+          child: Text(
+            context.l10n.comments,
+            style: context.appTextStyle.headline2,
+          ),
+        ),
         const SizedBox(height: S.s12),
         Padding(
           padding: const P(vertical: S.s16, horizontal: S.s32),
@@ -40,9 +46,11 @@ class Comment extends StatelessWidget {
           ),
         ),
         const SizedBox(height: S.s12),
-        Padding(
-          padding: const P(horizontal: S.s16),
-          child: InputCommentWidget(commentController: _commentController),
+        Skeleton.keep(
+          child: Padding(
+            padding: const P(horizontal: S.s16),
+            child: InputCommentWidget(commentController: _commentController),
+          ),
         ),
       ],
     );

@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:test_ex1/domain/models/column.dart';
 import 'package:test_ex1/domain/models/models.dart';
-import 'package:test_ex1/presentation/constants/app_icons.dart';
+import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/cards/desk_card.dart';
+import 'package:test_ex1/presentation/widgets/layouts/background.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 import 'package:test_ex1/state/blocs/users_desks/users_desks_bloc.dart';
 
@@ -58,29 +61,39 @@ class _UsersDesksScreenState extends State<UsersDesksScreen> {
           FirstSliverAppBar(title: context.l10n.usersDesks),
           BlocBuilder<UsersDesksBloc, UsersDesksState>(
             builder: (context, state) {
-              return state.when(
-                loading: () => const LoadingState(),
-                empty: () => EmptyState(
-                  message: context.l10n.emptyUsersDesks,
-                  iconPath: AppIcons.sketch,
-                  needArrow: false,
+              return Skeletonizer.sliver(
+                enabled: state.maybeWhen(
+                  loading: () => true,
+                  orElse: () => false,
                 ),
-                error: (mssg) => const ErrorState(),
-                loaded: (desks, cursor, isLoadingMore, hasMore) {
-                  return CardListBody<DeskModel>(
-                    items: desks,
-                    itemBuilder: (context, desk) => UserDeskCard(
-                      desk: desk,
-                      onTap: () => context.pushRoute(
-                        UserColumnsRoute(
-                          deskTitle: desk.name,
-                          columnId: desk.id,
+                child: state.when(
+                  loading: () => const SliverLoadingState(),
+                  empty: () => SliverEmptyState(
+                    message: context.l10n.emptyUsersDesks,
+                    iconPath: AppIcons.sketch,
+                    needArrow: false,
+                  ),
+                  error: (mssg) => const SliverErrorState(),
+                  loaded: (desks, cursor, isLoadingMore, hasMore) {
+                    return SliverToBoxAdapter(
+                      child: Background(
+                        child: CardListBody<DeskModel>(
+                          items: desks,
+                          itemBuilder: (context, desk) => UserDeskCard(
+                            desk: desk,
+                            onTap: () => context.pushRoute(
+                              UserColumnsRoute(
+                                deskTitle: desk.name,
+                                columnId: desk.id,
+                              ),
+                            ),
+                          ),
+                          itemCount: desks.length + (isLoadingMore ? 1 : 0),
                         ),
                       ),
-                    ),
-                    itemCount: desks.length + (isLoadingMore ? 1 : 0),
-                  );
-                },
+                    );
+                  },
+                ),
               );
             },
           ),

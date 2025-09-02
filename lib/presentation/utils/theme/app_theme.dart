@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+import 'package:test_ex1/data/utils/app_defaults.dart' show AppDefaults;
 
 import 'package:test_ex1/presentation/constants/constants.dart';
 
 class AppTheme {
+  static final skeletonTheme = SkeletonizerConfigData(
+    effect: ShimmerEffect(
+      baseColor: appColors.gray100,
+      highlightColor: appColors.skeletonOrange,
+    ),
+    switchAnimationConfig: const SwitchAnimationConfig(),
+    enableSwitchAnimation: true,
+  );
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    extensions: <ThemeExtension<dynamic>>[appColors, appTextStyle],
+    extensions: [appColors, appTextStyle, skeletonTheme],
     primaryColor: appColors.gray800,
     scaffoldBackgroundColor: appColors.background,
     dialogTheme: DialogThemeData(backgroundColor: appColors.gray100),

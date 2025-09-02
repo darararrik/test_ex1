@@ -32,23 +32,27 @@ class MyDesksBloc extends Bloc<MyDesksEvent, MyDesksState> {
     Emitter<MyDesksState> emit,
   ) async {
     try {
-      emit(const MyDesksState.loading());
+      if (state is! _LoadedState) {
+        emit(const MyDesksState.loading());
+      }
       final desk = await _myDeskRepository.getMyDesk();
       final res = await _columnRepository.getColumns(deskId: desk.id);
       if (res.columnsList.isEmpty) {
         emit(const MyDesksState.empty());
+      } else {
+        emit(MyDesksState.loaded(columns: res.columnsList));
       }
-      emit(MyDesksState.loaded(columns: res.columnsList));
     } catch (e) {
       emit(const MyDesksState.error(message: "Failed to load desks"));
     }
   }
 
-  Future<dynamic> _onRenameColumn(
+  Future<void> _onRenameColumn(
     _RenameColumnEvent e,
     Emitter<MyDesksState> emit,
   ) async {
     try {
+      //TODO: INFO: В api нету возможности переименовать колонку
       // emit(const MyDesksState.loading());
       // await _myDesksRepository.renameDesk(e.id, e.newName);
       // final desks = await _myDesksRepository.getDesks();
@@ -58,20 +62,23 @@ class MyDesksBloc extends Bloc<MyDesksEvent, MyDesksState> {
     }
   }
 
-  Future<dynamic> _onCreateColumn(
+  Future<void> _onCreateColumn(
     _CreateColumnEvent e,
     Emitter<MyDesksState> emit,
   ) async {
     try {
+      if (state is! _LoadedState) {
+        emit(const MyDesksState.loading());
+      }
       emit(const MyDesksState.loading());
       final desk = await _myDeskRepository.getMyDesk();
       await _columnRepository.createColumn(title: e.title);
       final res = await _columnRepository.getColumns(deskId: desk.id);
       if (res.columnsList.isEmpty) {
         emit(const MyDesksState.empty());
-        return;
+      } else {
+        emit(MyDesksState.loaded(columns: res.columnsList));
       }
-      emit(MyDesksState.loaded(columns: res.columnsList));
     } catch (e) {
       emit(const MyDesksState.error(message: "Failed to create desk"));
     }
@@ -82,15 +89,17 @@ class MyDesksBloc extends Bloc<MyDesksEvent, MyDesksState> {
     Emitter<MyDesksState> emit,
   ) async {
     try {
-      emit(const MyDesksState.loading());
+      if (state is! _LoadedState) {
+        emit(const MyDesksState.loading());
+      }
       final desk = await _myDeskRepository.getMyDesk();
       await _columnRepository.deleteColumnById(columnId: e.id);
       final res = await _columnRepository.getColumns(deskId: desk.id);
       if (res.columnsList.isEmpty) {
         emit(const MyDesksState.empty());
-        return;
+      } else {
+        emit(MyDesksState.loaded(columns: res.columnsList));
       }
-      emit(MyDesksState.loaded(columns: res.columnsList));
     } catch (e) {
       emit(const MyDesksState.error(message: "Failed to remove desk"));
     }

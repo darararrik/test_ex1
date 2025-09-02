@@ -1,4 +1,5 @@
 import 'package:test_ex1/data/dto/last_prayer_event/last_prayer_event_dto.dart';
+import 'package:test_ex1/data/utils/app_defaults.dart';
 
 class PrayerModel {
   PrayerModel({
@@ -16,6 +17,19 @@ class PrayerModel {
     this.lastPrayerEvent,
     required this.isSub,
   });
+  factory PrayerModel.create() => PrayerModel(
+    createdAt: DateTime.fromMillisecondsSinceEpoch(0),
+    updatedAt: DateTime.fromMillisecondsSinceEpoch(0),
+    deletedAt: DateTime.fromMillisecondsSinceEpoch(0),
+    id: -1,
+    title: "",
+    columnId: -1,
+    completesCount: "",
+    subscribersCount: "",
+    myPrayCount: "",
+    otherPrayCount: "",
+    isSub: false,
+  );
 
   final DateTime createdAt;
   final DateTime updatedAt;

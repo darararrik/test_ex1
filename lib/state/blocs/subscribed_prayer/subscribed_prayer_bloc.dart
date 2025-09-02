@@ -26,8 +26,10 @@ class SubscribedPrayerBloc
     _GetFollowedTasksEvent event,
     Emitter<SubscribedPrayerState> emit,
   ) async {
-    emit(const SubscribedPrayerState.loading());
     try {
+      if (state is! _LoadedState) {
+        emit(const SubscribedPrayerState.loading());
+      }
       final prayers = await _prayerRepository.getSubscribedPrayers();
       if (prayers.isEmpty) {
         emit(const SubscribedPrayerState.empty());
@@ -43,8 +45,10 @@ class SubscribedPrayerBloc
     _PrayFollowedTasksEvent event,
     Emitter<SubscribedPrayerState> emit,
   ) async {
-    emit(const SubscribedPrayerState.loading());
     try {
+      if (state is! _LoadedState) {
+        emit(const SubscribedPrayerState.loading());
+      }
       await _prayerRepository.doPrayer(prayerId: event.prayer.id);
       final prayers = await _prayerRepository.getPrayersByColumnId(
         columnId: event.prayer.columnId,

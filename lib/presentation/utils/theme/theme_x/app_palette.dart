@@ -13,6 +13,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
     required this.error,
     required this.success,
     this.gradientOrange,
+    required this.skeletonOrange,
     required this.orangeIndicator,
     required this.blueIndicator,
     required this.yellowIndicator,
@@ -35,6 +36,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
   final Color blueIndicator;
   final Color yellowIndicator;
   final Color background;
+  final Color skeletonOrange;
   final BoxShadow shadow1;
   final BoxShadow shadow2;
 
@@ -54,6 +56,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
     Color? orangeIndicator,
     Color? blueIndicator,
     Color? yellowIndicator,
+    Color? skeletonOrange,
     Color? background,
     BoxShadow? shadow1,
     BoxShadow? shadow2,
@@ -76,6 +79,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
       background: background ?? this.background,
       shadow1: shadow1 ?? this.shadow1,
       shadow2: shadow2 ?? this.shadow2,
+      skeletonOrange: skeletonOrange ?? this.skeletonOrange,
     );
   }
 
@@ -96,6 +100,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
       gray300: Color.lerp(gray300, other.gray300, t)!,
       gray200: Color.lerp(gray200, other.gray200, t)!,
       gray100: Color.lerp(gray100, other.gray100, t)!,
+      skeletonOrange: Color.lerp(skeletonOrange, other.skeletonOrange, t)!,
       error: Color.lerp(error, other.error, t)!,
       success: Color.lerp(success, other.success, t)!,
       orangeIndicator: Color.lerp(orangeIndicator, other.orangeIndicator, t)!,
