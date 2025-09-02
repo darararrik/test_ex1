@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:test_ex1/presentation/constants/constants.dart';

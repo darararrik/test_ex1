@@ -3,7 +3,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:talker/talker.dart';
 
-import 'package:test_ex1/data/db/app_db/db.dart';
 import 'package:test_ex1/data/repositories/token_repository_impl.dart';
 import 'package:test_ex1/domain/repositories/token_repository.dart';
 import 'package:test_ex1/presentation/routing/app_routing.dart';
@@ -13,7 +12,6 @@ class AppConfig {
   const AppConfig({
     required this.apiUrl,
     required this.dio,
-    required this.appDatabase,
     required this.secureStorage,
     required this.router,
     required this.talker,
@@ -22,7 +20,6 @@ class AppConfig {
 
   final String apiUrl;
   final Dio dio;
-  final AppDatabase appDatabase;
   final FlutterSecureStorage secureStorage;
   final AppRouter router;
   final Talker talker;
@@ -46,13 +43,11 @@ class AppConfig {
         talker: talker,
       ).create();
 
-      final appDatabase = AppDatabase();
       final appRouter = AppRouter();
 
       return AppConfig(
         apiUrl: apiUrl,
         dio: dio,
-        appDatabase: appDatabase,
         secureStorage: secureStorage,
         router: appRouter,
         tokenRepository: tokenRepository,

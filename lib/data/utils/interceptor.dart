@@ -4,8 +4,6 @@ import 'package:talker/talker.dart';
 import 'package:test_ex1/data/utils/extensions/request_options.dart';
 import 'package:test_ex1/domain/repositories/token_repository.dart';
 
-import 'package:flutter_secure_storage/flutter_secure_storage.dart'
-    hide Options;
 
 class AppInterceptor extends Interceptor {
   AppInterceptor({

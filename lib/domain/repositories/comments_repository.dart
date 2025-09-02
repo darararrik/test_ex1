@@ -1,4 +1,3 @@
-import 'package:test_ex1/data/dto/created_comment/created_comment_dto.dart';
 import 'package:test_ex1/domain/models/models.dart';
 
 abstract class ICommentsRepository {

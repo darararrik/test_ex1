@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -8,9 +7,6 @@ import 'package:test_ex1/domain/models/prayer.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
-import 'package:test_ex1/state/blocs/my_prayers_detail/my_prayers_detail_bloc.dart';
-import 'package:test_ex1/state/blocs/subscribed_detail/subscribed_detail_bloc.dart';
-import 'package:test_ex1/state/blocs/subscribed_prayer/subscribed_prayer_bloc.dart';
 
 class TaskDataAndButtons extends StatelessWidget {
   const TaskDataAndButtons({

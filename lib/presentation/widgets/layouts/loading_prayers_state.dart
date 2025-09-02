@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:test_ex1/data/utils/app_defaults.dart';
+
 import 'package:test_ex1/domain/models/prayer.dart';
 import 'package:test_ex1/presentation/constants/s.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';

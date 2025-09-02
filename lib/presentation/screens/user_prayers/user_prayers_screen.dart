@@ -6,14 +6,11 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
-import 'package:test_ex1/presentation/screens/user_prayers_detail/user_prayers_detail_screen.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/layouts/empty_state.dart';
 import 'package:test_ex1/presentation/widgets/layouts/error_state.dart';
 import 'package:test_ex1/presentation/widgets/layouts/loading_prayers_state.dart';
-import 'package:test_ex1/presentation/widgets/layouts/loading_state.dart';
 import 'package:test_ex1/presentation/widgets/layouts/prayers_card_list.dart';
-import 'package:test_ex1/presentation/widgets/ui/first_sliver_app_bar.dart';
 import 'package:test_ex1/presentation/widgets/ui/my_sliver_app_bar.dart';
 import 'package:test_ex1/state/blocs/user_prayers/user_prayers_bloc.dart';
 

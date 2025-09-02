@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:test_ex1/data/dto/prayer/prayer_dto.dart';
 import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/domain/repositories/prayer_repository.dart';
 

@@ -1,17 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:test_ex1/data/dto/column/column_dto.dart';
-import 'package:test_ex1/data/dto/created_column/created_column_dto.dart';
-import 'package:test_ex1/data/dto/desk/desk_dto.dart';
 import 'package:test_ex1/domain/domain.dart';
-import 'package:test_ex1/domain/models/models.dart';
-import 'package:test_ex1/domain/repositories/column_repository.dart';
-import 'package:test_ex1/domain/repositories/prayer_repository.dart';
 
 part 'my_desks_bloc.freezed.dart';
 part 'my_desks_event.dart';

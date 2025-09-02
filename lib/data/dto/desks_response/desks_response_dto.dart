@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:test_ex1/data/dto/comment/comment_dto.dart';
 import 'package:test_ex1/data/dto/cursor/cursor_dto.dart';
 import 'package:test_ex1/data/dto/desk/desk_dto.dart';
 import 'package:test_ex1/domain/models/desks_response.dart';

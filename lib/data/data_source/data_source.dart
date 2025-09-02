@@ -1,3 +1,4 @@
+export 'auth/auth.dart';
+export 'columns/columns.dart';
 export 'desks/desks.dart';
-export 'profile/profile.dart';
-export 'auth/remote/remote.dart';
+export 'prayers/prayers.dart';

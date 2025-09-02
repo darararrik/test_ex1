@@ -1,5 +1,3 @@
-import 'package:test_ex1/data/dto/last_prayer_event/last_prayer_event_dto.dart';
-import 'package:test_ex1/data/utils/app_defaults.dart';
 
 class PrayerModel {
   PrayerModel({

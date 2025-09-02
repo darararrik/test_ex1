@@ -1,11 +1,8 @@
-import 'package:test_ex1/data/dto/created_prayer/created_prayer_dto.dart';
 import 'package:test_ex1/domain/models/models.dart';
 
 abstract class IPrayerRepository {
-  //TODO: тут пока не понятно
   Future<List<PrayerModel>> getPrayersByColumnId({required int columnId});
   Future<void> createPrayer({required int columnId, required String title});
-  //TODO: тут пока не понятно
   Future<List<PrayerModel>> getSubscribedPrayers();
   Future<void> subscribePrayer({required int prayerId});
   Future<void> unsubscribePrayer({required int prayerId});

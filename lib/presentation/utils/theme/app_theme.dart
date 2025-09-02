@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:test_ex1/data/utils/app_defaults.dart' show AppDefaults;
 
 import 'package:test_ex1/presentation/constants/constants.dart';
 

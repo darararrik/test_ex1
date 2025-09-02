@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import 'package:test_ex1/data/dto/desk/desk_dto.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
-import 'package:test_ex1/presentation/widgets/widgets.dart';
 
 class CardListBody<T> extends StatelessWidget {
   const CardListBody({

@@ -1,8 +1,6 @@
 import 'package:test_ex1/data/data_source/prayers/remote/remote_ds_prayers.dart';
-import 'package:test_ex1/data/dto/column/column_dto.dart';
 import 'package:test_ex1/data/dto/created_prayer/created_prayer_dto.dart';
 import 'package:test_ex1/data/dto/prayer/prayer_dto.dart';
-import 'package:test_ex1/data/dto/prayers_response/prayers_response_dto.dart';
 import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/domain/repositories/prayer_repository.dart';
 

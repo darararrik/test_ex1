@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:test_ex1/data/dto/column/column_dto.dart';
-import 'package:test_ex1/data/dto/comment/comment_dto.dart';
 import 'package:test_ex1/data/dto/cursor/cursor_dto.dart';
 import 'package:test_ex1/data/dto/prayer/prayer_dto.dart';
 

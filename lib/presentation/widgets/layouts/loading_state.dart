@@ -1,13 +1,11 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:test_ex1/data/utils/app_defaults.dart';
+
 import 'package:test_ex1/domain/models/desk.dart';
 import 'package:test_ex1/presentation/constants/s.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/cards/user_desk_card.dart';
-import 'package:test_ex1/presentation/widgets/layouts/card_list_body.dart';
-import 'package:test_ex1/presentation/widgets/layouts/background.dart';
 
 class SliverLoadingState extends StatelessWidget {
   const SliverLoadingState({super.key});

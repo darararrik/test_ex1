@@ -5,10 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:test_ex1/domain/models/prayer.dart';
-import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
-import 'package:test_ex1/presentation/widgets/layouts/prayer_detail_body.dart';
-import 'package:test_ex1/presentation/widgets/layouts/loading_detail_state.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 import 'package:test_ex1/state/blocs/blocs.dart';
 

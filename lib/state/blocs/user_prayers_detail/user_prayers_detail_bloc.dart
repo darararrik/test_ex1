@@ -4,8 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:test_ex1/domain/domain.dart';
-import 'package:test_ex1/domain/models/models.dart';
-import 'package:test_ex1/domain/repositories/prayer_repository.dart';
 
 part 'user_prayers_detail_event.dart';
 part 'user_prayers_detail_state.dart';

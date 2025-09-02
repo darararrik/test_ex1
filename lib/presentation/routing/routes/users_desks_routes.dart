@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
-import 'package:test_ex1/presentation/routing/wrappers/users_desks_wrapper.dart';
 import 'package:test_ex1/state/blocs/user_columns/user_columns_bloc.dart';
 import 'package:test_ex1/state/blocs/user_prayers/user_prayers_bloc.dart';
 import 'package:test_ex1/state/blocs/user_prayers_detail/user_prayers_detail_bloc.dart';

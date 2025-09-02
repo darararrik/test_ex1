@@ -7,8 +7,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_ex1/presentation/constants/app_icons.dart';
 import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
-import 'package:test_ex1/presentation/widgets/layouts/loading_prayers_state.dart';
-import 'package:test_ex1/presentation/widgets/layouts/prayers_card_list.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
 import 'package:test_ex1/state/blocs/blocs.dart';
 

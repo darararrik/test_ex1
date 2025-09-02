@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-import 'package:test_ex1/data/dto/column/column_dto.dart';
 import 'package:test_ex1/data/dto/created_prayer/created_prayer_dto.dart';
 import 'package:test_ex1/data/dto/prayer/prayer_dto.dart';
-import 'package:test_ex1/data/dto/prayers_response/prayers_response_dto.dart';
 import 'package:test_ex1/data/utils/app_defaults.dart';
 
 part 'remote_ds_prayers.g.dart';

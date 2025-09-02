@@ -1,14 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:test_ex1/data/dto/prayer/prayer_dto.dart';
 import 'package:test_ex1/domain/domain.dart';
-import 'package:test_ex1/domain/models/prayer.dart';
-import 'package:test_ex1/domain/repositories/prayer_repository.dart';
-import 'package:test_ex1/state/blocs/auth/auth_bloc.dart';
 
 part 'subscribed_detail_event.dart';
 part 'subscribed_detail_state.dart';
@@ -80,7 +75,8 @@ class SubscribedDetailBloc
     _UnsubscribeEvent event,
     Emitter<SubscribedDetailState> emit,
   ) async {
-    try {if (state is! _LoadedState) {
+    try {
+      if (state is! _LoadedState) {
         emit(const SubscribedDetailState.loading());
       }
       await _prayerRepository.unsubscribePrayer(prayerId: event.prayer.id);

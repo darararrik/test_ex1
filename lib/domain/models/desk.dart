@@ -1,4 +1,3 @@
-import 'package:skeletonizer/skeletonizer.dart';
 
 class DeskModel {
   const DeskModel({required this.id, required this.name});

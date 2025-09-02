@@ -3,14 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/data/data.dart';
-import 'package:test_ex1/data/data_source/columns/remote/remote_ds_columns.dart';
-import 'package:test_ex1/data/data_source/prayers/remote/remote_ds_prayers.dart';
-import 'package:test_ex1/data/repositories/auth_repository_impl.dart';
-import 'package:test_ex1/data/repositories/columns_repository_impl.dart';
-import 'package:test_ex1/data/repositories/desk_repository_impl.dart';
-import 'package:test_ex1/data/repositories/prayer_repository_impl.dart';
-import 'package:test_ex1/domain/repositories/column_repository.dart';
-import 'package:test_ex1/domain/repositories/prayer_repository.dart';
 import 'package:test_ex1/domain/repositories/repositories.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/state/blocs/blocs.dart';
@@ -23,7 +15,6 @@ class MRBProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<AppDatabase>.value(value: config.appDatabase),
         RepositoryProvider<ITokenRepository>.value(
           value: config.tokenRepository,
         ),

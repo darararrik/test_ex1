@@ -9,9 +9,15 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i17;
+
 import 'package:flutter/material.dart' as _i18;
+
+import 'package:auto_route/auto_route.dart' as _i17;
+
 import 'package:test_ex1/domain/models/prayer.dart' as _i19;
+import 'package:test_ex1/presentation/screens/login/login_screen.dart' as _i2;
+import 'package:test_ex1/presentation/screens/nav_bar/nav_bar.dart' as _i7;
+
 import 'package:test_ex1/presentation/routing/wrappers/auth_wrapper.dart'
     as _i1;
 import 'package:test_ex1/presentation/routing/wrappers/my_desks_wrapper.dart'
@@ -20,14 +26,12 @@ import 'package:test_ex1/presentation/routing/wrappers/subs_wrapper.dart'
     as _i11;
 import 'package:test_ex1/presentation/routing/wrappers/users_desks_wrapper.dart'
     as _i16;
-import 'package:test_ex1/presentation/screens/login/login_screen.dart' as _i2;
 import 'package:test_ex1/presentation/screens/my_columns/my_columns_screen.dart'
     as _i3;
 import 'package:test_ex1/presentation/screens/my_prayer_detail/my_prayer_detail_screen.dart'
     as _i5;
 import 'package:test_ex1/presentation/screens/my_prayers/my_prayers.dart'
     as _i6;
-import 'package:test_ex1/presentation/screens/nav_bar/nav_bar.dart' as _i7;
 import 'package:test_ex1/presentation/screens/registration/registration_screen.dart'
     as _i8;
 import 'package:test_ex1/presentation/screens/subs_detail/subs_prayer_detail_screen.dart'
