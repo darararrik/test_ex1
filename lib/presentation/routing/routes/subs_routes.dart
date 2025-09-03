@@ -19,10 +19,12 @@ abstract class SubsRoutes {
               return CupertinoPageRoute<T>(
                 fullscreenDialog: page.fullscreenDialog,
                 settings: page,
-                builder: (_) => BlocProvider(
-                  create: (context) => SubscribedPrayerBloc(context.read()),
-                  child: child,
-                ),
+                builder: (BuildContext context) {
+                  context.read<SubscribedPrayerBloc>().add(
+                    const SubscribedPrayerEvent.getSubs(),
+                  );
+                  return child;
+                },
               );
             },
       ),
@@ -34,15 +36,17 @@ abstract class SubsRoutes {
               return CupertinoPageRoute<T>(
                 fullscreenDialog: page.fullscreenDialog,
                 settings: page,
-                builder: (_) => BlocProvider<SubscribedDetailBloc>(
-                  create: (context) => SubscribedDetailBloc(context.read())
-                    ..add(
-                      SubscribedDetailEvent.getTaskById(
-                        prayerId: args.prayer.id,
-                      ),
-                    ),
-                  child: child,
-                ),
+                builder: (BuildContext context) {
+                  return BlocProvider<SubscribedDetailBloc>(
+                    create: (context) =>
+                        SubscribedDetailBloc(context.read())..add(
+                          SubscribedDetailEvent.getTaskById(
+                            prayerId: args.prayer.id,
+                          ),
+                        ),
+                    child: child,
+                  );
+                },
               );
             },
       ),

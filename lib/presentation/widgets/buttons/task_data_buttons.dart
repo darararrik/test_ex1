@@ -88,7 +88,7 @@ class TaskDataAndButtons extends StatelessWidget {
               ),
             ),
             const SizedBox(height: S.s8),
-            Skeleton.keep(
+            Skeleton.leaf(
               child: Visibility(
                 visible: prayer.isSub,
                 replacement: SecondaryButton(

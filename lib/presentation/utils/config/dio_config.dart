@@ -35,6 +35,7 @@ class DioConfig {
         settings: const TalkerDioLoggerSettings(
           printRequestHeaders: true,
           printRequestData: true,
+
           printResponseData: true,
           printResponseHeaders: false,
           printErrorData: true,

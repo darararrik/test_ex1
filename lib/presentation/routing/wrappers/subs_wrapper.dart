@@ -1,5 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:test_ex1/state/blocs/subscribed_prayer/subscribed_prayer_bloc.dart';
 
 @RoutePage(name: "SubsWrapperRoute")
 class SubsWrapper extends StatelessWidget implements AutoRouteWrapper {
@@ -7,12 +11,14 @@ class SubsWrapper extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    //TODO:Scaffold?
-    return const Scaffold(body: AutoRouter());
+    return const AutoRouter();
   }
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return this;
+    return BlocProvider(
+      create: (context) => SubscribedPrayerBloc(context.read()),
+      child: this,
+    );
   }
 }

@@ -55,11 +55,12 @@ extension MyPrayersDetailEventPatterns on MyPrayersDetailEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetPrayerById value)?  getTaskById,TResult Function( _PrayEvent value)?  pray,TResult Function( _SubscribeEvent value)?  subscribe,TResult Function( _UnsubscribeEvent value)?  unsubscribe,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetPrayerByIdEvent value)?  getTaskById,TResult Function( _CreateCommentEvent value)?  createComment,TResult Function( _PrayEvent value)?  pray,TResult Function( _SubscribeEvent value)?  subscribe,TResult Function( _UnsubscribeEvent value)?  unsubscribe,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _GetPrayerById() when getTaskById != null:
-return getTaskById(_that);case _PrayEvent() when pray != null:
+case _GetPrayerByIdEvent() when getTaskById != null:
+return getTaskById(_that);case _CreateCommentEvent() when createComment != null:
+return createComment(_that);case _PrayEvent() when pray != null:
 return pray(_that);case _SubscribeEvent() when subscribe != null:
 return subscribe(_that);case _UnsubscribeEvent() when unsubscribe != null:
 return unsubscribe(_that);case _:
@@ -80,11 +81,12 @@ return unsubscribe(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetPrayerById value)  getTaskById,required TResult Function( _PrayEvent value)  pray,required TResult Function( _SubscribeEvent value)  subscribe,required TResult Function( _UnsubscribeEvent value)  unsubscribe,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetPrayerByIdEvent value)  getTaskById,required TResult Function( _CreateCommentEvent value)  createComment,required TResult Function( _PrayEvent value)  pray,required TResult Function( _SubscribeEvent value)  subscribe,required TResult Function( _UnsubscribeEvent value)  unsubscribe,}){
 final _that = this;
 switch (_that) {
-case _GetPrayerById():
-return getTaskById(_that);case _PrayEvent():
+case _GetPrayerByIdEvent():
+return getTaskById(_that);case _CreateCommentEvent():
+return createComment(_that);case _PrayEvent():
 return pray(_that);case _SubscribeEvent():
 return subscribe(_that);case _UnsubscribeEvent():
 return unsubscribe(_that);}
@@ -101,11 +103,12 @@ return unsubscribe(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetPrayerById value)?  getTaskById,TResult? Function( _PrayEvent value)?  pray,TResult? Function( _SubscribeEvent value)?  subscribe,TResult? Function( _UnsubscribeEvent value)?  unsubscribe,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetPrayerByIdEvent value)?  getTaskById,TResult? Function( _CreateCommentEvent value)?  createComment,TResult? Function( _PrayEvent value)?  pray,TResult? Function( _SubscribeEvent value)?  subscribe,TResult? Function( _UnsubscribeEvent value)?  unsubscribe,}){
 final _that = this;
 switch (_that) {
-case _GetPrayerById() when getTaskById != null:
-return getTaskById(_that);case _PrayEvent() when pray != null:
+case _GetPrayerByIdEvent() when getTaskById != null:
+return getTaskById(_that);case _CreateCommentEvent() when createComment != null:
+return createComment(_that);case _PrayEvent() when pray != null:
 return pray(_that);case _SubscribeEvent() when subscribe != null:
 return subscribe(_that);case _UnsubscribeEvent() when unsubscribe != null:
 return unsubscribe(_that);case _:
@@ -125,10 +128,11 @@ return unsubscribe(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int prayerId)?  getTaskById,TResult Function( PrayerModel prayer)?  pray,TResult Function( PrayerModel prayer)?  subscribe,TResult Function( PrayerModel prayer)?  unsubscribe,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int prayerId)?  getTaskById,TResult Function( int prayerId,  String body)?  createComment,TResult Function( PrayerModel prayer)?  pray,TResult Function( PrayerModel prayer)?  subscribe,TResult Function( PrayerModel prayer)?  unsubscribe,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _GetPrayerById() when getTaskById != null:
-return getTaskById(_that.prayerId);case _PrayEvent() when pray != null:
+case _GetPrayerByIdEvent() when getTaskById != null:
+return getTaskById(_that.prayerId);case _CreateCommentEvent() when createComment != null:
+return createComment(_that.prayerId,_that.body);case _PrayEvent() when pray != null:
 return pray(_that.prayer);case _SubscribeEvent() when subscribe != null:
 return subscribe(_that.prayer);case _UnsubscribeEvent() when unsubscribe != null:
 return unsubscribe(_that.prayer);case _:
@@ -149,10 +153,11 @@ return unsubscribe(_that.prayer);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int prayerId)  getTaskById,required TResult Function( PrayerModel prayer)  pray,required TResult Function( PrayerModel prayer)  subscribe,required TResult Function( PrayerModel prayer)  unsubscribe,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int prayerId)  getTaskById,required TResult Function( int prayerId,  String body)  createComment,required TResult Function( PrayerModel prayer)  pray,required TResult Function( PrayerModel prayer)  subscribe,required TResult Function( PrayerModel prayer)  unsubscribe,}) {final _that = this;
 switch (_that) {
-case _GetPrayerById():
-return getTaskById(_that.prayerId);case _PrayEvent():
+case _GetPrayerByIdEvent():
+return getTaskById(_that.prayerId);case _CreateCommentEvent():
+return createComment(_that.prayerId,_that.body);case _PrayEvent():
 return pray(_that.prayer);case _SubscribeEvent():
 return subscribe(_that.prayer);case _UnsubscribeEvent():
 return unsubscribe(_that.prayer);}
@@ -169,10 +174,11 @@ return unsubscribe(_that.prayer);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int prayerId)?  getTaskById,TResult? Function( PrayerModel prayer)?  pray,TResult? Function( PrayerModel prayer)?  subscribe,TResult? Function( PrayerModel prayer)?  unsubscribe,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int prayerId)?  getTaskById,TResult? Function( int prayerId,  String body)?  createComment,TResult? Function( PrayerModel prayer)?  pray,TResult? Function( PrayerModel prayer)?  subscribe,TResult? Function( PrayerModel prayer)?  unsubscribe,}) {final _that = this;
 switch (_that) {
-case _GetPrayerById() when getTaskById != null:
-return getTaskById(_that.prayerId);case _PrayEvent() when pray != null:
+case _GetPrayerByIdEvent() when getTaskById != null:
+return getTaskById(_that.prayerId);case _CreateCommentEvent() when createComment != null:
+return createComment(_that.prayerId,_that.body);case _PrayEvent() when pray != null:
 return pray(_that.prayer);case _SubscribeEvent() when subscribe != null:
 return subscribe(_that.prayer);case _UnsubscribeEvent() when unsubscribe != null:
 return unsubscribe(_that.prayer);case _:
@@ -186,8 +192,8 @@ return unsubscribe(_that.prayer);case _:
 /// @nodoc
 
 
-class _GetPrayerById implements MyPrayersDetailEvent {
-  const _GetPrayerById({required this.prayerId});
+class _GetPrayerByIdEvent implements MyPrayersDetailEvent {
+  const _GetPrayerByIdEvent({required this.prayerId});
   
 
  final  int prayerId;
@@ -196,13 +202,13 @@ class _GetPrayerById implements MyPrayersDetailEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$GetPrayerByIdCopyWith<_GetPrayerById> get copyWith => __$GetPrayerByIdCopyWithImpl<_GetPrayerById>(this, _$identity);
+_$GetPrayerByIdEventCopyWith<_GetPrayerByIdEvent> get copyWith => __$GetPrayerByIdEventCopyWithImpl<_GetPrayerByIdEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetPrayerById&&(identical(other.prayerId, prayerId) || other.prayerId == prayerId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetPrayerByIdEvent&&(identical(other.prayerId, prayerId) || other.prayerId == prayerId));
 }
 
 
@@ -218,8 +224,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class _$GetPrayerByIdCopyWith<$Res> implements $MyPrayersDetailEventCopyWith<$Res> {
-  factory _$GetPrayerByIdCopyWith(_GetPrayerById value, $Res Function(_GetPrayerById) _then) = __$GetPrayerByIdCopyWithImpl;
+abstract mixin class _$GetPrayerByIdEventCopyWith<$Res> implements $MyPrayersDetailEventCopyWith<$Res> {
+  factory _$GetPrayerByIdEventCopyWith(_GetPrayerByIdEvent value, $Res Function(_GetPrayerByIdEvent) _then) = __$GetPrayerByIdEventCopyWithImpl;
 @useResult
 $Res call({
  int prayerId
@@ -230,19 +236,87 @@ $Res call({
 
 }
 /// @nodoc
-class __$GetPrayerByIdCopyWithImpl<$Res>
-    implements _$GetPrayerByIdCopyWith<$Res> {
-  __$GetPrayerByIdCopyWithImpl(this._self, this._then);
+class __$GetPrayerByIdEventCopyWithImpl<$Res>
+    implements _$GetPrayerByIdEventCopyWith<$Res> {
+  __$GetPrayerByIdEventCopyWithImpl(this._self, this._then);
 
-  final _GetPrayerById _self;
-  final $Res Function(_GetPrayerById) _then;
+  final _GetPrayerByIdEvent _self;
+  final $Res Function(_GetPrayerByIdEvent) _then;
 
 /// Create a copy of MyPrayersDetailEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? prayerId = null,}) {
-  return _then(_GetPrayerById(
+  return _then(_GetPrayerByIdEvent(
 prayerId: null == prayerId ? _self.prayerId : prayerId // ignore: cast_nullable_to_non_nullable
 as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _CreateCommentEvent implements MyPrayersDetailEvent {
+  const _CreateCommentEvent({required this.prayerId, required this.body});
+  
+
+ final  int prayerId;
+ final  String body;
+
+/// Create a copy of MyPrayersDetailEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CreateCommentEventCopyWith<_CreateCommentEvent> get copyWith => __$CreateCommentEventCopyWithImpl<_CreateCommentEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateCommentEvent&&(identical(other.prayerId, prayerId) || other.prayerId == prayerId)&&(identical(other.body, body) || other.body == body));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,prayerId,body);
+
+@override
+String toString() {
+  return 'MyPrayersDetailEvent.createComment(prayerId: $prayerId, body: $body)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CreateCommentEventCopyWith<$Res> implements $MyPrayersDetailEventCopyWith<$Res> {
+  factory _$CreateCommentEventCopyWith(_CreateCommentEvent value, $Res Function(_CreateCommentEvent) _then) = __$CreateCommentEventCopyWithImpl;
+@useResult
+$Res call({
+ int prayerId, String body
+});
+
+
+
+
+}
+/// @nodoc
+class __$CreateCommentEventCopyWithImpl<$Res>
+    implements _$CreateCommentEventCopyWith<$Res> {
+  __$CreateCommentEventCopyWithImpl(this._self, this._then);
+
+  final _CreateCommentEvent _self;
+  final $Res Function(_CreateCommentEvent) _then;
+
+/// Create a copy of MyPrayersDetailEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? prayerId = null,Object? body = null,}) {
+  return _then(_CreateCommentEvent(
+prayerId: null == prayerId ? _self.prayerId : prayerId // ignore: cast_nullable_to_non_nullable
+as int,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -561,11 +635,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( PrayerModel prayer)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( PrayerModel prayer,  List<CommentModel> comments)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoadingState() when loading != null:
 return loading();case _LoadedState() when loaded != null:
-return loaded(_that.prayer);case _ErrorState() when error != null:
+return loaded(_that.prayer,_that.comments);case _ErrorState() when error != null:
 return error(_that.message);case _:
   return orElse();
 
@@ -584,11 +658,11 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( PrayerModel prayer)  loaded,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( PrayerModel prayer,  List<CommentModel> comments)  loaded,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _LoadingState():
 return loading();case _LoadedState():
-return loaded(_that.prayer);case _ErrorState():
+return loaded(_that.prayer,_that.comments);case _ErrorState():
 return error(_that.message);case _:
   throw StateError('Unexpected subclass');
 
@@ -606,11 +680,11 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( PrayerModel prayer)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( PrayerModel prayer,  List<CommentModel> comments)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _LoadingState() when loading != null:
 return loading();case _LoadedState() when loaded != null:
-return loaded(_that.prayer);case _ErrorState() when error != null:
+return loaded(_that.prayer,_that.comments);case _ErrorState() when error != null:
 return error(_that.message);case _:
   return null;
 
@@ -655,10 +729,17 @@ String toString() {
 
 
 class _LoadedState implements MyPrayersDetailState {
-  const _LoadedState({required this.prayer});
+  const _LoadedState({required this.prayer, required final  List<CommentModel> comments}): _comments = comments;
   
 
  final  PrayerModel prayer;
+ final  List<CommentModel> _comments;
+ List<CommentModel> get comments {
+  if (_comments is EqualUnmodifiableListView) return _comments;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_comments);
+}
+
 
 /// Create a copy of MyPrayersDetailState
 /// with the given fields replaced by the non-null parameter values.
@@ -670,16 +751,16 @@ _$LoadedStateCopyWith<_LoadedState> get copyWith => __$LoadedStateCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadedState&&(identical(other.prayer, prayer) || other.prayer == prayer));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadedState&&(identical(other.prayer, prayer) || other.prayer == prayer)&&const DeepCollectionEquality().equals(other._comments, _comments));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,prayer);
+int get hashCode => Object.hash(runtimeType,prayer,const DeepCollectionEquality().hash(_comments));
 
 @override
 String toString() {
-  return 'MyPrayersDetailState.loaded(prayer: $prayer)';
+  return 'MyPrayersDetailState.loaded(prayer: $prayer, comments: $comments)';
 }
 
 
@@ -690,7 +771,7 @@ abstract mixin class _$LoadedStateCopyWith<$Res> implements $MyPrayersDetailStat
   factory _$LoadedStateCopyWith(_LoadedState value, $Res Function(_LoadedState) _then) = __$LoadedStateCopyWithImpl;
 @useResult
 $Res call({
- PrayerModel prayer
+ PrayerModel prayer, List<CommentModel> comments
 });
 
 
@@ -707,10 +788,11 @@ class __$LoadedStateCopyWithImpl<$Res>
 
 /// Create a copy of MyPrayersDetailState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? prayer = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? prayer = null,Object? comments = null,}) {
   return _then(_LoadedState(
 prayer: null == prayer ? _self.prayer : prayer // ignore: cast_nullable_to_non_nullable
-as PrayerModel,
+as PrayerModel,comments: null == comments ? _self._comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentModel>,
   ));
 }
 

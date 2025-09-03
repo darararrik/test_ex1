@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import 'package:test_ex1/data/utils/app_defaults.dart';
+
 class RemoteService {
   RemoteService({required Dio dio}) : _dio = dio;
 
@@ -17,7 +19,7 @@ class RemoteService {
       final options = Options(
         method: method,
         headers: headers,
-        extra: needAuth ? {'requiresAuth': true} : null,
+        extra: needAuth ? {AppDefaults.requiresAuth: true} : null,
       );
 
       return await _dio.request(

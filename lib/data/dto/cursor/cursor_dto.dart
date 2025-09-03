@@ -14,7 +14,7 @@ sealed class CursorDTO with _$CursorDTO {
       _$CursorDTOFromJson(json);
 }
 
-extension CursorToModel on CursorDTO {
+extension CursorMapper on CursorDTO {
   CursorModel toModel() =>
       CursorModel(afterCursor: afterCursor, beforeCursor: beforeCursor);
 }

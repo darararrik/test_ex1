@@ -20,6 +20,6 @@ sealed class DeskDTO with _$DeskDTO {
       _$DeskDTOFromJson(json);
 }
 
-extension DeskToModel on DeskDTO {
+extension DeskMapper on DeskDTO {
   DeskModel toModel() => DeskModel(id: id, name: name);
 }

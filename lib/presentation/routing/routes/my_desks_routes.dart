@@ -25,10 +25,11 @@ abstract class MyDesksRoutes {
                   context.read<AuthBloc>().add(const AuthEvent.check());
                   return BlocListener<AuthBloc, AuthState>(
                     listener: (context, state) {
-                      state.whenOrNull(
+                      state.maybeWhen(
                         logined: () => context.read<MyDesksBloc>().add(
                           const MyDesksEvent.getMyColumns(),
                         ),
+                        orElse: () {}
                       );
                     },
                     child: child,

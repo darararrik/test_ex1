@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:test_ex1/data/data.dart';
 import 'package:test_ex1/domain/repositories/repositories.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';

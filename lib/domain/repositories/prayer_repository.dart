@@ -1,3 +1,4 @@
+import 'package:test_ex1/domain/models/comments_response_model.dart';
 import 'package:test_ex1/domain/models/models.dart';
 
 abstract class IPrayerRepository {
@@ -11,4 +12,9 @@ abstract class IPrayerRepository {
   Future<PrayerModel> doPrayer({required int prayerId});
   Future<PrayerModel> getPrayerById({required int prayerId});
   Future<void> deletePrayer({required int prayerId});
+  Future<CommentsResponseModel> getComments({required int prayerId});
+  Future<CommentModel> createComment({
+    required int prayerId,
+    required String body,
+  });
 }

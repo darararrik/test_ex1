@@ -4,7 +4,6 @@ import 'package:talker/talker.dart';
 import 'package:test_ex1/data/utils/extensions/request_options.dart';
 import 'package:test_ex1/domain/repositories/token_repository.dart';
 
-
 class AppInterceptor extends Interceptor {
   AppInterceptor({
     required this.talker,

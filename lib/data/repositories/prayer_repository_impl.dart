@@ -1,6 +1,5 @@
-import 'package:test_ex1/data/data_source/remote/remote_data_source.dart';
-import 'package:test_ex1/data/dto/created_prayer/created_prayer_dto.dart';
-import 'package:test_ex1/data/dto/prayer/prayer_dto.dart';
+import 'package:test_ex1/data/data.dart';
+import 'package:test_ex1/domain/models/comments_response_model.dart';
 import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/domain/repositories/prayer_repository.dart';
 
@@ -54,12 +53,30 @@ class PrayerRepositoryImpl implements IPrayerRepository {
   }
 
   @override
-  Future<void> subscribePrayer({required int prayerId}) async {
-    await _remoteDataSource.subscribePrayer(prayerId);
-  }
+  Future<void> subscribePrayer({required int prayerId}) =>
+      _remoteDataSource.subscribePrayer(prayerId);
 
   @override
-  Future<void> unsubscribePrayer({required int prayerId}) async {
-    await _remoteDataSource.unsubscribePrayer(prayerId);
+  Future<void> unsubscribePrayer({required int prayerId}) =>
+      _remoteDataSource.unsubscribePrayer(prayerId);
+
+  @override
+  Future<CommentsResponseModel> getComments({
+    required int prayerId,
+    int limit = 10,
+    String? afterCursor,
+  }) async => (await _remoteDataSource.getComments(
+    prayerId,
+    limit,
+    afterCursor: afterCursor,
+  )).toModel();
+
+  @override
+  Future<CommentModel> createComment({
+    required int prayerId,
+    required String body,
+  }) async {
+    final bodyDTO = CreatedCommentDTO(body: body);
+    return (await _remoteDataSource.createComment(prayerId, bodyDTO)).toModel();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:test_ex1/data/data.dart';
+import 'package:test_ex1/domain/models/user.dart';
 import 'package:test_ex1/domain/repositories/repositories.dart';
 
 class AuthRepositoryImpl implements IAuthRepository {
@@ -13,7 +14,7 @@ class AuthRepositoryImpl implements IAuthRepository {
   final ITokenRepository _tokenRepository;
 
   @override
-  Future<Result<UserDTO>> login(String email, String password) async {
+  Future<Result<UserModel>> login(String email, String password) async {
     final requestDto = LoginRequestDto(email: email, password: password);
 
     try {
@@ -30,14 +31,14 @@ class AuthRepositoryImpl implements IAuthRepository {
         _tokenRepository.saveToken(user.token);
       }
 
-      return Result.success(user);
+      return Result.success(user.toModel());
     } on DioException catch (e) {
       return Result.failure(_parseDioError(e, AppDefaults.exceptionText));
     }
   }
 
   @override
-  Future<Result<UserDTO>> register(
+  Future<Result<UserModel>> register(
     String name,
     String email,
     String password,
@@ -60,7 +61,7 @@ class AuthRepositoryImpl implements IAuthRepository {
       if (user.token.isNotEmpty) {
         _tokenRepository.saveToken(user.token);
       }
-      return Result.success(user);
+      return Result.success(user.toModel());
     } on DioException catch (e) {
       return Result.failure(_parseDioError(e, AppDefaults.exceptionText));
     }

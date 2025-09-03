@@ -21,7 +21,7 @@ sealed class ColumnDTO with _$ColumnDTO {
       _$ColumnDTOFromJson(json);
 }
 
-extension ColumnToModel on ColumnDTO {
+extension ColumnMapper on ColumnDTO {
   ColumnModel toModel() => ColumnModel(
     id: id,
     title: title,

@@ -10,15 +10,35 @@ import 'package:test_ex1/presentation/widgets/widgets.dart';
 import 'package:test_ex1/state/blocs/blocs.dart';
 
 @RoutePage()
-class MyPrayerDetailScreen extends StatelessWidget {
+class MyPrayerDetailScreen extends StatefulWidget {
   const MyPrayerDetailScreen({super.key, required this.prayer});
   final PrayerModel prayer;
+
+  @override
+  State<MyPrayerDetailScreen> createState() => _MyPrayerDetailScreenState();
+}
+
+class _MyPrayerDetailScreenState extends State<MyPrayerDetailScreen> {
+  late final TextEditingController _commentController;
+
+  @override
+  void initState() {
+    super.initState();
+    _commentController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _commentController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          MySliverAppBar(title: prayer.title),
+          MySliverAppBar(title: widget.prayer.title),
           BlocBuilder<MyPrayersDetailBloc, MyPrayersDetailState>(
             builder: (context, state) {
               return Skeletonizer.sliver(
@@ -29,8 +49,10 @@ class MyPrayerDetailScreen extends StatelessWidget {
                 child: state.when(
                   loading: () => const SliverLoadingDetailState(),
                   error: (message) => const SliverErrorState(),
-                  loaded: (prayer) => SliverPrayerDetailBody(
+                  loaded: (prayer, comments) => SliverPrayerDetailBody(
+                    commentController: _commentController,
                     prayer: prayer,
+                    comments: comments,
                     onPressedPrayButton: () => context.handlePray(
                       prayer,
                       () => context.read<MyPrayersDetailBloc>().add(
@@ -43,6 +65,13 @@ class MyPrayerDetailScreen extends StatelessWidget {
                     onPressedUnsubscribeButton: () => context
                         .read<MyPrayersDetailBloc>()
                         .add(MyPrayersDetailEvent.unsubscribe(prayer: prayer)),
+                    createComment: () =>
+                        context.read<MyPrayersDetailBloc>().add(
+                          MyPrayersDetailEvent.createComment(
+                            prayerId: prayer.id,
+                            body: _commentController.text.trim(),
+                          ),
+                        ),
                   ),
                 ),
               );

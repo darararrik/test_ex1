@@ -8,9 +8,11 @@ class InputCommentWidget extends StatefulWidget {
   const InputCommentWidget({
     super.key,
     required TextEditingController commentController,
+    required this.createComment,
   }) : _commentController = commentController;
 
   final TextEditingController _commentController;
+  final VoidCallback createComment;
 
   @override
   State<InputCommentWidget> createState() => _InputCommentWidgetState();
@@ -53,7 +55,7 @@ class _InputCommentWidgetState extends State<InputCommentWidget> {
               child: Padding(
                 padding: const P(all: S.s4),
                 child: MyIconButton(
-                  onPressed: () {},
+                  onPressed: widget.createComment,
                   iconPath: AppIcons.paperAirplane,
                   width: Sz.s48,
                   height: Sz.s48,

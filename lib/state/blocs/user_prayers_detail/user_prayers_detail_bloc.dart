@@ -15,8 +15,9 @@ class UserPrayerDetailBloc
     : super(const UserPrayerDetailState.loading()) {
     on<_GetPrayerEvent>(_onGetPrayerEvent);
     on<_PrayEvent>(_onDoPrayerEvent);
-    on<_SubscribeEvent>(_subscribePrayer);
-    on<_UnsubscribeEvent>(_unsubscribePrayer);
+    on<_SubscribeEvent>(_onSubscribePrayer);
+    on<_UnsubscribeEvent>(_onUnsubscribePrayer);
+    on<_CreateCommentEvent>(_onCreateComment);
   }
   final IPrayerRepository _prayerRepository;
 
@@ -31,7 +32,9 @@ class UserPrayerDetailBloc
       final prayer = await _prayerRepository.getPrayerById(
         prayerId: event.prayerId,
       );
-      emit(UserPrayerDetailState.loaded(prayer: prayer));
+      final res = await _prayerRepository.getComments(prayerId: prayer.id);
+      final comments = res.commentsList;
+      emit(UserPrayerDetailState.loaded(prayer: prayer, comments: comments));
     } catch (error) {
       emit(UserPrayerDetailState.error(message: error.toString()));
     }
@@ -49,14 +52,16 @@ class UserPrayerDetailBloc
         prayerId: event.prayer.id,
       );
 
-      emit(UserPrayerDetailState.loaded(prayer: prayer));
+      final res = await _prayerRepository.getComments(prayerId: prayer.id);
+      final comments = res.commentsList;
+      emit(UserPrayerDetailState.loaded(prayer: prayer, comments: comments));
     } catch (error) {
       emit(UserPrayerDetailState.error(message: error.toString()));
     }
     return null;
   }
 
-  Future<void> _subscribePrayer(
+  Future<void> _onSubscribePrayer(
     _SubscribeEvent event,
     Emitter<UserPrayerDetailState> emit,
   ) async {
@@ -68,13 +73,15 @@ class UserPrayerDetailBloc
       final prayer = await _prayerRepository.getPrayerById(
         prayerId: event.prayer.id,
       );
-      emit(UserPrayerDetailState.loaded(prayer: prayer));
+      final res = await _prayerRepository.getComments(prayerId: prayer.id);
+      final comments = res.commentsList;
+      emit(UserPrayerDetailState.loaded(prayer: prayer, comments: comments));
     } catch (error) {
       emit(UserPrayerDetailState.error(message: error.toString()));
     }
   }
 
-  Future<void> _unsubscribePrayer(
+  Future<void> _onUnsubscribePrayer(
     _UnsubscribeEvent event,
     Emitter<UserPrayerDetailState> emit,
   ) async {
@@ -86,9 +93,34 @@ class UserPrayerDetailBloc
       final prayer = await _prayerRepository.getPrayerById(
         prayerId: event.prayer.id,
       );
-      emit(UserPrayerDetailState.loaded(prayer: prayer));
+      final res = await _prayerRepository.getComments(prayerId: prayer.id);
+      final comments = res.commentsList;
+      emit(UserPrayerDetailState.loaded(prayer: prayer, comments: comments));
     } catch (error) {
       emit(UserPrayerDetailState.error(message: error.toString()));
+    }
+  }
+
+  FutureOr<void> _onCreateComment(
+    _CreateCommentEvent event,
+    Emitter<UserPrayerDetailState> emit,
+  ) async {
+    try {
+      if (state is! _LoadedState) {
+        emit(const UserPrayerDetailState.loading());
+      }
+      await _prayerRepository.createComment(
+        prayerId: event.prayerId,
+        body: event.body,
+      );
+      final prayer = await _prayerRepository.getPrayerById(
+        prayerId: event.prayerId,
+      );
+      final res = await _prayerRepository.getComments(prayerId: prayer.id);
+      final comments = res.commentsList;
+      emit(UserPrayerDetailState.loaded(prayer: prayer, comments: comments));
+    } catch (e) {
+      emit(UserPrayerDetailState.error(message: e.toString()));
     }
   }
 }

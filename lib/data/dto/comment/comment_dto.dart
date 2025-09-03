@@ -22,7 +22,7 @@ sealed class CommentDTO with _$CommentDTO {
       _$CommentDTOFromJson(json);
 }
 
-extension CommentToModel on CommentDTO {
+extension CommentMapper on CommentDTO {
   CommentModel toModel() => CommentModel(
     body: body,
     createdAt: createdAt,

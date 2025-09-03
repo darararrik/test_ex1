@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+
 import 'package:test_ex1/data/data_source/remote/http_client.dart';
 import 'package:test_ex1/data/dto/dto.dart';
+import 'package:test_ex1/data/utils/app_defaults.dart';
 import 'package:test_ex1/data/utils/rest_constants.dart';
 import 'package:test_ex1/data/utils/transformer.dart';
 
@@ -33,7 +35,7 @@ class RemoteDataSource {
   Future<ColumnsResponseDTO> getColumnsByDeskId(int deskId, int limit) {
     return client.get<ColumnsResponseDTO>(
       RestConstants.deskColumns(deskId),
-      query: {"limit": limit},
+      query: {AppDefaults.limit: limit},
       transformer: (data) =>
           fromJsonTransformer(ColumnsResponseDTO.fromJson, data),
     );
@@ -42,7 +44,7 @@ class RemoteDataSource {
   Future<DesksResponseDTO> getDesks(int limit, {String? afterCursor}) {
     return client.get<DesksResponseDTO>(
       RestConstants.desks,
-      query: {"limit": limit, "afterCursor": afterCursor},
+      query: {AppDefaults.limit: limit, AppDefaults.afterCursor: afterCursor},
       transformer: (data) =>
           fromJsonTransformer(DesksResponseDTO.fromJson, data),
     );
@@ -84,12 +86,12 @@ class RemoteDataSource {
     );
   }
 
-  Future<Response> createPrayer(int columnId, CreatedPrayerDTO dto) {
-    return client.post<Response>(
+  Future<void> createPrayer(int columnId, CreatedPrayerDTO dto) async {
+    final res = await client.post<Response>(
       RestConstants.columnPrayers(columnId),
       body: dto.toJson(),
-      transformer: (response) => response,
     );
+    _checkResponse(res);
   }
 
   Future<List<PrayerDTO>> getSubscribedPrayers() {
@@ -132,18 +134,23 @@ class RemoteDataSource {
 
   // ================= COMMENTS =================
 
-  Future<CommentDTO> createComment(int prayerId, CommentDTO dto) {
+  Future<CommentDTO> createComment(int prayerId, CreatedCommentDTO dto) {
     return client.post<CommentDTO>(
       RestConstants.prayerComments(prayerId),
       body: dto.toJson(),
-      transformer: (data) => fromJsonTransformer(CommentDTO.fromJson, data),
+      transformer: (data) => CommentDTO.fromJson(data),
     );
   }
 
-  Future<List<CommentDTO>> getComments(int prayerId) {
-    return client.get<List<CommentDTO>>(
+  Future<CommentsResponseDTO> getComments(
+    int prayerId,
+    int limit, {
+    String? afterCursor,
+  }) {
+    return client.get<CommentsResponseDTO>(
       RestConstants.prayerComments(prayerId),
-      transformer: (data) => fromJsonListTransformer(CommentDTO.fromJson, data),
+      query: {AppDefaults.limit: limit, AppDefaults.afterCursor: afterCursor},
+      transformer: (data) => CommentsResponseDTO.fromJson(data),
     );
   }
 

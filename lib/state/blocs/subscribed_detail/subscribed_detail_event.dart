@@ -4,6 +4,10 @@ part of 'subscribed_detail_bloc.dart';
 class SubscribedDetailEvent with _$SubscribedDetailEvent {
   const factory SubscribedDetailEvent.getTaskById({required int prayerId}) =
       _GetPrayerByIdEvent;
+  const factory SubscribedDetailEvent.createComment({
+    required int prayerId,
+    required String body,
+  }) = _CreateCommentEvent;
   const factory SubscribedDetailEvent.pray({required PrayerModel prayer}) =
       _PrayEvent;
   const factory SubscribedDetailEvent.subscribe({required PrayerModel prayer}) =

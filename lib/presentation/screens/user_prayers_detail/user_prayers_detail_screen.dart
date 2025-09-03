@@ -10,15 +10,35 @@ import 'package:test_ex1/presentation/widgets/widgets.dart';
 import 'package:test_ex1/state/blocs/blocs.dart';
 
 @RoutePage()
-class UserPrayerDetailScreen extends StatelessWidget {
+class UserPrayerDetailScreen extends StatefulWidget {
   const UserPrayerDetailScreen({super.key, required this.prayer});
   final PrayerModel prayer;
+
+  @override
+  State<UserPrayerDetailScreen> createState() => _UserPrayerDetailScreenState();
+}
+
+class _UserPrayerDetailScreenState extends State<UserPrayerDetailScreen> {
+  late final TextEditingController _commentController;
+
+  @override
+  void initState() {
+    super.initState();
+    _commentController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _commentController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          MySliverAppBar(title: prayer.title),
+          MySliverAppBar(title: widget.prayer.title),
           BlocBuilder<UserPrayerDetailBloc, UserPrayerDetailState>(
             builder: (context, state) {
               return Skeletonizer.sliver(
@@ -28,7 +48,9 @@ class UserPrayerDetailScreen extends StatelessWidget {
                 ),
                 child: state.when(
                   loading: () => const SliverLoadingDetailState(),
-                  loaded: (prayer) => SliverPrayerDetailBody(
+                  error: (message) => const SliverErrorState(),
+                  loaded: (prayer, comments) => SliverPrayerDetailBody(
+                    commentController: _commentController,
                     prayer: prayer,
                     onPressedPrayButton: () => context.handlePray(
                       prayer,
@@ -42,8 +64,15 @@ class UserPrayerDetailScreen extends StatelessWidget {
                     onPressedUnsubscribeButton: () => context
                         .read<UserPrayerDetailBloc>()
                         .add(UserPrayerDetailEvent.unsubscribe(prayer: prayer)),
+                    comments: comments,
+                    createComment: () =>
+                        context.read<UserPrayerDetailBloc>().add(
+                          UserPrayerDetailEvent.createComment(
+                            prayerId: prayer.id,
+                            body: _commentController.text.trim(),
+                          ),
+                        ),
                   ),
-                  error: (message) => const SliverErrorState(),
                 ),
               );
             },
