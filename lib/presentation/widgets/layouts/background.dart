@@ -1,36 +1,43 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
 import 'package:test_ex1/presentation/constants/constants.dart';
-import 'package:test_ex1/presentation/utils/extensions/build_context_x.dart';
-import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
+import 'package:test_ex1/presentation/utils/utils.dart';
 
-class BackGroundWidget extends StatelessWidget {
-  const BackGroundWidget({super.key, required this.child});
+class Background extends StatelessWidget {
+  const Background({super.key, required this.child});
   final Widget child;
-
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        const AppIcon(
-          AppIcons.background,
-          fit: BoxFit.fitHeight,
-          width: double.infinity,
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: context.appColors.gray100,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(R.r24),
-                topRight: Radius.circular(R.r24),
+    return Padding(
+      padding: const P(horizontal: S.s16),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Skeleton.ignore(
+              child: ShaderMask(
+                shaderCallback: (Rect bounds) {
+                  return context.appColors.gradientOrange!.createShader(bounds);
+                },
+                blendMode: BlendMode.srcATop,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(R.r24),
+                    image: const DecorationImage(
+                      image: Svg(AppIcons.background),
+                      repeat: ImageRepeat.repeat,
+                      fit: BoxFit.none,
+                    ),
+                  ),
+                ),
               ),
             ),
-            child: child,
           ),
-        ),
-      ],
+          child,
+        ],
+      ),
     );
   }
 }

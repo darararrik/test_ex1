@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
-import 'package:test_ex1/domain/models/desk/desk_model.dart';
+import 'package:test_ex1/domain/models/column.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
-import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/cards/background_card_delete.dart';
+import 'package:test_ex1/state/blocs/blocs.dart';
 
-class DeskCard extends StatefulWidget {
-  const DeskCard({super.key, required this.desk, required this.onTap});
-  final DeskModel desk;
+class ColumnCard extends StatefulWidget {
+  const ColumnCard({super.key, required this.column, required this.onTap});
+  final ColumnModel column;
   final VoidCallback onTap;
   @override
-  State<DeskCard> createState() => _DeskCardState();
+  State<ColumnCard> createState() => _ColumnCardState();
 }
 
-class _DeskCardState extends State<DeskCard> {
+class _ColumnCardState extends State<ColumnCard> {
   late TextEditingController _controller;
   final _focusNode = FocusNode();
   final isEditing = ValueNotifier<bool>(false);
@@ -26,7 +24,7 @@ class _DeskCardState extends State<DeskCard> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: widget.desk.title);
+    _controller = TextEditingController(text: widget.column.title);
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus && isEditing.value) {
         _finishEditing();
@@ -35,10 +33,10 @@ class _DeskCardState extends State<DeskCard> {
   }
 
   @override
-  void didUpdateWidget(covariant DeskCard oldWidget) {
+  void didUpdateWidget(covariant ColumnCard oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.desk.title != widget.desk.title && !isEditing.value) {
-      _controller.text = widget.desk.title;
+    if (oldWidget.column.title != widget.column.title && !isEditing.value) {
+      _controller.text = widget.column.title;
     }
   }
 
@@ -50,8 +48,9 @@ class _DeskCardState extends State<DeskCard> {
     super.dispose();
   }
 
-  void onDismissed(DismissDirection direction) =>
-      context.read<MyDesksBloc>().add(MyDesksEvent.removeDesk(widget.desk.id));
+  void onDismissed(DismissDirection direction) => context
+      .read<MyDesksBloc>()
+      .add(MyDesksEvent.removeColumn(id: widget.column.id));
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +61,7 @@ class _DeskCardState extends State<DeskCard> {
           children: [
             if (context.isMyDesksWrapperRoute) const BackgroundCardDelete(),
             Dismissible(
-              key: ValueKey(widget.desk.id),
+              key: ValueKey(widget.column.id),
               direction: context.isMyDesksWrapperRoute
                   ? DismissDirection.endToStart
                   : DismissDirection.none,
@@ -91,7 +90,7 @@ class _DeskCardState extends State<DeskCard> {
                         child: Visibility(
                           visible: context.isMyDesksWrapperRoute,
                           replacement: Text(
-                            widget.desk.title,
+                            widget.column.title,
                             style: context.appTextStyle.headline1,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.center,
@@ -99,7 +98,7 @@ class _DeskCardState extends State<DeskCard> {
                           child: Visibility(
                             visible: editing,
                             replacement: Text(
-                              widget.desk.title,
+                              widget.column.title,
                               style: context.appTextStyle.headline1,
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.center,
@@ -141,12 +140,12 @@ class _DeskCardState extends State<DeskCard> {
   void _finishEditing() {
     isEditing.value = false;
     final newTitle = _controller.text.trim();
-    if (newTitle.isNotEmpty && newTitle != widget.desk.title) {
+    if (newTitle.isNotEmpty && newTitle != widget.column.title) {
       context.read<MyDesksBloc>().add(
-        MyDesksEvent.renameDesk(widget.desk.id, newTitle),
+        MyDesksEvent.renameColumn(id: widget.column.id, newName: newTitle),
       );
     } else {
-      _controller.text = widget.desk.title; // сбросить изменения
+      _controller.text = widget.column.title; // сбросить изменения
     }
   }
 }

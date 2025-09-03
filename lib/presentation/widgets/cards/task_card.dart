@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_ex1/domain/blocs/my_desks/my_desks_bloc.dart';
-import 'package:test_ex1/domain/blocs/my_tasks/my_tasks_bloc.dart';
-import 'package:test_ex1/domain/models/task/task_model.dart';
+import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/presentation/constants/constants.dart';
-import 'package:test_ex1/presentation/routing/app_routing.gr.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
 import 'package:test_ex1/presentation/widgets/widgets.dart';
+import 'package:test_ex1/state/blocs/my_prayers/my_prayers_bloc.dart';
 
-class TaskCard extends StatefulWidget {
-  const TaskCard({
+class PrayerCard extends StatefulWidget {
+  const PrayerCard({
     super.key,
-    required this.task,
+    required this.prayer,
     required this.onTapRoute,
     required this.onPressed,
   });
-  final TaskModel task;
+  final PrayerModel prayer;
 
-  final Function(TaskModel task) onPressed;
-  final Function(TaskModel task) onTapRoute;
+  final Function(PrayerModel prayer) onPressed;
+  final Function(PrayerModel prayer) onTapRoute;
   @override
-  State<TaskCard> createState() => _TaskCardState();
+  State<PrayerCard> createState() => _PrayerCardState();
 }
 
-class _TaskCardState extends State<TaskCard> {
+class _PrayerCardState extends State<PrayerCard> {
   late TextEditingController _controller;
   late FocusNode _focusNode;
   final isEditing = ValueNotifier<bool>(false);
@@ -34,7 +31,7 @@ class _TaskCardState extends State<TaskCard> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: widget.task.title);
+    _controller = TextEditingController(text: widget.prayer.title);
     _focusNode = FocusNode();
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus && isEditing.value) {
@@ -44,10 +41,10 @@ class _TaskCardState extends State<TaskCard> {
   }
 
   @override
-  void didUpdateWidget(covariant TaskCard oldWidget) {
+  void didUpdateWidget(covariant PrayerCard oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.task.title != widget.task.title && !isEditing.value) {
-      _controller.text = widget.task.title;
+    if (oldWidget.prayer.title != widget.prayer.title && !isEditing.value) {
+      _controller.text = widget.prayer.title;
     }
   }
 
@@ -58,14 +55,16 @@ class _TaskCardState extends State<TaskCard> {
     super.dispose();
   }
 
-  void onDismissed(DismissDirection direction) => context
-      .read<MyTasksBloc>()
-      .add(MyTasksEvent.removeTask(widget.task.id, widget.task.deskId));
+  void onDismissed(DismissDirection direction) =>
+      context.read<MyPrayersBloc>().add(
+        MyPrayersEvent.deletePray(
+          prayerId: widget.prayer.id,
+          columnId: widget.prayer.columnId,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
-    final countMembers = widget.task.members.resolveCountMembers();
-    final countComplete = widget.task.complete.resolveCountComplete();
     return ValueListenableBuilder<bool>(
       valueListenable: isEditing,
       builder: (context, value, child) {
@@ -73,13 +72,13 @@ class _TaskCardState extends State<TaskCard> {
           children: [
             const BackgroundCardDelete(),
             Dismissible(
-              key: ValueKey(widget.task.id),
+              key: ValueKey(widget.prayer.id),
               onDismissed: context.isMyDesksWrapperRoute ? onDismissed : null,
               direction: context.isMyDesksWrapperRoute
                   ? DismissDirection.endToStart
                   : DismissDirection.none,
               child: GestureDetector(
-                onTap: () => widget.onTapRoute(widget.task),
+                onTap: () => widget.onTapRoute(widget.prayer),
                 onLongPress: _onLongPress,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
@@ -94,7 +93,7 @@ class _TaskCardState extends State<TaskCard> {
                       children: [
                         Row(
                           children: [
-                            CapsuleIcon(task: widget.task),
+                            CapsuleIcon(prayer: widget.prayer),
                             const SizedBox(width: S.s12),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,14 +101,14 @@ class _TaskCardState extends State<TaskCard> {
                                 Visibility(
                                   visible: context.isMyDesksWrapperRoute,
                                   replacement: Text(
-                                    widget.task.title,
+                                    widget.prayer.title,
                                     style: context.appTextStyle.headline2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   child: Visibility(
                                     visible: isEditing.value,
                                     replacement: Text(
-                                      widget.task.title,
+                                      widget.prayer.title,
                                       style: context.appTextStyle.headline2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -132,12 +131,12 @@ class _TaskCardState extends State<TaskCard> {
                                   children: [
                                     _Text(
                                       text: context.l10n.members,
-                                      count: countMembers,
+                                      count: widget.prayer.otherPrayCount,
                                     ),
                                     const SizedBox(width: S.s12),
                                     _Text(
                                       text: context.l10n.complete,
-                                      count: countComplete,
+                                      count: widget.prayer.completesCount,
                                     ),
                                   ],
                                 ),
@@ -146,7 +145,7 @@ class _TaskCardState extends State<TaskCard> {
                           ],
                         ),
                         MyIconButton(
-                          onPressed: () => widget.onPressed(widget.task),
+                          onPressed: () => widget.onPressed(widget.prayer),
                           iconPath: AppIcons.prayArms,
                           backgroundColor: context.appColors.gray300,
                           width: Sz.s46,
@@ -180,12 +179,16 @@ class _TaskCardState extends State<TaskCard> {
   void _finishEditing() {
     isEditing.value = false;
     final newName = _controller.text.trim();
-    if (newName.isNotEmpty && newName != widget.task.title) {
-      context.read<MyTasksBloc>().add(
-        MyTasksEvent.renameTask(widget.task.id, widget.task.deskId, newName),
+    if (newName.isNotEmpty && newName != widget.prayer.title) {
+      context.read<MyPrayersBloc>().add(
+        MyPrayersEvent.renamePrayer(
+          newTitle: newName,
+          taskId: widget.prayer.id,
+          deskId: widget.prayer.columnId,
+        ),
       );
     } else {
-      _controller.text = widget.task.title;
+      _controller.text = widget.prayer.title;
     }
   }
 }

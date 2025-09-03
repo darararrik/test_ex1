@@ -1,4 +1,6 @@
 export 'auth_repository.dart';
-export 'my_desks_repository.dart';
-export 'users_desks_repository.dart';
-export 'followed_tasks_repository.dart';
+export 'column_repository.dart';
+export 'comments_repository.dart';
+export 'desk_repository.dart';
+export 'prayer_repository.dart';
+export 'token_repository.dart';

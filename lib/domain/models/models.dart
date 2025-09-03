@@ -1,4 +1,7 @@
-export 'comment/comment.dart';
-export 'desk/desk.dart';
-export '../../data/dto/followed_task_ref/followed_task_ref.dart';
-export 'task/task.dart';
+export 'column.dart';
+export 'columns_response.dart';
+export 'comment.dart';
+export 'cursor.dart';
+export 'desk.dart';
+export 'desks_response.dart';
+export 'prayer.dart';

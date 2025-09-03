@@ -39,4 +39,5 @@ final AppPalette appColors = AppPalette(
     offset: Offset(0, 0),
     spreadRadius: 0,
   ),
+  skeletonOrange: const Color(0xFFFFEFE3),
 );

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:test_ex1/presentation/my_app.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+import 'package:test_ex1/presentation/presentation.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  await dotenv.load(fileName: ".env");
+  final config = await AppConfig.config();
+  runApp(MyApp(config: config));
 }

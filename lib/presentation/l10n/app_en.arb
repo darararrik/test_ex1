@@ -31,7 +31,7 @@
   "enterTitlePrayer":"Enter title of prayer",
   "enterTitleColumn":"Enter title of column",
   "add":"Add",
-  "emptyTasksScreen":"You haven't created any prayer.",
+  "emptyMyPrayersScreen":"You haven't created any prayer.",
   "errorInvalidEmail":"Enter correct e-mail",
   "errorPasswordTooShort": "Password field must be at leat 5 characters",
   "errorPasswordsDoNotMatch":"Both passwords must match",
@@ -43,7 +43,10 @@
   "sorryText": "The counter can be pressed\nonce per hour.",
   "ok":"OK",
   "emptySubscriptions":"You haven no subscriptions yet.",
-  "internetError":"Internet connection lost."
+  "internetError":"Internet connection lost.",
+  "emptyUsersDesks":"No one’s created a desk yet :(",
+  "emptyUsersColumns":"User has not created columns yet",
+  "emptyUserPrayers":"The user has not created any prayers yet"
 
   
 }

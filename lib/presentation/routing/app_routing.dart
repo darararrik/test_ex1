@@ -15,9 +15,9 @@ class AppRouter extends RootStackRouter {
       initial: true,
       path: '/',
       children: [
-        MyDeskRoutes.routes,
+        MyDesksRoutes.routes,
         UsersDesksRoutes.routes,
-        FollowedRoutes.routes,
+        SubsRoutes.routes,
       ],
     ),
     AutoRoute(
