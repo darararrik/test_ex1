@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
-import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
+import 'package:test_ex1/presentation/widgets/app_icon.dart';
 import 'package:test_ex1/state/password_visibility/password_visibility_cubit.dart';
 
 class InputWidget extends StatelessWidget {

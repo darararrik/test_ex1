@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:test_ex1/presentation/constants/constants.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
-import 'package:test_ex1/presentation/widgets/ui/app_icon.dart';
+import 'package:test_ex1/presentation/widgets/app_icon.dart';
 
 class SliverEmptyState extends StatelessWidget {
   const SliverEmptyState({

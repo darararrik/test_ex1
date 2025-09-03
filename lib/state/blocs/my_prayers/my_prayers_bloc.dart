@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:test_ex1/domain/domain.dart';
 
 part 'my_prayers_bloc.freezed.dart';
@@ -24,9 +23,8 @@ class MyPrayersBloc extends Bloc<MyPrayersEvent, MyPrayersState> {
     Emitter<MyPrayersState> emit,
   ) async {
     try {
-      if (state is! _LoadedState) {
-        emit(const MyPrayersState.loading());
-      }
+      emit(const MyPrayersState.loading());
+
       final prayers = await _prayerRepository.getPrayersByColumnId(
         columnId: event.columnId,
       );

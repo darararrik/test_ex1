@@ -11,7 +11,7 @@ import 'package:test_ex1/presentation/widgets/layouts/empty_state.dart';
 import 'package:test_ex1/presentation/widgets/layouts/error_state.dart';
 import 'package:test_ex1/presentation/widgets/layouts/loading_prayers_state.dart';
 import 'package:test_ex1/presentation/widgets/layouts/prayers_card_list.dart';
-import 'package:test_ex1/presentation/widgets/ui/my_sliver_app_bar.dart';
+import 'package:test_ex1/presentation/widgets/my_sliver_app_bar.dart';
 import 'package:test_ex1/state/blocs/user_prayers/user_prayers_bloc.dart';
 
 @RoutePage()
