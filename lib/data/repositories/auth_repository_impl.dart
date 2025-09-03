@@ -1,17 +1,15 @@
-
 import 'package:dio/dio.dart';
-
 import 'package:test_ex1/data/data.dart';
 import 'package:test_ex1/domain/repositories/repositories.dart';
 
 class AuthRepositoryImpl implements IAuthRepository {
   AuthRepositoryImpl({
-    required RemoteDSAuth remoteDSAuth,
+    required RemoteDataSource remoteDataSource,
     required ITokenRepository tokenRepository,
-  }) : _remoteDSAuth = remoteDSAuth,
+  }) : _remoteDataSource = remoteDataSource,
        _tokenRepository = tokenRepository;
 
-  final RemoteDSAuth _remoteDSAuth;
+  final RemoteDataSource _remoteDataSource;
   final ITokenRepository _tokenRepository;
 
   @override
@@ -19,15 +17,12 @@ class AuthRepositoryImpl implements IAuthRepository {
     final requestDto = LoginRequestDto(email: email, password: password);
 
     try {
-      final resHttp = await _remoteDSAuth.login(requestDto);
+      final resHttp = await _remoteDataSource.signIn(requestDto);
       final data = resHttp.data;
 
       if (data.containsKey('message')) {
         return Result.failure(
-          AuthError(
-            message: data['message'],
-            statusCode: resHttp.response.statusCode,
-          ),
+          AuthError(message: data['message'], statusCode: resHttp.statusCode),
         );
       }
       final user = UserDTO.fromJson(data);
@@ -54,21 +49,18 @@ class AuthRepositoryImpl implements IAuthRepository {
     );
 
     try {
-      final resHttp = await _remoteDSAuth.register(requestDto);
+      final resHttp = await _remoteDataSource.signUp(requestDto);
       final data = resHttp.data;
       if (data.containsKey('message')) {
         return Result.failure(
-          AuthError(
-            message: data['message'],
-            statusCode: resHttp.response.statusCode,
-          ),
+          AuthError(message: data['message'], statusCode: resHttp.statusCode),
         );
       }
       final user = UserDTO.fromJson(data);
       if (user.token.isNotEmpty) {
         _tokenRepository.saveToken(user.token);
       }
-      return Result.success(resHttp.data);
+      return Result.success(user);
     } on DioException catch (e) {
       return Result.failure(_parseDioError(e, AppDefaults.exceptionText));
     }

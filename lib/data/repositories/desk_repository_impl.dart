@@ -1,24 +1,27 @@
-import 'package:test_ex1/data/data_source/desks/remote/remote_ds_desks.dart';
+import 'package:test_ex1/data/data_source/remote/remote_data_source.dart';
 import 'package:test_ex1/data/dto/desk/desk_dto.dart';
 import 'package:test_ex1/data/dto/desks_response/desks_response_dto.dart';
 import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/domain/repositories/repositories.dart';
 
 class DeskRepositoryImpl implements IDeskRepository {
-  DeskRepositoryImpl({required RemoteDSDesks remoteDSDesks})
-    : _remoteDSDesks = remoteDSDesks;
-  final RemoteDSDesks _remoteDSDesks;
+  DeskRepositoryImpl({required RemoteDataSource remoteDataSource})
+    : _remoteDataSource = remoteDataSource;
+  final RemoteDataSource _remoteDataSource;
 
   @override
   Future<DeskModel> getMyDesk() async =>
-      (await _remoteDSDesks.getMyDesk()).toModel();
+      (await _remoteDataSource.getMyDesk()).toModel();
 
   @override
   Future<DesksResponseModel> getOtherDesks({
     int limit = 10,
     String? afterCursor,
   }) async {
-    final responseDto = await _remoteDSDesks.getOtherDesks(limit, afterCursor);
+    final DesksResponseDTO responseDto = await _remoteDataSource.getDesks(
+      limit,
+      afterCursor: afterCursor
+    );
     return responseDto.toModel();
   }
 }

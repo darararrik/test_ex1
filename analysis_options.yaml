@@ -15,7 +15,7 @@ linter:
     use_key_in_widget_constructors: true
 analyzer:
   errors:
-    invalid_annotation_target: true
+    invalid_annotation_target: false
     unused_import: true
   exclude:
     - "**/*.g.dart"

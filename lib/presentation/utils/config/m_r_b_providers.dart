@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_ex1/data/data.dart';
 import 'package:test_ex1/domain/repositories/repositories.dart';
 import 'package:test_ex1/presentation/utils/utils.dart';
@@ -18,25 +16,34 @@ class MRBProviders extends StatelessWidget {
         RepositoryProvider<ITokenRepository>.value(
           value: config.tokenRepository,
         ),
-
+        RepositoryProvider<RemoteService>(
+          create: (context) => RemoteService(dio: config.dio),
+        ),
+        RepositoryProvider<HttpClient>(
+          create: (context) => HttpClient(context.read<RemoteService>()),
+        ),
+        RepositoryProvider<RemoteDataSource>(
+          create: (context) => RemoteDataSource(context.read<HttpClient>()),
+        ),
         RepositoryProvider<IDeskRepository>(
-          create: (context) =>
-              DeskRepositoryImpl(remoteDSDesks: RemoteDSDesks(config.dio)),
+          create: (context) => DeskRepositoryImpl(
+            remoteDataSource: context.read<RemoteDataSource>(),
+          ),
         ),
         RepositoryProvider<IColumnRepository>(
           create: (context) => ColumnRepositoryImpl(
-            remoteDSColumns: RemoteDSColumns(config.dio),
+            remoteDataSource: context.read<RemoteDataSource>(),
           ),
         ),
         RepositoryProvider<IPrayerRepository>(
           create: (context) => PrayerRepositoryImpl(
-            remoteDSPrayers: RemoteDSPrayers(config.dio),
+            remoteDataSource: context.read<RemoteDataSource>(),
           ),
         ),
         RepositoryProvider<IAuthRepository>(
           create: (context) => AuthRepositoryImpl(
-            remoteDSAuth: RemoteDSAuth(config.dio),
-            tokenRepository: context.read(),
+            remoteDataSource: context.read<RemoteDataSource>(),
+            tokenRepository: context.read<ITokenRepository>(),
           ),
         ),
       ],

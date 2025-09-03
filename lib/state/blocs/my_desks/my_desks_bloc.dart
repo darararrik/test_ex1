@@ -46,6 +46,7 @@ class MyDesksBloc extends Bloc<MyDesksEvent, MyDesksState> {
   ) async {
     try {
       //TODO: INFO: В api нету возможности переименовать колонку
+      
       // emit(const MyDesksState.loading());
       // await _myDesksRepository.renameDesk(e.id, e.newName);
       // final desks = await _myDesksRepository.getDesks();

@@ -1,67 +1,36 @@
-import 'package:test_ex1/data/data_source/prayers/remote/remote_ds_prayers.dart';
+import 'package:test_ex1/data/data_source/remote/remote_data_source.dart';
 import 'package:test_ex1/data/dto/created_prayer/created_prayer_dto.dart';
 import 'package:test_ex1/data/dto/prayer/prayer_dto.dart';
 import 'package:test_ex1/domain/models/models.dart';
 import 'package:test_ex1/domain/repositories/prayer_repository.dart';
 
 class PrayerRepositoryImpl implements IPrayerRepository {
-  PrayerRepositoryImpl({required RemoteDSPrayers remoteDSPrayers})
-    : _remoteDSPrayers = remoteDSPrayers;
+  PrayerRepositoryImpl({required RemoteDataSource remoteDataSource})
+    : _remoteDataSource = remoteDataSource;
 
-  final RemoteDSPrayers _remoteDSPrayers;
+  final RemoteDataSource _remoteDataSource;
 
   @override
   Future<void> createPrayer({
     required int columnId,
     required String title,
   }) async {
-    final createdPrayer = CreatedPrayerDTO(title: title);
-    final res = await _remoteDSPrayers.createPrayerByColumnId(
-      columnId,
-      createdPrayer,
-    );
-    final statusCode = res.response.statusCode;
-    final data = res.data;
-    if (statusCode == 200 || statusCode == 201) {
-      return;
-    } else if (statusCode == 400) {
-      final errorMsg =
-          (data is Map<String, dynamic> ? data['message'] : null) ??
-          'Unknown error';
-      throw Exception(errorMsg);
-    } else {
-      throw Exception('Unexpected status code: $statusCode');
-    }
+    final dto = CreatedPrayerDTO(title: title);
+    await _remoteDataSource.createPrayer(columnId, dto);
   }
 
   @override
   Future<void> deletePrayer({required int prayerId}) =>
-      _remoteDSPrayers.deletePrayerById(prayerId);
+      _remoteDataSource.deletePrayer(prayerId);
 
   @override
-  Future<PrayerModel> doPrayer({required int prayerId}) async {
-    final res = await _remoteDSPrayers.doPrayerById(prayerId);
-
-    final statusCode = res.response.statusCode;
-    final data = res.data;
-
-    if (statusCode == 200 || statusCode == 201) {
-      final prayerDTO = PrayerDTO.fromJson(data);
-      return prayerDTO.toModel();
-    } else if (statusCode == 400) {
-      final errorMsg =
-          (data is Map<String, dynamic> ? data['message'] : null) ??
-          'Unknown error';
-      throw Exception(errorMsg);
-    } else {
-      throw Exception('Unexpected status code: $statusCode');
-    }
-  }
+  Future<PrayerModel> doPrayer({required int prayerId}) async =>
+      (await _remoteDataSource.doPrayer(prayerId)).toModel();
 
   @override
   Future<PrayerModel> getPrayerById({required int prayerId}) async {
-    final dto = await _remoteDSPrayers.getPrayerById(prayerId);
-    final subs = await _remoteDSPrayers.getSubscribedPrayers();
+    final dto = await _remoteDataSource.getPrayerById(prayerId);
+    final subs = await _remoteDataSource.getSubscribedPrayers();
     final isSub = subs.contains(dto);
     if (isSub) {
       return dto.toModel(isSub: isSub);
@@ -74,47 +43,23 @@ class PrayerRepositoryImpl implements IPrayerRepository {
   Future<List<PrayerModel>> getPrayersByColumnId({
     required int columnId,
   }) async {
-    final response = await _remoteDSPrayers.getPrayersByColumnId(columnId);
+    final response = await _remoteDataSource.getPrayersByColumnId(columnId);
     return response.map((p) => p.toModel()).toList();
   }
 
   @override
   Future<List<PrayerModel>> getSubscribedPrayers() async {
-    final response = await _remoteDSPrayers.getSubscribedPrayers();
+    final response = await _remoteDataSource.getSubscribedPrayers();
     return response.map((p) => p.toModel(isSub: true)).toList();
   }
 
   @override
   Future<void> subscribePrayer({required int prayerId}) async {
-    final res = await _remoteDSPrayers.subscribe(prayerId);
-    final statusCode = res.response.statusCode;
-    final data = res.data;
-    if (statusCode == 200 || statusCode == 201) {
-      return;
-    } else if (statusCode == 400) {
-      final errorMsg =
-          (data is Map<String, dynamic> ? data['message'] : null) ??
-          'Unknown error';
-      throw Exception(errorMsg);
-    } else {
-      throw Exception('Unexpected status code: $statusCode');
-    }
+    await _remoteDataSource.subscribePrayer(prayerId);
   }
 
   @override
   Future<void> unsubscribePrayer({required int prayerId}) async {
-    final res = await _remoteDSPrayers.unsubscribe(prayerId);
-    final statusCode = res.response.statusCode;
-    final data = res.data;
-    if (statusCode == 200 || statusCode == 201) {
-      return;
-    } else if (statusCode == 400) {
-      final errorMsg =
-          (data is Map<String, dynamic> ? data['message'] : null) ??
-          'Unknown error';
-      throw Exception(errorMsg);
-    } else {
-      throw Exception('Unexpected status code: $statusCode');
-    }
+    await _remoteDataSource.unsubscribePrayer(prayerId);
   }
 }

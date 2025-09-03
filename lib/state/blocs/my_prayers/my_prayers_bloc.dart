@@ -2,12 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:test_ex1/domain/domain.dart';
 
+part 'my_prayers_bloc.freezed.dart';
 part 'my_prayers_event.dart';
 part 'my_prayers_state.dart';
-part 'my_prayers_bloc.freezed.dart';
 
 class MyPrayersBloc extends Bloc<MyPrayersEvent, MyPrayersState> {
   MyPrayersBloc(this._prayerRepository) : super(const MyPrayersState.empty()) {
@@ -45,6 +44,8 @@ class MyPrayersBloc extends Bloc<MyPrayersEvent, MyPrayersState> {
     Emitter<MyPrayersState> emit,
   ) async {
     try {
+      //TODO: INFO: В api нету возможности переименовать молитву
+
       // emit(const MyPrayersState.loading());
       // await _myDeskRepository.renameTask(e.newTitle, e.taskId, e.deskId);
       // final tasks = await _myDeskRepository.getTasksByDeskId(e.deskId);
